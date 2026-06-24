@@ -1,6 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene load_steps=16 format=3 uid="uid://dal5illn6p4c2"]
 
 [ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
+[ext_resource type="Script" path="res://scripts/core/MemorySystem.gd" id="2_6f23j"]
+[ext_resource type="Script" path="res://scripts/core/GameHud.gd" id="3_bga58"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
 sky_top_color = Color(0.321569, 0.572549, 0.882353, 1)
@@ -73,6 +75,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Camera3D" type="Camera3D" parent="Player/Head"]
 current = true
 fov = 78.0
+
+[node name="MemorySystem" type="Node3D" parent="."]
+script = ExtResource("2_6f23j")
+
+[node name="GameHud" type="CanvasLayer" parent="."]
+script = ExtResource("3_bga58")
 
 [node name="Street" type="Node3D" parent="."]
 
