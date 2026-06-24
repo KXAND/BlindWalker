@@ -7,6 +7,7 @@ extends CharacterBody3D
 @export var gravity: float = 9.8
 
 @onready var head: Node3D = $Head
+@onready var touch_memory: TouchMemorySystem = $TouchMemorySystem
 
 var _pitch: float = 0.0
 
@@ -20,13 +21,22 @@ func _unhandled_input(event: InputEvent) -> void:
 		rotate_y(-event.relative.x * mouse_sensitivity)
 		_pitch = clamp(_pitch - event.relative.y * mouse_sensitivity, deg_to_rad(-80.0), deg_to_rad(80.0))
 		head.rotation.x = _pitch
-	elif event is InputEventMouseButton and event.pressed and Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
-		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	elif event is InputEventKey and event.pressed and event.keycode == KEY_ESCAPE:
-		if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
-			Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-		else:
+	
+	elif event is InputEventMouseButton and event.pressed:
+		if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 			Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		elif event.button_index == MOUSE_BUTTON_LEFT:
+			# 左键触发触觉探测（盲人触摸感知）
+			if touch_memory:
+				touch_memory.try_touch()
+	
+	elif event is InputEventKey and event.pressed:
+		match event.keycode:
+			KEY_ESCAPE:
+				if Input.get_mouse_mode() == Input.MOUSE_MODE_CAPTURED:
+					Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
+				else:
+					Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 
 
 func _physics_process(delta: float) -> void:
