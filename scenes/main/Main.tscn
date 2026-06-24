@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene load_steps=14 format=3 uid="uid://dal5illn6p4c2"]
 
 [ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
 
@@ -42,6 +42,12 @@ albedo_color = Color(0.752941, 0.67451, 0.560784, 1)
 albedo_color = Color(0.215686, 0.227451, 0.25098, 1)
 metallic = 0.25
 roughness = 0.7
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_stair_ramp"]
+size = Vector3(2.3, 0.2, 2.969873)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_top_platform"]
+size = Vector3(2.4, 0.2, 1.55)
 
 [node name="Main" type="Node3D"]
 
@@ -195,3 +201,49 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -9)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
+
+[node name="StaircaseTest" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
+
+[node name="Step01" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19, 0)
+size = Vector3(2.5, 0.18, 0.55)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="Step02" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, -0.55)
+size = Vector3(2.5, 0.18, 0.55)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="Step03" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.1)
+size = Vector3(2.5, 0.18, 0.55)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="Step04" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(0.9999986, 0.001658062, 0, -0.001658062, 0.9999986, 0, 0, 0, 1, 0, 0.73, -1.6499996)
+size = Vector3(2.5, 0.18, 0.55)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="Step05" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91, -2.2)
+size = Vector3(2.5, 0.18, 0.55)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="TopPlatform" type="CSGBox3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
+size = Vector3(2.5, 0.18, 1.6)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="StairRampCollider" type="StaticBody3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 0.9063078, -0.4226183, 0, 0.4226183, 0.9063078, 0, 0.62, -1.48)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/StairRampCollider"]
+transform = Transform3D(1, 0, 0, 0, 0.9979275, 0.06434074, 0, -0.06434074, 0.9979275, 0, 0.19530678, 0.54533005)
+shape = SubResource("BoxShape3D_stair_ramp")
+
+[node name="TopPlatformCollider" type="StaticBody3D" parent="StaircaseTest"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/TopPlatformCollider"]
+shape = SubResource("BoxShape3D_top_platform")
