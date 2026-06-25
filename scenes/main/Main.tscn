@@ -1,47 +1,43 @@
 [gd_scene load_steps=14 format=3 uid="uid://dal5illn6p4c2"]
 
 [ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
+[ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_sky"]
-sky_top_color = Color(0.321569, 0.572549, 0.882353, 1)
-sky_horizon_color = Color(0.760784, 0.85098, 0.941176, 1)
-ground_bottom_color = Color(0.305882, 0.282353, 0.258824, 1)
-ground_horizon_color = Color(0.490196, 0.466667, 0.431373, 1)
-
-[sub_resource type="Sky" id="Sky_main"]
-sky_material = SubResource("ProceduralSkyMaterial_sky")
-
-[sub_resource type="Environment" id="Environment_main"]
-background_mode = 2
-sky = SubResource("Sky_main")
-ambient_light_source = 3
-ambient_light_energy = 0.6
+[sub_resource type="Environment" id="Environment_dark"]
+background_mode = 1
+ambient_light_sky_contribution = 0.0
+ambient_light_energy = 0.0
 tonemap_mode = 2
+adjustment_brightness = 0.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
 height = 1.2
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
-albedo_color = Color(0.337255, 0.447059, 0.301961, 1)
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_road"]
-albedo_color = Color(0.117647, 0.117647, 0.12549, 1)
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sidewalk"]
-albedo_color = Color(0.611765, 0.619608, 0.631373, 1)
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crosswalk"]
-albedo_color = Color(0.95, 0.95, 0.95, 1)
-roughness = 0.9
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_building"]
-albedo_color = Color(0.752941, 0.67451, 0.560784, 1)
+albedo_color = Color(0.9, 0.9, 0.9, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lamp"]
-albedo_color = Color(0.215686, 0.227451, 0.25098, 1)
+albedo_color = Color(0.9, 0.9, 0.9, 1)
 metallic = 0.25
-roughness = 0.7
+roughness = 0.5
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_stair_ramp"]
 size = Vector3(2.3, 0.2, 2.969873)
@@ -51,152 +47,166 @@ size = Vector3(2.4, 0.2, 1.55)
 
 [node name="Main" type="Node3D"]
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_main")
+[node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+stretch = true
 
-[node name="Sun" type="DirectionalLight3D" parent="."]
-transform = Transform3D(0.8290376, -0.44065, 0.34427354, 0, 0.6156615, 0.7880107, -0.5591929, -0.6532905, 0.51040655, 0, 0, 0)
-light_energy = 1.35
-shadow_enabled = true
+[node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=1417600403]
+handle_input_locally = false
+size = Vector2i(1280, 720)
+render_target_update_mode = 4
 
-[node name="Player" type="CharacterBody3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 14)
+[node name="GameRoot" type="Node3D" parent="GameViewportContainer/GameViewport" unique_id=1119639457]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=747758012]
+environment = SubResource("Environment_dark")
+
+[node name="Player" type="CharacterBody3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=136453261]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.05, 14)
 script = ExtResource("1_8wz4m")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1681564081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
 shape = SubResource("CapsuleShape3D_player")
 
-[node name="Head" type="Node3D" parent="Player"]
+[node name="Head" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=188933309]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 
-[node name="Camera3D" type="Camera3D" parent="Player/Head"]
+[node name="Camera3D" type="Camera3D" parent="GameViewportContainer/GameViewport/GameRoot/Player/Head" unique_id=850429435]
 current = true
 fov = 78.0
 
-[node name="Street" type="Node3D" parent="."]
+[node name="TouchMemorySystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1172192135]
+script = ExtResource("touch_memory")
 
-[node name="Ground" type="CSGBox3D" parent="Street"]
+[node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
+
+[node name="Ground" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1470045671]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
 use_collision = true
 size = Vector3(40, 1, 56)
 material = SubResource("StandardMaterial3D_ground")
 
-[node name="Road" type="CSGBox3D" parent="Street"]
+[node name="Road" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=425199597]
 use_collision = true
 size = Vector3(8, 0.2, 42)
 material = SubResource("StandardMaterial3D_road")
 
-[node name="SidewalkLeft" type="CSGBox3D" parent="Street"]
+[node name="SidewalkLeft" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=899168378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.12, 0)
 use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="SidewalkRight" type="CSGBox3D" parent="Street"]
+[node name="SidewalkRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=793089957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0.12, 0)
 use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="CrosswalkStripe01" type="CSGBox3D" parent="Street"]
+[node name="CrosswalkStripe01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=201212039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -1.8)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
-[node name="CrosswalkStripe02" type="CSGBox3D" parent="Street"]
+[node name="CrosswalkStripe02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1892653201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -0.9)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
-[node name="CrosswalkStripe03" type="CSGBox3D" parent="Street"]
+[node name="CrosswalkStripe03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=280423516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
-[node name="CrosswalkStripe04" type="CSGBox3D" parent="Street"]
+[node name="CrosswalkStripe04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1444229985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0.9)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
-[node name="CrosswalkStripe05" type="CSGBox3D" parent="Street"]
+[node name="CrosswalkStripe05" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=341898632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 1.8)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
-[node name="BlockoutBuildings" type="Node3D" parent="Street"]
+[node name="BlockoutBuildings" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=17884511]
 
-[node name="LeftBuilding01" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="LeftBuilding01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=2129508841]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.6, 2.75, -15)
 use_collision = true
 size = Vector3(4.2, 5.5, 5.5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="LeftBuilding02" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="LeftBuilding02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=1527093820]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.1, 3.4, -7.5)
 use_collision = true
 size = Vector3(5.2, 6.8, 5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="LeftBuilding03" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="LeftBuilding03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=627140616]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4, 3.1, 6)
 use_collision = true
 size = Vector3(4.8, 6.2, 6.5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="LeftBuilding04" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="LeftBuilding04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=101223378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 2.3, 15)
 use_collision = true
 size = Vector3(5.4, 4.6, 5.8)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="RightBuilding01" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="RightBuilding01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=57624124]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8, 2.5, -15)
 use_collision = true
 size = Vector3(4.6, 5, 5.2)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="RightBuilding02" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="RightBuilding02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=65469449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 3.7, -6.5)
 use_collision = true
 size = Vector3(5.6, 7.4, 5.5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="RightBuilding03" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="RightBuilding03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=1202228969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 2.9, 6.5)
 use_collision = true
 size = Vector3(4.8, 5.8, 5.5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="RightBuilding04" type="CSGBox3D" parent="Street/BlockoutBuildings"]
+[node name="RightBuilding04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=141667608]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.2, 2.6, 15)
 use_collision = true
 size = Vector3(5.1, 5.2, 6.1)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="StreetFurniture" type="Node3D" parent="Street"]
+[node name="StreetFurniture" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=2141472029]
 
-[node name="LampPostLeft" type="CSGCylinder3D" parent="Street/StreetFurniture"]
+[node name="LampPostLeft" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=726654055]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 1.6, 9)
 use_collision = true
 radius = 0.08
 height = 3.2
 material = SubResource("StandardMaterial3D_lamp")
 
-[node name="LampHeadLeft" type="CSGBox3D" parent="Street/StreetFurniture"]
+[node name="LampHeadLeft" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1658841928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, 9)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
 
-[node name="LampPostRight" type="CSGCylinder3D" parent="Street/StreetFurniture"]
+[node name="LampPostRight" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=302719271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, -9)
 use_collision = true
 radius = 0.08
 height = 3.2
 material = SubResource("StandardMaterial3D_lamp")
 
-[node name="LampHeadRight" type="CSGBox3D" parent="Street/StreetFurniture"]
+[node name="LampHeadRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=121970299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -9)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
