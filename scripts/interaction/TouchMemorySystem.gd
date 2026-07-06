@@ -168,7 +168,7 @@ func _update_sphere_uniforms() -> void:
 
 # ---- 触摸探测 ----
 
-## 执行一次触摸（由 PlayerController 左键触发）
+## 执行一次触摸（由 GaitController 左键触发）
 func try_touch() -> void:
 	if not _camera or not _material:
 		return
