@@ -1,9 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene load_steps=17 format=3 uid="uid://dal5illn6p4c2"]
 
 [ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 [ext_resource type="Script" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" path="res://scripts/player/ViewController.gd" id="view_controller"]
+[ext_resource type="Script" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -91,6 +92,10 @@ script = ExtResource("player_attributes")
 
 [node name="ViewController" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
 script = ExtResource("view_controller")
+
+[node name="CaneSystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.15, -0.15)
+script = ExtResource("cane_system")
 
 [node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
 
