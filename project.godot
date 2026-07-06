@@ -21,6 +21,7 @@ config/features=PackedStringArray("4.7")
 [autoload]
 
 EventBus="*res://scripts/core/EventBus.gd"
+GameState="*res://scripts/core/GameState.gd"
 
 [display]
 
