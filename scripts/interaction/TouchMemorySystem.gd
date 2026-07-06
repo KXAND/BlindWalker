@@ -194,6 +194,7 @@ func try_touch() -> void:
 		return
 
 	var hit_point: Vector3 = result.position
+	EventBus.audio_requested.emit("touch", hit_point, 0.0)
 
 	# 生成显影球
 	_active_spheres.append({

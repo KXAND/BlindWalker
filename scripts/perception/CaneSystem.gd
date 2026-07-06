@@ -12,6 +12,7 @@ var _current_angle: float = 0.0
 var _view_controller: ViewController
 var _rod: CSGBox3D
 var _tip_area: Area3D
+var _was_hitting: bool = false
 
 
 func _ready() -> void:
@@ -49,6 +50,7 @@ func _physics_process(_delta: float) -> void:
 	var result := get_world_3d().direct_space_state.intersect_ray(query)
 	if result.is_empty():
 		_update_visual_length(cane_length)
+		_was_hitting = false
 		return
 
 	var hit_point: Vector3 = result["position"]
@@ -57,6 +59,9 @@ func _physics_process(_delta: float) -> void:
 	var hit_distance := global_position.distance_to(hit_point)
 	_update_visual_length(hit_distance)
 	EventBus.cane_hit_object.emit(_object_name(hit_collider), hit_point, hit_normal)
+	if not _was_hitting:
+		EventBus.audio_requested.emit("cane_hit", hit_point, 0.0)
+	_was_hitting = true
 
 
 func _apply_sweep(delta_angle: float) -> void:

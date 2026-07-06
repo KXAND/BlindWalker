@@ -121,6 +121,7 @@ func _apply_step() -> void:
 	global_position += forward * step_length
 	if is_stair:
 		global_position.y += terrain_delta
+	EventBus.audio_requested.emit("step", global_position, 0.0)
 
 
 func _hits_wall(direction: Vector3, distance: float) -> bool:
@@ -163,10 +164,12 @@ func _do_stagger(forward: Vector3) -> void:
 	_stagger_time = stagger_duration
 	global_position -= forward * GameConfig.STAGGER_PUSH_BACK
 	print("GaitController: stagger push_back=%.2f duration=%.2f" % [GameConfig.STAGGER_PUSH_BACK, stagger_duration])
+	EventBus.audio_requested.emit("wall_hit", global_position, 0.0)
 
 
 func _do_fall(fall_distance: float) -> void:
 	print("GaitController: fall distance=%.2f damage=%d" % [fall_distance, GameConfig.FALL_DAMAGE])
+	EventBus.audio_requested.emit("fall", global_position, 0.0)
 	EventBus.player_fell.emit(fall_distance)
 	if _attributes:
 		_attributes.take_damage(GameConfig.FALL_DAMAGE)
