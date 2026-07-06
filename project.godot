@@ -18,6 +18,10 @@ config/name="BlindWalker"
 run/main_scene="res://scenes/main/Main.tscn"
 config/features=PackedStringArray("4.7")
 
+[autoload]
+
+EventBus="*res://scripts/core/EventBus.gd"
+
 [display]
 
 window/size/viewport_width=1280
