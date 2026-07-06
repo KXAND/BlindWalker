@@ -1,6 +1,6 @@
 [gd_scene load_steps=17 format=3 uid="uid://dal5illn6p4c2"]
 
-[ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
+[ext_resource type="Script" path="res://scripts/player/GaitController.gd" id="1_8wz4m"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 [ext_resource type="Script" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" path="res://scripts/player/ViewController.gd" id="view_controller"]
