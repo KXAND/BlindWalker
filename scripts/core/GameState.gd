@@ -38,6 +38,7 @@ func _on_player_died() -> void:
 func _transition_to(new_state: State) -> void:
 	var old_state := current_state
 	current_state = new_state
+	print("GameState: %s -> %s" % [_state_name(old_state), _state_name(new_state)])
 	EventBus.game_state_changed.emit(_state_name(old_state), _state_name(new_state))
 
 

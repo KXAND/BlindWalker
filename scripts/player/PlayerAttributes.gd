@@ -16,9 +16,11 @@ func take_damage(amount: int) -> void:
 
 	var applied_damage: int = mini(amount, hp)
 	hp = maxi(hp - applied_damage, 0)
+	print("PlayerAttributes: damaged=%d hp=%d/%d" % [applied_damage, hp, max_hp])
 	EventBus.player_damaged.emit(applied_damage, hp)
 
 	if hp == 0:
+		print("PlayerAttributes: died")
 		EventBus.player_died.emit()
 
 
@@ -30,4 +32,5 @@ func heal(amount: int) -> void:
 	hp = mini(hp + amount, max_hp)
 	var healed := hp - old_hp
 	if healed > 0:
+		print("PlayerAttributes: healed=%d hp=%d/%d" % [healed, hp, max_hp])
 		EventBus.player_healed.emit(healed, hp)

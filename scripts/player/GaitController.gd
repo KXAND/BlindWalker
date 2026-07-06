@@ -162,9 +162,11 @@ func _floor_height_at(sample_position: Vector3) -> float:
 func _do_stagger(forward: Vector3) -> void:
 	_stagger_time = stagger_duration
 	global_position -= forward * GameConfig.STAGGER_PUSH_BACK
+	print("GaitController: stagger push_back=%.2f duration=%.2f" % [GameConfig.STAGGER_PUSH_BACK, stagger_duration])
 
 
 func _do_fall(fall_distance: float) -> void:
+	print("GaitController: fall distance=%.2f damage=%d" % [fall_distance, GameConfig.FALL_DAMAGE])
 	EventBus.player_fell.emit(fall_distance)
 	if _attributes:
 		_attributes.take_damage(GameConfig.FALL_DAMAGE)
