@@ -1,5 +1,6 @@
-[gd_scene load_steps=22 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene load_steps=25 format=3 uid="uid://dal5illn6p4c2"]
 
+[ext_resource type="Script" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 [ext_resource type="Script" path="res://scripts/player/GaitController.gd" id="1_8wz4m"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 [ext_resource type="Script" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
@@ -9,6 +10,7 @@
 [ext_resource type="Script" path="res://scripts/npc/NPCAvoidance.gd" id="npc_avoidance"]
 [ext_resource type="Script" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Script" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
+[ext_resource type="Script" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -56,7 +58,11 @@ size = Vector3(2.4, 0.2, 1.55)
 radius = 0.3
 height = 1.35
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_target_area"]
+size = Vector3(2, 2, 2)
+
 [node name="Main" type="Node3D"]
+script = ExtResource("main_bootstrap")
 
 [node name="CutsceneManager" type="Node" parent="."]
 script = ExtResource("cutscene_manager")
@@ -71,7 +77,7 @@ grow_vertical = 2
 stretch = true
 
 [node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=1417600403]
-handle_input_locally = false
+handle_input_locally = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
@@ -251,6 +257,13 @@ shape = SubResource("CapsuleShape3D_npc")
 
 [node name="NPCAvoidance" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/NPCTest"]
 script = ExtResource("npc_avoidance")
+
+[node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.8, -18)
+script = ExtResource("target_area")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea"]
+shape = SubResource("BoxShape3D_target_area")
 
 [node name="StaircaseTest" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
