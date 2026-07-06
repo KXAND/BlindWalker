@@ -78,7 +78,16 @@ func _subtitle_for(cutscene_id: String) -> String:
 func _resolve_camera() -> Camera3D:
 	if cutscene_camera:
 		return cutscene_camera
-	return get_viewport().get_camera_3d()
+
+	var viewport_camera := get_viewport().get_camera_3d()
+	if viewport_camera:
+		return viewport_camera
+
+	for node in get_tree().root.find_children("*", "Camera3D", true, false):
+		var camera := node as Camera3D
+		if camera and camera.current:
+			return camera
+	return null
 
 
 func _create_subtitle_label() -> void:
