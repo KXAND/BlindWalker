@@ -1,6 +1,7 @@
 class_name PlayerAttributes
 extends Node
 
+## 玩家血量组件。只管理数值和事件，不决定失败流程。
 @export var max_hp: int = GameConfig.MAX_HP
 
 var hp: int = GameConfig.MAX_HP

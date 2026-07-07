@@ -1,5 +1,7 @@
 extends Node
 
+## 全局音频入口：监听玩法事件并播放 2D/3D 音效。
+## 3D 播放器必须挂到 GameRoot，否则 SubViewport 内的 AudioListener3D 听不到。
 @export var master_volume_db: float = 0.0
 
 const POOL_SIZE: int = 4

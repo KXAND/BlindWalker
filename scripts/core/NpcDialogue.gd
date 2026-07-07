@@ -1,6 +1,7 @@
 class_name NpcDialogue
 extends RefCounted
 
+## NPC 对话数据容器；文本和语音路径分离，便于后续接入配音资源。
 var lines: Array[String] = []
 var voice_paths: Array[String] = []
 

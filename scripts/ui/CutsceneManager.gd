@@ -1,6 +1,7 @@
 class_name CutsceneManager
 extends Node
 
+## 简单演出控制器：播放字幕/相机 tween，并临时禁用玩家输入。
 @export var subtitle_label: Label
 @export var cutscene_camera: Camera3D
 @export var cutscene_duration: float = 2.0

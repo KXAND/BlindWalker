@@ -168,7 +168,7 @@ func _update_sphere_uniforms() -> void:
 
 # ---- 触摸探测 ----
 
-## 执行一次触摸（由 GaitController 左键触发）
+## 执行一次触摸（由 InputManager 左键触发）
 func try_touch() -> void:
 	if not _camera or not _material:
 		return
@@ -267,6 +267,7 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	# F3/H 是开发调试入口，不属于玩家运行时输入；正式玩法输入统一由 InputManager 管理。
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_F3:

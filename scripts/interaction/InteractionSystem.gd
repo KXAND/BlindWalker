@@ -1,6 +1,7 @@
 class_name InteractionSystem
 extends Node
 
+## 只负责检测附近是否有 NPC，并广播“可交互”提示；具体对话输入暂不在 MVP 内实现。
 @export var interaction_range: float = 2.0
 @export var prompt_text: String = "按提示键与行人交流"
 

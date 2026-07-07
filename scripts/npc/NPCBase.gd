@@ -1,6 +1,7 @@
 class_name NPCBase
 extends CharacterBody3D
 
+## NPC 的最小巡逻基类。没有配置路径点时使用短距离往返路线，方便主场景直接验收。
 @export var npc_name: String = "行人"
 @export var waypoints: Array[Node3D] = []
 @export var walk_speed: float = 2.0

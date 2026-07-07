@@ -1,5 +1,6 @@
 extends Node
 
+## 跨系统广播总线。只放一对多的玩法事件，不承载 Player 内部的每帧输入分发。
 @warning_ignore("unused_signal")
 signal player_damaged(amount: int, current_hp: int)
 @warning_ignore("unused_signal")

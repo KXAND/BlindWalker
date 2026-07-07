@@ -1,5 +1,6 @@
 extends Node
 
+## 线性流程状态机：本 MVP 只处理开始、成功和失败，不做检查点回滚。
 enum State { LOADING, PLAYING, SUCCESS, FAILURE }
 
 var current_state: State = State.LOADING

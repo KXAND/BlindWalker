@@ -1,35 +1,43 @@
 class_name CaneSystem
 extends Node3D
 
+## 盲杖系统负责局部 yaw/pitch 挥动、碰撞射线和尖端 Area；不直接控制玩家视角。
 @export var cone_angle: float = GameConfig.CANE_SWEEP_ANGLE
+@export var pitch_angle: float = 60.0
 @export var cane_length: float = GameConfig.CANE_LENGTH
-@export var sweep_sensitivity: float = 0.005
-@export var view_controller_path: NodePath = ^"../ViewController"
 
 var input_enabled: bool = true
 
 var _current_angle: float = 0.0
-var _view_controller: ViewController
+var _current_pitch: float = 0.0
 var _rod: CSGBox3D
 var _tip_area: Area3D
 var _was_hitting: bool = false
 
 
 func _ready() -> void:
-	_view_controller = get_node_or_null(view_controller_path) as ViewController
 	_create_visuals()
 	_update_visual_length(cane_length)
 
 
-func _unhandled_input(event: InputEvent) -> void:
-	if not input_enabled:
-		return
-	if event is InputEventMouseMotion:
-		_apply_sweep(-event.relative.x * sweep_sensitivity)
-
-
 func set_input_enabled(enabled: bool) -> void:
 	input_enabled = enabled
+
+
+func apply_sweep(delta: Vector2) -> Vector2:
+	if not input_enabled:
+		return Vector2.ZERO
+
+	# 返回值是盲杖局部边界没有消耗掉的弧度余量，InputManager 再把它转成玩家/视角旋转。
+	var half_yaw := deg_to_rad(cone_angle * 0.5)
+	var half_pitch := deg_to_rad(pitch_angle * 0.5)
+	var yaw_result := _apply_axis(_current_angle, delta.x, -half_yaw, half_yaw)
+	var pitch_result := _apply_axis(_current_pitch, delta.y, -half_pitch, half_pitch)
+
+	_current_angle = yaw_result.x
+	_current_pitch = pitch_result.x
+	rotation = Vector3(_current_pitch, _current_angle, 0.0)
+	return Vector2(yaw_result.y, pitch_result.y)
 
 
 func get_tip_area() -> Area3D:
@@ -64,17 +72,10 @@ func _physics_process(_delta: float) -> void:
 	_was_hitting = true
 
 
-func _apply_sweep(delta_angle: float) -> void:
-	var half_cone := deg_to_rad(cone_angle * 0.5)
-	var target_angle := _current_angle + delta_angle
-	var clamped_angle := clampf(target_angle, -half_cone, half_cone)
-	var overflow := target_angle - clamped_angle
-
-	_current_angle = clamped_angle
-	rotation.y = _current_angle
-
-	if not is_zero_approx(overflow) and _view_controller:
-		_view_controller.rotate_view(overflow, 0.0)
+func _apply_axis(current: float, delta: float, min_value: float, max_value: float) -> Vector2:
+	var target := current + delta
+	var clamped_value := clampf(target, min_value, max_value)
+	return Vector2(clamped_value, target - clamped_value)
 
 
 func _create_visuals() -> void:

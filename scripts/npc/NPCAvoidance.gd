@@ -1,6 +1,7 @@
 class_name NPCAvoidance
 extends Node
 
+## 盲杖进入 NPC 避让区时，让 NPC 临时横移一步；不负责 NPC 的路径巡逻。
 @export var avoid_distance: float = 1.0
 @export var cooldown_time: float = 2.0
 @export var avoid_duration: float = 0.35

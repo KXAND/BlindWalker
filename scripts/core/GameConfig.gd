@@ -1,6 +1,7 @@
 class_name GameConfig
 extends RefCounted
 
+## MVP 共享常量。这里不做 autoload，脚本通过 class_name 直接读取。
 const KEY_LEFT_FOOT: Key = KEY_W
 const KEY_RIGHT_FOOT: Key = KEY_E
 const KEY_CAUTIOUS: Key = KEY_SHIFT
