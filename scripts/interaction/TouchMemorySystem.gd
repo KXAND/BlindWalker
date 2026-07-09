@@ -17,6 +17,9 @@ class_name TouchMemorySystem
 
 # ---- 常量（与 Three.js 对应） ----
 
+const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
+const _TouchSphere = preload("res://scripts/core/TouchSphere.gd")
+
 const MAX_SPHERES: int = 64
 const INITIAL_RADIUS: float = 1.5
 const ACTIVE_LIFE: float = 30.0
@@ -49,8 +52,8 @@ var _quad: MeshInstance3D = null
 var _material: ShaderMaterial = null
 
 # 显影球与残影球
-var _active_spheres: Array[TouchSphere] = []
-var _afterglow_spheres: Array[TouchSphere] = []
+var _active_spheres: Array[_TouchSphere] = []
+var _afterglow_spheres: Array[_TouchSphere] = []
 
 # 调试用
 var _debug_light: DirectionalLight3D = null
@@ -151,7 +154,7 @@ func _update_sphere_uniforms() -> void:
 
 	for i in range(MAX_SPHERES):
 		if i < count:
-			var s: TouchSphere = all_spheres[i]
+			var s: _TouchSphere = all_spheres[i]
 			pos_array[i] = s.center
 			rad_array[i] = s.radius
 			str_array[i] = s.strength
@@ -179,15 +182,15 @@ func try_touch() -> void:
 	var to: Vector3 = from + forward * touch_max_distance
 
 	var player: Node = get_parent()
-	var exclude_rid := player.get_rid() if player is CharacterBody3D else RID()
-	var result := RaycastUtil.query_body(space_state, from, to, exclude_rid)
+	var exclude_rid: RID = player.get_rid() if player is CharacterBody3D else RID()
+	var result := _RaycastUtil.query_body(space_state, from, to, exclude_rid)
 	if result.is_empty():
 		return
 
 	var hit_point: Vector3 = result.position
 
 	# 生成显影球
-	var active_sphere := TouchSphere.new()
+	var active_sphere := _TouchSphere.new()
 	active_sphere.center = hit_point
 	active_sphere.radius = INITIAL_RADIUS
 	active_sphere.age = 0.0
@@ -196,7 +199,7 @@ func try_touch() -> void:
 	_active_spheres.append(active_sphere)
 
 	# 生成残影球
-	var afterglow_sphere := TouchSphere.new()
+	var afterglow_sphere := _TouchSphere.new()
 	afterglow_sphere.center = hit_point
 	afterglow_sphere.radius = AFTERGLOW_RADIUS
 	afterglow_sphere.age = 0.0
@@ -226,7 +229,7 @@ func _process(delta: float) -> void:
 
 	# 显影球：远离时随时间缩小，靠近时暂停
 	for i in range(_active_spheres.size() - 1, -1, -1):
-		var s: TouchSphere = _active_spheres[i]
+		var s: _TouchSphere = _active_spheres[i]
 		var dist_to_player: float = _camera.global_position.distance_to(s.center)
 
 		if dist_to_player >= DIST_NEAR:
@@ -243,7 +246,7 @@ func _process(delta: float) -> void:
 
 	# 残影球：长期缓慢衰减
 	for i in range(_afterglow_spheres.size() - 1, -1, -1):
-		var s: TouchSphere = _afterglow_spheres[i]
+		var s: _TouchSphere = _afterglow_spheres[i]
 		s.age += delta
 		var age_factor: float = 1.0 - (s.age / s.max_age)
 		s.strength = AFTERGLOW_INIT_STRENGTH * age_factor

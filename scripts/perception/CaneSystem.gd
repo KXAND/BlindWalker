@@ -15,6 +15,9 @@ var _tip_area: Area3D
 var _was_hitting: bool = false
 
 
+const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
+
+
 func _ready() -> void:
 	_create_visuals()
 	_update_visual_length(cane_length)
@@ -47,7 +50,7 @@ func _physics_process(_delta: float) -> void:
 	var parent_body := get_parent() as CollisionObject3D
 	var exclude_rid := parent_body.get_rid() if parent_body else RID()
 	var space_state := get_world_3d().direct_space_state
-	var result := RaycastUtil.query_body(space_state, from, to, exclude_rid)
+	var result := _RaycastUtil.query_body(space_state, from, to, exclude_rid)
 
 	if result.is_empty():
 		_update_visual_length(cane_length)

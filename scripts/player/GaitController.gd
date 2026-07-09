@@ -14,6 +14,7 @@ const STAIR_DOWN_THRESHOLD := -0.15
 const WALL_NORMAL_THRESHOLD := 0.45
 const WALL_HIT_COOLDOWN := 0.3
 const FALL_Y_THRESHOLD := -10.0
+const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
 
 var _is_moving: bool = false
 var _cautious_active: bool = false
@@ -196,7 +197,7 @@ func _floor_height_at(sample_position: Vector3) -> float:
 	var from := sample_position + Vector3.UP * 0.8
 	var to := sample_position + Vector3.DOWN * 1.4
 	var space_state := get_world_3d().direct_space_state
-	var result := RaycastUtil.query_body(space_state, from, to, get_rid())
+	var result := _RaycastUtil.query_body(space_state, from, to, get_rid())
 	if result.is_empty():
 		return NAN
 	var hit_position: Vector3 = result["position"]

@@ -1,7 +1,14 @@
-[gd_scene load_steps=14 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene load_steps=20 format=3 uid="uid://dal5illn6p4c2"]
 
-[ext_resource type="Script" uid="uid://y254iw3mnypx" path="res://scripts/player/PlayerController.gd" id="1_8wz4m"]
-[ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
+[ext_resource type="Script" path="res://scripts/player/GaitController.gd" id="gait_controller"]
+[ext_resource type="Script" path="res://scripts/player/InputManager.gd" id="input_manager"]
+[ext_resource type="Script" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
+[ext_resource type="Script" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
+[ext_resource type="Script" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
+[ext_resource type="Script" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
+[ext_resource type="Script" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
+[ext_resource type="Script" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
+[ext_resource type="Script" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -45,6 +52,9 @@ size = Vector3(2.3, 0.2, 2.969873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_top_platform"]
 size = Vector3(2.4, 0.2, 1.55)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
+size = Vector3(4.0, 2.0, 2.0)
+
 [node name="Main" type="Node3D"]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
@@ -62,13 +72,14 @@ size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
 [node name="GameRoot" type="Node3D" parent="GameViewportContainer/GameViewport" unique_id=1119639457]
+script = ExtResource("main_bootstrap")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=747758012]
 environment = SubResource("Environment_dark")
 
 [node name="Player" type="CharacterBody3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=136453261]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.05, 14)
-script = ExtResource("1_8wz4m")
+script = ExtResource("gait_controller")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1681564081]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, 0)
@@ -81,8 +92,30 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
 fov = 78.0
 
+[node name="InputManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+script = ExtResource("input_manager")
+
+[node name="PlayerAttributes" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+script = ExtResource("player_attributes")
+
+[node name="CaneSystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+script = ExtResource("cane_system")
+
 [node name="TouchMemorySystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1172192135]
 script = ExtResource("touch_memory")
+
+[node name="InteractionSystem" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+script = ExtResource("interaction_system")
+
+[node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot"]
+script = ExtResource("cutscene_manager")
+
+[node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -20)
+script = ExtResource("target_area")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea"]
+shape = SubResource("BoxShape3D_target")
 
 [node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
 
