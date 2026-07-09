@@ -1,7 +1,10 @@
-# Issue #4: ViewController 视角控制
+# Issue #4: ~~ViewController 视角控制~~ → Superseded
+
+> ⚠️ **本 Issue 已废弃。** 视角控制归入 InputManager，不再创建独立 ViewController 模块。详见 [ADR-0005](../adr/0005-input-manager-merges-view.md)。
 
 **依赖**: Issue #1 (EventBus)  
-**参考**: PRD §2.4, CONTEXT.md §视角
+**参考**: PRD §2.4（已标注被 ADR-0005 取代）, CONTEXT.md §视角  
+**状态**: Superseded by ADR-0005
 
 ---
 
