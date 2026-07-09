@@ -49,8 +49,8 @@ var _quad: MeshInstance3D = null
 var _material: ShaderMaterial = null
 
 # 显影球与残影球
-var _active_spheres: Array[Dictionary] = []
-var _afterglow_spheres: Array[Dictionary] = []
+var _active_spheres: Array[TouchSphere] = []
+var _afterglow_spheres: Array[TouchSphere] = []
 
 # 调试用
 var _debug_light: DirectionalLight3D = null
@@ -151,7 +151,7 @@ func _update_sphere_uniforms() -> void:
 
 	for i in range(MAX_SPHERES):
 		if i < count:
-			var s: Dictionary = all_spheres[i]
+			var s: TouchSphere = all_spheres[i]
 			pos_array[i] = s.center
 			rad_array[i] = s.radius
 			str_array[i] = s.strength
@@ -168,7 +168,7 @@ func _update_sphere_uniforms() -> void:
 
 # ---- 触摸探测 ----
 
-## 执行一次触摸（由 PlayerController 左键触发）
+## 执行一次触摸（由 InputManager 左键触发）
 func try_touch() -> void:
 	if not _camera or not _material:
 		return
@@ -178,40 +178,31 @@ func try_touch() -> void:
 	var forward: Vector3 = -_camera.global_transform.basis.z.normalized()
 	var to: Vector3 = from + forward * touch_max_distance
 
-	var query := PhysicsRayQueryParameters3D.create(from, to)
-	query.collision_mask = 1
-	query.collide_with_areas = false
-	query.collide_with_bodies = true
-	query.hit_from_inside = false
-
-	# 排除玩家自身
 	var player: Node = get_parent()
-	if player is CharacterBody3D:
-		query.exclude = [player.get_rid()]
-
-	var result := space_state.intersect_ray(query)
+	var exclude_rid := player.get_rid() if player is CharacterBody3D else RID()
+	var result := RaycastUtil.query_body(space_state, from, to, exclude_rid)
 	if result.is_empty():
 		return
 
 	var hit_point: Vector3 = result.position
 
 	# 生成显影球
-	_active_spheres.append({
-		"center": hit_point,
-		"radius": INITIAL_RADIUS,
-		"age": 0.0,
-		"max_age": ACTIVE_LIFE,
-		"strength": 1.0
-	})
+	var active_sphere := TouchSphere.new()
+	active_sphere.center = hit_point
+	active_sphere.radius = INITIAL_RADIUS
+	active_sphere.age = 0.0
+	active_sphere.max_age = ACTIVE_LIFE
+	active_sphere.strength = 1.0
+	_active_spheres.append(active_sphere)
 
 	# 生成残影球
-	_afterglow_spheres.append({
-		"center": hit_point,
-		"radius": AFTERGLOW_RADIUS,
-		"age": 0.0,
-		"max_age": AFTERGLOW_LIFE,
-		"strength": AFTERGLOW_INIT_STRENGTH
-	})
+	var afterglow_sphere := TouchSphere.new()
+	afterglow_sphere.center = hit_point
+	afterglow_sphere.radius = AFTERGLOW_RADIUS
+	afterglow_sphere.age = 0.0
+	afterglow_sphere.max_age = AFTERGLOW_LIFE
+	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
+	_afterglow_spheres.append(afterglow_sphere)
 
 	# 保持上限，避免着色器数组溢出
 	if _active_spheres.size() > MAX_SPHERES:
@@ -235,7 +226,7 @@ func _process(delta: float) -> void:
 
 	# 显影球：远离时随时间缩小，靠近时暂停
 	for i in range(_active_spheres.size() - 1, -1, -1):
-		var s: Dictionary = _active_spheres[i]
+		var s: TouchSphere = _active_spheres[i]
 		var dist_to_player: float = _camera.global_position.distance_to(s.center)
 
 		if dist_to_player >= DIST_NEAR:
@@ -252,7 +243,7 @@ func _process(delta: float) -> void:
 
 	# 残影球：长期缓慢衰减
 	for i in range(_afterglow_spheres.size() - 1, -1, -1):
-		var s: Dictionary = _afterglow_spheres[i]
+		var s: TouchSphere = _afterglow_spheres[i]
 		s.age += delta
 		var age_factor: float = 1.0 - (s.age / s.max_age)
 		s.strength = AFTERGLOW_INIT_STRENGTH * age_factor
@@ -266,6 +257,8 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	if not GameConfig.DEBUG:
+		return
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_F3:
@@ -278,7 +271,7 @@ func _input(event: InputEvent) -> void:
 				debug_mode = not debug_mode
 				if _material:
 					_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
-				print("TouchMemorySystem 调试模式: ", "ON" if debug_mode else "OFF")
+				print("[DEBUG][TouchMemorySystem] debug mode: ", "ON" if debug_mode else "OFF")
 
 
 # ---- 调试模式 ----
@@ -311,10 +304,12 @@ func _apply_debug_mode() -> void:
 				if r3d:
 					r3d.add_child(_debug_light)
 			_debug_light.global_rotation_degrees = Vector3(-60, 30, 0)
-		print("调试模式 ON — 环境光启用")
+		if GameConfig.DEBUG:
+			print("[DEBUG][TouchMemorySystem] debug mode ON — ambient light enabled")
 	else:
 		_environment.ambient_light_energy = _debug_ambient_stored
 		if _debug_light:
 			_debug_light.queue_free()
 			_debug_light = null
-		print("调试模式 OFF — 恢复原始光照")
+		if GameConfig.DEBUG:
+			print("[DEBUG][TouchMemorySystem] debug mode OFF — restored original lighting")
