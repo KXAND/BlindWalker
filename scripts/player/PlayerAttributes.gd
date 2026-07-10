@@ -8,6 +8,7 @@ var hp: int = GameConfig.MAX_HP
 
 
 func _ready() -> void:
+	add_to_group("player_attributes")
 	hp = max_hp
 
 
