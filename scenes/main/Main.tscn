@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 [ext_resource type="Script" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
+[ext_resource type="Script" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -252,6 +253,9 @@ material = SubResource("StandardMaterial3D_lamp")
 
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
+
+[node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
+script = ExtResource("game_over_ui")
 
 [node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)

@@ -60,6 +60,20 @@ func play_2d(sound_id: String, volume_db: float = 0.0) -> void:
 	_player_2d.play()
 
 
+## 停止所有正在播放的音频流，供场景 reload 前调用。
+## Web 平台必要：显式停止可防止 Web Audio 在页面生命周期中产生鬼影音效。
+## 调用后清空 3D 播放器池引用（节点在 reload 后会被销毁）。
+func stop_all() -> void:
+	if is_instance_valid(_player_2d) and _player_2d.playing:
+		_player_2d.stop()
+	for player in _players_3d:
+		if is_instance_valid(player) and player.playing:
+			player.stop()
+	# reload_current_scene 会销毁 GameRoot 下的 3D 播放器，清空引用防止悬空
+	_players_3d.clear()
+	_next_player_index = 0
+
+
 func _on_audio_requested(sound_id: String, position: Vector3, volume_db: float) -> void:
 	play_3d(sound_id, position, volume_db)
 

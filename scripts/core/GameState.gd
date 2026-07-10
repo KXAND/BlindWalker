@@ -42,6 +42,13 @@ func is_input_enabled() -> bool:
 	return current_state == State.PLAYING and not _cutscene_active
 
 
+## 重置状态机回 LOADING，供场景 reload 前调用。
+## 不做其他副作用（不移动玩家、不清空音效）。
+## 必须在 reload_current_scene() 之前调用，否则新场景的 set_playing() 守卫会卡住。
+func reset_to_loading() -> void:
+	current_state = State.LOADING
+
+
 func _on_player_died() -> void:
 	set_failure()
 
