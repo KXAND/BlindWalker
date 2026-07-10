@@ -1,7 +1,9 @@
 # ADR 0004: 盲杖物理碰撞策略
 
+> ⚠️ **已废弃** — 本决策已被 [ADR-0006](./0006-cane-shape-overlap-detection.md) 取代。射线方案因漏检和 Area3D 事后回退抖动被全面替换为 `intersect_shape` + 分步推进。原文保留供历史参考。
+
 **日期**: 2026-07-09  
-**状态**: Accepted
+**状态**: Superseded by ADR-0006
 
 ---
 

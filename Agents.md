@@ -181,7 +181,23 @@ MVP 不做：
 - AI 生成内容说明
 - 简短玩法说明
 
-## 12. 变更原则
+## 12. Git 提交规范
+
+- 格式遵循 [Conventional Commits](https://www.conventionalcommits.org/)
+- 提交信息使用英文
+- 如果提交涉及某个 ADR 或 Issue 的实现，在 commit message 末尾附上其编号
+
+示例：
+
+```
+feat(audio): add audio manager autoload (issue #0007)
+fix(cane): replace raycast with intersect_shape for penetration prevention (adr #0006)
+docs: update cane system docs to reflect intersect_shape implementation (adr #0006, issue #0005)
+```
+
+常用类型：`feat` / `fix` / `docs` / `refactor` / `chore` / `test`
+
+## 13. 变更原则
 
 - 默认只做最小必要改动
 - 非明确需求不扩展玩法范围
