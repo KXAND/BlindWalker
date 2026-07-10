@@ -2,7 +2,7 @@
 
 > 来源：`/grill-with-docs` 会话产出  
 > 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`  
-> 最后更新：2026-07-09
+> 最后更新：2026-07-10
 
 ---
 
@@ -245,6 +245,38 @@ NPC 基类，`CharacterBody3D`。
 | GS4 | 无检查点，线性从头到尾 |
 | GS5 | 拥有 `is_input_enabled()`：返回 `current_state == PLAYING && !_cutscene_active`（ADR-0005） |
 | GS6 | 拥有 `set_cutscene_active(active: bool)`：供 CutsceneManager 调用 |
+| GS7 | 拥有 `reset_to_loading()`：直接将 `current_state` 重置回 `LOADING`，供场景 reload 前调用（issue #0013） |
+
+---
+
+### 2.14 HealthUI（UI · 血量显示）
+
+挂在 `Main.tscn` 根节点下（`SubViewportContainer` 平级）。仅用于辅助开发测试，不作为主要玩家反馈渠道（主反馈为音效）。
+
+**需求**：
+
+| ID | 需求 |
+|----|------|
+| HU1 | 屏幕左上角显示 `HP: X / 100` 格式 Label，`CanvasLayer.layer = 1` |
+| HU2 | `_ready()` 主动读取 `PlayerAttributes.hp` 初始值，不依赖信号触发初始化 |
+| HU3 | 监听 `EventBus.player_damaged` 和 `player_healed` 实时更新 |
+| HU4 | 显示值做 `max(0, current_hp)` 夹断，不显示负数 |
+
+---
+
+### 2.15 GameOverUI（UI · 结局与重置）
+
+挂在 `Main.tscn` 根节点下（`SubViewportContainer` 平级）。
+
+**需求**：
+
+| ID | 需求 |
+|----|------|
+| GO1 | 监听 `EventBus.game_state_changed`，SUCCESS → 显示"你到达了目的地\n按 [空格] 重玩"，FAILURE → 显示"血量耗尽\n按 [空格] 重玩" |
+| GO2 | `CanvasLayer.layer = 10`，覆盖所有其他 UI |
+| GO3 | 仅在 UI 可见时响应空格键，不经过 `GameState.is_input_enabled()`（该函数在结局状态返回 false） |
+| GO4 | 重置序列：`AudioManager.stop_all()` → 等待 0.08s → `GameState.reset_to_loading()` → `get_tree().reload_current_scene()` |
+| GO5 | 重置前必须先调用 `GameState.reset_to_loading()`，否则 autoload 状态残留导致新场景卡在 LOADING |
 
 ---
 
@@ -291,6 +323,12 @@ NPCBase ← NPCAvoidance (避让行为)
 NPCAvoidance ← 监听 cane_tip group 的 Area3D 信号
 
 InteractionSystem → EventBus (npc_interaction_available/unavailable)
+
+HealthUI ← EventBus.player_damaged / player_healed（layer=1）
+GameOverUI ← EventBus.game_state_changed（layer=10）
+         → AudioManager.stop_all()
+         → GameState.reset_to_loading()
+         → get_tree().reload_current_scene()
 
 StepResult / CaneHitInfo / NpcDialogue / TouchSphere  ← 各系统使用的数据结构
 RaycastUtil  ← GaitController, CaneSystem, TouchMemorySystem (共享射线查询)
