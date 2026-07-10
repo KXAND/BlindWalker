@@ -29,10 +29,14 @@ var _sound_paths: Dictionary = {
 
 func _ready() -> void:
 	_silent_stream = _create_silent_stream()
-	call_deferred("_create_player_pool")
+	_player_2d = AudioStreamPlayer.new()
+	_player_2d.name = "AudioStreamPlayer2D"
+	add_child(_player_2d)
 	EventBus.audio_requested.connect(_on_audio_requested)
 	EventBus.game_state_changed.connect(_on_game_state_changed)
 	EventBus.cane_entered_npc_zone.connect(_on_cane_entered_npc_zone)
+	await get_tree().process_frame
+	_create_3d_player_pool()
 
 
 func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0) -> void:
@@ -49,6 +53,8 @@ func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0) -> voi
 
 
 func play_2d(sound_id: String, volume_db: float = 0.0) -> void:
+	if not _player_2d:
+		return
 	_player_2d.volume_db = master_volume_db + volume_db
 	_player_2d.stream = _resolve_stream(sound_id)
 	_player_2d.play()
@@ -69,17 +75,15 @@ func _on_cane_entered_npc_zone(_npc_name: String) -> void:
 	play_2d("npc_approach")
 
 
-func _create_player_pool() -> void:
+func _create_3d_player_pool() -> void:
 	_player_parent_3d = _find_game_world_parent()
+	if GameConfig.DEBUG:
+		print("[DEBUG][AudioManager] 3D pool parent: %s" % _player_parent_3d.name)
 	for i in range(POOL_SIZE):
 		var player := AudioStreamPlayer3D.new()
 		player.name = "AudioStreamPlayer3D_%d" % i
 		_player_parent_3d.add_child(player)
 		_players_3d.append(player)
-
-	_player_2d = AudioStreamPlayer.new()
-	_player_2d.name = "AudioStreamPlayer2D"
-	add_child(_player_2d)
 
 
 func _find_game_world_parent() -> Node:

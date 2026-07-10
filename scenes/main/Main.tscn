@@ -1,14 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://dal5illn6p4c2"]
+[gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
-[ext_resource type="Script" path="res://scripts/player/GaitController.gd" id="gait_controller"]
-[ext_resource type="Script" path="res://scripts/player/InputManager.gd" id="input_manager"]
-[ext_resource type="Script" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
-[ext_resource type="Script" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
-[ext_resource type="Script" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
-[ext_resource type="Script" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
-[ext_resource type="Script" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Script" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
-[ext_resource type="Script" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
+[ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
+[ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
+[ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
+[ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
+[ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
+[ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
+[ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
+[ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
+[ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -20,6 +20,9 @@ adjustment_brightness = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
 height = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
+size = Vector3(4, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
@@ -52,13 +55,9 @@ size = Vector3(2.3, 0.2, 2.969873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_top_platform"]
 size = Vector3(2.4, 0.2, 1.55)
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
-size = Vector3(4.0, 2.0, 2.0)
-
-[node name="Main" type="Node3D"]
+[node name="Main" type="Node3D" unique_id=632612867]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
-layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -68,6 +67,7 @@ stretch = true
 
 [node name="GameViewport" type="SubViewport" parent="GameViewportContainer" unique_id=1417600403]
 handle_input_locally = false
+audio_listener_enable_3d = true
 size = Vector2i(1280, 720)
 render_target_update_mode = 4
 
@@ -92,29 +92,33 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 current = true
 fov = 78.0
 
-[node name="InputManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+[node name="AudioListener3D" type="AudioListener3D" parent="GameViewportContainer/GameViewport/GameRoot/Player/Head" unique_id=52901594]
+current = true
+
+[node name="InputManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1765902763]
 script = ExtResource("input_manager")
 
-[node name="PlayerAttributes" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+[node name="PlayerAttributes" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1024740441]
 script = ExtResource("player_attributes")
 
-[node name="CaneSystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+[node name="CaneSystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=821907178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.15, -0.15)
 script = ExtResource("cane_system")
 
 [node name="TouchMemorySystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1172192135]
 script = ExtResource("touch_memory")
 
-[node name="InteractionSystem" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+[node name="InteractionSystem" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=244460627]
 script = ExtResource("interaction_system")
 
-[node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot"]
+[node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
 
-[node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -20)
+[node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6094437, 0.9158894, -20)
 script = ExtResource("target_area")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea" unique_id=1187328740]
 shape = SubResource("BoxShape3D_target")
 
 [node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
@@ -245,48 +249,48 @@ use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
 
-[node name="StaircaseTest" type="Node3D" parent="."]
+[node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
 
-[node name="Step01" type="CSGBox3D" parent="StaircaseTest"]
+[node name="Step01" type="CSGBox3D" parent="StaircaseTest" unique_id=577898190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19, 0)
 size = Vector3(2.5, 0.18, 0.55)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="Step02" type="CSGBox3D" parent="StaircaseTest"]
+[node name="Step02" type="CSGBox3D" parent="StaircaseTest" unique_id=425444516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.37, -0.55)
 size = Vector3(2.5, 0.18, 0.55)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="Step03" type="CSGBox3D" parent="StaircaseTest"]
+[node name="Step03" type="CSGBox3D" parent="StaircaseTest" unique_id=464354258]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.1)
 size = Vector3(2.5, 0.18, 0.55)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="Step04" type="CSGBox3D" parent="StaircaseTest"]
+[node name="Step04" type="CSGBox3D" parent="StaircaseTest" unique_id=2092080704]
 transform = Transform3D(0.9999986, 0.001658062, 0, -0.001658062, 0.9999986, 0, 0, 0, 1, 0, 0.73, -1.6499996)
 size = Vector3(2.5, 0.18, 0.55)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="Step05" type="CSGBox3D" parent="StaircaseTest"]
+[node name="Step05" type="CSGBox3D" parent="StaircaseTest" unique_id=1191514670]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.91, -2.2)
 size = Vector3(2.5, 0.18, 0.55)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="TopPlatform" type="CSGBox3D" parent="StaircaseTest"]
+[node name="TopPlatform" type="CSGBox3D" parent="StaircaseTest" unique_id=1029244034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
 size = Vector3(2.5, 0.18, 1.6)
 material = SubResource("StandardMaterial3D_sidewalk")
 
-[node name="StairRampCollider" type="StaticBody3D" parent="StaircaseTest"]
+[node name="StairRampCollider" type="StaticBody3D" parent="StaircaseTest" unique_id=1478073728]
 transform = Transform3D(1, 0, 0, 0, 0.9063078, -0.4226183, 0, 0.4226183, 0.9063078, 0, 0.62, -1.48)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/StairRampCollider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/StairRampCollider" unique_id=606589907]
 transform = Transform3D(1, 0, 0, 0, 0.9979275, 0.06434074, 0, -0.06434074, 0.9979275, 0, 0.19530678, 0.54533005)
 shape = SubResource("BoxShape3D_stair_ramp")
 
-[node name="TopPlatformCollider" type="StaticBody3D" parent="StaircaseTest"]
+[node name="TopPlatformCollider" type="StaticBody3D" parent="StaircaseTest" unique_id=227022277]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/TopPlatformCollider"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/TopPlatformCollider" unique_id=996452974]
 shape = SubResource("BoxShape3D_top_platform")

@@ -26,6 +26,7 @@ var _terrain_check_timer: float = 0.0
 var _wall_hit_cooldown: float = 0.0
 var _fall_start_y: float = 0.0
 var _was_falling: bool = false
+var _was_on_floor: bool = false
 
 var _distance_since_last_step: float = 0.0
 var _last_foot_left: bool = false
@@ -40,11 +41,10 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	# Gravity
 	if not is_on_floor():
-		if not _was_falling:
+		if _was_on_floor and not _was_falling:
 			_fall_start_y = global_position.y
 			_was_falling = true
 		velocity.y -= gravity * delta
-		# Fell off the world
 		if global_position.y < FALL_Y_THRESHOLD:
 			_do_fall(absf(_fall_start_y - global_position.y))
 			_was_falling = false
@@ -54,6 +54,7 @@ func _physics_process(delta: float) -> void:
 			if fall_dist > 0.5:
 				_do_fall(fall_dist)
 			_was_falling = false
+		_was_on_floor = true
 		velocity.y = -0.1
 
 	# Timers
