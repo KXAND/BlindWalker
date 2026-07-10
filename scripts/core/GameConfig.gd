@@ -24,6 +24,7 @@ const CANE_LENGTH := 1.5
 # ---- 血量 / 摔跤 ----
 const MAX_HP := 100
 const FALL_DAMAGE := 20
+const STAIR_UP_DAMAGE := 5  # 未按 SPACE 强行上台阶时扣血；数值待 playtesting 调整
 const STAGGER_PUSH_BACK := 0.15
 
 # ---- 调试 ----
