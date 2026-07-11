@@ -15,7 +15,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 [application]
 
 config/name="BlindWalker"
-run/main_scene="res://scenes/main/Main.tscn"
+run/main_scene="res://scenes/main/LoadingScreen.tscn"
 config/features=PackedStringArray("4.7")
 
 [display]
@@ -34,5 +34,4 @@ common/enable_pause_aware_picking=true
 
 [rendering]
 
-renderer/rendering_method="forward_plus"
-environment/defaults/default_clear_color=Color(0.0392157, 0.0392157, 0.0784314, 1)
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)
