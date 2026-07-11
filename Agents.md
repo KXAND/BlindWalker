@@ -204,3 +204,8 @@ docs: update cane system docs to reflect intersect_shape implementation (adr #00
 - 非明确重构请求，不调整既有结构到大改级别
 - 所有新增功能必须先服务于 MVP 可交付
 
+## 14. 协作与验收要求
+
+- 讨论项目文件时，统一使用项目相对路径，例如 `scripts/perception/CaneSystem.gd`，避免使用绝对路径。
+- 每次实验或验收某个功能时，不能只启动游戏确认无报错；必须添加或使用临时测试脚本控制角色行动、跟踪 Godot 输出，并确认对应功能被正确触发。
+- 临时测试脚本应放在 `scripts/debug/`，完成后移除
