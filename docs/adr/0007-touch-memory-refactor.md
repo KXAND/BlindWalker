@@ -24,6 +24,8 @@ var direction := forward.rotated(camera.global_transform.basis.y, deg_to_rad(Gam
 
 `touch_max_distance` 的 `@export` 变量从 `TouchMemorySystem` 中删除，统一由 `GameConfig.TOUCH_DISTANCE` 管理，消除两处并存的距离常量（原 `@export` 默认 5.0 与 `GameConfig` 中 3.0 不一致）。
 
+视觉表达采用“轮廓显影 + 面显影”组合。原先只依赖深度/法线边缘时，圆柱、墙面等平滑表面在非调试模式下只有特定视角才明显；因此 shader 在记忆球覆盖范围内保留弱透明面显影（`feedback_surface_alpha`），同时继续用边缘检测强调轮廓。这样杖触到灯柱、墙面等物体时，玩家能稳定看到被触局部，而不是只看到调试模式或轮廓角度恰好明显时的反馈。
+
 ## 考虑的替代方案
 
 | 方案 | 否决理由 |
@@ -33,3 +35,4 @@ var direction := forward.rotated(camera.global_transform.basis.y, deg_to_rad(Gam
 | 杖触摸按固定冷却时间重复生成 | 停在同一点贴墙时仍会生成过多视觉噪音；仅按时间无法表达接触点空间变化 |
 | 杖触摸经由 EventBus 信号转发给 TouchMemorySystem | Cane → TouchMemory 是直接因果，不需要广播；直接方法调用更简单、依赖关系更清晰 |
 | 保留 `touch_max_distance` 的 `@export`，仅在编辑器中与 GameConfig 保持同步 | 两处配置必然漂移；`@export` 覆盖 `GameConfig` 值时会产生静默 bug |
+| 只保留轮廓显影 | 平滑物体正面缺少明显深度/法线边缘，正常模式下反馈不稳定；面显影是 MVP 阶段更可靠的可见性兜底 |
