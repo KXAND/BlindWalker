@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cb2vgvyc561vd"
+path="res://.godot/imported/Dust on the Piano Keys_1.mp3-a5b230cf81c4d7ffbf51e7c105190be1.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Dust on the Piano Keys_1.mp3"
+dest_files=["res://.godot/imported/Dust on the Piano Keys_1.mp3-a5b230cf81c4d7ffbf51e7c105190be1.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
