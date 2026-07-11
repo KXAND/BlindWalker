@@ -181,10 +181,31 @@ MVP 不做：
 - AI 生成内容说明
 - 简短玩法说明
 
-## 12. 变更原则
+## 12. Git 提交规范
+
+- 格式遵循 [Conventional Commits](https://www.conventionalcommits.org/)
+- 提交信息使用英文
+- 如果提交涉及某个 ADR 或 Issue 的实现，在 commit message 末尾附上其编号
+
+示例：
+
+```
+feat(audio): add audio manager autoload (issue #0007)
+fix(cane): replace raycast with intersect_shape for penetration prevention (adr #0006)
+docs: update cane system docs to reflect intersect_shape implementation (adr #0006, issue #0005)
+```
+
+常用类型：`feat` / `fix` / `docs` / `refactor` / `chore` / `test`
+
+## 13. 变更原则
 
 - 默认只做最小必要改动
 - 非明确需求不扩展玩法范围
 - 非明确重构请求，不调整既有结构到大改级别
 - 所有新增功能必须先服务于 MVP 可交付
 
+## 14. 协作与验收要求
+
+- 讨论项目文件时，统一使用项目相对路径，例如 `scripts/perception/CaneSystem.gd`，避免使用绝对路径。
+- 每次实验或验收某个功能时，不能只启动游戏确认无报错；必须添加或使用临时测试脚本控制角色行动、跟踪 Godot 输出，并确认对应功能被正确触发。
+- 临时测试脚本应放在 `scripts/debug/`，完成后移除
