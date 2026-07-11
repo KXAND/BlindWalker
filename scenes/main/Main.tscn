@@ -1,16 +1,18 @@
 [gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
+[ext_resource type="PackedScene" path="res://scenes/building/ConvenienceStore.tscn" id="12_p5fgu"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
+[ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
+[ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
-[ext_resource type="Script" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
-[ext_resource type="Script" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
+
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
 ambient_light_sky_contribution = 0.0
@@ -198,12 +200,6 @@ use_collision = true
 size = Vector3(5.4, 4.6, 5.8)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="RightBuilding01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=57624124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8, 2.5, -15)
-use_collision = true
-size = Vector3(4.6, 5, 5.2)
-material = SubResource("StandardMaterial3D_building")
-
 [node name="RightBuilding02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=65469449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 3.7, -6.5)
 use_collision = true
@@ -256,20 +252,6 @@ script = ExtResource("health_ui")
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
 script = ExtResource("game_over_ui")
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 [node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
 
@@ -315,3 +297,6 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/TopPlatformCollider" unique_id=996452974]
 shape = SubResource("BoxShape3D_top_platform")
+
+[node name="ConvenienceStore" parent="." unique_id=1768788148 instance=ExtResource("12_p5fgu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.768, 0, -16.464)
