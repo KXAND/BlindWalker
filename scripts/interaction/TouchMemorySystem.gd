@@ -37,13 +37,11 @@ const AFTERGLOW_LIFE: float = 60.0
 @export var debug_ambient: float = 0.15
 @export var debug_afterglow_strength: float = 0.35  # 调试模式下的全局残影强度
 
-@export_group("Touch", "touch_")
-@export var touch_max_distance: float = 5.0
-
 @export_group("Feedback", "feedback_")
 @export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 轮廓发光色
 @export var feedback_depth_threshold: float = 0.003
 @export var feedback_normal_threshold: float = 0.25
+@export var feedback_surface_alpha: float = 0.16  # 圆柱等平滑表面缺少边缘时的最低显影强度
 
 # ---- 内部 ----
 
@@ -99,6 +97,7 @@ func _create_fullscreen_quad() -> void:
 	_material.set_shader_parameter("edge_color", feedback_color)
 	_material.set_shader_parameter("depth_threshold", feedback_depth_threshold)
 	_material.set_shader_parameter("normal_threshold", feedback_normal_threshold)
+	_material.set_shader_parameter("surface_alpha", feedback_surface_alpha)
 	_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
 	_material.set_shader_parameter("debug_afterglow_strength", debug_afterglow_strength)
 
@@ -171,7 +170,8 @@ func _update_sphere_uniforms() -> void:
 
 # ---- 触摸探测 ----
 
-## 执行一次触摸（由 InputManager 左键触发）
+## 执行一次手触摸（由 InputManager 右键触发）。
+## 射线方向：相机局部坐标系左前方约 45 度，随俯仰角联动。
 func try_touch() -> void:
 	if not _camera or not _material:
 		return
@@ -179,7 +179,11 @@ func try_touch() -> void:
 	var space_state := get_world_3d().direct_space_state
 	var from: Vector3 = _camera.global_position
 	var forward: Vector3 = -_camera.global_transform.basis.z.normalized()
-	var to: Vector3 = from + forward * touch_max_distance
+	var direction: Vector3 = forward.rotated(
+		_camera.global_transform.basis.y,
+		deg_to_rad(GameConfig.TOUCH_YAW_OFFSET_DEG)
+	).normalized()
+	var to: Vector3 = from + direction * GameConfig.TOUCH_DISTANCE
 
 	var player: Node = get_parent()
 	var exclude_rid: RID = player.get_rid() if player is CharacterBody3D else RID()
@@ -187,23 +191,38 @@ func try_touch() -> void:
 	if result.is_empty():
 		return
 
-	var hit_point: Vector3 = result.position
+	spawn_touch_memory(result.position, INITIAL_RADIUS, ACTIVE_LIFE, AFTERGLOW_RADIUS, AFTERGLOW_LIFE)
+
+
+## 在指定世界坐标位置生成一组触觉记忆球（显影 + 残影）。
+## 供外部系统（如 CaneSystem）在已有接触点时直接调用，无需重复射线检测。
+func spawn_touch_memory(
+	hit_point: Vector3,
+	active_radius: float,
+	active_life: float,
+	afterglow_radius: float,
+	afterglow_life: float
+) -> bool:
+	if not _material:
+		return false
 
 	# 生成显影球
 	var active_sphere := _TouchSphere.new()
 	active_sphere.center = hit_point
-	active_sphere.radius = INITIAL_RADIUS
+	active_sphere.radius = active_radius
+	active_sphere.initial_radius = active_radius
 	active_sphere.age = 0.0
-	active_sphere.max_age = ACTIVE_LIFE
+	active_sphere.max_age = active_life
 	active_sphere.strength = 1.0
 	_active_spheres.append(active_sphere)
 
 	# 生成残影球
 	var afterglow_sphere := _TouchSphere.new()
 	afterglow_sphere.center = hit_point
-	afterglow_sphere.radius = AFTERGLOW_RADIUS
+	afterglow_sphere.radius = afterglow_radius
+	afterglow_sphere.initial_radius = afterglow_radius
 	afterglow_sphere.age = 0.0
-	afterglow_sphere.max_age = AFTERGLOW_LIFE
+	afterglow_sphere.max_age = afterglow_life
 	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
 	_afterglow_spheres.append(afterglow_sphere)
 
@@ -214,6 +233,7 @@ func try_touch() -> void:
 		_afterglow_spheres.pop_front()
 
 	_update_sphere_uniforms()
+	return true
 
 
 # ---- 生命周期 ----
@@ -235,7 +255,7 @@ func _process(delta: float) -> void:
 		if dist_to_player >= DIST_NEAR:
 			s.age += delta
 			var life_ratio: float = s.age / s.max_age
-			s.radius = INITIAL_RADIUS * (1.0 - life_ratio)
+			s.radius = s.initial_radius * (1.0 - life_ratio)
 		# 近距离时 age/radius 保持不变（暂停）
 
 		s.strength = 1.0

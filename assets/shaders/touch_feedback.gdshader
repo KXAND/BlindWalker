@@ -23,6 +23,7 @@ uniform mat4 inv_view_matrix;
 // ---- 阈值与外观 ----
 uniform float depth_threshold = 0.003;
 uniform float normal_threshold = 0.25;
+uniform float surface_alpha = 0.16;
 uniform vec4 edge_color : source_color = vec4(0.4, 0.75, 1.0, 1.0);
 
 // ---- 顶点 → 片段 传递 ----
@@ -146,7 +147,8 @@ void fragment() {
 	float depth_edge = get_depth_edge(uv, texel);
 	float normal_edge = get_normal_edge(uv, texel);
 	float edge = max(depth_edge, normal_edge);
+	float visibility = max(edge, surface_alpha);
 
 	ALBEDO = edge_color.rgb;
-	ALPHA = edge * edge_color.a * center_strength;
+	ALPHA = visibility * edge_color.a * center_strength;
 }

@@ -1,6 +1,6 @@
 # BlindWalker 领域术语表
 
-> 最后更新：2026-07-10
+> 最后更新：2026-07-11
 
 ---
 
@@ -34,7 +34,7 @@
 | **位移穿模恢复 (Displacement Recovery)** | 玩家前进把整根杖带入障碍时，在锥角范围内以 6° 为步长网格搜索距当前姿态最近的无重叠姿态并跳转。 |
 | **可视长度应急缩短 (Emergency Retract)** | 位移穿模无法恢复（整个锥角都重叠）时的最后防线：用射线求实际碰撞距，临时缩短可视杆至该距离，保证画面不穿墙。正常游玩几乎不触发。 |
 | **宏观探路 (Macro Probe)** | 盲杖扫动的用途：大范围感知前方地形与障碍。 |
-| **微观确认 (Micro Confirm)** | 左键触摸的用途：近距离精细确认材质/连续性等。 |
+| **杖触记忆 (Cane Touch Memory)** | 盲杖接触环境时自动留下的局部触觉记忆点，半径和寿命小于手触记忆。 |
 
 ## 视角 (View)
 
@@ -56,7 +56,7 @@
 | 术语 | 定义 |
 |------|------|
 | **GameConfig** | `class_name` 全局配置类，`scripts/core/GameConfig.gd`。非 autoload，通过 `class_name` 全局引用，类似 Python import。包含所有可调常量：按键映射、步态参数、盲杖参数、摔跤参数。 |
-| **按键映射** | `KEY_LEFT_FOOT`(W)、`KEY_RIGHT_FOOT`(E)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_TOUCH`(MOUSE_LEFT)。运行时不可变。 |
+| **按键映射** | `KEY_FORWARD`(W)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_TOUCH`(MOUSE_RIGHT)。运行时不可变。 |
 | **数据类 (Data Class)** | 自定义数据结构，独立 `.gd` 文件 + `class_name`，放 `scripts/core/`。如 `StepResult`、`CaneHitInfo`、`NpcDialogue`。GDScript 约定：一个 `.gd` 文件 = 一个 class。 |
 
 ## 交互 (Interaction)
@@ -64,6 +64,17 @@
 | 术语 | 定义 |
 |------|------|
 | **对话交互 (Dialogue Interaction)** | 玩家靠近 NPC → 提示 → 按键对话。由 InteractionSystem 管理。 |
+
+## 触摸 (Touch)
+
+| 术语 | 定义 |
+|------|------|
+| **触觉记忆点 (Touch Memory Point)** | 一次手触或杖触在世界空间留下的局部感知标记，由显影球和残影球共同表达。 |
+| **显影球 (Active Sphere)** | 触摸后生成、玩家远离时随时间缩小、靠近时暂停的实时反馈球；手触和杖触都遵循该生命周期，只是参数不同。 |
+| **残影球 (Afterglow Sphere)** | 与显影球同位置生成、长期缓慢衰减的持久标记球，不受玩家距离影响。 |
+| **手触记忆 (Hand Touch Memory)** | 右键主动探测后留下的触觉记忆点，方向为相机局部左前方约 45 度，范围较大、寿命较长。 |
+| **杖触记忆 (Cane Touch Memory)** | 盲杖接触环境时自动留下的触觉记忆点，范围较小、寿命较短，并通过接触节流形成连续但稀疏的路径感。 |
+| **接触节流 (Contact Throttling)** | 杖触显影的生成规则：接触点发生显著空间变化或持续接触超过节流时间时才生成新的触觉记忆点，防止同一点刷满反馈，同时允许沿大物体留下多个点。 |
 
 ## 感知可视化 (Perception Visualization)
 

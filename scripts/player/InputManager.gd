@@ -25,6 +25,9 @@ func _ready() -> void:
 	_cane = get_node_or_null(cane_path) as CaneSystem
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+	# Web 平台：阻止浏览器默认右键菜单，否则 MOUSE_BUTTON_RIGHT 会被拦截
+	if OS.has_feature("web") and Engine.has_singleton("JavaScriptBridge"):
+		JavaScriptBridge.eval("document.addEventListener('contextmenu', function(e){ e.preventDefault(); }, true);")
 
 
 func _process(_delta: float) -> void:

@@ -3,6 +3,7 @@ class_name TouchSphere
 
 var center: Vector3 = Vector3.ZERO
 var radius: float = 0.0
+var initial_radius: float = 0.0
 var age: float = 0.0
 var max_age: float = 0.0
 var strength: float = 1.0
