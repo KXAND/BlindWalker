@@ -147,9 +147,11 @@ func _update_sphere_uniforms() -> void:
 	var pos_array := PackedVector3Array()
 	var rad_array := PackedFloat32Array()
 	var str_array := PackedFloat32Array()
+	var color_array := PackedColorArray()
 	pos_array.resize(MAX_SPHERES)
 	rad_array.resize(MAX_SPHERES)
 	str_array.resize(MAX_SPHERES)
+	color_array.resize(MAX_SPHERES)
 
 	for i in range(MAX_SPHERES):
 		if i < count:
@@ -157,14 +159,17 @@ func _update_sphere_uniforms() -> void:
 			pos_array[i] = s.center
 			rad_array[i] = s.radius
 			str_array[i] = s.strength
+			color_array[i] = s.color
 		else:
 			pos_array[i] = Vector3.ZERO
 			rad_array[i] = 0.0
 			str_array[i] = 0.0
+			color_array[i] = feedback_color
 
 	_material.set_shader_parameter("sphere_positions", pos_array)
 	_material.set_shader_parameter("sphere_radii", rad_array)
 	_material.set_shader_parameter("sphere_strengths", str_array)
+	_material.set_shader_parameter("sphere_colors", color_array)
 	_material.set_shader_parameter("sphere_count", count)
 
 
@@ -191,7 +196,17 @@ func try_touch() -> void:
 	if result.is_empty():
 		return
 
-	spawn_touch_memory(result.position, INITIAL_RADIUS, ACTIVE_LIFE, AFTERGLOW_RADIUS, AFTERGLOW_LIFE)
+	var profile: Resource = _ContactProfileProvider.resolve_profile(result["collider"], &"hand")
+	spawn_touch_memory(
+		result["position"],
+		INITIAL_RADIUS,
+		ACTIVE_LIFE,
+		AFTERGLOW_RADIUS,
+		AFTERGLOW_LIFE,
+		_ContactProfileProvider.reveal_color(profile),
+		&"hand",
+		_ContactProfileProvider.profile_id(profile)
+	)
 
 
 ## 在指定世界坐标位置生成一组触觉记忆球（显影 + 残影）。
@@ -201,7 +216,10 @@ func spawn_touch_memory(
 	active_radius: float,
 	active_life: float,
 	afterglow_radius: float,
-	afterglow_life: float
+	afterglow_life: float,
+	reveal_color: Color = Color(0.4, 0.75, 1.0, 1.0),
+	_source: StringName = &"unknown",
+	contact_profile_id: StringName = &"default_contact"
 ) -> bool:
 	if not _material:
 		return false
@@ -211,6 +229,8 @@ func spawn_touch_memory(
 	active_sphere.center = hit_point
 	active_sphere.radius = active_radius
 	active_sphere.initial_radius = active_radius
+	active_sphere.color = reveal_color
+	active_sphere.contact_profile_id = contact_profile_id
 	active_sphere.age = 0.0
 	active_sphere.max_age = active_life
 	active_sphere.strength = 1.0
@@ -221,6 +241,8 @@ func spawn_touch_memory(
 	afterglow_sphere.center = hit_point
 	afterglow_sphere.radius = afterglow_radius
 	afterglow_sphere.initial_radius = afterglow_radius
+	afterglow_sphere.color = reveal_color
+	afterglow_sphere.contact_profile_id = contact_profile_id
 	afterglow_sphere.age = 0.0
 	afterglow_sphere.max_age = afterglow_life
 	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
@@ -336,3 +358,4 @@ func _apply_debug_mode() -> void:
 			_debug_light = null
 		if GameConfig.DEBUG:
 			print("[DEBUG][TouchMemorySystem] debug mode OFF — restored original lighting")
+const _ContactProfileProvider = preload("res://scripts/interaction/ContactProfileProvider.gd")

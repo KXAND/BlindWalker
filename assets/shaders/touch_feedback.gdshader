@@ -9,6 +9,7 @@ uniform sampler2D normal_tex : hint_normal_roughness_texture, filter_nearest;
 uniform vec3 sphere_positions[64];
 uniform float sphere_radii[64];
 uniform float sphere_strengths[64];
+uniform vec4 sphere_colors[64];
 uniform int sphere_count;
 
 // ---- 调试模式 ----
@@ -61,20 +62,22 @@ vec3 reconstruct_world_pos(vec2 screen_uv, float d) {
 }
 
 
-// ---- 像素强度：取所有包含该像素世界坐标的球的最大强度 ----
+// ---- 像素反馈：取所有包含该像素世界坐标的球中贡献最强者 ----
 
-float get_pixel_strength(vec2 uv, float d) {
-	if (d >= 1.0) return 0.0;
+vec4 get_pixel_feedback(vec2 uv, float d) {
+	if (d >= 1.0) return vec4(edge_color.rgb, 0.0);
 
 	vec3 wp = reconstruct_world_pos(uv, d);
 	float max_strength = 0.0;
+	vec3 best_color = edge_color.rgb;
 
 	for (int i = 0; i < 64; i++) {
 		if (i >= sphere_count) break;
 
 		float dist = distance(wp, sphere_positions[i]);
-		if (dist <= sphere_radii[i]) {
-			max_strength = max(max_strength, sphere_strengths[i]);
+		if (dist <= sphere_radii[i] && sphere_strengths[i] >= max_strength) {
+			max_strength = sphere_strengths[i];
+			best_color = sphere_colors[i].rgb;
 		}
 	}
 
@@ -83,7 +86,7 @@ float get_pixel_strength(vec2 uv, float d) {
 		max_strength = max(max_strength, debug_afterglow_strength);
 	}
 
-	return max_strength;
+	return vec4(best_color, max_strength);
 }
 
 
@@ -133,14 +136,15 @@ void fragment() {
 	float d3 = texture(depth_tex, uv + vec2( 0.0, -texel.y)).r;
 
 	// 中心像素必须在某个球内
-	float center_strength = get_pixel_strength(uv, dc);
+	vec4 center_feedback = get_pixel_feedback(uv, dc);
+	float center_strength = center_feedback.a;
 	if (center_strength <= 0.01) { discard; }
 
 	// 四个邻居也必须在某个球内，否则说明中心在球体边界，丢弃（避免伪影）
-	float s0 = get_pixel_strength(uv + vec2( texel.x,  0.0), d0);
-	float s1 = get_pixel_strength(uv + vec2(-texel.x,  0.0), d1);
-	float s2 = get_pixel_strength(uv + vec2( 0.0,  texel.y), d2);
-	float s3 = get_pixel_strength(uv + vec2( 0.0, -texel.y), d3);
+	float s0 = get_pixel_feedback(uv + vec2( texel.x,  0.0), d0).a;
+	float s1 = get_pixel_feedback(uv + vec2(-texel.x,  0.0), d1).a;
+	float s2 = get_pixel_feedback(uv + vec2( 0.0,  texel.y), d2).a;
+	float s3 = get_pixel_feedback(uv + vec2( 0.0, -texel.y), d3).a;
 	if (s0 <= 0.01 || s1 <= 0.01 || s2 <= 0.01 || s3 <= 0.01) { discard; }
 
 	// 边缘检测
@@ -149,6 +153,6 @@ void fragment() {
 	float edge = max(depth_edge, normal_edge);
 	float visibility = max(edge, surface_alpha);
 
-	ALBEDO = edge_color.rgb;
+	ALBEDO = center_feedback.rgb;
 	ALPHA = visibility * edge_color.a * center_strength;
 }

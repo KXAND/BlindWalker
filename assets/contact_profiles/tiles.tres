@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ContactProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/ContactProfile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"tiles"
+display_name = "瓷砖"
+reveal_color = Color(0.85, 0.95, 1, 1)
+cane_sound_id = &"cane_tap_tiles"

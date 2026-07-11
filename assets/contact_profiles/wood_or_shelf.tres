@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ContactProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/ContactProfile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"wood_or_shelf"
+display_name = "木门或货架"
+reveal_color = Color(0.95, 0.7, 0.35, 1)
+cane_sound_id = &"cane_tap_wood_or_shelf"
