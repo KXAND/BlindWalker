@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "收银员"
+text = "您好，就这三样吗？"
+duration = 2.3
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "对，麻烦您了。"
+duration = 2.2
+
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "收银员"
+text = "一共二十六块八，支持微信和支付宝。"
+duration = 3.0
+
+[sub_resource type="Resource" id="NarrativeLine_4"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "好，我用支付宝。"
+duration = 2.2
+
+[sub_resource type="Resource" id="NarrativeLine_5"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "收银员"
+text = "好的，扫这边……收到了，谢谢。"
+duration = 2.8
+
+[sub_resource type="Resource" id="NarrativeLine_6"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "谢谢。"
+duration = 1.8
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"supermarket_cashier"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

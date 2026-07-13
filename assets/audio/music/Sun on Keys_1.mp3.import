@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dydur6cbaaf7b"
+path="res://.godot/imported/Sun on Keys_1.mp3-69dfcfe24a4232e015b262112bd15707.mp3str"
+
+[deps]
+
+source_file="res://assets/audio/music/Sun on Keys_1.mp3"
+dest_files=["res://.godot/imported/Sun on Keys_1.mp3-69dfcfe24a4232e015b262112bd15707.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

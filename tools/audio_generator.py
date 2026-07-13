@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """BlindWalker 程序化音效生成器（纯标准库实现，零外部依赖）。
 
-为 MVP 合成 A 类共 11 个音效，输出到 assets/audio/ 下：
+为 MVP 合成 A 类共 11 个音效，输出到 assets/audio/sfx/ 下：
     cane_hit / wall_hit / step / fall / spray / touch
     ui_click / npc_approach / victory / failure / danger_warning
 

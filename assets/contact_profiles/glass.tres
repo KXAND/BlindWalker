@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ContactProfile" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/ContactProfile.gd" id="1"]
+
+[resource]
+script = ExtResource("1")
+id = &"glass"
+display_name = "玻璃"
+reveal_color = Color(1, 1, 1, 1)
+cane_sound_id = &"cane_tap_glass"

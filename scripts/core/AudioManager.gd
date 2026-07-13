@@ -5,25 +5,38 @@ extends Node
 @export var master_volume_db: float = 0.0
 
 const POOL_SIZE: int = 4
+const DEFAULT_CANE_TAP_SOUND_ID := "cane_tap_default"
 
 var _players_3d: Array[AudioStreamPlayer3D] = []
 var _next_player_index: int = 0
 var _player_2d: AudioStreamPlayer
 var _silent_stream: AudioStreamWAV
 var _player_parent_3d: Node
+var _warned_missing_sounds: Dictionary = {}
 
 var _sound_paths: Dictionary = {
-	"step": "res://assets/audio/step.ogg",
-	"cane_hit": "res://assets/audio/cane_hit.ogg",
-	"wall_hit": "res://assets/audio/wall_hit.ogg",
-	"fall": "res://assets/audio/fall.ogg",
-	"spray": "res://assets/audio/spray.ogg",
-	"touch": "res://assets/audio/touch.ogg",
-	"npc_approach": "res://assets/audio/npc_approach.ogg",
-	"victory": "res://assets/audio/victory.ogg",
-	"failure": "res://assets/audio/failure.ogg",
-	"ui_click": "res://assets/audio/ui_click.ogg",
-	"danger_warning": "res://assets/audio/danger_warning.ogg",
+	"step": "res://assets/audio/sfx/step.ogg",
+	"cane_hit": "res://assets/audio/sfx/cane_tap_default.ogg",
+	"cane_tap_asphalt": "res://assets/audio/sfx/cane_tap_asphalt.ogg",
+	"cane_tap_pavement": "res://assets/audio/sfx/cane_tap_pavement.ogg",
+	"cane_tap_concrete": "res://assets/audio/sfx/cane_tap_concrete.wav",
+	"cane_tap_tiles": "res://assets/audio/sfx/cane_tap_tiles.ogg",
+	"cane_tap_metal_pole": "res://assets/audio/sfx/cane_tap_metal_pole.wav",
+	"cane_tap_plastic": "res://assets/audio/sfx/cane_tap_plastic.ogg",
+	"cane_tap_wood_or_shelf": "res://assets/audio/sfx/cane_tap_wood.wav",
+	"cane_tap_default": "res://assets/audio/sfx/cane_tap_default.ogg",
+	"cane_tap_glass": "res://assets/audio/sfx/cane_tap_glass.wav",
+	"traffic_light_beep": "res://assets/audio/sfx/traffic_light_beep.ogg",
+	"ambient_noise": "res://assets/audio/sfx/ambient_noise.ogg",
+	"wall_hit": "res://assets/audio/sfx/wall_hit.ogg",
+	"fall": "res://assets/audio/sfx/fall.ogg",
+	"spray": "res://assets/audio/sfx/spray.ogg",
+	"touch": "res://assets/audio/sfx/touch.ogg",
+	"npc_approach": "res://assets/audio/sfx/npc_approach.ogg",
+	"victory": "res://assets/audio/sfx/victory.ogg",
+	"failure": "res://assets/audio/sfx/failure.ogg",
+	"ui_click": "res://assets/audio/sfx/ui_click.ogg",
+	"danger_warning": "res://assets/audio/sfx/danger_warning.ogg",
 }
 
 
@@ -39,25 +52,30 @@ func _ready() -> void:
 	_create_3d_player_pool()
 
 
-func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0) -> void:
+func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0, source: StringName = &"unknown") -> void:
 	if _players_3d.is_empty():
-		play_2d(sound_id, volume_db)
+		play_2d(sound_id, volume_db, source)
 		return
 
 	var player := _players_3d[_next_player_index]
 	_next_player_index = (_next_player_index + 1) % _players_3d.size()
 	player.global_position = position
 	player.volume_db = master_volume_db + volume_db
-	player.stream = _resolve_stream(sound_id)
+	player.stream = _resolve_stream(sound_id, source)
 	player.play()
 
 
-func play_2d(sound_id: String, volume_db: float = 0.0) -> void:
+func play_2d(sound_id: String, volume_db: float = 0.0, source: StringName = &"unknown") -> void:
 	if not _player_2d:
 		return
 	_player_2d.volume_db = master_volume_db + volume_db
-	_player_2d.stream = _resolve_stream(sound_id)
+	_player_2d.stream = _resolve_stream(sound_id, source)
 	_player_2d.play()
+
+
+func stop_2d() -> void:
+	if is_instance_valid(_player_2d) and _player_2d.playing:
+		_player_2d.stop()
 
 
 ## 停止所有正在播放的音频流，供场景 reload 前调用。
@@ -75,7 +93,7 @@ func stop_all() -> void:
 
 
 func _on_audio_requested(sound_id: String, position: Vector3, volume_db: float) -> void:
-	play_3d(sound_id, position, volume_db)
+	play_3d(sound_id, position, volume_db, &"cane")
 
 
 func _on_game_state_changed(_old_state: StringName, new_state: StringName) -> void:
@@ -91,8 +109,6 @@ func _on_cane_entered_npc_zone(_npc_name: String) -> void:
 
 func _create_3d_player_pool() -> void:
 	_player_parent_3d = _find_game_world_parent()
-	if GameConfig.DEBUG:
-		print("[DEBUG][AudioManager] 3D pool parent: %s" % _player_parent_3d.name)
 	for i in range(POOL_SIZE):
 		var player := AudioStreamPlayer3D.new()
 		player.name = "AudioStreamPlayer3D_%d" % i
@@ -107,13 +123,54 @@ func _find_game_world_parent() -> Node:
 	return self
 
 
-func _resolve_stream(sound_id: String) -> AudioStream:
+func _resolve_stream(sound_id: String, source: StringName = &"unknown") -> AudioStream:
 	var path: String = _sound_paths.get(sound_id, "")
+	var stream := _resolve_stream_at_path(path)
+	if stream:
+		return stream
+
+	if _should_fallback_to_default_cane_tap(sound_id, source):
+		var fallback_path: String = _sound_paths.get(DEFAULT_CANE_TAP_SOUND_ID, "")
+		var fallback_stream := _resolve_stream_at_path(fallback_path)
+		if fallback_stream:
+			_warn_missing_sound_once(sound_id, source, path, DEFAULT_CANE_TAP_SOUND_ID)
+			return fallback_stream
+
+	_warn_missing_sound_once(sound_id, source, path, "silent")
+	return _silent_stream
+
+
+func _resolve_stream_at_path(path: String) -> AudioStream:
 	if not path.is_empty():
-		var stream := load(path) as AudioStream
+		var raw_stream := _load_raw_ogg(path)
+		if raw_stream:
+			return raw_stream
+	if not path.is_empty() and ResourceLoader.exists(path):
+		var stream := ResourceLoader.load(path) as AudioStream
 		if stream:
 			return stream
-	return _silent_stream
+	return null
+
+
+func _should_fallback_to_default_cane_tap(sound_id: String, source: StringName) -> bool:
+	return source == &"cane" and sound_id.begins_with("cane_tap_") and sound_id != DEFAULT_CANE_TAP_SOUND_ID
+
+
+func _warn_missing_sound_once(sound_id: String, source: StringName, path: String, fallback: String) -> void:
+	if GameConfig.DEBUG and not _warned_missing_sounds.has(sound_id):
+		_warned_missing_sounds[sound_id] = true
+		print("[DEBUG][AudioManager] missing source=%s sound_id=%s path=%s fallback=%s" % [
+			source,
+			sound_id,
+			path if not path.is_empty() else "<unregistered>",
+			fallback,
+		])
+
+
+func _load_raw_ogg(path: String) -> AudioStream:
+	if not path.ends_with(".ogg") or not FileAccess.file_exists(path):
+		return null
+	return AudioStreamOggVorbis.load_from_file(path)
 
 
 func _create_silent_stream() -> AudioStreamWAV:

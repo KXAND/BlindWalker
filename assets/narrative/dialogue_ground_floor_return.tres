@@ -1,0 +1,54 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "李奶奶，东西买回来了。"
+duration = 2.5
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "哎，回来了！都买到了？"
+duration = 2.5
+
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "海天生抽、心相印纸巾、大白兔奶糖，一样不少。"
+duration = 3.4
+
+[sub_resource type="Resource" id="NarrativeLine_4"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "真是辛苦你了，来，钱给你，多出来的算我给你买瓶水喝。"
+duration = 3.7
+
+[sub_resource type="Resource" id="NarrativeLine_5"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "不用不用，举手之劳。您拿好了。"
+duration = 2.8
+
+[sub_resource type="Resource" id="NarrativeLine_6"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "好孩子。"
+duration = 1.9
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"ground_floor_return"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

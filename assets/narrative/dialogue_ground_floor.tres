@@ -1,0 +1,75 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "嗯，垃圾桶就在这边。"
+duration = 2.4
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "晓明？你下来扔垃圾啊。"
+duration = 2.5
+
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "李奶奶，您也出门呢？"
+duration = 2.4
+
+[sub_resource type="Resource" id="NarrativeLine_4"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "唉，我这腿最近不太好使，本来想去惠民超市买点东西。"
+duration = 3.6
+
+[sub_resource type="Resource" id="NarrativeLine_5"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "那我去帮您买吧，我正好也没事。"
+duration = 2.8
+
+[sub_resource type="Resource" id="NarrativeLine_6"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "哎，那可太好了。你帮我买瓶海天生抽，再买一包心相印纸巾，还有一包大白兔奶糖，我孙子爱吃那个。"
+duration = 5.3
+
+[sub_resource type="Resource" id="NarrativeLine_7"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "海天生抽、心相印纸巾、大白兔奶糖，记住了。您在家等着啊。"
+duration = 3.8
+
+[sub_resource type="Resource" id="NarrativeLine_8"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "李奶奶"
+text = "谢谢你啊晓明，钱我先给你。"
+duration = 2.6
+
+[sub_resource type="Resource" id="NarrativeLine_9"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "不用急，我回来再说。"
+duration = 2.4
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"ground_floor"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6"), SubResource("NarrativeLine_7"), SubResource("NarrativeLine_8"), SubResource("NarrativeLine_9")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

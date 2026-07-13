@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "这袋捏起来硬邦邦的，不像大白兔，那个是软糖。换一袋。"
+duration = 3.7
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"error_wrong_item_candy"
+lines = [SubResource("NarrativeLine_1")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

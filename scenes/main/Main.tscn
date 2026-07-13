@@ -1,8 +1,29 @@
 [gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
-[ext_resource type="PackedScene" uid="uid://b3ri3lpdbdwgi" path="res://scenes/Buildings/ConvenienceStore.tscn" id="12_p5fgu"]
+[ext_resource type="Script" uid="uid://bxphl3lug23f0" path="res://scripts/core/ContactProfile.gd" id="13_yub1f"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/concrete.tres" id="contact_profile_concrete"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/glass.tres" id="contact_profile_glass"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/metal_pole.tres" id="contact_profile_metal_pole"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/pavement.tres" id="contact_profile_pavement"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/plastic.tres" id="contact_profile_plastic"]
+[ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="contact_profile_provider"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
+[ext_resource type="Script" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
@@ -27,6 +48,9 @@ height = 1.2
 [sub_resource type="BoxShape3D" id="BoxShape3D_target"]
 size = Vector3(4, 2, 2)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
+size = Vector3(2.2, 2.2, 2.2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
 roughness = 0.5
@@ -38,6 +62,13 @@ roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sidewalk"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
 roughness = 0.5
+
+[sub_resource type="Resource" id="Resource_d8523"]
+script = ExtResource("13_yub1f")
+id = &"concrete"
+display_name = "水泥地面"
+reveal_color = Color(0.55, 0.72, 0.9, 1)
+cane_sound_id = &"cane_tap_concrete"
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_crosswalk"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
@@ -117,6 +148,96 @@ script = ExtResource("interaction_system")
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
 
+[node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+
+[node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.1, 14)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_home_second_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, -22)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_stairwell")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.0, 11.5)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_ground_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.0, 8)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_street")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, 0)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_crosswalk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.0, -6)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_street_after_crosswalk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1.0, -16.5)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_supermarket_entrance")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1.0, -13.2)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_supermarket_shelves")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.0, -14.5)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_supermarket_cashier")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.0, -8)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_street_return")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
+[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.0, 13.2)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_ground_floor_return")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn"]
+shape = SubResource("BoxShape3D_dialogue_trigger")
+
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6094437, 0.9158894, -20)
 script = ExtResource("target_area")
@@ -132,10 +253,18 @@ use_collision = true
 size = Vector3(40, 1, 56)
 material = SubResource("StandardMaterial3D_ground")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Ground" unique_id=254053117]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_concrete")
+
 [node name="Road" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=425199597]
 use_collision = true
 size = Vector3(8, 0.2, 42)
 material = SubResource("StandardMaterial3D_road")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Road" unique_id=1981896792]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_asphalt")
 
 [node name="SidewalkLeft" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=899168378]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.12, 0)
@@ -143,36 +272,96 @@ use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkLeft" unique_id=1826860196]
+script = ExtResource("contact_profile_provider")
+profile = SubResource("Resource_d8523")
+
 [node name="SidewalkRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=793089957]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0.12, 0)
 use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight" unique_id=255547437]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
 [node name="CrosswalkStripe01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=201212039]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -1.8)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe01" unique_id=1643279282]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
 
 [node name="CrosswalkStripe02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1892653201]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -0.9)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe02" unique_id=37624064]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
 [node name="CrosswalkStripe03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=280423516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe03" unique_id=774622898]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
 
 [node name="CrosswalkStripe04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1444229985]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0.9)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe04" unique_id=1179080616]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
 [node name="CrosswalkStripe05" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=341898632]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 1.8)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe05" unique_id=758060531]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
+[node name="MvpContactObjects" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=194751408]
+
+[node name="PlasticBin" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects" unique_id=858057647]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 0.5, 11.5)
+use_collision = true
+size = Vector3(0.55, 1, 0.55)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects/PlasticBin" unique_id=443403673]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_plastic")
+
+[node name="ShopShelf" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects" unique_id=1777358606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 0.9, -13.2)
+use_collision = true
+size = Vector3(1.4, 1.8, 0.35)
+material = SubResource("StandardMaterial3D_building")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects/ShopShelf" unique_id=2008852630]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_wood_or_shelf")
+
+[node name="GlassDoor" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects" unique_id=94109114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1.1, -16.5)
+use_collision = true
+size = Vector3(1.2, 2.2, 0.08)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/MvpContactObjects/GlassDoor" unique_id=897333698]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_glass")
 
 [node name="BlockoutBuildings" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=17884511]
 
@@ -227,11 +416,19 @@ radius = 0.08
 height = 3.2
 material = SubResource("StandardMaterial3D_lamp")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostLeft" unique_id=1515651535]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
 [node name="LampHeadLeft" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1658841928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, 9)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadLeft" unique_id=606702296]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
 
 [node name="LampPostRight" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=302719271]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, -9)
@@ -240,11 +437,19 @@ radius = 0.08
 height = 3.2
 material = SubResource("StandardMaterial3D_lamp")
 
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostRight" unique_id=2109524478]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
 [node name="LampHeadRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=121970299]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -9)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadRight" unique_id=1689857677]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
 
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
@@ -254,6 +459,10 @@ script = ExtResource("game_over_ui")
 
 [node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
+
+[node name="ContactProfileProvider" type="Node" parent="StaircaseTest" unique_id=1370335361]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_concrete")
 
 [node name="Step01" type="CSGBox3D" parent="StaircaseTest" unique_id=577898190]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.19, 0)

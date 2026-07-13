@@ -7,7 +7,7 @@ extends Node3D
 ##   2. 玩家位移 → 搜索最近安全姿态；无解时临时缩短可视长度防止画面穿墙
 
 @export var cone_angle: float = GameConfig.CANE_SWEEP_ANGLE
-@export var pitch_angle: float = 60.0
+@export var pitch_angle: float = 120.0
 @export var cane_length: float = GameConfig.CANE_LENGTH
 @export var touch_memory_path: NodePath = ^"../TouchMemorySystem"
 
@@ -24,6 +24,7 @@ var _contact_shape: BoxShape3D
 var _visible_length: float = 0.0
 var _has_last_cane_memory_point: bool = false
 var _last_cane_memory_point: Vector3 = Vector3.ZERO
+var _last_cane_memory_profile_id: StringName = &""
 var _cane_touch_elapsed: float = 0.0
 var _pending_contact_info: Dictionary = {}
 
@@ -105,21 +106,22 @@ func _physics_process(delta: float) -> void:
 
 
 func _emit_contact_feedback(hit_collider: Object, contact_point: Vector3, contact_normal: Vector3) -> void:
-	var memory_spawned := _try_spawn_cane_touch_memory(contact_point)
+	var profile: Resource = _ContactProfileProvider.resolve_profile(hit_collider, &"cane")
+	var memory_spawned := _try_spawn_cane_touch_memory(contact_point, profile)
 	if memory_spawned:
 		EventBus.cane_hit_object.emit(_object_name(hit_collider), contact_point, contact_normal)
-		EventBus.audio_requested.emit("cane_hit", contact_point, 0.0)
-		if GameConfig.DEBUG:
-			print("[DEBUG][CaneSystem] cane touch memory + sound at %s object=%s" % [
-				contact_point.snapped(Vector3.ONE * 0.01),
-				_object_name(hit_collider)
-			])
+		var sound_id := _ContactProfileProvider.cane_sound_id(profile)
+		if sound_id != &"":
+			EventBus.audio_requested.emit(String(sound_id), contact_point, 0.0)
+		elif GameConfig.DEBUG:
+			print("[DEBUG][CaneSystem] no cane sound profile=%s reason=empty_sound_id" % _ContactProfileProvider.profile_id(profile))
 
 
-func _try_spawn_cane_touch_memory(contact_point: Vector3) -> bool:
+func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> bool:
 	if not _touch_memory:
 		return false
-	if not _should_spawn_cane_touch_memory(contact_point):
+	var profile_id := _ContactProfileProvider.profile_id(profile)
+	if not _should_spawn_cane_touch_memory(contact_point, profile_id):
 		return false
 
 	var cane_radius: float = TouchMemorySystem.INITIAL_RADIUS * GameConfig.CANE_TOUCH_MEMORY_SCALE
@@ -129,22 +131,30 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3) -> bool:
 		cane_radius,
 		GameConfig.CANE_TOUCH_MEMORY_LIFETIME,
 		cane_afterglow_radius,
-		GameConfig.CANE_TOUCH_MEMORY_LIFETIME * 2.0
+		GameConfig.CANE_TOUCH_MEMORY_LIFETIME * 2.0,
+		_ContactProfileProvider.reveal_color(profile),
+		&"cane",
+		profile_id
 	)
 
 	if spawned:
 		_has_last_cane_memory_point = true
 		_last_cane_memory_point = contact_point
+		_last_cane_memory_profile_id = profile_id
 		_cane_touch_elapsed = 0.0
 	return spawned
 
 
-func _should_spawn_cane_touch_memory(contact_point: Vector3) -> bool:
+func _should_spawn_cane_touch_memory(contact_point: Vector3, profile_id: StringName) -> bool:
 	if not _has_last_cane_memory_point:
+		return true
+	if _last_cane_memory_profile_id != profile_id:
 		return true
 	if _last_cane_memory_point.distance_to(contact_point) >= GameConfig.CANE_TOUCH_MEMORY_MIN_DISTANCE:
 		return true
-	return _cane_touch_elapsed >= GameConfig.CANE_TOUCH_MEMORY_COOLDOWN
+	if _cane_touch_elapsed >= GameConfig.CANE_TOUCH_MEMORY_COOLDOWN:
+		return true
+	return false
 
 
 ## 从当前姿态分步靠近目标姿态，避免一次大位移直接跳进深重叠。
@@ -270,7 +280,7 @@ func _forward_surface_contact(
 		var from := global_position + cane_basis * Vector3(offset.x, ROD_Y_OFFSET + offset.y, 0.0)
 		var to := global_position + cane_basis * Vector3(offset.x, ROD_Y_OFFSET + offset.y, -cane_length)
 		var result := _RaycastUtil.query_body(space_state, from, to, exclude_rid)
-		if result.is_empty() or _is_floor_hit(result["normal"]):
+		if result.is_empty():
 			continue
 
 		var distance := from.distance_to(result["position"])
@@ -312,7 +322,7 @@ func _side_surface_contact(
 		for side_dir in side_dirs:
 			var to: Vector3 = axis_point + side_dir * SIDE_CONTACT_SCAN_RADIUS
 			var result := _RaycastUtil.query_body(space_state, axis_point, to, exclude_rid)
-			if result.is_empty() or _is_floor_hit(result["normal"]):
+			if result.is_empty():
 				continue
 
 			var distance := axis_point.distance_to(result["position"])
@@ -459,3 +469,4 @@ func _object_name(object: Object) -> String:
 	if object is Node:
 		return (object as Node).name
 	return "Object"
+const _ContactProfileProvider = preload("res://scripts/interaction/ContactProfileProvider.gd")
