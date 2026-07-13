@@ -390,9 +390,3 @@ material = SubResource("material_product_white")
 
 [node name="SugarBag" parent="." unique_id=1542800753 instance=ExtResource("1_hhdq8")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -2.6677148, 0.6334518, 0.4452126)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=192794519]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7145066, 2.090607)
-
-[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=920160583]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7145066, -0.6252091)
