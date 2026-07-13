@@ -37,6 +37,14 @@ func _process(_delta: float) -> void:
 
 	# W = continuous forward movement
 	_player.set_moving(Input.is_key_pressed(GameConfig.KEY_FORWARD))
+	if _player.is_recovery_qte_active():
+		_player.set_recovery_qte_pressed(
+			Input.is_key_pressed(GameConfig.KEY_CAUTIOUS)
+					and Input.is_key_pressed(GameConfig.KEY_HIGH_STEP)
+		)
+		_player.set_cautious(false)
+		_player.set_high_step(false)
+		return
 	# SHIFT / SPACE = modifier states
 	_player.set_cautious(Input.is_key_pressed(GameConfig.KEY_CAUTIOUS))
 	_player.set_high_step(Input.is_key_pressed(GameConfig.KEY_HIGH_STEP))
@@ -53,6 +61,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 	if not GameState.is_input_enabled():
+		return
+	if _player and _player.is_balance_view_locked():
 		return
 
 	var direct_look := Input.is_key_pressed(GameConfig.KEY_LOOK_DIRECT)
@@ -79,6 +89,8 @@ func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 func _handle_mouse_button(event: InputEventMouseButton) -> void:
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
+		return
+	if _player and _player.is_balance_view_locked():
 		return
 	if event.button_index == GameConfig.KEY_TOUCH and _touch_memory and GameState.is_input_enabled():
 		_touch_memory.try_touch()

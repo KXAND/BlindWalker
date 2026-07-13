@@ -17,9 +17,13 @@ const FALL_Y_THRESHOLD := -10.0
 const FLOOR_SNAP_LENGTH := 0.35
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
 
+enum BalanceState { STEADY, LIGHT_STUMBLE, UNSTABLE_STUMBLE, FALLING, GETTING_UP }
+
 var _is_moving: bool = false
 var _cautious_active: bool = false
 var _high_step_active: bool = false
+var _recovery_qte_pressed: bool = false
+var _unstable_stumble_progress: float = 0.0
 
 var _stagger_timer: float = 0.0
 var _fall_recover_timer: float = 0.0
@@ -36,6 +40,17 @@ var _stair_up_handled: bool = false  # 本帧 stair_up 已处理，跳过 wall_h
 var _stair_up_target_y: float = NAN  # NAN 表示当前没有正在抬升的目标
 const STAIR_UP_LIFT_SPEED := 3.0    # m/s，足够快不卡顿，也足够慢不跳变
 
+var _balance_state: int = BalanceState.STEADY
+var _balance_timer: float = 0.0
+var _tumble_direction: Vector3 = Vector3.ZERO
+var _tumble_start_position: Vector3 = Vector3.ZERO
+var _fall_lift_target_y: float = NAN
+var _pending_stumble_lift_delta: float = 0.0
+var _tumble_elapsed: float = 0.0
+var _fall_damage_total: int = 0
+var _fall_damage_elapsed: float = 0.0
+var _time_since_fall_damage: float = 0.0
+
 @onready var _attributes: PlayerAttributes = get_node_or_null("PlayerAttributes") as PlayerAttributes
 
 
@@ -45,6 +60,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	_update_balance_state(delta)
+
 	# Gravity
 	if not is_on_floor():
 		if _was_on_floor and not _was_falling:
@@ -58,7 +75,7 @@ func _physics_process(delta: float) -> void:
 		if _was_falling:
 			var fall_dist := absf(_fall_start_y - global_position.y)
 			# 谨慎模式下主动走下台阶，物理自然落地不受惩罚
-			if fall_dist > 0.5 and not _cautious_active:
+			if fall_dist > 0.5 and not _cautious_active and _balance_state != BalanceState.FALLING:
 				_do_fall(fall_dist)
 			_was_falling = false
 		_was_on_floor = true
@@ -77,9 +94,15 @@ func _physics_process(delta: float) -> void:
 		_terrain_check_timer -= delta
 
 	# Horizontal movement
-	var can_move := GameState.is_input_enabled() and _fall_recover_timer <= 0.0 and _stagger_timer <= 0.0
+	var can_move := GameState.is_input_enabled() \
+			and _fall_recover_timer <= 0.0 \
+			and _balance_state != BalanceState.FALLING \
+			and _balance_state != BalanceState.GETTING_UP
 	_stair_up_handled = false
-	if can_move and _is_moving:
+	if _balance_state == BalanceState.FALLING:
+		velocity.x = _tumble_direction.x * GameConfig.TUMBLE_SPEED
+		velocity.z = _tumble_direction.z * GameConfig.TUMBLE_SPEED
+	elif can_move and _is_moving:
 		var speed := _current_speed()
 		var forward := -global_transform.basis.z.normalized()
 		velocity.x = forward.x * speed
@@ -95,6 +118,16 @@ func _physics_process(delta: float) -> void:
 
 	var pos_before := global_position
 	move_and_slide()
+
+	if _balance_state == BalanceState.FALLING and not is_nan(_fall_lift_target_y):
+		var lift_dy := _fall_lift_target_y - global_position.y
+		if absf(lift_dy) <= 0.001:
+			global_position.y = _fall_lift_target_y
+			_fall_lift_target_y = NAN
+		else:
+			# 低矮路牙磕绊后的摔倒会越到上方平面；这里复用高抬腿的抬升速度。
+			global_position.y += clampf(lift_dy, -STAIR_UP_LIFT_SPEED * delta, STAIR_UP_LIFT_SPEED * delta)
+			velocity.y = 0.0
 
 	# 平滑抬升上台阶：move_and_slide 之后再插值逼近目标高度
 	# 抬升期间不会与物理碰撞冲突（player 在地面上，y 只往上走）
@@ -142,6 +175,33 @@ func set_high_step(active: bool) -> void:
 		_stair_up_target_y = NAN
 
 
+func set_recovery_qte_pressed(active: bool) -> void:
+	_recovery_qte_pressed = active
+
+
+func is_recovery_qte_active() -> bool:
+	return _balance_state == BalanceState.UNSTABLE_STUMBLE
+
+
+func is_balance_view_locked() -> bool:
+	return _balance_state == BalanceState.FALLING or _balance_state == BalanceState.GETTING_UP
+
+
+func debug_balance_state() -> StringName:
+	match _balance_state:
+		BalanceState.STEADY:
+			return &"steady"
+		BalanceState.LIGHT_STUMBLE:
+			return &"light_stumble"
+		BalanceState.UNSTABLE_STUMBLE:
+			return &"unstable_stumble"
+		BalanceState.FALLING:
+			return &"falling"
+		BalanceState.GETTING_UP:
+			return &"getting_up"
+	return &"unknown"
+
+
 func has_move_intent() -> bool:
 	return _is_moving
 
@@ -160,6 +220,12 @@ func teleport_to(pos: Vector3) -> void:
 	_fall_start_y = pos.y
 	_fall_recover_timer = 0.0
 	_stagger_timer = 0.0
+	_balance_state = BalanceState.STEADY
+	_balance_timer = 0.0
+	_recovery_qte_pressed = false
+	_unstable_stumble_progress = 0.0
+	_fall_lift_target_y = NAN
+	_pending_stumble_lift_delta = 0.0
 	_terrain_check_timer = 0.0
 	_wall_hit_cooldown = 0.0
 	_stair_up_target_y = NAN
@@ -179,6 +245,9 @@ func _check_terrain(forward: Vector3) -> void:
 	if GameState.is_gameplay_locked():
 		return
 	if not is_on_floor():
+		return
+	# 失衡踉跄已经由当前地形触发；不要在 QTE 窗口内因同一个路牙/台阶重复判定而立刻升级为摔倒。
+	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
 		return
 
 	var current_floor := _floor_height_at(global_position)
@@ -205,11 +274,8 @@ func _check_terrain(forward: Vector3) -> void:
 			_stair_up_target_y = NAN
 			velocity.x = 0.0
 			velocity.z = 0.0
-			_do_stagger(forward)
-			if _attributes:
-				if GameConfig.DEBUG:
-					print("[DEBUG][GaitController] stair_up blocked delta=%.2f damage=%d" % [terrain_delta, GameConfig.STAIR_UP_DAMAGE])
-				_attributes.take_damage(GameConfig.STAIR_UP_DAMAGE)
+			var lift_delta := terrain_delta if terrain_delta <= GameConfig.MAX_HIGH_STEP_HEIGHT else 0.0
+			_enter_unstable_stumble(forward, lift_delta)
 
 	# Stair down
 	elif terrain_delta < STAIR_DOWN_THRESHOLD:
@@ -219,13 +285,15 @@ func _check_terrain(forward: Vector3) -> void:
 			if GameConfig.DEBUG:
 				print("[DEBUG][GaitController] stair_down safe (cautious) delta=%.2f" % terrain_delta)
 		else:
-			_do_fall(absf(terrain_delta))
+			_start_fall(forward, absf(terrain_delta))
 
 
 func _detect_wall_hit(pos_before: Vector3) -> void:
 	if GameState.is_gameplay_locked():
 		return
-	if _wall_hit_cooldown > 0.0 or _stagger_timer > 0.0:
+	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
+		return
+	if _wall_hit_cooldown > 0.0:
 		return
 	# 跌落恢复期内：刚摔过，stagger 不该再叠加；这种"水平没动"是正常的恢复表现
 	if _fall_recover_timer > 0.0:
@@ -234,7 +302,7 @@ func _detect_wall_hit(pos_before: Vector3) -> void:
 	var horizontal_move := Vector2(actual_move.x, actual_move.z).length()
 	var expected_move := _current_speed() * get_physics_process_delta_time()
 	if expected_move > 0.01 and horizontal_move < expected_move * 0.3:
-		_do_stagger(-global_transform.basis.z.normalized())
+		_enter_light_stumble(-global_transform.basis.z.normalized())
 		_wall_hit_cooldown = WALL_HIT_COOLDOWN
 
 
@@ -248,34 +316,188 @@ func _update_step_audio(pos_before: Vector3) -> void:
 		EventBus.audio_requested.emit("step", global_position, 0.0)
 
 
-func _do_stagger(forward: Vector3) -> void:
+func _enter_light_stumble(forward: Vector3) -> void:
 	if GameState.is_gameplay_locked():
 		return
-	_stagger_timer = stagger_duration
+	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
+		_start_fall(forward, 0.0)
+		return
+	if _balance_state != BalanceState.STEADY:
+		return
+	_balance_state = BalanceState.LIGHT_STUMBLE
+	_balance_timer = GameConfig.LIGHT_STUMBLE_RECOVER_TIME
 	global_position -= forward * GameConfig.STAGGER_PUSH_BACK
 	if GameConfig.DEBUG:
-		print("[DEBUG][GaitController] stagger push_back=%.2f" % GameConfig.STAGGER_PUSH_BACK)
+		print("[DEBUG][GaitController] light_stumble push_back=%.2f" % GameConfig.STAGGER_PUSH_BACK)
 	EventBus.audio_requested.emit("wall_hit", global_position, 0.0)
+	EventBus.player_light_stumbled.emit()
+
+
+func _enter_unstable_stumble(forward: Vector3, lift_delta: float = 0.0) -> void:
+	if GameState.is_gameplay_locked():
+		return
+	_pending_stumble_lift_delta = maxf(lift_delta, 0.0)
+	if _balance_state == BalanceState.LIGHT_STUMBLE:
+		_balance_state = BalanceState.UNSTABLE_STUMBLE
+	elif _balance_state == BalanceState.UNSTABLE_STUMBLE:
+		_start_fall(forward, 0.0, _pending_stumble_lift_delta)
+		return
+	elif _balance_state != BalanceState.STEADY:
+		return
+	else:
+		_balance_state = BalanceState.UNSTABLE_STUMBLE
+
+	_balance_timer = GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
+	_recovery_qte_pressed = false
+	_unstable_stumble_progress = 0.0
+	global_position -= forward * GameConfig.STAGGER_PUSH_BACK
+	if GameConfig.DEBUG:
+		print("[DEBUG][GaitController] unstable_stumble qte=%.2f" % GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW)
+	EventBus.audio_requested.emit("wall_hit", global_position, 0.0)
+	EventBus.player_unstable_stumbled.emit(GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW)
 
 
 func _do_fall(fall_distance: float) -> void:
+	_start_fall(-global_transform.basis.z.normalized(), fall_distance)
+
+
+func _start_fall(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:
 	if GameState.is_gameplay_locked():
 		return
+	_balance_state = BalanceState.FALLING
+	_balance_timer = 0.0
+	_tumble_elapsed = 0.0
+	_tumble_start_position = global_position
+	_fall_lift_target_y = global_position.y + lift_delta if lift_delta > 0.0 else NAN
+	_pending_stumble_lift_delta = 0.0
+	_fall_damage_total = 0
+	_fall_damage_elapsed = 0.0
+	_time_since_fall_damage = 0.0
+	_recovery_qte_pressed = false
+	_unstable_stumble_progress = 0.0
+	_tumble_direction = direction
+	_tumble_direction.y = 0.0
+	if _tumble_direction.length_squared() <= 0.001:
+		_tumble_direction = -global_transform.basis.z
+		_tumble_direction.y = 0.0
+	_tumble_direction = _tumble_direction.normalized()
 	_fall_recover_timer = fall_recover_time
 	# 摔倒时显式清掉 stagger：stagger 是"撞墙踉跄"，与"跌落"是两件事，不能同时出现
 	_stagger_timer = 0.0
 	_stair_up_target_y = NAN
 	_was_falling = true
 	_fall_start_y = global_position.y
-	velocity.x = 0.0
-	velocity.z = 0.0
+	# 摔倒不是原地动画：本帧就沿失衡方向开始滑/滚，避免在路肩边缘原地起身。
+	velocity.x = _tumble_direction.x * GameConfig.TUMBLE_SPEED
+	velocity.z = _tumble_direction.z * GameConfig.TUMBLE_SPEED
 	velocity.y = minf(velocity.y, -1.0)
 	if GameConfig.DEBUG:
-		print("[DEBUG][GaitController] fall distance=%.2f damage=%d" % [fall_distance, GameConfig.FALL_DAMAGE])
+		print("[DEBUG][GaitController] fall_started distance=%.2f cap=%d" % [fall_distance, GameConfig.TUMBLE_DAMAGE_CAP])
 	EventBus.audio_requested.emit("fall", global_position, 0.0)
+	EventBus.player_fall_started.emit()
+	EventBus.player_tumble_started.emit()
 	EventBus.player_fell.emit(fall_distance)
-	if _attributes:
-		_attributes.take_damage(GameConfig.FALL_DAMAGE)
+
+
+func _update_balance_state(delta: float) -> void:
+	match _balance_state:
+		BalanceState.LIGHT_STUMBLE:
+			_balance_timer -= delta * (0.35 if _is_moving else 1.0)
+			if _balance_timer <= 0.0:
+				_recover_balance()
+		BalanceState.UNSTABLE_STUMBLE:
+			if _recovery_qte_pressed:
+				var recovery_speed := 1.0 / GameConfig.UNSTABLE_STUMBLE_QTE_HOLD_TIME
+				if _is_moving:
+					recovery_speed /= GameConfig.UNSTABLE_STUMBLE_MOVE_PENALTY
+				_unstable_stumble_progress = maxf(_unstable_stumble_progress - delta * recovery_speed, 0.0)
+				EventBus.player_recovery_qte_progress.emit(_unstable_stumble_progress, _recovery_qte_pressed)
+				if _unstable_stumble_progress <= 0.0:
+					_recover_balance()
+					return
+			else:
+				var stumble_speed := 1.0 / GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
+				_unstable_stumble_progress = minf(_unstable_stumble_progress + delta * stumble_speed, 1.0)
+				EventBus.player_recovery_qte_progress.emit(_unstable_stumble_progress, _recovery_qte_pressed)
+			_balance_timer = (1.0 - _unstable_stumble_progress) * GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
+			if _unstable_stumble_progress >= 1.0:
+				_start_fall(-global_transform.basis.z.normalized(), 0.0, _pending_stumble_lift_delta)
+		BalanceState.FALLING:
+			_tumble_elapsed += delta
+			_fall_damage_elapsed += delta
+			_time_since_fall_damage += delta
+			if _fall_damage_elapsed >= GameConfig.TUMBLE_DAMAGE_INTERVAL:
+				_fall_damage_elapsed = 0.0
+				_apply_fall_damage(GameConfig.TUMBLE_TICK_DAMAGE)
+			if _tumble_elapsed >= GameConfig.TUMBLE_MAX_TIME or _is_on_stable_surface():
+				if _fall_damage_total <= 0 \
+						or _time_since_fall_damage >= GameConfig.TUMBLE_FINAL_DAMAGE_MIN_INTERVAL:
+					_apply_fall_damage(GameConfig.TUMBLE_TICK_DAMAGE)
+				_start_get_up()
+		BalanceState.GETTING_UP:
+			_balance_timer -= delta
+			if _balance_timer <= 0.0:
+				_recover_balance()
+
+
+func _start_get_up() -> void:
+	_balance_state = BalanceState.GETTING_UP
+	_balance_timer = GameConfig.FALL_GET_UP_TIME
+	_tumble_direction = Vector3.ZERO
+	_fall_lift_target_y = NAN
+	velocity = Vector3.ZERO
+	if GameConfig.DEBUG:
+		print("[DEBUG][GaitController] get_up_started duration=%.2f damage_total=%d" % [
+			GameConfig.FALL_GET_UP_TIME,
+			_fall_damage_total,
+		])
+	EventBus.player_get_up_started.emit(GameConfig.FALL_GET_UP_TIME)
+
+
+func _recover_balance() -> void:
+	_balance_state = BalanceState.STEADY
+	_balance_timer = 0.0
+	_recovery_qte_pressed = false
+	_unstable_stumble_progress = 0.0
+	_pending_stumble_lift_delta = 0.0
+	_fall_recover_timer = 0.0
+	if GameConfig.DEBUG:
+		print("[DEBUG][GaitController] balance_recovered")
+	EventBus.player_balance_recovered.emit()
+
+
+func _apply_fall_damage(amount: int) -> void:
+	if not _attributes:
+		return
+	var remaining := GameConfig.TUMBLE_DAMAGE_CAP - _fall_damage_total
+	if remaining <= 0:
+		return
+	var applied := mini(amount, remaining)
+	_fall_damage_total += applied
+	_time_since_fall_damage = 0.0
+	_attributes.take_damage(applied)
+
+
+func _is_on_stable_surface() -> bool:
+	if not is_on_floor() or _tumble_elapsed < 0.45:
+		return false
+	var horizontal_travel := Vector2(
+		global_position.x - _tumble_start_position.x,
+		global_position.z - _tumble_start_position.z
+	).length()
+	if horizontal_travel < GameConfig.TUMBLE_MIN_TRAVEL_DISTANCE:
+		return false
+	var current_floor := _floor_height_at(global_position)
+	if is_nan(current_floor):
+		return false
+	var forward_floor := _floor_height_at(global_position + _tumble_direction * TERRAIN_PROBE_DISTANCE)
+	if is_nan(forward_floor):
+		return false
+	var forward_delta := forward_floor - current_floor
+	if forward_delta < -GameConfig.TUMBLE_STABLE_FORWARD_DELTA:
+		return false
+	var normal := get_floor_normal()
+	return normal.dot(Vector3.UP) >= 1.0 - GameConfig.TUMBLE_STABLE_SLOPE_DELTA
 
 
 func _floor_height_at(sample_position: Vector3) -> float:

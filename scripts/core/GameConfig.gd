@@ -16,6 +16,19 @@ const STEP_AUDIO_DISTANCE := 0.5
 
 # ---- 步态参数 ----
 const MAX_HIGH_STEP_HEIGHT := 0.3
+const LIGHT_STUMBLE_RECOVER_TIME := 0.35
+const UNSTABLE_STUMBLE_QTE_WINDOW := 0.75
+const UNSTABLE_STUMBLE_QTE_HOLD_TIME := 1.0
+const UNSTABLE_STUMBLE_MOVE_PENALTY := 1.5
+const FALL_GET_UP_TIME := 1.2
+const TUMBLE_SPEED := 1.2
+const TUMBLE_MIN_TRAVEL_DISTANCE := 0.9
+const TUMBLE_MAX_TIME := 4.0
+const TUMBLE_DAMAGE_INTERVAL := 1.0
+const TUMBLE_FINAL_DAMAGE_MIN_INTERVAL := 0.7
+const TUMBLE_DAMAGE_CAP := 80
+const TUMBLE_STABLE_SLOPE_DELTA := 0.08
+const TUMBLE_STABLE_FORWARD_DELTA := 0.08
 
 # ---- 盲杖参数 ----
 const CANE_SWEEP_ANGLE := 60.0
@@ -33,7 +46,7 @@ const CANE_TOUCH_MEMORY_COOLDOWN: float = 0.75 ## 持续接触时生成新杖触
 
 # ---- 血量 / 摔跤 ----
 const MAX_HP := 100
-const FALL_DAMAGE := 20
+const TUMBLE_TICK_DAMAGE := 12
 const STAIR_UP_DAMAGE := 5  # 未按 SPACE 强行上台阶时扣血；数值待 playtesting 调整
 const STAGGER_PUSH_BACK := 0.15
 
