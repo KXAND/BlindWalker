@@ -14,6 +14,7 @@ const STAIR_DOWN_THRESHOLD := -0.15
 const WALL_NORMAL_THRESHOLD := 0.45
 const WALL_HIT_COOLDOWN := 0.3
 const FALL_Y_THRESHOLD := -10.0
+const FLOOR_SNAP_LENGTH := 0.35
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
 
 var _is_moving: bool = false
@@ -40,6 +41,7 @@ const STAIR_UP_LIFT_SPEED := 3.0    # m/s，足够快不卡顿，也足够慢不
 
 func _ready() -> void:
 	add_to_group("player")
+	floor_snap_length = FLOOR_SNAP_LENGTH
 
 
 func _physics_process(delta: float) -> void:
@@ -136,6 +138,8 @@ func set_cautious(active: bool) -> void:
 
 func set_high_step(active: bool) -> void:
 	_high_step_active = active
+	if not active:
+		_stair_up_target_y = NAN
 
 
 func has_move_intent() -> bool:
@@ -194,7 +198,7 @@ func _check_terrain(forward: Vector3) -> void:
 		if _high_step_active and terrain_delta <= GameConfig.MAX_HIGH_STEP_HEIGHT:
 			# SPACE held + step within height limit: 设定抬升目标高度，Player.y 在 _physics_process 中平滑逼近
 			# 这样相机不会在每帧 0.05s 节流触发时被瞬时跳变
-			_stair_up_target_y = target_floor
+			_stair_up_target_y = global_position.y + terrain_delta
 		else:
 			# No SPACE, or step too high: stagger + damage
 			# 注意：stagger 路径不要碰 y，否则会和已经存在的抬升目标打架
@@ -209,6 +213,7 @@ func _check_terrain(forward: Vector3) -> void:
 
 	# Stair down
 	elif terrain_delta < STAIR_DOWN_THRESHOLD:
+		_stair_up_target_y = NAN
 		if _cautious_active:
 			# SHIFT held: let physics handle the drop naturally, no penalty
 			if GameConfig.DEBUG:
@@ -259,8 +264,12 @@ func _do_fall(fall_distance: float) -> void:
 	_fall_recover_timer = fall_recover_time
 	# 摔倒时显式清掉 stagger：stagger 是"撞墙踉跄"，与"跌落"是两件事，不能同时出现
 	_stagger_timer = 0.0
+	_stair_up_target_y = NAN
+	_was_falling = true
+	_fall_start_y = global_position.y
 	velocity.x = 0.0
 	velocity.z = 0.0
+	velocity.y = minf(velocity.y, -1.0)
 	if GameConfig.DEBUG:
 		print("[DEBUG][GaitController] fall distance=%.2f damage=%d" % [fall_distance, GameConfig.FALL_DAMAGE])
 	EventBus.audio_requested.emit("fall", global_position, 0.0)
