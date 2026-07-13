@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "进来了。冷气开得挺足的。"
+duration = 2.6
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "海天生抽……应该在调料那边，先往里走。"
+duration = 3.1
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"supermarket_entrance"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

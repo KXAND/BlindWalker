@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "买到了，回去吧。"
+duration = 2.2
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "路口……还是那个路口，再等等。"
+duration = 2.8
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"street_return"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0

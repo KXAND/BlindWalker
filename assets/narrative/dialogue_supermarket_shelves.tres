@@ -1,0 +1,47 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=8 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "这一排……摸摸看，瓶子，应该是饮料区，不对。"
+duration = 3.4
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "这个瓶子方的，闻一下……对，是酱油味，应该是海天。"
+duration = 3.6
+
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "心相印纸巾……软的，大包，应该在这边。"
+duration = 3.1
+
+[sub_resource type="Resource" id="NarrativeLine_4"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "找到了。还有大白兔奶糖，零食区……"
+duration = 3.0
+
+[sub_resource type="Resource" id="NarrativeLine_5"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = "晓明"
+text = "这个袋子，捏起来一颗一颗的，应该是糖。行，三样都有了。"
+duration = 3.8
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"supermarket_shelves"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0
