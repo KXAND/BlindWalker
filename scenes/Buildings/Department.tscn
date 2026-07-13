@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://cmhfxewa7xhoi" path="res://scenes/Buildings/Stairwell.tscn" id="1_aob0l"]
 [ext_resource type="PackedScene" uid="uid://playerhome2f" path="res://scenes/Home/PlayerHome.tscn" id="2_ttos0"]
 [ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="3_ulun3"]
+[ext_resource type="PackedScene" uid="uid://trashcan01" path="res://scenes/Home/TrashCan.tscn" id="4_3kre6"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bfdp3"]
 size = Vector3(9.094482, 2.7891846, 11.873306)
@@ -36,3 +37,9 @@ mesh = SubResource("BoxMesh_bfdp3")
 [node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=1455983769]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.4875755, 1.8999374, 1.1491637)
 editor_only = true
+
+[node name="TrashCan" parent="." unique_id=883489180 instance=ExtResource("4_3kre6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.0739822, 0, 2.2061896)
+
+[node name="TrashCan2" parent="." unique_id=57365500 instance=ExtResource("4_3kre6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.669942, 0, 2.2157965)

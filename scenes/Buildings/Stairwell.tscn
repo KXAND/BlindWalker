@@ -115,18 +115,18 @@ transform = Transform3D(1.2, 0, 0, 0, 0.2, 0, 0, 0, 2.4, -0.6, 2.93, 1.2)
 material = SubResource("mat_1")
 
 [node name="Stairwell#CentralWall" type="CSGBox3D" parent="." unique_id=947664973]
-transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.12, 1.2560449, 2.863313, 1.2)
-size = Vector3(0.67529297, 1.7729492, 1)
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.12, 1.2560449, 3.4789922, 1.2)
+size = Vector3(0.67529297, 2.1541748, 1)
 material = SubResource("mat_3")
 
 [node name="Stairwell#SideWall_Left" type="CSGBox3D" parent="." unique_id=1036884804]
-transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.5715406, -0.075)
-size = Vector3(1, 1.5922852, 1)
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 3.1593242, -0.075)
+size = Vector3(1, 1.9562378, 1)
 material = SubResource("mat_3")
 
 [node name="Stairwell#SideWall_Right" type="CSGBox3D" parent="." unique_id=36088187]
-transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.7429569, 2.475)
-size = Vector3(1, 1.6984253, 1)
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 3.1292105, 2.475)
+size = Vector3(1, 1.9375916, 1)
 material = SubResource("mat_3")
 
 [node name="Stairwell#Post_A_1" type="CSGCylinder3D" parent="." unique_id=2000454214]
