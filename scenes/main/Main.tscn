@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
-[ext_resource type="PackedScene" path="res://scenes/building/ConvenienceStore.tscn" id="12_p5fgu"]
+[ext_resource type="PackedScene" uid="uid://b3ri3lpdbdwgi" path="res://scenes/Buildings/ConvenienceStore.tscn" id="12_p5fgu"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]

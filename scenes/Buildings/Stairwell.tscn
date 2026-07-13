@@ -1,0 +1,372 @@
+[gd_scene format=3 uid="uid://cmhfxewa7xhoi"]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "concrete"
+albedo_color = Color(0.45, 0.43, 0.41, 1)
+roughness = 0.92
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "landing"
+albedo_color = Color(0.4, 0.38, 0.36, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "wall_light"
+albedo_color = Color(0.72, 0.7, 0.67, 1)
+roughness = 0.88
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "metal"
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_5"]
+resource_name = "handrail"
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+roughness = 0.3
+
+[node name="Stairwell" type="Node3D" unique_id=1555503850]
+
+[node name="Stairwell#Step_A_1" type="CSGBox3D" parent="." unique_id=1044005240]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.14, 0.075, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_2" type="CSGBox3D" parent="." unique_id=1736325070]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.42, 0.235, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_3" type="CSGBox3D" parent="." unique_id=10816771]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.7, 0.395, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_4" type="CSGBox3D" parent="." unique_id=380295189]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.98, 0.555, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_5" type="CSGBox3D" parent="." unique_id=134884525]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.26, 0.715, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_6" type="CSGBox3D" parent="." unique_id=1077785070]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.54, 0.875, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_7" type="CSGBox3D" parent="." unique_id=1823498487]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.82, 1.035, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_8" type="CSGBox3D" parent="." unique_id=1048712691]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.1, 1.195, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_9" type="CSGBox3D" parent="." unique_id=1658951368]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 1.355, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_1" type="CSGBox3D" parent="." unique_id=216456416]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 1.515, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_2" type="CSGBox3D" parent="." unique_id=846494497]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.1, 1.675, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_3" type="CSGBox3D" parent="." unique_id=1952658637]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.82, 1.835, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_4" type="CSGBox3D" parent="." unique_id=1812028628]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.54, 1.995, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_5" type="CSGBox3D" parent="." unique_id=1457618769]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.26, 2.155, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_6" type="CSGBox3D" parent="." unique_id=631245791]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.98, 2.315, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_7" type="CSGBox3D" parent="." unique_id=1696259130]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.7, 2.475, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_8" type="CSGBox3D" parent="." unique_id=1639461968]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.42, 2.635, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_B_9" type="CSGBox3D" parent="." unique_id=429297469]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.14, 2.795, 1.8)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Landing" type="CSGBox3D" parent="." unique_id=2043923647]
+transform = Transform3D(1.2, 0, 0, 0, 0.15, 0, 0, 0, 2.4, 3.12, 1.515, 1.2)
+material = SubResource("mat_4")
+
+[node name="Stairwell#Floor1_Slab" type="CSGBox3D" parent="." unique_id=912848122]
+transform = Transform3D(1.2, 0, 0, 0, 0.2, 0, 0, 0, 2.4, 1.3488282, -0.1, 1.2)
+size = Vector3(4.248047, 1, 1)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Floor2_Slab" type="CSGBox3D" parent="." unique_id=2068132750]
+transform = Transform3D(1.2, 0, 0, 0, 0.2, 0, 0, 0, 2.4, -0.6, 2.93, 1.2)
+material = SubResource("mat_1")
+
+[node name="Stairwell#CentralWall" type="CSGBox3D" parent="." unique_id=947664973]
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.12, 1.2560449, 2.863313, 1.2)
+size = Vector3(0.67529297, 1.7729492, 1)
+material = SubResource("mat_3")
+
+[node name="Stairwell#SideWall_Left" type="CSGBox3D" parent="." unique_id=1036884804]
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.5715406, -0.075)
+size = Vector3(1, 1.5922852, 1)
+material = SubResource("mat_3")
+
+[node name="Stairwell#SideWall_Right" type="CSGBox3D" parent="." unique_id=36088187]
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.3089452, 2.475)
+size = Vector3(1, 1.4296875, 1)
+material = SubResource("mat_3")
+
+[node name="Stairwell#Post_A_1" type="CSGCylinder3D" parent="." unique_id=2000454214]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.755436, 1.05, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_2" type="CSGCylinder3D" parent="." unique_id=836732889]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0354357, 1.21, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_3" type="CSGCylinder3D" parent="." unique_id=1017594666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.315436, 1.37, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_4" type="CSGCylinder3D" parent="." unique_id=1061535058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.595436, 1.53, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_5" type="CSGCylinder3D" parent="." unique_id=163989187]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.875436, 1.69, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_6" type="CSGCylinder3D" parent="." unique_id=1140964475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.155436, 1.85, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_7" type="CSGCylinder3D" parent="." unique_id=583459058]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.435436, 2.01, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_8" type="CSGCylinder3D" parent="." unique_id=1757600685]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.715436, 2.17, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_9" type="CSGCylinder3D" parent="." unique_id=1035719490]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.9954357, 2.33, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_A_10" type="CSGCylinder3D" parent="." unique_id=652895654]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.275436, 2.49, 1.14)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Rail_A" type="CSGBox3D" parent="." unique_id=583964454]
+transform = Transform3D(2.0806463, -0.017207293, 0, 1.4568841, 0.024574561, 0, 0, 0, 0.03, 1.12, 1.6400001, 1.1062914)
+material = SubResource("mat_5")
+
+[node name="Stairwell#Post_B_1" type="CSGCylinder3D" parent="." unique_id=747647053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.0054464, 2.49, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_2" type="CSGCylinder3D" parent="." unique_id=1795595346]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.7254467, 2.65, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_3" type="CSGCylinder3D" parent="." unique_id=1318502237]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.445447, 2.81, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_4" type="CSGCylinder3D" parent="." unique_id=1663778777]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.1654468, 2.97, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_5" type="CSGCylinder3D" parent="." unique_id=516640521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.8854465, 3.13, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_6" type="CSGCylinder3D" parent="." unique_id=1702325203]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.605447, 3.29, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_7" type="CSGCylinder3D" parent="." unique_id=276484301]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3254466, 3.45, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_8" type="CSGCylinder3D" parent="." unique_id=324919850]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.0454464, 3.61, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_9" type="CSGCylinder3D" parent="." unique_id=98157754]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.7654467, 3.77, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Post_B_10" type="CSGCylinder3D" parent="." unique_id=760433697]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.485447, 3.93, 1.26)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Rail_B" type="CSGBox3D" parent="." unique_id=1209736617]
+transform = Transform3D(2.0552094, 0.017628567, 0, -1.4925525, 0.024274133, 0, 0, 0, 0.029999997, 1.12, 3.0854404, 1.2825165)
+material = SubResource("mat_5")
+
+[node name="Stairwell#Landing_Rail_Top" type="CSGBox3D" parent="." unique_id=1795242646]
+transform = Transform3D(0.03, 0, 0, 0, 0.03, 0, 0, 0, 2.4, 4.376384, 2.64, 1.2)
+visible = false
+material = SubResource("mat_5")
+
+[node name="Stairwell#Landing_Post_1" type="CSGCylinder3D" parent="." unique_id=762086984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 0)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Landing_Post_2" type="CSGCylinder3D" parent="." unique_id=2064381117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 0.48)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Landing_Post_3" type="CSGCylinder3D" parent="." unique_id=336840742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 0.96)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Landing_Post_4" type="CSGCylinder3D" parent="." unique_id=545945913]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 1.44)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Landing_Post_5" type="CSGCylinder3D" parent="." unique_id=425065751]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 1.92)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Landing_Post_6" type="CSGCylinder3D" parent="." unique_id=779399987]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.376384, 2.49, 2.4)
+visible = false
+radius = 0.02
+height = 0.9
+material = SubResource("mat_2")
+
+[node name="Stairwell#Handrail_A" type="CSGBox3D" parent="." unique_id=1276609969]
+transform = Transform3D(2.080646, -0.017207293, 0, 1.456884, 0.02457456, 0, 0, 0, 0.029999997, 1.12, 1.6400001, 0.04)
+material = SubResource("mat_5")
+
+[node name="Stairwell#Handrail_B" type="CSGBox3D" parent="." unique_id=1811789349]
+transform = Transform3D(2.0549033, 0.017633557, 0, -1.4929745, 0.02427051, 0, 0, 0, 0.03, 1.12, 3.0854404, 2.36)
+material = SubResource("mat_5")
+
+[node name="Stairwell#SideWall_Left2" type="CSGBox3D" parent="." unique_id=649769941]
+transform = Transform3D(-1.6260637e-07, 0, 0.15, 0, 3.23, 0, -3.72, 0, -6.5567085e-09, 3.7482128, 1.615, 1.1757255)
+size = Vector3(0.7133789, 1, 1)
+material = SubResource("mat_3")
+
+[node name="Stairwell#Step_A_10" type="CSGBox3D" parent="." unique_id=1216327105]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.14, 3.1043625, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_11" type="CSGBox3D" parent="." unique_id=651984226]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.42, 3.2643623, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_12" type="CSGBox3D" parent="." unique_id=1523365354]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.7, 3.4243624, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_13" type="CSGBox3D" parent="." unique_id=1685865829]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.98, 3.5843625, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_14" type="CSGBox3D" parent="." unique_id=519175857]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.26, 3.7443624, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_15" type="CSGBox3D" parent="." unique_id=1273977480]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.54, 3.9043624, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_16" type="CSGBox3D" parent="." unique_id=85122335]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.82, 4.0643625, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_17" type="CSGBox3D" parent="." unique_id=180037574]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.1, 4.2243624, 0.6)
+material = SubResource("mat_1")
+
+[node name="Stairwell#Step_A_18" type="CSGBox3D" parent="." unique_id=2044256517]
+transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 4.384362, 0.6)
+material = SubResource("mat_1")

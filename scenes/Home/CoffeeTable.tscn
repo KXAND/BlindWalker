@@ -1,0 +1,61 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "top_wood"
+albedo_color = Color(0.64, 0.48, 0.28, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "leg_wood"
+albedo_color = Color(0.35, 0.22, 0.12, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "shelf_wood"
+albedo_color = Color(0.45, 0.30, 0.17, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "glass"
+albedo_color = Color(0.82, 0.88, 0.90, 1)
+roughness = 0.1
+
+[node name="CoffeeTable" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+
+[node name="Tabletop" type="CSGBox3D" parent="."]
+transform = Transform3D(1.0, 0, 0, 0, 0.04, 0, 0, 0, 0.55, 0, 0.39999999999999997, 0)
+material = SubResource("mat_1")
+
+[node name="Leg_FL" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44, 0.19, 0.21500000000000002)
+material = SubResource("mat_2")
+radius = 0.02
+height = 0.38
+
+[node name="Leg_FR" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44, 0.19, 0.21500000000000002)
+material = SubResource("mat_2")
+radius = 0.02
+height = 0.38
+
+[node name="Leg_BL" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.44, 0.19, -0.21500000000000002)
+material = SubResource("mat_2")
+radius = 0.02
+height = 0.38
+
+[node name="Leg_BR" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.44, 0.19, -0.21500000000000002)
+material = SubResource("mat_2")
+radius = 0.02
+height = 0.38
+
+[node name="Shelf" type="CSGBox3D" parent="."]
+transform = Transform3D(0.88, 0, 0, 0, 0.02, 0, 0, 0, 0.43000000000000005, 0, 0.15000000000000002, 0)
+material = SubResource("mat_3")
+
+[node name="GlassTop" type="CSGBox3D" parent="."]
+transform = Transform3D(0.98, 0, 0, 0, 0.01, 0, 0, 0, 0.53, 0, 0.425, 0)
+material = SubResource("mat_4")

@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://diningtable01"]
+
+[sub_resource type="StandardMaterial3D" id="mat_apron"]
+albedo_color = Color(0.5, 0.3, 0.15, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_leg"]
+albedo_color = Color(0.42, 0.24, 0.1, 1)
+roughness = 0.6
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bfdp3"]
+top_radius = 0.6542969
+bottom_radius = 0.6542969
+height = 0.05
+
+[node name="DiningTable" type="Node3D" unique_id=649434791]
+
+[node name="TopRing" type="CSGCylinder3D" parent="." unique_id=1932045534]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.691, 0)
+use_collision = true
+radius = 0.55
+height = 0.06
+material = SubResource("mat_apron")
+
+[node name="Leg_N" type="CSGBox3D" parent="." unique_id=1154294383]
+transform = Transform3D(0.06, 0, 0, 0, 0.72, 0, 0, 0, 0.06, 0, 0.36, -0.46)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="Leg_S" type="CSGBox3D" parent="." unique_id=1861191558]
+transform = Transform3D(0.06, 0, 0, 0, 0.72, 0, 0, 0, 0.06, 0, 0.36, 0.46)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="Leg_W" type="CSGBox3D" parent="." unique_id=1004229817]
+transform = Transform3D(0.06, 0, 0, 0, 0.72, 0, 0, 0, 0.06, -0.46, 0.36, 0)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="Leg_E" type="CSGBox3D" parent="." unique_id=17781271]
+transform = Transform3D(0.06, 0, 0, 0, 0.72, 0, 0, 0, 0.06, 0.46, 0.36, 0)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="LowRing" type="CSGCylinder3D" parent="." unique_id=692910463]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.14, 0)
+use_collision = true
+radius = 0.46
+height = 0.06
+material = SubResource("mat_apron")
+
+[node name="CrossFoot_NS" type="CSGBox3D" parent="." unique_id=117391604]
+transform = Transform3D(0.06, 0, 0, 0, 0.04, 0, 0, 0, 0.94, 0, 0.03, 0)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="CrossFoot_EW" type="CSGBox3D" parent="." unique_id=128731632]
+transform = Transform3D(0.94, 0, 0, 0, 0.04, 0, 0, 0, 0.06, 0, 0.03, 0)
+use_collision = true
+material = SubResource("mat_leg")
+
+[node name="Tabletop" type="MeshInstance3D" parent="." unique_id=1922845924]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.74399817, 0)
+mesh = SubResource("CylinderMesh_bfdp3")

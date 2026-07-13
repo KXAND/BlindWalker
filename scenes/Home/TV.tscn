@@ -1,0 +1,21 @@
+[gd_scene format=3 uid="uid://da2tbmjnvxva7"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_cecsl"]
+albedo_color = Color(0.32, 0.18, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_n3k22"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+
+[node name="Tv" type="Node3D" unique_id=551586452]
+
+[node name="TVStand" type="CSGBox3D" parent="." unique_id=520212118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2897222, 0.3, 0.39270997)
+use_collision = true
+size = Vector3(0.5, 0.5, 1.6)
+material = SubResource("StandardMaterial3D_cecsl")
+
+[node name="TVScreen" type="CSGBox3D" parent="." unique_id=229274833]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.33972222, 0.9, 0.39270997)
+use_collision = true
+size = Vector3(0.05, 0.7, 1.2)
+material = SubResource("StandardMaterial3D_n3k22")

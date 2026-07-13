@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://or1jixcp5w4d"]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "fabric_body"
+albedo_color = Color(0.45, 0.42, 0.38, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "armrest"
+albedo_color = Color(0.47, 0.44, 0.4, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "cushion"
+albedo_color = Color(0.52, 0.48, 0.42, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "leg"
+albedo_color = Color(0.22, 0.2, 0.18, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_5"]
+resource_name = "pillow_red"
+albedo_color = Color(0.65, 0.28, 0.24, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_6"]
+resource_name = "pillow_teal"
+albedo_color = Color(0.22, 0.48, 0.5, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_7"]
+resource_name = "pillow_yellow"
+albedo_color = Color(0.72, 0.62, 0.28, 1)
+roughness = 0.65
+
+[node name="Sofa" type="CSGCombiner3D" unique_id=115734805]
+use_collision = true
+
+[node name="SeatBase" type="CSGBox3D" parent="." unique_id=870486220]
+transform = Transform3D(1.2, 0, 0, 0, 0.4, 0, 0, 0, 0.55, 0.61001587, 0.25, 0)
+use_collision = true
+size = Vector3(1.3291931, 1, 1)
+material = SubResource("mat_1")
+
+[node name="Armrest_L" type="CSGBox3D" parent="." unique_id=653194139]
+transform = Transform3D(0.2, 0, 0, 0, 0.33, 0, 0, 0, 0.65, -0.078243755, 0.615, -0.004589841)
+use_collision = true
+size = Vector3(1, 1, 0.83203125)
+material = SubResource("mat_3")
+
+[node name="Armrest_R" type="CSGBox3D" parent="." unique_id=690583454]
+transform = Transform3D(0.2, 0, 0, 0, 0.33, 0, 0, 0, 0.65, 1.3101531, 0.615, -0.0020507798)
+use_collision = true
+size = Vector3(1, 1, 0.83984375)
+material = SubResource("mat_3")
+
+[node name="SeatCushion" type="CSGBox3D" parent="." unique_id=1113088103]
+transform = Transform3D(1.16, 0, 0, 0, 0.1, 0, 0, 0, 0.51, 0.6, 0.5, 0)
+use_collision = true
+material = SubResource("mat_2")
+
+[node name="BackCushion" type="CSGBox3D" parent="." unique_id=88275439]
+transform = Transform3D(1.16, 0, 0, 0, 0.34, 0, 0, 0, 0.12, 0.6, 0.66, -0.265)
+use_collision = true
+material = SubResource("mat_2")
+
+[node name="Leg_FL" type="CSGCylinder3D" parent="." unique_id=398420006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.025, 0.235)
+use_collision = true
+radius = 0.025
+height = 0.05
+material = SubResource("mat_4")
+
+[node name="Leg_FR" type="CSGCylinder3D" parent="." unique_id=1741068519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.140835, 0.025, 0.235)
+use_collision = true
+radius = 0.025
+height = 0.05
+material = SubResource("mat_4")
+
+[node name="Leg_BL" type="CSGCylinder3D" parent="." unique_id=1495436433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24, 0.025, -0.235)
+use_collision = true
+radius = 0.025
+height = 0.05
+material = SubResource("mat_4")
+
+[node name="Leg_BR" type="CSGCylinder3D" parent="." unique_id=693392230]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.140835, 0.025, -0.235)
+use_collision = true
+radius = 0.025
+height = 0.05
+material = SubResource("mat_4")
+
+[node name="Pillow_L" type="CSGBox3D" parent="." unique_id=135920977]
+transform = Transform3D(0.28, 0, 0, 0, 0.18, 0, 0, 0, 0.3, 0.34, 0.59, -0.025)
+use_collision = true
+material = SubResource("mat_5")
+
+[node name="Pillow_R" type="CSGBox3D" parent="." unique_id=1628250131]
+transform = Transform3D(0.28, 0, 0, 0, 0.18, 0, 0, 0, 0.3, 0.86, 0.59, -0.025)
+use_collision = true
+material = SubResource("mat_6")
+
+[node name="Pillow_C" type="CSGBox3D" parent="." unique_id=207549132]
+transform = Transform3D(0.26, 0, 0, 0, 0.16, 0, 0, 0, 0.22, 0.6, 0.58, -0.005)
+use_collision = true
+material = SubResource("mat_7")
+
+[node name="FrontSkirt" type="CSGBox3D" parent="." unique_id=1348852088]
+transform = Transform3D(1.2, 0, 0, 0, 0.04, 0, 0, 0, 0.03, 0.6, 0.025, 0.275)
+use_collision = true
+material = SubResource("mat_1")
+
+[node name="Backrest" type="CSGBox3D" parent="." unique_id=19050838]
+transform = Transform3D(1.2, 0, 0, 0, 0.42, 0, 0, 0, 0.1, 0.6, 0.66, -0.325)
+use_collision = true
+material = SubResource("mat_1")

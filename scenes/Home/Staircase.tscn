@@ -1,0 +1,254 @@
+[gd_scene load_steps=5 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "wood_warm"
+albedo_color = Color(0.56, 0.40, 0.24, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "wood_dark"
+albedo_color = Color(0.28, 0.18, 0.10, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "metal_rail"
+albedo_color = Color(0.55, 0.52, 0.48, 1)
+roughness = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "post_cap"
+albedo_color = Color(0.75, 0.72, 0.68, 1)
+roughness = 0.2
+
+[node name="Staircase" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+
+[node name="Tread_A1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 0.14, 0.1875, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 0.42000000000000004, 0.375, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 0.7000000000000001, 0.5625, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 0.9800000000000001, 0.75, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 1.2600000000000002, 0.9375, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 1.54, 1.125, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 1.8200000000000003, 1.3125, 0)
+material = SubResource("mat_1")
+
+[node name="Tread_A8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.28, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 2.1, 1.5, 0)
+material = SubResource("mat_1")
+
+[node name="Stringer_A_L" type="CSGBox3D" parent="."]
+transform = Transform3D(2.24, 0, 0, 0, 0.2, 0, 0, 0, 0.04, 1.12, 0.75, -0.45)
+material = SubResource("mat_2")
+
+[node name="Stringer_A_R" type="CSGBox3D" parent="."]
+transform = Transform3D(2.24, 0, 0, 0, 0.2, 0, 0, 0, 0.04, 1.12, 0.75, 0.45)
+material = SubResource("mat_2")
+
+[node name="Landing" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.9, 2.6900000000000004, 1.5, 0.45)
+material = SubResource("mat_1")
+
+[node name="Skirt_Land_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.04, 2.6900000000000004, 1.4, -0.45)
+material = SubResource("mat_2")
+
+[node name="Skirt_Land_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.2, 0, 0, 0, 0.04, 2.6900000000000004, 1.4, 0.45)
+material = SubResource("mat_2")
+
+[node name="Tread_B1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 1.6875, 1.04)
+material = SubResource("mat_1")
+
+[node name="Tread_B2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 1.875, 1.3200000000000003)
+material = SubResource("mat_1")
+
+[node name="Tread_B3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 2.0625, 1.6)
+material = SubResource("mat_1")
+
+[node name="Tread_B4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 2.25, 1.8800000000000003)
+material = SubResource("mat_1")
+
+[node name="Tread_B5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 2.4375, 2.16)
+material = SubResource("mat_1")
+
+[node name="Tread_B6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 2.625, 2.4400000000000004)
+material = SubResource("mat_1")
+
+[node name="Tread_B7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 2.8125, 2.72)
+material = SubResource("mat_1")
+
+[node name="Tread_B8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.9, 0, 0, 0, 0.04, 0, 0, 0, 0.28, 2.6900000000000004, 3.0, 3.0000000000000004)
+material = SubResource("mat_1")
+
+[node name="Stringer_B_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.2, 0, 0, 0, 2.24, 2.24, 2.25, 2.02)
+material = SubResource("mat_2")
+
+[node name="Stringer_B_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.2, 0, 0, 0, 2.24, 3.1400000000000006, 2.25, 2.02)
+material = SubResource("mat_2")
+
+[node name="Post_A_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 2.4, 0, 0, 0, 0.05, 2.24, 1.2, -0.45)
+material = SubResource("mat_2")
+
+[node name="Post_A_L_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24, 2.415, -0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="Post_A_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 2.4, 0, 0, 0, 0.05, 2.24, 1.2, 0.45)
+material = SubResource("mat_2")
+
+[node name="Post_A_R_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24, 2.415, 0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="Post_B_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 2.4, 0, 0, 0, 0.05, 2.24, 1.2, 0.45)
+material = SubResource("mat_2")
+
+[node name="Post_B_L_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.24, 2.415, 0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="Post_B_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 2.4, 0, 0, 0, 0.05, 3.14, 1.2, -0.45)
+material = SubResource("mat_2")
+
+[node name="Post_B_R_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.14, 2.415, -0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="Newel_Bot_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 1.0875, 0, 0, 0, 0.05, 0, 0.54375, -0.45)
+material = SubResource("mat_2")
+
+[node name="Newel_Bot_L_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1024999999999998, -0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="Newel_Bot_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.05, 0, 0, 0, 1.0875, 0, 0, 0, 0.05, 0, 0.54375, 0.45)
+material = SubResource("mat_2")
+
+[node name="Newel_Bot_R_Cap" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1024999999999998, 0.45)
+material = SubResource("mat_4")
+radius = 0.029
+height = 0.015
+
+[node name="RailPost_A_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 0.0, 0.45, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 0.28, 0.6375, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 0.56, 0.825, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 0.8400000000000001, 1.0125, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 1.12, 1.2, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 1.4000000000000001, 1.3875, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 1.6800000000000002, 1.575, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_A_7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 1.9600000000000002, 1.7625, 0.45)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 1.95, 0.9)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 2.1374999999999997, 1.1800000000000002)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 2.3249999999999997, 1.46)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 2.5124999999999997, 1.7400000000000002)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 2.6999999999999997, 2.02)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_5" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 2.8874999999999997, 2.3000000000000003)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_6" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 3.0749999999999997, 2.58)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_7" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 3.2624999999999997, 2.8600000000000003)
+material = SubResource("mat_2")
+
+[node name="RailPost_B_8" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04000000000000001, 0, 0, 0, 0.9, 0, 0, 0, 0.04000000000000001, 3.1400000000000006, 3.4499999999999997, 3.14)
+material = SubResource("mat_2")
+
+[node name="TopRail_A" type="CSGBox3D" parent="."]
+transform = Transform3D(2.24, 0, 0, 0, 0.04, 0, 0, 0, 0.04, 1.12, 2.4, 0.45)
+material = SubResource("mat_3")
+
+[node name="TopRail_B" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.04, 0, 0, 0, 2.24, 3.1400000000000006, 3.9, 2.02)
+material = SubResource("mat_3")
+

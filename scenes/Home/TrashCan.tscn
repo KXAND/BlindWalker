@@ -1,0 +1,64 @@
+[gd_scene format=3 uid="uid://trashcan01"]
+
+[sub_resource type="StandardMaterial3D" id="mat_body"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+metallic = 0.3
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_rim"]
+albedo_color = Color(0.18, 0.18, 0.20, 1)
+metallic = 0.4
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_lid"]
+albedo_color = Color(0.24, 0.24, 0.26, 1)
+metallic = 0.35
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_inner"]
+albedo_color = Color(0.12, 0.12, 0.13, 1)
+roughness = 0.8
+
+[node name="TrashCan" type="Node3D"]
+
+[node name="Body" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
+material = SubResource("mat_body")
+radius = 0.18
+height = 0.42
+use_collision = true
+
+[node name="InnerHollow" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.21, 0)
+material = SubResource("mat_inner")
+radius = 0.174
+height = 0.414
+use_collision = true
+
+[node name="BaseRing" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.01, 0)
+material = SubResource("mat_rim")
+radius = 0.17
+height = 0.02
+use_collision = true
+
+[node name="TopRim" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4325, 0)
+material = SubResource("mat_rim")
+radius = 0.192
+height = 0.025
+use_collision = true
+
+[node name="Lid" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4635, 0)
+material = SubResource("mat_lid")
+radius = 0.195
+height = 0.025
+use_collision = true
+
+[node name="Knob" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48800000000000004, 0)
+material = SubResource("mat_rim")
+radius = 0.025
+height = 0.018
+use_collision = true

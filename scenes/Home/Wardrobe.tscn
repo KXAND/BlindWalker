@@ -1,0 +1,227 @@
+[gd_scene format=3 uid="uid://wardrobe01"]
+
+[sub_resource type="StandardMaterial3D" id="mat_body"]
+albedo_color = Color(0.45, 0.3, 0.18, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_door"]
+albedo_color = Color(0.52, 0.36, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_handle"]
+albedo_color = Color(0.6, 0.55, 0.45, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_inner"]
+albedo_color = Color(0.32, 0.2, 0.12, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_shelf"]
+albedo_color = Color(0.38, 0.24, 0.15, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_rail"]
+albedo_color = Color(0.5, 0.48, 0.45, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_hanger"]
+albedo_color = Color(0.55, 0.5, 0.42, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_base"]
+albedo_color = Color(0.28, 0.16, 0.08, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.55, 0.55, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cloth_0"]
+albedo_color = Color(0.25, 0.35, 0.55, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cloth_1"]
+albedo_color = Color(0.6, 0.2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cloth_2"]
+albedo_color = Color(0.15, 0.3, 0.5, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cloth_3"]
+albedo_color = Color(0.7, 0.55, 0.45, 1)
+
+[node name="Wardrobe" type="Node3D"]
+[node name="Base" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, 0)
+size = Vector3(1.2, 0.06, 0.6)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="LegFrontL" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.02, 0.26)
+size = Vector3(0.06, 0.04, 0.06)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="LegFrontR" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.02, 0.26)
+size = Vector3(0.06, 0.04, 0.06)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="LegBackL" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.02, -0.26)
+size = Vector3(0.06, 0.04, 0.06)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="LegBackR" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.5, 0.02, -0.26)
+size = Vector3(0.06, 0.04, 0.06)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="PanelLeft" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.58, 1.1400000000000001, 0)
+size = Vector3(0.04, 2.2, 0.6)
+material = SubResource("mat_body")
+use_collision = true
+
+[node name="PanelRight" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.58, 1.1400000000000001, 0)
+size = Vector3(0.04, 2.2, 0.6)
+material = SubResource("mat_body")
+use_collision = true
+
+[node name="PanelTop" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22, 0)
+size = Vector3(1.2, 0.04, 0.6)
+material = SubResource("mat_body")
+use_collision = true
+
+[node name="PanelBottom" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.06, 0)
+size = Vector3(1.2, 0.04, 0.6)
+material = SubResource("mat_body")
+use_collision = true
+
+[node name="WallBack" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.1400000000000001, -0.27999999999999997)
+size = Vector3(1.2, 2.2, 0.04)
+material = SubResource("mat_body")
+use_collision = true
+
+[node name="Shelf1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, 0)
+size = Vector3(1.1199999999999999, 0.032, 0.5599999999999999)
+material = SubResource("mat_shelf")
+use_collision = true
+
+[node name="Shelf2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+size = Vector3(1.1199999999999999, 0.032, 0.5599999999999999)
+material = SubResource("mat_shelf")
+use_collision = true
+
+[node name="Shelf3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+size = Vector3(1.1199999999999999, 0.032, 0.5599999999999999)
+material = SubResource("mat_shelf")
+use_collision = true
+
+[node name="Rail" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.85, 0.21999999999999997)
+size = Vector3(1.0999999999999999, 0.02, 0.04)
+material = SubResource("mat_rail")
+use_collision = true
+
+[node name="Hanger1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 1.8, 0.24)
+size = Vector3(0.2, 0.01, 0.12)
+material = SubResource("mat_hanger")
+use_collision = true
+
+[node name="Hanger1Hook" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.35, 1.84, 0.27999999999999997)
+size = Vector3(0.02, 0.06, 0.02)
+material = SubResource("mat_metal")
+use_collision = true
+
+[node name="Hanger2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1.8, 0.24)
+size = Vector3(0.2, 0.01, 0.12)
+material = SubResource("mat_hanger")
+use_collision = true
+
+[node name="Hanger2Hook" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15, 1.84, 0.27999999999999997)
+size = Vector3(0.02, 0.06, 0.02)
+material = SubResource("mat_metal")
+use_collision = true
+
+[node name="Hanger3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 1.8, 0.24)
+size = Vector3(0.2, 0.01, 0.12)
+material = SubResource("mat_hanger")
+use_collision = true
+
+[node name="Hanger3Hook" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 1.84, 0.27999999999999997)
+size = Vector3(0.02, 0.06, 0.02)
+material = SubResource("mat_metal")
+use_collision = true
+
+[node name="Hanger4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.8, 0.24)
+size = Vector3(0.2, 0.01, 0.12)
+material = SubResource("mat_hanger")
+use_collision = true
+
+[node name="Hanger4Hook" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.25, 1.84, 0.27999999999999997)
+size = Vector3(0.02, 0.06, 0.02)
+material = SubResource("mat_metal")
+use_collision = true
+
+[node name="Cloth1" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.3, 0.25)
+size = Vector3(0.25, 0.55, 0.04)
+material = SubResource("mat_cloth_0")
+use_collision = true
+
+[node name="Cloth2" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, 1.3, 0.25)
+size = Vector3(0.25, 0.55, 0.04)
+material = SubResource("mat_cloth_1")
+use_collision = true
+
+[node name="Cloth3" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.1, 1.3, 0.25)
+size = Vector3(0.25, 0.55, 0.04)
+material = SubResource("mat_cloth_2")
+use_collision = true
+
+[node name="Cloth4" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 1.3, 0.25)
+size = Vector3(0.25, 0.55, 0.04)
+material = SubResource("mat_cloth_3")
+use_collision = true
+
+[node name="DoorLeft" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.31, 1.1400000000000001, -0.32)
+size = Vector3(0.58, 2.2, 0.04)
+material = SubResource("mat_door")
+use_collision = true
+
+[node name="HandleL" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.16, 1.2100000000000002, -0.35)
+size = Vector3(0.04, 0.18, 0.03)
+material = SubResource("mat_handle")
+use_collision = true
+
+[node name="DoorRight" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.31, 1.1400000000000001, -0.32)
+size = Vector3(0.58, 2.2, 0.04)
+material = SubResource("mat_door")
+use_collision = true
+
+[node name="HandleR" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.16, 1.2100000000000002, -0.35)
+size = Vector3(0.04, 0.18, 0.03)
+material = SubResource("mat_handle")
+use_collision = true
+
+[node name="Crown" type="CSGBox3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.22, 0)
+size = Vector3(1.24, 0.04, 0.64)
+material = SubResource("mat_body")
+use_collision = true

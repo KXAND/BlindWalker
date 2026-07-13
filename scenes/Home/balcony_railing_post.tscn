@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://ctwn3om7p6e6q"]
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.55, 0.55, 0.6, 1)
+
+[node name="BalconyRailingPost2" type="CSGBox3D" unique_id=1105026789]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2489667, 0.5, 5.95)
+use_collision = true
+size = Vector3(0.05, 1, 0.05)
+material = SubResource("mat_metal")

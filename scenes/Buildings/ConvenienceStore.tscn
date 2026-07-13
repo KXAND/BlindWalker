@@ -1,4 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://b3ri3lpdbdwgi"]
+
+[ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="1_hhdq8"]
 
 [sub_resource type="StandardMaterial3D" id="material_floor"]
 albedo_color = Color(0.22, 0.22, 0.23, 1)
@@ -8,6 +10,11 @@ roughness = 0.8
 albedo_color = Color(0.82, 0.78, 0.72, 1)
 roughness = 0.7
 
+[sub_resource type="StandardMaterial3D" id="material_door_frame"]
+albedo_color = Color(0.4, 0.38, 0.36, 1)
+metallic = 0.2
+roughness = 0.55
+
 [sub_resource type="StandardMaterial3D" id="material_roof"]
 albedo_color = Color(0.35, 0.35, 0.38, 1)
 roughness = 0.7
@@ -15,6 +22,14 @@ roughness = 0.7
 [sub_resource type="StandardMaterial3D" id="material_awning"]
 albedo_color = Color(0.85, 0.28, 0.22, 1)
 roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="material_post"]
+albedo_color = Color(0.3, 0.28, 0.26, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="material_step"]
+albedo_color = Color(0.5, 0.5, 0.5, 1)
+roughness = 0.6
 
 [sub_resource type="StandardMaterial3D" id="material_sign"]
 albedo_color = Color(0.12, 0.58, 0.22, 1)
@@ -28,28 +43,23 @@ roughness = 0.6
 albedo_color = Color(0.32, 0.18, 0.08, 1)
 roughness = 0.45
 
-[sub_resource type="StandardMaterial3D" id="material_shelf"]
-albedo_color = Color(0.52, 0.35, 0.18, 1)
-roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="material_cash_register"]
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+metallic = 0.5
+roughness = 0.3
 
-[sub_resource type="StandardMaterial3D" id="material_step"]
-albedo_color = Color(0.5, 0.5, 0.5, 1)
-roughness = 0.6
+[sub_resource type="StandardMaterial3D" id="material_product_green"]
+albedo_color = Color(0.12, 0.68, 0.22, 1)
+roughness = 0.5
 
 [sub_resource type="StandardMaterial3D" id="material_fridge"]
 albedo_color = Color(0.85, 0.85, 0.88, 1)
-roughness = 0.3
 metallic = 0.35
-
-[sub_resource type="StandardMaterial3D" id="material_cash_register"]
-albedo_color = Color(0.18, 0.18, 0.2, 1)
 roughness = 0.3
-metallic = 0.5
 
-[sub_resource type="StandardMaterial3D" id="material_door_frame"]
-albedo_color = Color(0.4, 0.38, 0.36, 1)
-roughness = 0.55
-metallic = 0.2
+[sub_resource type="StandardMaterial3D" id="material_shelf"]
+albedo_color = Color(0.52, 0.35, 0.18, 1)
+roughness = 0.6
 
 [sub_resource type="StandardMaterial3D" id="material_product_red"]
 albedo_color = Color(0.85, 0.14, 0.12, 1)
@@ -63,343 +73,326 @@ roughness = 0.5
 albedo_color = Color(0.1, 0.28, 0.85, 1)
 roughness = 0.5
 
-[sub_resource type="StandardMaterial3D" id="material_product_green"]
-albedo_color = Color(0.12, 0.68, 0.22, 1)
-roughness = 0.5
-
 [sub_resource type="StandardMaterial3D" id="material_product_white"]
 albedo_color = Color(0.92, 0.92, 0.9, 1)
 roughness = 0.5
 
-[sub_resource type="StandardMaterial3D" id="material_post"]
-albedo_color = Color(0.3, 0.28, 0.26, 1)
-roughness = 0.65
+[node name="ConvenienceStore" type="Node3D" unique_id=1043327600]
 
-[node name="ConvenienceStore" type="Node3D"]
-
-; --- Floor ---
-[node name="Floor" type="CSGBox3D" parent="."]
+[node name="Floor" type="CSGBox3D" parent="." unique_id=993314324]
 use_collision = true
 size = Vector3(6, 0.15, 7)
 material = SubResource("material_floor")
 
-; --- Walls ---
-[node name="BackWall" type="CSGBox3D" parent="."]
+[node name="BackWall" type="CSGBox3D" parent="." unique_id=773103291]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -3.5)
 use_collision = true
 size = Vector3(6.4, 3, 0.2)
 material = SubResource("material_wall")
 
-[node name="LeftWall" type="CSGBox3D" parent="."]
+[node name="LeftWall" type="CSGBox3D" parent="." unique_id=1694714604]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1.5, 0)
 use_collision = true
 size = Vector3(0.2, 3, 7)
 material = SubResource("material_wall")
 
-[node name="RightWall" type="CSGBox3D" parent="."]
+[node name="RightWall" type="CSGBox3D" parent="." unique_id=187060134]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3, 1.5, 0)
 use_collision = true
 size = Vector3(0.2, 3, 7)
 material = SubResource("material_wall")
 
-[node name="FrontWallLeft" type="CSGBox3D" parent="."]
+[node name="FrontWallLeft" type="CSGBox3D" parent="." unique_id=542661404]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.15, 1.5, 3.5)
 use_collision = true
 size = Vector3(1.7, 3, 0.2)
 material = SubResource("material_wall")
 
-[node name="FrontWallRight" type="CSGBox3D" parent="."]
+[node name="FrontWallRight" type="CSGBox3D" parent="." unique_id=1131050063]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.15, 1.5, 3.5)
 use_collision = true
 size = Vector3(1.7, 3, 0.2)
 material = SubResource("material_wall")
 
-[node name="DoorLintel" type="CSGBox3D" parent="."]
+[node name="DoorLintel" type="CSGBox3D" parent="." unique_id=1582159640]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.85, 3.5)
 use_collision = true
 size = Vector3(2.6, 0.35, 0.25)
 material = SubResource("material_door_frame")
 
-; --- Roof ---
-[node name="Roof" type="CSGBox3D" parent="."]
+[node name="Roof" type="CSGBox3D" parent="." unique_id=1848757962]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
 size = Vector3(6.6, 0.15, 7.6)
 material = SubResource("material_roof")
 
-; --- Awning / Canopy ---
-[node name="Awning" type="CSGBox3D" parent="."]
+[node name="Awning" type="CSGBox3D" parent="." unique_id=19766205]
 transform = Transform3D(1, 0, 0, 0, 0.996195, -0.087156, 0, 0.087156, 0.996195, 0, 2.72, 3.9)
 size = Vector3(5, 0.06, 1.2)
 material = SubResource("material_awning")
 
-[node name="AwningPostLeft" type="CSGBox3D" parent="."]
+[node name="AwningPostLeft" type="CSGBox3D" parent="." unique_id=363529357]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 4.15)
 size = Vector3(0.08, 2.8, 0.08)
 material = SubResource("material_post")
 
-[node name="AwningPostRight" type="CSGBox3D" parent="."]
+[node name="AwningPostRight" type="CSGBox3D" parent="." unique_id=2041598525]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 4.15)
 size = Vector3(0.08, 2.8, 0.08)
 material = SubResource("material_post")
 
-; --- Door Step ---
-[node name="DoorStep" type="CSGBox3D" parent="."]
+[node name="DoorStep" type="CSGBox3D" parent="." unique_id=848099295]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.07, 3.65)
 use_collision = true
 size = Vector3(2.6, 0.15, 0.55)
 material = SubResource("material_step")
 
-; --- Sign Board ---
-[node name="SignBoard" type="CSGBox3D" parent="."]
+[node name="SignBoard" type="CSGBox3D" parent="." unique_id=44670546]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55, 3.62)
 size = Vector3(4.5, 0.5, 0.06)
 material = SubResource("material_sign")
 
-; --- Counter ---
-[node name="CounterBase" type="CSGBox3D" parent="."]
+[node name="CounterBase" type="CSGBox3D" parent="." unique_id=1431630276]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.48, -2)
 use_collision = true
 size = Vector3(3.8, 0.95, 0.65)
 material = SubResource("material_counter")
 
-[node name="CounterTop" type="CSGBox3D" parent="."]
+[node name="CounterTop" type="CSGBox3D" parent="." unique_id=330229503]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.97, -2)
 size = Vector3(4, 0.04, 0.75)
 material = SubResource("material_counter_top")
 
-; --- Cash Register ---
-[node name="CashRegister" type="CSGBox3D" parent="."]
+[node name="CashRegister" type="CSGBox3D" parent="." unique_id=658821058]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.1, -1.9)
 size = Vector3(0.5, 0.28, 0.35)
 material = SubResource("material_cash_register")
 
-[node name="CashDisplay" type="CSGBox3D" parent="."]
+[node name="CashDisplay" type="CSGBox3D" parent="." unique_id=1880921951]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 0.965926, 1.2, 1.35, -1.7)
 size = Vector3(0.4, 0.18, 0.04)
 material = SubResource("material_product_green")
 
-; --- Fridge (tall cooler) ---
-[node name="Fridge" type="CSGBox3D" parent="."]
+[node name="Fridge" type="CSGBox3D" parent="." unique_id=350876662]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2, 1.1, 2.2)
 use_collision = true
 size = Vector3(1.4, 2.2, 0.5)
 material = SubResource("material_fridge")
 
-[node name="FridgeHandle" type="CSGBox3D" parent="."]
+[node name="FridgeHandle" type="CSGBox3D" parent="." unique_id=1692087969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.1, 2.42)
 size = Vector3(0.05, 0.4, 0.04)
 material = SubResource("material_cash_register")
 
-; --- Left Wall Shelves ---
-[node name="ShelfLeft01" type="CSGBox3D" parent="."]
+[node name="ShelfLeft01" type="CSGBox3D" parent="." unique_id=133761629]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 0.5, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-[node name="ShelfLeft02" type="CSGBox3D" parent="."]
+[node name="ShelfLeft02" type="CSGBox3D" parent="." unique_id=1998109553]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 1.2, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-[node name="ShelfLeft03" type="CSGBox3D" parent="."]
+[node name="ShelfLeft03" type="CSGBox3D" parent="." unique_id=127824824]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.75, 1.9, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-; --- Right Wall Shelves ---
-[node name="ShelfRight01" type="CSGBox3D" parent="."]
+[node name="ShelfRight01" type="CSGBox3D" parent="." unique_id=1602121423]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 0.5, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-[node name="ShelfRight02" type="CSGBox3D" parent="."]
+[node name="ShelfRight02" type="CSGBox3D" parent="." unique_id=663035699]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 1.2, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-[node name="ShelfRight03" type="CSGBox3D" parent="."]
+[node name="ShelfRight03" type="CSGBox3D" parent="." unique_id=429520602]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.75, 1.9, -0.5)
 size = Vector3(0.25, 0.04, 4)
 material = SubResource("material_shelf")
 
-; --- Back Wall Shelves ---
-[node name="ShelfBack01" type="CSGBox3D" parent="."]
+[node name="ShelfBack01" type="CSGBox3D" parent="." unique_id=155791928]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7, -3.25)
 size = Vector3(4.5, 0.04, 0.25)
 material = SubResource("material_shelf")
 
-[node name="ShelfBack02" type="CSGBox3D" parent="."]
+[node name="ShelfBack02" type="CSGBox3D" parent="." unique_id=201763998]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, -3.25)
 size = Vector3(4.5, 0.04, 0.25)
 material = SubResource("material_shelf")
 
-[node name="ShelfBack03" type="CSGBox3D" parent="."]
+[node name="ShelfBack03" type="CSGBox3D" parent="." unique_id=387654870]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -3.25)
 size = Vector3(4.5, 0.04, 0.25)
 material = SubResource("material_shelf")
 
-; --- Products on Left Shelves (row 1) ---
-[node name="Product_L1_A" type="CSGBox3D" parent="."]
+[node name="Product_L1_A" type="CSGBox3D" parent="." unique_id=2025220449]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0.6, -2)
 size = Vector3(0.12, 0.18, 0.12)
 material = SubResource("material_product_red")
 
-[node name="Product_L1_B" type="CSGBox3D" parent="."]
+[node name="Product_L1_B" type="CSGBox3D" parent="." unique_id=1048317781]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0.6, -1.5)
 size = Vector3(0.12, 0.2, 0.13)
 material = SubResource("material_product_yellow")
 
-[node name="Product_L1_C" type="CSGBox3D" parent="."]
+[node name="Product_L1_C" type="CSGBox3D" parent="." unique_id=268278595]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0.6, -1)
 size = Vector3(0.12, 0.15, 0.12)
 material = SubResource("material_product_green")
 
-[node name="Product_L1_D" type="CSGBox3D" parent="."]
+[node name="Product_L1_D" type="CSGBox3D" parent="." unique_id=2001862052]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0.6, -0.5)
 size = Vector3(0.13, 0.18, 0.12)
 material = SubResource("material_product_blue")
 
-[node name="Product_L1_E" type="CSGBox3D" parent="."]
+[node name="Product_L1_E" type="CSGBox3D" parent="." unique_id=1343837702]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 0.6, 0)
 size = Vector3(0.12, 0.16, 0.12)
 material = SubResource("material_product_white")
 
-; --- Products on Left Shelves (row 2) ---
-[node name="Product_L2_A" type="CSGBox3D" parent="."]
+[node name="Product_L2_A" type="CSGBox3D" parent="." unique_id=2089349160]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.3, -2)
 size = Vector3(0.12, 0.2, 0.12)
 material = SubResource("material_product_blue")
 
-[node name="Product_L2_B" type="CSGBox3D" parent="."]
+[node name="Product_L2_B" type="CSGBox3D" parent="." unique_id=81120169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.3, -1.5)
 size = Vector3(0.13, 0.22, 0.12)
 material = SubResource("material_product_red")
 
-[node name="Product_L2_C" type="CSGBox3D" parent="."]
+[node name="Product_L2_C" type="CSGBox3D" parent="." unique_id=79185916]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.3, -1)
 size = Vector3(0.12, 0.17, 0.12)
 material = SubResource("material_product_yellow")
 
-[node name="Product_L2_D" type="CSGBox3D" parent="."]
+[node name="Product_L2_D" type="CSGBox3D" parent="." unique_id=317316579]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.3, -0.5)
 size = Vector3(0.12, 0.18, 0.12)
 material = SubResource("material_product_green")
 
-[node name="Product_L2_E" type="CSGBox3D" parent="."]
+[node name="Product_L2_E" type="CSGBox3D" parent="." unique_id=575645762]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.3, 0)
 size = Vector3(0.13, 0.15, 0.12)
 material = SubResource("material_product_white")
 
-; --- Products on Right Shelves ---
-[node name="Product_R1_A" type="CSGBox3D" parent="."]
+[node name="Product_R1_A" type="CSGBox3D" parent="." unique_id=1635452126]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 0.6, -2)
 size = Vector3(0.12, 0.18, 0.12)
 material = SubResource("material_product_green")
 
-[node name="Product_R1_B" type="CSGBox3D" parent="."]
+[node name="Product_R1_B" type="CSGBox3D" parent="." unique_id=3865499]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 0.6, -1.5)
 size = Vector3(0.13, 0.15, 0.13)
 material = SubResource("material_product_white")
 
-[node name="Product_R1_C" type="CSGBox3D" parent="."]
+[node name="Product_R1_C" type="CSGBox3D" parent="." unique_id=224407181]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 0.6, -1)
 size = Vector3(0.12, 0.2, 0.12)
 material = SubResource("material_product_red")
 
-[node name="Product_R1_D" type="CSGBox3D" parent="."]
+[node name="Product_R1_D" type="CSGBox3D" parent="." unique_id=2106136507]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 0.6, -0.5)
 size = Vector3(0.12, 0.16, 0.12)
 material = SubResource("material_product_yellow")
 
-[node name="Product_R2_A" type="CSGBox3D" parent="."]
+[node name="Product_R2_A" type="CSGBox3D" parent="." unique_id=1239020690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 1.3, -2)
 size = Vector3(0.12, 0.18, 0.12)
 material = SubResource("material_product_yellow")
 
-[node name="Product_R2_B" type="CSGBox3D" parent="."]
+[node name="Product_R2_B" type="CSGBox3D" parent="." unique_id=1951377270]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 1.3, -1.5)
 size = Vector3(0.13, 0.19, 0.12)
 material = SubResource("material_product_blue")
 
-[node name="Product_R2_C" type="CSGBox3D" parent="."]
+[node name="Product_R2_C" type="CSGBox3D" parent="." unique_id=752672746]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 1.3, -1)
 size = Vector3(0.12, 0.17, 0.12)
 material = SubResource("material_product_red")
 
-[node name="Product_R2_D" type="CSGBox3D" parent="."]
+[node name="Product_R2_D" type="CSGBox3D" parent="." unique_id=1259338153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 1.3, -0.5)
 size = Vector3(0.12, 0.15, 0.12)
 material = SubResource("material_product_green")
 
-; --- Products on Back Shelves ---
-[node name="Product_B1_A" type="CSGBox3D" parent="."]
+[node name="Product_B1_A" type="CSGBox3D" parent="." unique_id=1890723547]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.8, -3.2)
 size = Vector3(0.15, 0.18, 0.13)
 material = SubResource("material_product_red")
 
-[node name="Product_B1_B" type="CSGBox3D" parent="."]
+[node name="Product_B1_B" type="CSGBox3D" parent="." unique_id=1167826062]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.8, -3.2)
 size = Vector3(0.14, 0.15, 0.12)
 material = SubResource("material_product_yellow")
 
-[node name="Product_B1_C" type="CSGBox3D" parent="."]
+[node name="Product_B1_C" type="CSGBox3D" parent="." unique_id=1035666690]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 0.8, -3.2)
 size = Vector3(0.15, 0.17, 0.12)
 material = SubResource("material_product_blue")
 
-[node name="Product_B1_D" type="CSGBox3D" parent="."]
+[node name="Product_B1_D" type="CSGBox3D" parent="." unique_id=1984223980]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.8, -3.2)
 size = Vector3(0.13, 0.16, 0.13)
 material = SubResource("material_product_white")
 
-[node name="Product_B2_A" type="CSGBox3D" parent="."]
+[node name="Product_B2_A" type="CSGBox3D" parent="." unique_id=1579783819]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.65, -3.2)
 size = Vector3(0.14, 0.19, 0.12)
 material = SubResource("material_product_green")
 
-[node name="Product_B2_B" type="CSGBox3D" parent="."]
+[node name="Product_B2_B" type="CSGBox3D" parent="." unique_id=962745153]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.65, -3.2)
 size = Vector3(0.15, 0.16, 0.12)
 material = SubResource("material_product_red")
 
-[node name="Product_B2_C" type="CSGBox3D" parent="."]
+[node name="Product_B2_C" type="CSGBox3D" parent="." unique_id=811676426]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4, 1.65, -3.2)
 size = Vector3(0.13, 0.18, 0.12)
 material = SubResource("material_product_yellow")
 
-[node name="Product_B2_D" type="CSGBox3D" parent="."]
+[node name="Product_B2_D" type="CSGBox3D" parent="." unique_id=1169379955]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.65, -3.2)
 size = Vector3(0.14, 0.17, 0.13)
 material = SubResource("material_product_blue")
 
-; --- Counter products ---
-[node name="CounterProduct01" type="CSGBox3D" parent="."]
+[node name="CounterProduct01" type="CSGBox3D" parent="." unique_id=802728450]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6, 1.06, -1.9)
 size = Vector3(0.2, 0.18, 0.15)
 material = SubResource("material_product_red")
 
-[node name="CounterProduct02" type="CSGBox3D" parent="."]
+[node name="CounterProduct02" type="CSGBox3D" parent="." unique_id=320058202]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.06, -1.9)
 size = Vector3(0.18, 0.2, 0.15)
 material = SubResource("material_product_yellow")
 
-[node name="CounterProduct03" type="CSGBox3D" parent="."]
+[node name="CounterProduct03" type="CSGBox3D" parent="." unique_id=401736249]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.6, 1.06, -1.9)
 size = Vector3(0.2, 0.16, 0.15)
 material = SubResource("material_product_green")
 
-; --- Sugar bags on shelves ---
-[node name="SugarBag_L" type="CSGBox3D" parent="."]
+[node name="SugarBag_L" type="CSGBox3D" parent="." unique_id=1330407866]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.65, 1.31, -0.3)
 size = Vector3(0.12, 0.18, 0.08)
 material = SubResource("material_product_white")
 
-[node name="SugarBag_R" type="CSGBox3D" parent="."]
+[node name="SugarBag_R" type="CSGBox3D" parent="." unique_id=618581776]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.65, 1.31, -0.3)
 size = Vector3(0.12, 0.18, 0.08)
 material = SubResource("material_product_white")
 
-[node name="SugarBag_B" type="CSGBox3D" parent="."]
+[node name="SugarBag_B" type="CSGBox3D" parent="." unique_id=1053190710]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.66, -3.2)
 size = Vector3(0.12, 0.18, 0.08)
 material = SubResource("material_product_white")
+
+[node name="SugarBag" parent="." unique_id=1542800753 instance=ExtResource("1_hhdq8")]
+transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -2.6677148, 0.6334518, 0.4452126)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=192794519]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7145066, 2.090607)
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="." unique_id=920160583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.7145066, -0.6252091)

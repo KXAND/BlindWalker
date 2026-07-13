@@ -1,0 +1,156 @@
+[gd_scene load_steps=8 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "body_wood"
+albedo_color = Color(0.58, 0.42, 0.24, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "top_wood"
+albedo_color = Color(0.64, 0.48, 0.28, 1)
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "door_wood"
+albedo_color = Color(0.62, 0.46, 0.26, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "handle_metal"
+albedo_color = Color(0.72, 0.70, 0.66, 1)
+roughness = 0.25
+metallic = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_5"]
+resource_name = "base_dark"
+albedo_color = Color(0.28, 0.18, 0.09, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_6"]
+resource_name = "shelf_inner"
+albedo_color = Color(0.52, 0.37, 0.20, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_7"]
+resource_name = "trim_cap"
+albedo_color = Color(0.66, 0.50, 0.30, 1)
+roughness = 0.38
+
+[node name="ShoeCabinet" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+
+[node name="Base_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.06, 0, 0, 0, 0.34199999999999997, -0.39, 0.03, 0)
+material = SubResource("mat_5")
+use_collision = true
+
+[node name="Base_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.06, 0, 0, 0, 0.34199999999999997, 0.39, 0.03, 0)
+material = SubResource("mat_5")
+use_collision = true
+
+[node name="Base_Front" type="CSGBox3D" parent="."]
+transform = Transform3D(0.78, 0, 0, 0, 0.06, 0, 0, 0, 0.03, 0, 0.03, 0.17099999999999999)
+material = SubResource("mat_5")
+use_collision = true
+
+[node name="Base_Back" type="CSGBox3D" parent="."]
+transform = Transform3D(0.78, 0, 0, 0, 0.06, 0, 0, 0, 0.03, 0, 0.03, -0.17099999999999999)
+material = SubResource("mat_5")
+use_collision = true
+
+[node name="Bottom" type="CSGBox3D" parent="."]
+transform = Transform3D(0.84, 0, 0, 0, 0.02, 0, 0, 0, 0.34199999999999997, 0, 0.06999999999999999, 0)
+material = SubResource("mat_1")
+use_collision = true
+
+[node name="Side_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.018, 0, 0, 0, 0.9850000000000001, 0, 0, 0, 0.34199999999999997, -0.411, 0.5725, 0)
+material = SubResource("mat_1")
+use_collision = true
+
+[node name="Side_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.018, 0, 0, 0, 0.9850000000000001, 0, 0, 0, 0.34199999999999997, 0.411, 0.5725, 0)
+material = SubResource("mat_1")
+use_collision = true
+
+[node name="Back" type="CSGBox3D" parent="."]
+transform = Transform3D(0.8039999999999999, 0, 0, 0, 0.9850000000000001, 0, 0, 0, 0.012, 0, 0.5725, -0.16499999999999998)
+material = SubResource("mat_1")
+use_collision = true
+
+[node name="TopPanel" type="CSGBox3D" parent="."]
+transform = Transform3D(0.84, 0, 0, 0, 0.02, 0, 0, 0, 0.34199999999999997, 0, 1.0550000000000002, 0)
+material = SubResource("mat_2")
+use_collision = true
+
+[node name="Shelf_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.8039999999999999, 0, 0, 0, 0.016, 0, 0, 0, 0.32199999999999995, 0, 0.32225000000000004, 0)
+material = SubResource("mat_6")
+use_collision = true
+
+[node name="Shelf_2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.8039999999999999, 0, 0, 0, 0.016, 0, 0, 0, 0.32199999999999995, 0, 0.5725, 0)
+material = SubResource("mat_6")
+use_collision = true
+
+[node name="Door_0_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.39749999999999996, 0, 0, 0, 0.49800000000000005, 0, 0, 0, 0.018, -0.20024999999999998, 0.332, 0.1719)
+material = SubResource("mat_3")
+use_collision = true
+
+[node name="Handle_0_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.006, 0, 0, 0, 0.12, 0, 0, 0, 0.016, -0.0165, 0.332, 0.18989999999999999)
+material = SubResource("mat_4")
+use_collision = true
+
+[node name="Door_1_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.39749999999999996, 0, 0, 0, 0.49800000000000005, 0, 0, 0, 0.018, -0.20024999999999998, 0.833, 0.1719)
+material = SubResource("mat_3")
+use_collision = true
+
+[node name="Handle_1_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.006, 0, 0, 0, 0.12, 0, 0, 0, 0.016, -0.0165, 0.833, 0.18989999999999999)
+material = SubResource("mat_4")
+use_collision = true
+
+[node name="Door_0_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.39749999999999996, 0, 0, 0, 0.49800000000000005, 0, 0, 0, 0.018, 0.20024999999999998, 0.332, 0.1719)
+material = SubResource("mat_3")
+use_collision = true
+
+[node name="Handle_0_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.006, 0, 0, 0, 0.12, 0, 0, 0, 0.016, 0.0165, 0.332, 0.18989999999999999)
+material = SubResource("mat_4")
+use_collision = true
+
+[node name="Door_1_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.39749999999999996, 0, 0, 0, 0.49800000000000005, 0, 0, 0, 0.018, 0.20024999999999998, 0.833, 0.1719)
+material = SubResource("mat_3")
+use_collision = true
+
+[node name="Handle_1_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.006, 0, 0, 0, 0.12, 0, 0, 0, 0.016, 0.0165, 0.833, 0.18989999999999999)
+material = SubResource("mat_4")
+use_collision = true
+
+[node name="Trim" type="CSGBox3D" parent="."]
+transform = Transform3D(0.86, 0, 0, 0, 0.015, 0, 0, 0, 0.362, 0, 1.0725, 0)
+material = SubResource("mat_7")
+use_collision = true
+
+[node name="Foot_L" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.38, 0.015, -0.141)
+material = SubResource("mat_5")
+use_collision = true
+radius = 0.016
+height = 0.03
+
+[node name="Foot_R" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.38, 0.015, -0.141)
+material = SubResource("mat_5")
+use_collision = true
+radius = 0.016
+height = 0.03
+
