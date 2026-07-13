@@ -138,6 +138,10 @@ func set_high_step(active: bool) -> void:
 	_high_step_active = active
 
 
+func has_move_intent() -> bool:
+	return _is_moving
+
+
 func teleport_to(pos: Vector3) -> void:
 	## 传送玩家并重置所有跌落追踪状态，避免传送后落地被误判为摔落。
 	## 先用射线探地，将玩家精确放置在地面正上方，避免传送后悬空。
