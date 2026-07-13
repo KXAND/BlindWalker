@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
+[ext_resource type="PackedScene" uid="uid://b3ri3lpdbdwgi" path="res://scenes/Buildings/ConvenienceStore.tscn" id="12_p5fgu"]
 [ext_resource type="Script" uid="uid://bxphl3lug23f0" path="res://scripts/core/ContactProfile.gd" id="13_yub1f"]
+[ext_resource type="PackedScene" uid="uid://b4npwkulky4od" path="res://scenes/Buildings/Department.tscn" id="35_m1khv"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/concrete.tres" id="contact_profile_concrete"]
@@ -12,24 +14,24 @@
 [ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
-[ext_resource type="Script" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
+[ext_resource type="Resource" uid="uid://dn6uxb83hj37h" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" uid="uid://c7ti87v45kbfg" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" uid="uid://cdqd2ya00lkur" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
+[ext_resource type="Resource" uid="uid://cu4687nlko8kr" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" uid="uid://ebr043153psk" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" uid="uid://xaa4tsjg57ld" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" uid="uid://cxaadm2shabei" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" uid="uid://cl10exqk5hmb7" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" uid="uid://bq25i83q0bf54" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
+[ext_resource type="Resource" uid="uid://0avmssud2v7q" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
+[ext_resource type="Resource" uid="uid://buun7cgf4r7r2" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
+[ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
@@ -45,11 +47,11 @@ adjustment_brightness = 0.8
 radius = 0.35
 height = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
-size = Vector3(4, 2, 2)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
 size = Vector3(2.2, 2.2, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
+size = Vector3(4, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
@@ -148,94 +150,94 @@ script = ExtResource("interaction_system")
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
 
-[node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+[node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
-[node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+[node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=899448566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.1, 14)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_home_second_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor" unique_id=150967428]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+[node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=329507835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, -22)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_stairwell")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell" unique_id=1591020283]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.0, 11.5)
+[node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1421899385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1, 11.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor" unique_id=1044255050]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.0, 8)
+[node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=904467423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1, 8)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street" unique_id=173949092]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, 0)
+[node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1366362169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_crosswalk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk" unique_id=1619653346]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.0, -6)
+[node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=581767034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -6)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_after_crosswalk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk" unique_id=1807718738]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1.0, -16.5)
+[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1, -16.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_entrance")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance" unique_id=1504294838]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1.0, -13.2)
+[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=8978892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1, -13.2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_shelves")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves" unique_id=2120161715]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.0, -14.5)
+[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1540126144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -14.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_cashier")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier" unique_id=1761431894]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.0, -8)
+[node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -8)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_return")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn" unique_id=1578541053]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.0, 13.2)
+[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=274148183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 13.2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor_return")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn" unique_id=1463077057]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
@@ -248,9 +250,9 @@ shape = SubResource("BoxShape3D_target")
 [node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
 
 [node name="Ground" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1470045671]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.873291, -0.6, 0)
 use_collision = true
-size = Vector3(40, 1, 56)
+size = Vector3(61.746582, 1, 56)
 material = SubResource("StandardMaterial3D_ground")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Ground" unique_id=254053117]
@@ -509,3 +511,6 @@ shape = SubResource("BoxShape3D_top_platform")
 
 [node name="ConvenienceStore" parent="." unique_id=1768788148 instance=ExtResource("12_p5fgu")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.768, 0, -16.464)
+
+[node name="Node3D" parent="." unique_id=566919902 instance=ExtResource("35_m1khv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.29607, 0.09000905, 17.48086)

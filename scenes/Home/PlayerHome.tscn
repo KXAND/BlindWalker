@@ -95,9 +95,9 @@ size = Vector3(2.8085694, 0.05, 3.3084474)
 material = SubResource("mat_floor_bath")
 
 [node name="FloorLiving" type="CSGBox3D" parent="Structure" unique_id=98651319]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3423339, 0.025, 0.5837376)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3423339, 0.025, 0.025050879)
 use_collision = true
-size = Vector3(6.315332, 0.05, 12.936163)
+size = Vector3(6.315332, 0.05, 11.8187895)
 material = SubResource("mat_floor")
 
 [node name="Ceiling" type="CSGBox3D" parent="Structure" unique_id=1426858957]
@@ -403,42 +403,43 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.4
 
 [node name="Lighting" type="Node3D" parent="." unique_id=1371502561]
 
-[node name="Sun" type="DirectionalLight3D" parent="Lighting" unique_id=1493820106]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 4, 3)
-light_energy = 1.2
-shadow_enabled = true
-
 [node name="LightMasterBed" type="OmniLight3D" parent="Lighting" unique_id=1241983477]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.4, -4)
 light_energy = 0.6
+editor_only = true
 omni_range = 4.0
 
 [node name="LightBed2" type="OmniLight3D" parent="Lighting" unique_id=1115354684]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.4, 3.5)
 light_energy = 0.6
+editor_only = true
 omni_range = 4.0
 
 [node name="LightKitchen" type="OmniLight3D" parent="Lighting" unique_id=1060491127]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.4, -0.15)
 light_energy = 0.7
+editor_only = true
 omni_range = 3.5
 
 [node name="LightBath" type="OmniLight3D" parent="Lighting" unique_id=122010909]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, -4.5)
 light_energy = 0.7
+editor_only = true
 omni_range = 3.5
 
 [node name="LightLiving" type="OmniLight3D" parent="Lighting" unique_id=676928992]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 1)
 light_energy = 0.8
+editor_only = true
 
 [node name="LightDining" type="OmniLight3D" parent="Lighting" unique_id=313505617]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.4, -2)
 light_energy = 0.6
+editor_only = true
 omni_range = 3.5
 
 [node name="Door" parent="." unique_id=948328897 instance=ExtResource("6_dxlhg")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.6059917, 0, 5.94568)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.6059917, 0, 5.94568)
 
 [node name="DoorPivot" type="Node3D" parent="." unique_id=273109286]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6873238, 1.05, 2.7213097)
@@ -511,3 +512,9 @@ material = SubResource("mat_door")
 
 [node name="ApplePlate" parent="." unique_id=1457202027 instance=ExtResource("15_mfc46")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5318086, 0.50412434, 1.3153183)
+
+[node name="FloorLiving" type="CSGBox3D" parent="." unique_id=245501394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.240747, 0.025, 6.494248)
+use_collision = true
+size = Vector3(4.518506, 0.05, 1.1433643)
+material = SubResource("mat_floor")

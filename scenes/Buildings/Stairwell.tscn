@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://cmhfxewa7xhoi"]
 
+[ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="1_826a0"]
+
 [sub_resource type="StandardMaterial3D" id="mat_1"]
 resource_name = "concrete"
 albedo_color = Color(0.45, 0.43, 0.41, 1)
@@ -104,8 +106,8 @@ transform = Transform3D(1.2, 0, 0, 0, 0.15, 0, 0, 0, 2.4, 3.12, 1.515, 1.2)
 material = SubResource("mat_4")
 
 [node name="Stairwell#Floor1_Slab" type="CSGBox3D" parent="." unique_id=912848122]
-transform = Transform3D(1.2, 0, 0, 0, 0.2, 0, 0, 0, 2.4, 1.3488282, -0.1, 1.2)
-size = Vector3(4.248047, 1, 1)
+transform = Transform3D(1.2, 0, 0, 0, 0.2, 0, 0, 0, 2.4, -0.7031251, -0.1, 1.2)
+size = Vector3(7.6679688, 1, 1.3671875)
 material = SubResource("mat_1")
 
 [node name="Stairwell#Floor2_Slab" type="CSGBox3D" parent="." unique_id=2068132750]
@@ -123,8 +125,8 @@ size = Vector3(1, 1.5922852, 1)
 material = SubResource("mat_3")
 
 [node name="Stairwell#SideWall_Right" type="CSGBox3D" parent="." unique_id=36088187]
-transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.3089452, 2.475)
-size = Vector3(1, 1.4296875, 1)
+transform = Transform3D(3.72, 0, 0, 0, 3.23, 0, 0, 0, 0.15, 1.86, 2.7429569, 2.475)
+size = Vector3(1, 1.6984253, 1)
 material = SubResource("mat_3")
 
 [node name="Stairwell#Post_A_1" type="CSGCylinder3D" parent="." unique_id=2000454214]
@@ -370,3 +372,15 @@ material = SubResource("mat_1")
 [node name="Stairwell#Step_A_18" type="CSGBox3D" parent="." unique_id=2044256517]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 4.384362, 0.6)
 material = SubResource("mat_1")
+
+[node name="Stairwell#SideWall_Left3" type="CSGBox3D" parent="." unique_id=123230404]
+transform = Transform3D(-1.6260637e-07, 0, 0.15, 0, 3.23, 0, -3.72, 0, -6.5567085e-09, -1.2180111, 4.0037885, 1.1945741)
+size = Vector3(0.65148926, 0.70544434, 1)
+material = SubResource("mat_3")
+
+[node name="Door" parent="." unique_id=948328897 instance=ExtResource("1_826a0")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5720034, 3.055744, -0.043321967)
+
+[node name="Stairwell#Landing2" type="CSGBox3D" parent="." unique_id=960323120]
+transform = Transform3D(1.2, 0, 0, 0, 0.15, 0, 0, 0, 2.4, 3.12, 4.384701, 1.2)
+material = SubResource("mat_4")
