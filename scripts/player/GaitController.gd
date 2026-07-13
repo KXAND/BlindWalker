@@ -168,6 +168,8 @@ func _current_speed() -> float:
 
 
 func _check_terrain(forward: Vector3) -> void:
+	if GameState.is_gameplay_locked():
+		return
 	if not is_on_floor():
 		return
 
@@ -212,6 +214,8 @@ func _check_terrain(forward: Vector3) -> void:
 
 
 func _detect_wall_hit(pos_before: Vector3) -> void:
+	if GameState.is_gameplay_locked():
+		return
 	if _wall_hit_cooldown > 0.0 or _stagger_timer > 0.0:
 		return
 	# 跌落恢复期内：刚摔过，stagger 不该再叠加；这种"水平没动"是正常的恢复表现
@@ -236,6 +240,8 @@ func _update_step_audio(pos_before: Vector3) -> void:
 
 
 func _do_stagger(forward: Vector3) -> void:
+	if GameState.is_gameplay_locked():
+		return
 	_stagger_timer = stagger_duration
 	global_position -= forward * GameConfig.STAGGER_PUSH_BACK
 	if GameConfig.DEBUG:
@@ -244,6 +250,8 @@ func _do_stagger(forward: Vector3) -> void:
 
 
 func _do_fall(fall_distance: float) -> void:
+	if GameState.is_gameplay_locked():
+		return
 	_fall_recover_timer = fall_recover_time
 	# 摔倒时显式清掉 stagger：stagger 是"撞墙踉跄"，与"跌落"是两件事，不能同时出现
 	_stagger_timer = 0.0

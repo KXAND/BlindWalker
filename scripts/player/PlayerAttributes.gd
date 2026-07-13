@@ -13,6 +13,10 @@ func _ready() -> void:
 
 
 func take_damage(amount: int) -> void:
+	if GameState.is_gameplay_locked():
+		if GameConfig.DEBUG:
+			print("[DEBUG][PlayerAttributes] damage ignored reason=gameplay_locked amount=%d" % amount)
+		return
 	if amount <= 0 or hp <= 0:
 		return
 

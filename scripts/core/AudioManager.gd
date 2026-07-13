@@ -73,6 +73,11 @@ func play_2d(sound_id: String, volume_db: float = 0.0, source: StringName = &"un
 	_player_2d.play()
 
 
+func stop_2d() -> void:
+	if is_instance_valid(_player_2d) and _player_2d.playing:
+		_player_2d.stop()
+
+
 ## 停止所有正在播放的音频流，供场景 reload 前调用。
 ## Web 平台必要：显式停止可防止 Web Audio 在页面生命周期中产生鬼影音效。
 ## 调用后清空 3D 播放器池引用（节点在 reload 后会被销毁）。
