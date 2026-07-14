@@ -19,3 +19,4 @@
 ## 已知问题
 
 - 调查扶手/细杆与盲杖接触时的偶发输入死区。现象是玩家仍可移动，但短时间内鼠标无法明显驱动盲杖扫动或视角旋转；临时脚本未复现持续锁死，只观察到极短 dead-zone。后续若再出现，应优先用真实楼梯扶手位置复现，并检查 `scripts/perception/CaneSystem.gd` 中目标姿态被碰撞阻挡时是否吞掉输入溢出。
+- 优化 Web 显影性能。当前方案 B 的 `assets/shaders/touch_feedback.gdshader` 是 fullscreen depth 后处理，每像素会重建世界坐标、遍历最多 64 个显影球，并做多尺度 depth edge，Web 上可能卡顿。优先尝试：将 shader 球数量上限降到 16 或 24、depth edge 从 3 个尺度降到 1-2 个尺度、只把最近/最强的残影传给 shader。

@@ -40,8 +40,7 @@ const AFTERGLOW_LIFE: float = 60.0
 @export_group("Feedback", "feedback_")
 @export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 轮廓发光色
 @export var feedback_depth_threshold: float = 0.003
-@export var feedback_normal_threshold: float = 0.25
-@export var feedback_surface_alpha: float = 0.16  # 圆柱等平滑表面缺少边缘时的最低显影强度
+@export var feedback_surface_alpha: float = 0.055  # 圆柱等平滑表面缺少边缘时的最低显影强度
 
 # ---- 内部 ----
 
@@ -92,26 +91,19 @@ func _create_fullscreen_quad() -> void:
 
 	_material = ShaderMaterial.new()
 	_material.shader = shader
+	_material.render_priority = 127
 
-	# 外观参数
 	_material.set_shader_parameter("edge_color", feedback_color)
 	_material.set_shader_parameter("depth_threshold", feedback_depth_threshold)
-	_material.set_shader_parameter("normal_threshold", feedback_normal_threshold)
 	_material.set_shader_parameter("surface_alpha", feedback_surface_alpha)
 	_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
 	_material.set_shader_parameter("debug_afterglow_strength", debug_afterglow_strength)
-
-	# 深度线性化参数
 	_material.set_shader_parameter("camera_near", _camera.near)
 	_material.set_shader_parameter("camera_far", _camera.far)
-
-	# 逆观察矩阵
 	_material.set_shader_parameter("inv_view_matrix", _get_inv_view_matrix())
+	_material.set_shader_parameter("viewport_size", Vector2(_camera.get_viewport().size))
 
-	# 初始化球数组（着色器内 MAX_SPHERES 大小）
 	_update_sphere_uniforms()
-
-	_material.render_priority = 127
 
 	_quad.material_override = _material
 	_camera.add_child(_quad)
@@ -119,6 +111,9 @@ func _create_fullscreen_quad() -> void:
 
 
 func _update_quad_transform() -> void:
+	if not _quad or not _camera:
+		return
+
 	var near: float = _camera.near + 0.01
 	var fov_rad: float = deg_to_rad(_camera.fov)
 	var half_h: float = near * tan(fov_rad * 0.5)
@@ -286,8 +281,8 @@ func _process(delta: float) -> void:
 	if not _material:
 		return
 
-	# 摄像机移动时更新逆观察矩阵
 	_material.set_shader_parameter("inv_view_matrix", _get_inv_view_matrix())
+	_material.set_shader_parameter("viewport_size", Vector2(_camera.get_viewport().size))
 
 	var should_update: bool = false
 
@@ -333,11 +328,13 @@ func _input(event: InputEvent) -> void:
 				_apply_debug_mode()
 				if _material:
 					_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
+				_update_sphere_uniforms()
 			KEY_H:
 				# H 键：切换调试残影模式（显示全部残影）
 				debug_mode = not debug_mode
 				if _material:
 					_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
+				_update_sphere_uniforms()
 				print("[DEBUG][TouchMemorySystem] debug mode: ", "ON" if debug_mode else "OFF")
 
 
