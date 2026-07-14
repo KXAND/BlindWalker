@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://rep7vsr5w78s" path="res://scenes/Street/cross_tactiles.tscn" id="42_6htk2"]
 [ext_resource type="PackedScene" uid="uid://bugdq60dyphhd" path="res://addons/kaykit_city_builder_bits/Assets/gltf/firehydrant.gltf" id="45_2cgg3"]
 [ext_resource type="PackedScene" uid="uid://cfha6g7khjanl" path="res://scenes/Buildings/building_D_withoutBase.tscn" id="46_2cgg3"]
+[ext_resource type="PackedScene" uid="uid://drdpokp24tjle" path="res://scenes/Street/trafficlight_A.tscn" id="46_7wx6u"]
 [ext_resource type="PackedScene" uid="uid://dv8evnrwf05sa" path="res://scenes/Buildings/building_E_withoutBase.tscn" id="46_o80qj"]
 [ext_resource type="PackedScene" uid="uid://b8ojlr6e4q5wu" path="res://scenes/Buildings/building_F_withoutBase.tscn" id="47_0sk6p"]
 [ext_resource type="PackedScene" uid="uid://bnrfbbl5u5vuh" path="res://scenes/Street/Dumpster.tscn" id="48_e8pg6"]
@@ -39,17 +40,17 @@
 [ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
+[ext_resource type="Resource" uid="uid://bm155jsqqfjvv" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" uid="uid://df27gtf7upp8b" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" uid="uid://l6se17by27jr" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
+[ext_resource type="Resource" uid="uid://dcc7o1tik5ra0" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" uid="uid://t65npfhpms58" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" uid="uid://rk4koofre1wd" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" uid="uid://jtbthltvvon7" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" uid="uid://ncs1xbxr4v41" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" uid="uid://un32ube57rga" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
+[ext_resource type="Resource" uid="uid://c5sewbt1opbqs" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
+[ext_resource type="Resource" uid="uid://dg6vhgi6q5ke2" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
@@ -59,12 +60,12 @@
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
+[ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
+[ext_resource type="Script" uid="uid://b0uat7wsc172a" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
+[ext_resource type="Script" uid="uid://bc41jf7mq25jm" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
+[ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="spawn_sugar"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
-[ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
-[ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="spawn_sugar"]
-[ext_resource type="Script" uid="uid://bqiteminteract15" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
-[ext_resource type="Script" uid="uid://bhandrailinter15" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -76,6 +77,17 @@ adjustment_brightness = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
 height = 1.2
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_item_interaction"]
+size = Vector3(1.4, 2.2, 1.4)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spawn_handrail"]
+albedo_color = Color(0.82, 0.82, 0.78, 1)
+metallic = 0.3
+roughness = 0.45
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_handrail_interaction"]
+size = Vector3(2.4, 2.2, 1.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
 size = Vector3(2.2, 2.2, 2.2)
@@ -152,21 +164,6 @@ size = Vector3(2.3, 0.2, 2.969873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_top_platform"]
 size = Vector3(2.4, 0.2, 1.55)
 
-[sub_resource type="CylinderShape3D" id="CylinderShape3D_bfdp3"]
-height = 0.5
-radius = 0.06
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_item_interaction"]
-size = Vector3(1.4, 2.2, 1.4)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_handrail_interaction"]
-size = Vector3(2.4, 2.2, 1.2)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spawn_handrail"]
-albedo_color = Color(0.82, 0.82, 0.78, 1)
-metallic = 0.3
-roughness = 0.45
-
 [node name="Main" type="Node3D" unique_id=632612867]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
@@ -226,34 +223,34 @@ script = ExtResource("interaction_system")
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
 
-[node name="InteractionTestItems" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+[node name="InteractionTestItems" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1667344835]
 
-[node name="TestElderlyMan" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" instance=ExtResource("spawn_elderly")]
+[node name="TestElderlyMan" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=323486957 instance=ExtResource("spawn_elderly")]
 transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -18.1, -0.1, 8.35)
 
-[node name="TestSugarBag" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" instance=ExtResource("spawn_sugar")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -16.8, 0.17, 8.0)
+[node name="TestSugarBag" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=599825812 instance=ExtResource("spawn_sugar")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -16.8, 0.17, 8)
 
-[node name="TestSugarBagInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 0.9, 8.0)
+[node name="TestSugarBagInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=1537444244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 0.9, 8)
 script = ExtResource("spawn_quest_interactable")
+item_id = &"sugar"
 prompt_text = "按 E 拿起"
 prompt_anchor_path = NodePath("../TestSugarBag")
 reveal_target_path = NodePath("../TestSugarBag")
 interaction_priority = 10
 interaction_sound_id = &"ui_click"
-item_id = &"sugar"
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestSugarBagInteraction"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestSugarBagInteraction" unique_id=2106498677]
 shape = SubResource("BoxShape3D_spawn_item_interaction")
 
-[node name="TestHandrailVisual" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
+[node name="TestHandrailVisual" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=1607688081]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.95, 9.25)
 use_collision = true
 size = Vector3(1.6, 0.08, 0.08)
 material = SubResource("StandardMaterial3D_spawn_handrail")
 
-[node name="TestHandrailInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
+[node name="TestHandrailInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=2097830077]
 transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.9, 9.25)
 script = ExtResource("spawn_handrail_interactable")
 prompt_text = "按 E 扶住"
@@ -261,7 +258,7 @@ prompt_anchor_path = NodePath("../TestHandrailVisual")
 reveal_target_path = NodePath("../TestHandrailVisual")
 interaction_priority = 20
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestHandrailInteraction"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestHandrailInteraction" unique_id=1658574897]
 shape = SubResource("BoxShape3D_spawn_handrail_interaction")
 
 [node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
@@ -1271,6 +1268,1038 @@ size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/LampHeadRight2" unique_id=138105066]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1806330179]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -15.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp" unique_id=1178736683]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp/LampPostRight6" unique_id=791911771]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp" unique_id=2036646680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp/LampHeadRight6" unique_id=872090160]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp10" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2026568351]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -22.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp10" unique_id=1704779459]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp10/LampPostRight6" unique_id=626466050]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp10" unique_id=1736308452]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp10/LampHeadRight6" unique_id=2090290758]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp11" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1917176533]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.275, 2.35, -22.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp11" unique_id=1865115193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp11/LampPostRight6" unique_id=1557215196]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp11" unique_id=1704519040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp11/LampHeadRight6" unique_id=185950555]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp2" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1594118453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -35.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp2" unique_id=1689769335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp2/LampPostRight6" unique_id=177193465]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp2" unique_id=591223407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp2/LampHeadRight6" unique_id=542736858]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp3" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1433471018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -49.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp3" unique_id=234825543]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp3/LampPostRight6" unique_id=1299117808]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp3" unique_id=813281596]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp3/LampHeadRight6" unique_id=149978307]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp4" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=460491680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -57.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp4" unique_id=1492715930]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp4/LampPostRight6" unique_id=145524870]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp4" unique_id=594554642]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp4/LampHeadRight6" unique_id=1732534713]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp5" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2046212216]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.425, 2.35, -65.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp5" unique_id=1176533335]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp5/LampPostRight6" unique_id=1363279613]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp5" unique_id=799891014]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp5/LampHeadRight6" unique_id=1296714026]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp6" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1380404067]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.375, 2.35, -65.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp6" unique_id=1805040960]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp6/LampPostRight6" unique_id=75863607]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp6" unique_id=1139910679]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp6/LampHeadRight6" unique_id=2139449370]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp7" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1376873140]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.375, 2.35, -57.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp7" unique_id=331571818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp7/LampPostRight6" unique_id=658843929]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp7" unique_id=1750313083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp7/LampHeadRight6" unique_id=48511645]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp8" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1035274873]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.375, 2.35, -49.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp8" unique_id=1718778810]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp8/LampPostRight6" unique_id=267488125]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp8" unique_id=612044083]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp8/LampHeadRight6" unique_id=1685235937]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp9" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=456622030]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.375, 2.35, -35.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp9" unique_id=990889118]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp9/LampPostRight6" unique_id=1705252105]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp9" unique_id=826202291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp9/LampHeadRight6" unique_id=239109474]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp32" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1536468540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, -35.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp32" unique_id=1751563746]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp32/LampPostRight6" unique_id=1882641186]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp32" unique_id=722241038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp32/LampHeadRight6" unique_id=128150071]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp33" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2072464080]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, -35.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp33" unique_id=104107632]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp33/LampPostRight6" unique_id=494810522]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp33" unique_id=1563685204]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp33/LampHeadRight6" unique_id=1651390010]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp34" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=178986028]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, -48.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp34" unique_id=1307191142]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp34/LampPostRight6" unique_id=1766382240]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp34" unique_id=1924033386]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp34/LampHeadRight6" unique_id=469797140]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp35" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=524486624]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, -48.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp35" unique_id=1490731618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp35/LampPostRight6" unique_id=1716629039]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp35" unique_id=1962121432]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp35/LampHeadRight6" unique_id=730310449]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp36" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=308043475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, -58.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp36" unique_id=1297461674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp36/LampPostRight6" unique_id=1283415102]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp36" unique_id=1853951665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp36/LampHeadRight6" unique_id=583572838]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp37" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=348310180]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, -58.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp37" unique_id=1899000653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp37/LampPostRight6" unique_id=1864941761]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp37" unique_id=1287291025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp37/LampHeadRight6" unique_id=2100724120]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp38" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=355059277]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, -19.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp38" unique_id=462479263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp38/LampPostRight6" unique_id=297707960]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp38" unique_id=1031512995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp38/LampHeadRight6" unique_id=777527245]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp39" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1556409090]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, -19.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp39" unique_id=1575641070]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp39/LampPostRight6" unique_id=1744398488]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp39" unique_id=1023487796]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp39/LampHeadRight6" unique_id=1119848152]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp40" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1454209023]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, -9.508015)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp40" unique_id=692209813]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp40/LampPostRight6" unique_id=293556379]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp40" unique_id=1882137161]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp40/LampHeadRight6" unique_id=631033709]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp41" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1839954483]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, -9.508011)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp41" unique_id=504658384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp41/LampPostRight6" unique_id=1327231469]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp41" unique_id=135050986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp41/LampHeadRight6" unique_id=816796643]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp42" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=827271396]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 50.925, 2.35, 0.49198532)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp42" unique_id=678606665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp42/LampPostRight6" unique_id=879329403]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp42" unique_id=429507583]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp42/LampHeadRight6" unique_id=1465110378]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp43" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=288276263]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44.125, 2.35, 0.49198914)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp43" unique_id=1142607117]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp43/LampPostRight6" unique_id=1687697862]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp43" unique_id=1754468360]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp43/LampHeadRight6" unique_id=1213222199]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp12" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=823845738]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -7.375, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp12" unique_id=1518652407]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp12/LampPostRight6" unique_id=1874375375]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp12" unique_id=1420613805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp12/LampHeadRight6" unique_id=214470963]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp13" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2117246788]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.375, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp13" unique_id=1137167067]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp13/LampPostRight6" unique_id=1801409458]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp13" unique_id=636876094]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp13/LampHeadRight6" unique_id=962495950]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp14" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=720882621]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -22.375, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp14" unique_id=872558749]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp14/LampPostRight6" unique_id=323353297]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp14" unique_id=374492803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp14/LampHeadRight6" unique_id=1751471097]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp15" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1578324983]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.375, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp15" unique_id=1098677246]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp15/LampPostRight6" unique_id=666654941]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp15" unique_id=1114503215]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp15/LampHeadRight6" unique_id=636162275]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp16" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2089865078]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp16" unique_id=144930531]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp16/LampPostRight6" unique_id=378541627]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp16" unique_id=103551155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp16/LampHeadRight6" unique_id=1942203174]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp17" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1833916121]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 6.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp17" unique_id=1563366651]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp17/LampPostRight6" unique_id=216607017]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp17" unique_id=182531001]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp17/LampHeadRight6" unique_id=1485275429]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp18" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=819545572]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 21.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp18" unique_id=468075975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp18/LampPostRight6" unique_id=1127181746]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp18" unique_id=998939371]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp18/LampHeadRight6" unique_id=1592105612]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp19" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=998112406]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 21.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp19" unique_id=548976687]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp19/LampPostRight6" unique_id=331005527]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp19" unique_id=55623493]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp19/LampHeadRight6" unique_id=1676122204]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp20" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=616856858]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 28.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp20" unique_id=235353847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp20/LampPostRight6" unique_id=698353750]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp20" unique_id=1141983218]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp20/LampHeadRight6" unique_id=190597682]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp21" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=2062677288]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 28.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp21" unique_id=1540222994]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp21/LampPostRight6" unique_id=225568682]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp21" unique_id=578887661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp21/LampHeadRight6" unique_id=260528861]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp22" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1161033067]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 40.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp22" unique_id=820536286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp22/LampPostRight6" unique_id=141086643]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp22" unique_id=1300833482]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp22/LampHeadRight6" unique_id=2128712486]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp23" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=963605267]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 40.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp23" unique_id=976608806]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp23/LampPostRight6" unique_id=51051460]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp23" unique_id=435707400]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp23/LampHeadRight6" unique_id=620998281]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp24" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1757812377]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 54.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp24" unique_id=1840871501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp24/LampPostRight6" unique_id=1115670597]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp24" unique_id=1600773426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp24/LampHeadRight6" unique_id=870921499]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp25" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=297935340]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 54.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp25" unique_id=38462752]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp25/LampPostRight6" unique_id=1325507298]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp25" unique_id=1882806514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp25/LampHeadRight6" unique_id=2052518508]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp26" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1949434466]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 66.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp26" unique_id=391690249]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp26/LampPostRight6" unique_id=849479190]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp26" unique_id=1245663966]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp26/LampHeadRight6" unique_id=361974214]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp27" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1279469482]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 66.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp27" unique_id=2023239236]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp27/LampPostRight6" unique_id=1740640552]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp27" unique_id=1722096570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp27/LampHeadRight6" unique_id=725012335]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp28" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=174875729]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 74.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp28" unique_id=670785002]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp28/LampPostRight6" unique_id=1922677940]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp28" unique_id=479728540]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp28/LampHeadRight6" unique_id=2058346060]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp29" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=558083378]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 74.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp29" unique_id=876320434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp29/LampPostRight6" unique_id=1291030391]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp29" unique_id=554739953]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp29/LampHeadRight6" unique_id=959298797]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp30" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=49956952]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 82.625, 2.35, -30.50801)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp30" unique_id=680877770]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp30/LampPostRight6" unique_id=2077213525]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp30" unique_id=794976252]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp30/LampHeadRight6" unique_id=63434946]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="Lamp31" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture" unique_id=1351873152]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 82.625, 2.35, -24.208012)
+
+[node name="LampPostRight6" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp31" unique_id=206834443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.17499995, -0.7499999, 0)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp31/LampPostRight6" unique_id=1882280312]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp31" unique_id=1532855610]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.17499995, 0.75, 0)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/StreetFurniture/Lamp31/LampHeadRight6" unique_id=2118976083]
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_metal_pole")
 
@@ -2496,6 +3525,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -22.09
 
 [node name="TactileStop12" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/LeftTactileGuides" unique_id=830375553 instance=ExtResource("36_gwlw1")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.537341, 0.32317707, -22.098253)
+
+[node name="trafficlight_A" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/LeftTactileGuides" unique_id=992782459 instance=ExtResource("46_7wx6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 0.10886145, -6)
 
 [node name="TactileGuideGroup3" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles" unique_id=1644475923]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.235764, 0.21999997, -33.470966)
@@ -10396,6 +11428,159 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 22.670639, 0.19896868, -17.27
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant5/StaticBody3D" unique_id=1669570200]
 shape = SubResource("CylinderShape3D_bfdp3")
 
+[node name="firehydrant6" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1496421262 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 13.67064, 0.19896868, -39.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant6" unique_id=177524963]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant6/StaticBody3D" unique_id=1253041028]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant7" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=2049335122 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 22.670639, 0.19896868, -39.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant7" unique_id=875588305]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant7/StaticBody3D" unique_id=1216487700]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant8" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=111802573 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 13.67064, 0.19896868, -56.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant8" unique_id=2021116563]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant8/StaticBody3D" unique_id=748870575]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant9" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1106746299 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 22.670639, 0.19896868, -56.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant9" unique_id=12612458]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant9/StaticBody3D" unique_id=1151829430]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant10" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1809248107 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 13.67064, 0.19896868, -74.27091)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant10" unique_id=961466482]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant10/StaticBody3D" unique_id=1974221963]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant11" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1295909068 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 22.670639, 0.19896868, -74.27091)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant11" unique_id=1199871551]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant11/StaticBody3D" unique_id=1743410858]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant12" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=134075113 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 61.16958, 0.19896868, -74.27091)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant12" unique_id=930550538]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant12/StaticBody3D" unique_id=563325281]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant13" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1880421706 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 70.16958, 0.19896868, -74.27091)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant13" unique_id=1549085363]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant13/StaticBody3D" unique_id=2041047168]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant14" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=427455999 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 61.16958, 0.19896868, -40.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant14" unique_id=1431353467]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant14/StaticBody3D" unique_id=1644357129]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant15" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=865157035 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 70.16958, 0.19896868, -40.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant15" unique_id=1690931395]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant15/StaticBody3D" unique_id=1451878631]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant16" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=192886617 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 61.16958, 0.19896868, -7.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant16" unique_id=1178718274]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant16/StaticBody3D" unique_id=1113473709]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant17" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=489797769 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 70.16958, 0.19896868, -7.270912)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant17" unique_id=1931052214]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/firehydrant17/StaticBody3D" unique_id=227524677]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="Node3D" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=2107830055]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 61.562157, 0.25167477, -32.445286)
+
+[node name="firehydrant18" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D" unique_id=1631914644 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5.392576, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D/firehydrant18" unique_id=1541514209]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D/firehydrant18/StaticBody3D" unique_id=571818612]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant19" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D" unique_id=591529593 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.6074238, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D/firehydrant19" unique_id=1816360051]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D/firehydrant19/StaticBody3D" unique_id=1605625952]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="Node3D5" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=905967127]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 41.562157, 0.25167477, -32.445286)
+
+[node name="firehydrant18" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5" unique_id=682597019 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5.392576, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5/firehydrant18" unique_id=513970877]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5/firehydrant18/StaticBody3D" unique_id=2032240894]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant19" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5" unique_id=823168827 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.6074238, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5/firehydrant19" unique_id=1854281922]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D5/firehydrant19/StaticBody3D" unique_id=1078914107]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="Node3D6" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1252689031]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 90.56216, 0.25167477, -32.445286)
+
+[node name="firehydrant18" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6" unique_id=1040299280 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -5.392576, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6/firehydrant18" unique_id=1810629952]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6/firehydrant18/StaticBody3D" unique_id=1255620105]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant19" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6" unique_id=1152633170 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.6074238, -0.052706093, -4.025627)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6/firehydrant19" unique_id=593757857]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest/Node3D6/firehydrant19/StaticBody3D" unique_id=481061642]
+shape = SubResource("CylinderShape3D_bfdp3")
+
 [node name="building_F_withoutBase" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1116263976 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.072222, -0.5527061, 0.31357002)
 
@@ -10403,13 +11588,13 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -16.072222, -0.5527061, -10.68643)
 
 [node name="building_F_withoutBase5" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1506150340 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.0722218, -0.5527061, -10.68643)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.7722225, -0.5527061, -10.68643)
 
 [node name="building_F_withoutBase6" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=701131823 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.9277782, -0.5527061, -10.68643)
 
 [node name="building_F_withoutBase2" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1891455265 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.0722218, -0.5527061, 0.31357002)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.7722225, -0.5527061, 0.31357002)
 
 [node name="building_F_withoutBase3" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=1476872354 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.9277782, -0.5527061, 0.31357002)
@@ -10582,57 +11767,145 @@ shape = SubResource("BoxShape3D_top_platform")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 0, -40)
 
 [node name="FPS" type="Label" parent="." unique_id=1570707837]
-offset_right = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -40.0
 offset_bottom = 23.0
+grow_horizontal = 0
 script = ExtResource("60_b6xsk")
-[node name="ClosedShop" parent="." unique_id=66150729 instance=ExtResource("39_12hjt")]
+
+[node name="ClosedShop" parent="." unique_id=1839142509 instance=ExtResource("39_12hjt")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11, -0.5, 14.4)
 
-[node name="BreakfastShop" parent="." unique_id=549879072 instance=ExtResource("56_ex0yv")]
+[node name="BreakfastShop" parent="." unique_id=1618486722 instance=ExtResource("56_ex0yv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, -0.5, 19)
 
-[node name="BarberShop" parent="." unique_id=776126927 instance=ExtResource("40_n7vst")]
+[node name="BarberShop" parent="." unique_id=129378730 instance=ExtResource("40_n7vst")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58.5, 0, -48)
 
-[node name="DeliveryStation" parent="." unique_id=1370338924 instance=ExtResource("59_afy01")]
+[node name="DeliveryStation" parent="." unique_id=1982272164 instance=ExtResource("59_afy01")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -39)
 
-[node name="building_E_withoutBase" parent="." unique_id=879853513 instance=ExtResource("46_o80qj")]
+[node name="building_E_withoutBase" parent="." unique_id=1116350340 instance=ExtResource("46_o80qj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -57)
 
-[node name="building_E_withoutBase2" parent="." unique_id=114197494 instance=ExtResource("46_o80qj")]
+[node name="building_E_withoutBase2" parent="." unique_id=623002443 instance=ExtResource("46_o80qj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -65)
 
-[node name="building_E_withoutBase3" parent="." unique_id=1101709124 instance=ExtResource("46_o80qj")]
+[node name="building_E_withoutBase3" parent="." unique_id=486984020 instance=ExtResource("46_o80qj")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -73)
 
-[node name="Node3D" type="Node3D" parent="." unique_id=100785717]
+[node name="Node3D" type="Node3D" parent="." unique_id=1725550027]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, -53)
 
-[node name="building_F_withoutBase7" parent="Node3D" unique_id=1522261176 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase7" parent="Node3D" unique_id=1975297213 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
 
-[node name="building_F_withoutBase8" parent="Node3D" unique_id=964411185 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase8" parent="Node3D" unique_id=1843278479 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
 
-[node name="Node3D9" type="Node3D" parent="." unique_id=1118711298]
+[node name="Node3D9" type="Node3D" parent="." unique_id=669266097]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, -0.5, -53)
 
-[node name="building_F_withoutBase7" parent="Node3D9" unique_id=550038523 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase7" parent="Node3D9" unique_id=1654734930 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
 
-[node name="building_F_withoutBase8" parent="Node3D9" unique_id=1280271739 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase8" parent="Node3D9" unique_id=1242899853 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
 
-[node name="Node3D8" type="Node3D" parent="." unique_id=1347463720]
+[node name="Node3D8" type="Node3D" parent="." unique_id=940598363]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, -73)
 
-[node name="building_F_withoutBase7" parent="Node3D8" unique_id=117508014 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase7" parent="Node3D8" unique_id=853343193 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
 
-[node name="building_F_withoutBase8" parent="Node3D8" unique_id=1978103350 instance=ExtResource("47_0sk6p")]
+[node name="building_F_withoutBase8" parent="Node3D8" unique_id=31366972 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
 
-[node name="building_G_withoutBase5" parent="." unique_id=729332720 instance=ExtResource("52_0sk6p")]
+[node name="building_G_withoutBase5" parent="." unique_id=714177438 instance=ExtResource("52_0sk6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, -0.5, -38)
 
+[node name="Bikes" type="Node3D" parent="." unique_id=78597262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, -6.5)
+
+[node name="SharedBike" parent="Bikes" unique_id=255943136 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes" unique_id=718401267 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes" unique_id=1084371804 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes" unique_id=1953426629 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes" unique_id=261291722 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
+[node name="Bikes2" type="Node3D" parent="." unique_id=194805426]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, -38.7)
+
+[node name="SharedBike" parent="Bikes2" unique_id=1981149747 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes2" unique_id=23965516 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes2" unique_id=1198920004 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes2" unique_id=175741252 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes2" unique_id=1213711586 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
+[node name="Bikes3" type="Node3D" parent="." unique_id=1342119349]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 5.2, 0.3, -38.7)
+
+[node name="SharedBike" parent="Bikes3" unique_id=237507464 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes3" unique_id=1367243436 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes3" unique_id=542481802 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes3" unique_id=1213374197 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes3" unique_id=1497479997 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
+[node name="Bikes4" type="Node3D" parent="." unique_id=1132444818]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 42.100002, 0.3, -38.7)
+
+[node name="SharedBike" parent="Bikes4" unique_id=690304930 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes4" unique_id=1266813606 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes4" unique_id=813144190 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes4" unique_id=2104011439 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes4" unique_id=797358241 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
+[node name="trafficlight_A" parent="." unique_id=167686739 instance=ExtResource("46_7wx6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -30.9)
+
+[node name="trafficlight_A3" parent="." unique_id=687763813 instance=ExtResource("46_7wx6u")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 51.1, 0, -30.9)
+
+[node name="trafficlight_A2" parent="." unique_id=1567295689 instance=ExtResource("46_7wx6u")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.5, 0, -23.9)
+
+[node name="trafficlight_A4" parent="." unique_id=1463173644 instance=ExtResource("46_7wx6u")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44, 0, -23.9)
