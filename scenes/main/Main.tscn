@@ -264,7 +264,7 @@ shape = SubResource("BoxShape3D_spawn_handrail_interaction")
 [node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
 [node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=899448566]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.1, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.25, 4.1, 17)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_home_second_floor")
 
@@ -272,7 +272,7 @@ sequence = ExtResource("dialogue_home_second_floor")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=329507835]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, -22)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 4.9, 17)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_stairwell")
 
@@ -280,7 +280,7 @@ sequence = ExtResource("dialogue_stairwell")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1421899385]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1, 11.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 1, 14.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor")
 
@@ -288,7 +288,7 @@ sequence = ExtResource("dialogue_ground_floor")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=904467423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1, 8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 1, -1)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street")
 
@@ -296,7 +296,7 @@ sequence = ExtResource("dialogue_street")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1366362169]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_crosswalk")
 
@@ -304,7 +304,7 @@ sequence = ExtResource("dialogue_crosswalk")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=581767034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -3)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_after_crosswalk")
 
@@ -312,7 +312,7 @@ sequence = ExtResource("dialogue_street_after_crosswalk")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1, -16.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6, 1, -36.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_entrance")
 
@@ -320,7 +320,7 @@ sequence = ExtResource("dialogue_supermarket_entrance")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=8978892]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1, -13.2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8, 1, -40.2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_shelves")
 
@@ -328,7 +328,7 @@ sequence = ExtResource("dialogue_supermarket_shelves")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1540126144]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5, 1, -42.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_cashier")
 
@@ -336,12 +336,13 @@ sequence = ExtResource("dialogue_supermarket_cashier")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -8)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 1, -33)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_return")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn" unique_id=1578541053]
 shape = SubResource("BoxShape3D_dialogue_trigger")
+disabled = true
 
 [node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=274148183]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 13.2)
@@ -350,6 +351,7 @@ sequence = ExtResource("dialogue_ground_floor_return")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn" unique_id=1463077057]
 shape = SubResource("BoxShape3D_dialogue_trigger")
+disabled = true
 
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6094437, 0.9158894, -20)
@@ -11704,6 +11706,54 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0
 [node name="building_F_withoutBase9" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthEast/building_G_withoutBase8" unique_id=1691368300 instance=ExtResource("47_0sk6p")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 0, -8)
 
+[node name="SouthEast2" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w" unique_id=1682627604]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 65.611115, -0.3888889, -55.444443)
+
+[node name="BarberShop" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=129378730 instance=ExtResource("40_n7vst")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.1111145, 0.3888889, 7.4444427)
+
+[node name="DeliveryStation" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=1982272164 instance=ExtResource("59_afy01")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3888855, 0.3888889, 16.444443)
+
+[node name="building_E_withoutBase" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=1116350340 instance=ExtResource("46_o80qj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.6111145, -0.111111104, -1.5555573)
+
+[node name="building_E_withoutBase2" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=623002443 instance=ExtResource("46_o80qj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.6111145, -0.111111104, -9.555557)
+
+[node name="building_E_withoutBase3" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=486984020 instance=ExtResource("46_o80qj")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.6111145, -0.111111104, -17.555557)
+
+[node name="Node3D" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=1725550027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3888855, -0.111111104, 2.4444427)
+
+[node name="building_F_withoutBase7" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D" unique_id=1975297213 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
+
+[node name="building_F_withoutBase8" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D" unique_id=1843278479 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
+
+[node name="Node3D9" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=669266097]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3888855, -0.111111104, 2.4444427)
+
+[node name="building_F_withoutBase7" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D9" unique_id=1654734930 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
+
+[node name="building_F_withoutBase8" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D9" unique_id=1242899853 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
+
+[node name="Node3D8" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=940598363]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3888855, -0.111111104, -17.555557)
+
+[node name="building_F_withoutBase7" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D8" unique_id=853343193 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
+
+[node name="building_F_withoutBase8" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2/Node3D8" unique_id=31366972 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
+
+[node name="building_G_withoutBase5" parent="GameViewportContainer/GameViewport/GameRoot/w/SouthEast2" unique_id=714177438 instance=ExtResource("52_0sk6p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3888855, -0.111111104, 17.444443)
+
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
 
@@ -11780,51 +11830,6 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11,
 
 [node name="BreakfastShop" parent="." unique_id=1618486722 instance=ExtResource("56_ex0yv")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, -0.5, 19)
-
-[node name="BarberShop" parent="." unique_id=129378730 instance=ExtResource("40_n7vst")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58.5, 0, -48)
-
-[node name="DeliveryStation" parent="." unique_id=1982272164 instance=ExtResource("59_afy01")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, 0, -39)
-
-[node name="building_E_withoutBase" parent="." unique_id=1116350340 instance=ExtResource("46_o80qj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -57)
-
-[node name="building_E_withoutBase2" parent="." unique_id=623002443 instance=ExtResource("46_o80qj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -65)
-
-[node name="building_E_withoutBase3" parent="." unique_id=486984020 instance=ExtResource("46_o80qj")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 58, -0.5, -73)
-
-[node name="Node3D" type="Node3D" parent="." unique_id=1725550027]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, -53)
-
-[node name="building_F_withoutBase7" parent="Node3D" unique_id=1975297213 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
-
-[node name="building_F_withoutBase8" parent="Node3D" unique_id=1843278479 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
-
-[node name="Node3D9" type="Node3D" parent="." unique_id=669266097]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, -0.5, -53)
-
-[node name="building_F_withoutBase7" parent="Node3D9" unique_id=1654734930 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
-
-[node name="building_F_withoutBase8" parent="Node3D9" unique_id=1242899853 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
-
-[node name="Node3D8" type="Node3D" parent="." unique_id=940598363]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 68, -0.5, -73)
-
-[node name="building_F_withoutBase7" parent="Node3D8" unique_id=853343193 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 4)
-
-[node name="building_F_withoutBase8" parent="Node3D8" unique_id=31366972 instance=ExtResource("47_0sk6p")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, -4)
-
-[node name="building_G_withoutBase5" parent="." unique_id=714177438 instance=ExtResource("52_0sk6p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, -0.5, -38)
 
 [node name="Bikes" type="Node3D" parent="." unique_id=78597262]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, -6.5)
