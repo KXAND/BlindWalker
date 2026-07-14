@@ -32,7 +32,9 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not GameState.is_input_enabled() or not _player:
-		_player.set_moving(false)
+		if _player:
+			_player.set_moving(false)
+			_player.set_recovery_qte_pressed(false)
 		return
 
 	# W = continuous forward movement

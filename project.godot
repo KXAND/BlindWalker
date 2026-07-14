@@ -23,6 +23,7 @@ config/features=PackedStringArray("4.7")
 EventBus="*res://scripts/core/EventBus.gd"
 GameState="*res://scripts/core/GameState.gd"
 AudioManager="*res://scripts/core/AudioManager.gd"
+TutorialManager="*res://scripts/core/TutorialManager.gd"
 
 [display]
 

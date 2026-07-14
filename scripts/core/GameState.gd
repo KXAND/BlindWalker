@@ -28,11 +28,7 @@ func set_victory() -> void:
 
 
 func set_failure() -> void:
-	if _gameplay_locked:
-		return
-	if current_state != State.PLAYING:
-		return
-	_transition_to(State.FAILURE)
+	_set_failure(false)
 
 
 func is_playing() -> bool:
@@ -65,7 +61,15 @@ func reset_to_loading() -> void:
 
 
 func _on_player_died() -> void:
-	set_failure()
+	_set_failure(true)
+
+
+func _set_failure(ignore_gameplay_lock: bool) -> void:
+	if _gameplay_locked and not ignore_gameplay_lock:
+		return
+	if current_state != State.PLAYING:
+		return
+	_transition_to(State.FAILURE)
 
 
 func _transition_to(new_state: State) -> void:

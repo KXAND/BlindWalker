@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"fall"
+title = "摔倒"
+body = "下台阶或路牙时不要冒进。下行时按住 SHIFT 慢慢走；上台阶时按住 SPACE 高抬腿。"
