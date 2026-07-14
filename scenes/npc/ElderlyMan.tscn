@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/default_contact.tres" id="2_contact"]
+[ext_resource type="Script" path="res://scripts/interaction/Interactable.gd" id="3_interactable"]
+[ext_resource type="Resource" path="res://assets/narrative/sample_neighbor_request.tres" id="4_sequence"]
 
 [sub_resource type="StandardMaterial3D" id="mat_shoe"]
 albedo_color = Color(0.12, 0.08, 0.05, 1)
@@ -26,6 +28,10 @@ roughness = 0.85
 [sub_resource type="StandardMaterial3D" id="mat_cane"]
 albedo_color = Color(0.42, 0.3, 0.18, 1)
 roughness = 0.55
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_interaction"]
+radius = 1.5
+height = 2.2
 
 [node name="ElderlyMan" type="CSGCombiner3D" unique_id=170175885]
 
@@ -149,3 +155,17 @@ use_collision = true
 radius = 0.014
 height = 0.76
 material = SubResource("mat_cane")
+
+[node name="InteractionArea" type="Area3D" parent="."]
+script = ExtResource("3_interactable")
+prompt_text = "按 E 询问"
+prompt_anchor_path = NodePath("../Head")
+reveal_target_path = NodePath("../Head")
+interaction_priority = 5
+focus_angle_degrees = 65.0
+requires_line_of_sight = false
+narrative_sequence = ExtResource("4_sequence")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractionArea"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.85, 0)
+shape = SubResource("CapsuleShape3D_interaction")

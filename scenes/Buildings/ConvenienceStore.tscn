@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3ri3lpdbdwgi"]
 
 [ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="1_hhdq8"]
+[ext_resource type="Script" path="res://scripts/interaction/QuestItemInteractable.gd" id="2_quest_interactable"]
 
 [sub_resource type="StandardMaterial3D" id="material_floor"]
 albedo_color = Color(0.22, 0.22, 0.23, 1)
@@ -76,6 +77,9 @@ roughness = 0.5
 [sub_resource type="StandardMaterial3D" id="material_product_white"]
 albedo_color = Color(0.92, 0.92, 0.9, 1)
 roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_sugar_interaction"]
+size = Vector3(1.0, 1.0, 1.0)
 
 [node name="ConvenienceStore" type="Node3D" unique_id=1043327600]
 
@@ -390,3 +394,16 @@ material = SubResource("material_product_white")
 
 [node name="SugarBag" parent="." unique_id=1542800753 instance=ExtResource("1_hhdq8")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -2.6677148, 0.6334518, 0.4452126)
+
+[node name="SugarBagInteraction" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6677148, 0.9, 0.4452126)
+script = ExtResource("2_quest_interactable")
+prompt_text = "按 E 拿起"
+prompt_anchor_path = NodePath("../SugarBag")
+reveal_target_path = NodePath("../SugarBag")
+interaction_priority = 10
+interaction_sound_id = &"ui_click"
+item_id = &"sugar"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SugarBagInteraction"]
+shape = SubResource("BoxShape3D_sugar_interaction")

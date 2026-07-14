@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://playerhome2f"]
 
-[ext_resource type="PackedScene" uid="uid://shoecab01" path="res://scenes/Home/ShoeCabinet.tscn" id="1_gqpp8"]
+[ext_resource type="PackedScene" path="res://scenes/Home/ShoeCabinet.tscn" id="1_gqpp8"]
 [ext_resource type="PackedScene" uid="uid://desk01" path="res://scenes/Home/Desk.tscn" id="2_ktood"]
 [ext_resource type="PackedScene" uid="uid://chair01" path="res://scenes/Home/Chair.tscn" id="3_gtexk"]
 [ext_resource type="PackedScene" uid="uid://bem21867c3d6h" path="res://scenes/Home/Bed.tscn" id="4_h8vgv"]

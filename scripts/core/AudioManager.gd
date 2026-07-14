@@ -37,6 +37,8 @@ var _sound_paths: Dictionary = {
 	"failure": "res://assets/audio/sfx/failure.ogg",
 	"ui_click": "res://assets/audio/sfx/ui_click.ogg",
 	"danger_warning": "res://assets/audio/sfx/danger_warning.ogg",
+	"handrail_grab": "res://assets/audio/sfx/touch.ogg",
+	"handrail_release": "res://assets/audio/sfx/ui_click.ogg",
 }
 
 

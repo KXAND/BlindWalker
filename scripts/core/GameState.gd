@@ -7,6 +7,7 @@ var current_state: State = State.LOADING
 
 var _cutscene_active: bool = false
 var _gameplay_locked: bool = false
+var _quest_items: Dictionary = {}
 
 
 func _ready() -> void:
@@ -51,6 +52,29 @@ func is_input_enabled() -> bool:
 	return current_state == State.PLAYING and not _cutscene_active
 
 
+func collect_quest_item(item_id: StringName) -> bool:
+	if item_id == &"":
+		return false
+	if _quest_items.has(item_id):
+		return false
+	_quest_items[item_id] = true
+	EventBus.quest_item_collected.emit(item_id)
+	if GameConfig.DEBUG:
+		print("[DEBUG][GameState] quest_item_collected item_id=%s" % item_id)
+	return true
+
+
+func has_quest_item(item_id: StringName) -> bool:
+	return _quest_items.has(item_id)
+
+
+func get_quest_items() -> Array[StringName]:
+	var items: Array[StringName] = []
+	for key in _quest_items.keys():
+		items.append(key)
+	return items
+
+
 ## 重置状态机回 LOADING，供场景 reload 前调用。
 ## 不做其他副作用（不移动玩家、不清空音效）。
 ## 必须在 reload_current_scene() 之前调用，否则新场景的 set_playing() 守卫会卡住。
@@ -58,6 +82,7 @@ func reset_to_loading() -> void:
 	current_state = State.LOADING
 	_cutscene_active = false
 	_gameplay_locked = false
+	_quest_items.clear()
 
 
 func _on_player_died() -> void:
