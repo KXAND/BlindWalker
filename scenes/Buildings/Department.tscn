@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://playerhome2f" path="res://scenes/Home/PlayerHome.tscn" id="2_ttos0"]
 [ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="3_ulun3"]
 [ext_resource type="PackedScene" uid="uid://trashcan01" path="res://scenes/Home/TrashCan.tscn" id="4_3kre6"]
+[ext_resource type="Script" path="res://scripts/interaction/DoorInteractable.gd" id="5_door_interactable"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_bfdp3"]
 size = Vector3(9.094482, 2.987854, 11.873306)
@@ -20,6 +21,9 @@ data = PackedVector3Array(-4.5471997, 1.3945999, 5.9367, 4.5471997, 1.3945999, 5
 [sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_v8qbk"]
 data = PackedVector3Array(-4.5471997, 1.3945999, 5.9367, 4.5471997, 1.3945999, 5.9367, -4.5471997, -1.3945999, 5.9367, 4.5471997, 1.3945999, 5.9367, 4.5471997, -1.3945999, 5.9367, -4.5471997, -1.3945999, 5.9367, 4.5471997, 1.3945999, -5.9367, -4.5471997, 1.3945999, -5.9367, 4.5471997, -1.3945999, -5.9367, -4.5471997, 1.3945999, -5.9367, -4.5471997, -1.3945999, -5.9367, 4.5471997, -1.3945999, -5.9367, 4.5471997, 1.3945999, 5.9367, 4.5471997, 1.3945999, -5.9367, 4.5471997, -1.3945999, 5.9367, 4.5471997, 1.3945999, -5.9367, 4.5471997, -1.3945999, -5.9367, 4.5471997, -1.3945999, 5.9367, -4.5471997, 1.3945999, -5.9367, -4.5471997, 1.3945999, 5.9367, -4.5471997, -1.3945999, -5.9367, -4.5471997, 1.3945999, 5.9367, -4.5471997, -1.3945999, 5.9367, -4.5471997, -1.3945999, -5.9367, 4.5471997, 1.3945999, 5.9367, -4.5471997, 1.3945999, 5.9367, 4.5471997, 1.3945999, -5.9367, -4.5471997, 1.3945999, 5.9367, -4.5471997, 1.3945999, -5.9367, 4.5471997, 1.3945999, -5.9367, -4.5471997, -1.3945999, 5.9367, 4.5471997, -1.3945999, 5.9367, -4.5471997, -1.3945999, -5.9367, 4.5471997, -1.3945999, 5.9367, 4.5471997, -1.3945999, -5.9367, -4.5471997, -1.3945999, -5.9367)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_interaction"]
+size = Vector3(2, 2.2, 2)
+
 [node name="Node3D" type="Node3D" unique_id=566919902]
 
 [node name="Stairwell" parent="." unique_id=1555503850 instance=ExtResource("1_aob0l")]
@@ -30,6 +34,18 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -1.2
 
 [node name="Door" parent="." unique_id=948328897 instance=ExtResource("3_ulun3")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.5521152, 0, 2.4354968)
+
+[node name="DoorInteraction" type="Area3D" parent="Door"]
+script = ExtResource("5_door_interactable")
+prompt_anchor_path = NodePath("../Pivot/HandleLever")
+reveal_target_path = NodePath("../Pivot/HandleLever")
+interaction_priority = 20
+focus_angle_degrees = 65.0
+open_angle_degrees = 90.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/DoorInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("BoxShape3D_door_interaction")
 
 [node name="Door2" parent="." unique_id=1117468781 instance=ExtResource("3_ulun3")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.5521152, 0, -0.08344698)
