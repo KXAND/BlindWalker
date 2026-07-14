@@ -23,6 +23,7 @@ metallic = 0.7
 roughness = 0.55
 
 [node name="SharedBike" type="CSGCombiner3D" unique_id=640904997]
+use_collision = true
 
 [node name="Profile" type="Node" parent="." unique_id=635828622]
 script = ExtResource("1_prov")

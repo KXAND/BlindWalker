@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ya8l2bvutrwp"]
+
+[ext_resource type="PackedScene" uid="uid://bvklqqep7iego" path="res://addons/kaykit_city_builder_bits/Assets/gltf/building_A_withoutBase.gltf" id="1_y158y"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
+size = Vector3(4.75618, 4.319153, 4.7336445)
+
+[node name="building_A_withoutBase" type="Node3D" unique_id=292172329]
+
+[node name="building_A_withoutBase2" parent="." unique_id=1210261650 instance=ExtResource("1_y158y")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1589186543]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=222625262]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.012504578, 2.580536, 0.01170063)
+shape = SubResource("BoxShape3D_bfdp3")
