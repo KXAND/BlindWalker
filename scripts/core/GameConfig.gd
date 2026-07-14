@@ -7,6 +7,7 @@ const KEY_CAUTIOUS := KEY_SHIFT
 const KEY_HIGH_STEP := KEY_SPACE
 const KEY_LOOK_DIRECT := KEY_R
 const KEY_TOUCH := MOUSE_BUTTON_RIGHT
+const KEY_INTERACT := KEY_E
 
 # ---- 移动参数 ----
 const WALK_SPEED := 0.8

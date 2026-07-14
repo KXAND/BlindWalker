@@ -258,6 +258,28 @@ func spawn_touch_memory(
 	return true
 
 
+func is_world_position_revealed(world_position: Vector3) -> bool:
+	return are_any_points_revealed([world_position])
+
+
+func are_any_points_revealed(points: Array[Vector3]) -> bool:
+	for point in points:
+		if _is_point_in_spheres(point, _active_spheres):
+			return true
+		if _is_point_in_spheres(point, _afterglow_spheres):
+			return true
+	return false
+
+
+func _is_point_in_spheres(point: Vector3, spheres: Array[_TouchSphere]) -> bool:
+	for sphere in spheres:
+		if sphere.strength <= 0.01 or sphere.radius <= 0.01:
+			continue
+		if point.distance_to(sphere.center) <= sphere.radius:
+			return true
+	return false
+
+
 # ---- 生命周期 ----
 
 func _process(delta: float) -> void:

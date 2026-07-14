@@ -8,6 +8,7 @@ extends Node
 @export var head_path: NodePath = ^"../Head"
 @export var cane_path: NodePath = ^"../CaneSystem"
 @export var touch_memory_path: NodePath = ^"../TouchMemorySystem"
+@export var interaction_system_path: NodePath = ^"../InteractionSystem"
 
 const PITCH_MIN := deg_to_rad(-80.0)
 const PITCH_MAX := deg_to_rad(80.0)
@@ -16,6 +17,7 @@ var _player: GaitController
 var _head: Node3D
 var _cane: CaneSystem
 var _touch_memory: TouchMemorySystem
+var _interaction_system: InteractionSystem
 var _head_pitch: float = 0.0
 
 
@@ -24,6 +26,7 @@ func _ready() -> void:
 	_head = get_node_or_null(head_path) as Node3D
 	_cane = get_node_or_null(cane_path) as CaneSystem
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
+	_interaction_system = get_node_or_null(interaction_system_path) as InteractionSystem
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Web 平台：阻止浏览器默认右键菜单，否则 MOUSE_BUTTON_RIGHT 会被拦截
 	if OS.has_feature("web") and Engine.has_singleton("JavaScriptBridge"):
@@ -102,6 +105,9 @@ func _handle_key_pressed(event: InputEventKey) -> void:
 	match event.keycode:
 		KEY_ESCAPE:
 			_toggle_mouse_capture()
+		GameConfig.KEY_INTERACT:
+			if _interaction_system and GameState.is_input_enabled():
+				_interaction_system.try_interact()
 
 
 func _rotate_player_yaw(delta: float) -> void:

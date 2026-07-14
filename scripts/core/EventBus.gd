@@ -35,11 +35,7 @@ signal cane_exited_npc_zone(npc_name: String)
 signal touch_detected(hit_point: Vector3)
 
 @warning_ignore("unused_signal")
-signal npc_interaction_available(npc_name: String, prompt: String)
-@warning_ignore("unused_signal")
-signal npc_interaction_unavailable()
-@warning_ignore("unused_signal")
-signal npc_interaction_triggered(npc_name: String)
+signal quest_item_collected(item_id: StringName)
 
 @warning_ignore("unused_signal")
 signal game_state_changed(old_state: StringName, new_state: StringName)

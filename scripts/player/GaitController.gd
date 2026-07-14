@@ -50,6 +50,7 @@ var _tumble_elapsed: float = 0.0
 var _fall_damage_total: int = 0
 var _fall_damage_elapsed: float = 0.0
 var _time_since_fall_damage: float = 0.0
+var _handrail_assist: Area3D
 
 @onready var _attributes: PlayerAttributes = get_node_or_null("PlayerAttributes") as PlayerAttributes
 
@@ -60,6 +61,8 @@ func _ready() -> void:
 
 
 func _physics_process(delta: float) -> void:
+	if is_instance_valid(_handrail_assist) and not _handrail_assist.is_player_inside():
+		_handrail_assist = null
 	_update_balance_state(delta)
 
 	# Gravity
@@ -179,6 +182,23 @@ func set_recovery_qte_pressed(active: bool) -> void:
 	_recovery_qte_pressed = active
 
 
+func set_handrail_assist(handrail: Area3D) -> void:
+	_handrail_assist = handrail
+
+
+func clear_handrail_assist(handrail: Area3D = null) -> void:
+	if handrail == null or handrail == _handrail_assist:
+		_handrail_assist = null
+
+
+func is_handrail_assisted_by(handrail: Area3D) -> bool:
+	return is_instance_valid(_handrail_assist) and _handrail_assist == handrail
+
+
+func is_handrail_assist_active() -> bool:
+	return is_instance_valid(_handrail_assist) and _handrail_assist.is_player_inside()
+
+
 func is_recovery_qte_active() -> bool:
 	return _balance_state == BalanceState.UNSTABLE_STUMBLE
 
@@ -222,6 +242,7 @@ func teleport_to(pos: Vector3) -> void:
 	_stagger_timer = 0.0
 	_balance_state = BalanceState.STEADY
 	_balance_timer = 0.0
+	_handrail_assist = null
 	_recovery_qte_pressed = false
 	_unstable_stumble_progress = 0.0
 	_fall_lift_target_y = NAN
@@ -280,10 +301,10 @@ func _check_terrain(forward: Vector3) -> void:
 	# Stair down
 	elif terrain_delta < STAIR_DOWN_THRESHOLD:
 		_stair_up_target_y = NAN
-		if _cautious_active:
+		if _cautious_active or is_handrail_assist_active():
 			# SHIFT held: let physics handle the drop naturally, no penalty
 			if GameConfig.DEBUG:
-				print("[DEBUG][GaitController] stair_down safe (cautious) delta=%.2f" % terrain_delta)
+				print("[DEBUG][GaitController] stair_down safe (cautious_or_handrail) delta=%.2f" % terrain_delta)
 		else:
 			_start_fall(forward, absf(terrain_delta))
 
@@ -369,6 +390,7 @@ func _start_fall(direction: Vector3, fall_distance: float, lift_delta: float = 0
 
 func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:
 	_balance_state = BalanceState.FALLING
+	_handrail_assist = null
 	_balance_timer = 0.0
 	_tumble_elapsed = 0.0
 	_tumble_start_position = global_position

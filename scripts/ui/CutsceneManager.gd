@@ -26,6 +26,7 @@ var _is_playing_sequence: bool = false
 
 
 func _ready() -> void:
+	add_to_group("cutscene_manager")
 	if not subtitle_label:
 		_create_subtitle_ui()
 	else:
