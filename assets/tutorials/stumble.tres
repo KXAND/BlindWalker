@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"stumble"
+title = "失去平衡"
+body = "轻微碰撞会让身体短暂踉跄。更严重的失衡会出现 SHIFT + SPACE，请按住它稳住身体，否则会摔倒。"

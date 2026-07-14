@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"intro_controls"
+title = "先熟悉方向"
+body = "按住 W 前进。移动鼠标会先带动盲杖扫动；盲杖到达边界后，视角才会跟着转动。"
