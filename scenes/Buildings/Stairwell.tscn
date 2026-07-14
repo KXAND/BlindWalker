@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://cmhfxewa7xhoi"]
 
 [ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="1_826a0"]
+[ext_resource type="Script" path="res://scripts/interaction/HandrailInteractable.gd" id="2_handrail_interactable"]
 
 [sub_resource type="StandardMaterial3D" id="mat_1"]
 resource_name = "concrete"
@@ -29,6 +30,9 @@ roughness = 0.3
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
 size = Vector3(3.1338806, 0.7651367, 1.1904297)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_handrail_interaction"]
+size = Vector3(2.8, 1.0, 1.0)
 
 [node name="Stairwell" type="Node3D" unique_id=1555503850]
 
@@ -344,6 +348,28 @@ material = SubResource("mat_5")
 transform = Transform3D(2.0549033, 0.017633557, 0, -1.4929745, 0.02427051, 0, 0, 0, 0.03, 1.12, 3.0854404, 2.36)
 use_collision = true
 material = SubResource("mat_5")
+
+[node name="HandrailInteraction_A" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 1.64, 0.04)
+script = ExtResource("2_handrail_interactable")
+prompt_text = "按 E 扶住"
+prompt_anchor_path = NodePath("../Stairwell#Handrail_A")
+reveal_target_path = NodePath("../Stairwell#Handrail_A")
+interaction_priority = 20
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_A"]
+shape = SubResource("BoxShape3D_handrail_interaction")
+
+[node name="HandrailInteraction_B" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 3.0854404, 2.36)
+script = ExtResource("2_handrail_interactable")
+prompt_text = "按 E 扶住"
+prompt_anchor_path = NodePath("../Stairwell#Handrail_B")
+reveal_target_path = NodePath("../Stairwell#Handrail_B")
+interaction_priority = 20
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B"]
+shape = SubResource("BoxShape3D_handrail_interaction")
 
 [node name="Stairwell#SideWall_Left2" type="CSGBox3D" parent="." unique_id=649769941]
 transform = Transform3D(-1.6260637e-07, 0, 0.15, 0, 3.23, 0, -3.72, 0, -6.5567085e-09, 3.7482128, 1.615, 1.1757255)

@@ -24,7 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://dowwrx47htw0d" path="res://scenes/Street/trash_b.tscn" id="52_hlhe2"]
 [ext_resource type="PackedScene" uid="uid://bv45wqrdcilun" path="res://scenes/Buildings/building_H_withoutBase.tscn" id="53_e8pg6"]
 [ext_resource type="PackedScene" uid="uid://cqk53stvdaayi" path="res://scenes/Buildings/BreakfastShop.tscn" id="56_ex0yv"]
-[ext_resource type="PackedScene" uid="uid://cw7jkrlxwr21n" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
+[ext_resource type="PackedScene" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
@@ -37,17 +37,17 @@
 [ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Resource" uid="uid://bm155jsqqfjvv" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
-[ext_resource type="Resource" uid="uid://df27gtf7upp8b" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" uid="uid://l6se17by27jr" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
-[ext_resource type="Resource" uid="uid://dcc7o1tik5ra0" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
-[ext_resource type="Resource" uid="uid://t65npfhpms58" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
-[ext_resource type="Resource" uid="uid://rk4koofre1wd" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
-[ext_resource type="Resource" uid="uid://jtbthltvvon7" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
-[ext_resource type="Resource" uid="uid://ncs1xbxr4v41" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
-[ext_resource type="Resource" uid="uid://un32ube57rga" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
-[ext_resource type="Resource" uid="uid://c5sewbt1opbqs" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
-[ext_resource type="Resource" uid="uid://dg6vhgi6q5ke2" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
@@ -59,6 +59,10 @@
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
+[ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
+[ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="spawn_sugar"]
+[ext_resource type="Script" uid="uid://bqiteminteract15" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
+[ext_resource type="Script" uid="uid://bhandrailinter15" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -148,6 +152,17 @@ size = Vector3(2.4, 0.2, 1.55)
 height = 0.5
 radius = 0.06
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_item_interaction"]
+size = Vector3(1.4, 2.2, 1.4)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_handrail_interaction"]
+size = Vector3(2.4, 2.2, 1.2)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spawn_handrail"]
+albedo_color = Color(0.82, 0.82, 0.78, 1)
+metallic = 0.3
+roughness = 0.45
+
 [node name="Main" type="Node3D" unique_id=632612867]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
@@ -207,6 +222,44 @@ script = ExtResource("interaction_system")
 
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
+
+[node name="InteractionTestItems" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+
+[node name="TestElderlyMan" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" instance=ExtResource("spawn_elderly")]
+transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -18.1, -0.1, 8.35)
+
+[node name="TestSugarBag" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" instance=ExtResource("spawn_sugar")]
+transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -16.8, 0.17, 8.0)
+
+[node name="TestSugarBagInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 0.9, 8.0)
+script = ExtResource("spawn_quest_interactable")
+prompt_text = "按 E 拿起"
+prompt_anchor_path = NodePath("../TestSugarBag")
+reveal_target_path = NodePath("../TestSugarBag")
+interaction_priority = 10
+interaction_sound_id = &"ui_click"
+item_id = &"sugar"
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestSugarBagInteraction"]
+shape = SubResource("BoxShape3D_spawn_item_interaction")
+
+[node name="TestHandrailVisual" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.95, 9.25)
+use_collision = true
+size = Vector3(1.6, 0.08, 0.08)
+material = SubResource("StandardMaterial3D_spawn_handrail")
+
+[node name="TestHandrailInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems"]
+transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.9, 9.25)
+script = ExtResource("spawn_handrail_interactable")
+prompt_text = "按 E 扶住"
+prompt_anchor_path = NodePath("../TestHandrailVisual")
+reveal_target_path = NodePath("../TestHandrailVisual")
+interaction_priority = 20
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestHandrailInteraction"]
+shape = SubResource("BoxShape3D_spawn_handrail_interaction")
 
 [node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
@@ -3504,3 +3557,4 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="building_G_withoutBase5" parent="." unique_id=729332720 instance=ExtResource("52_0sk6p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 77, -0.5, -38)
+
