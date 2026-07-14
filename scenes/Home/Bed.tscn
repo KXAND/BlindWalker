@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bem21867c3d6h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_omk2b"]
+albedo_color = Color(0.36, 0.22, 0.11, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ddvqt"]
+albedo_color = Color(0.92, 0.92, 0.89, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_oljv4"]
+albedo_color = Color(0.72, 0.82, 0.88, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_k6wko"]
+albedo_color = Color(0.68, 0.78, 0.88, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t4jg5"]
+albedo_color = Color(0.42, 0.26, 0.14, 1)
+
+[node name="Bed" type="Node3D" unique_id=253534105]
+
+[node name="Bed2Frame" type="CSGBox3D" parent="." unique_id=1556592305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06235957, 0.3, 0.5182452)
+use_collision = true
+size = Vector3(1.6, 0.4, 2.1)
+material = SubResource("StandardMaterial3D_omk2b")
+
+[node name="Bed2Mattress" type="CSGBox3D" parent="." unique_id=1100472466]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06235957, 0.6, 0.5182452)
+use_collision = true
+size = Vector3(1.4, 0.2, 2)
+material = SubResource("StandardMaterial3D_ddvqt")
+
+[node name="Bed2Bedding" type="CSGBox3D" parent="." unique_id=53876731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06235957, 0.72, 0.5182452)
+use_collision = true
+size = Vector3(1.45, 0.05, 2.05)
+material = SubResource("StandardMaterial3D_oljv4")
+
+[node name="Bed2Pillow" type="CSGBox3D" parent="." unique_id=1264066365]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.06235957, 0.83944416, -0.2681203)
+use_collision = true
+size = Vector3(1.2, 0.15, 0.35)
+material = SubResource("StandardMaterial3D_k6wko")
+
+[node name="Bed2Nightstand" type="CSGBox3D" parent="." unique_id=1545169536]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.03775459, 0.5641067, -0.6031134)
+use_collision = true
+size = Vector3(1.5375, 1.029419, 0.15361328)
+material = SubResource("StandardMaterial3D_t4jg5")

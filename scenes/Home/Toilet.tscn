@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://co0xbe1nox2g4"]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "ceramic"
+albedo_color = Color(0.94, 0.93, 0.91, 1)
+roughness = 0.15
+
+[sub_resource type="StandardMaterial3D" id="mat_5"]
+resource_name = "inner"
+albedo_color = Color(0.2, 0.22, 0.24, 1)
+metallic = 0.6
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "lid"
+albedo_color = Color(0.85, 0.84, 0.82, 1)
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "button"
+albedo_color = Color(0.72, 0.71, 0.69, 1)
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "seat"
+albedo_color = Color(0.88, 0.87, 0.85, 1)
+roughness = 0.35
+
+[node name="Toilet" type="CSGCombiner3D" unique_id=175823859]
+use_collision = true
+
+[node name="Bowl" type="CSGCylinder3D" parent="." unique_id=810251624]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, -0.18069924)
+radius = 0.22998047
+height = 0.4
+material = SubResource("mat_1")
+
+[node name="BowlInner" type="CSGCylinder3D" parent="." unique_id=1196070392]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.38, -0.18)
+radius = 0.1
+height = 0.04
+material = SubResource("mat_5")
+
+[node name="Tank" type="CSGBox3D" parent="." unique_id=1706797034]
+transform = Transform3D(-8.742278e-09, 0, 0.38, 0, 0.36, 0, -0.2, 0, -1.6610327e-08, 0, 0.58, -0.44)
+size = Vector3(1.2, 1, 1.2)
+material = SubResource("mat_1")
+
+[node name="TankLid" type="CSGBox3D" parent="." unique_id=1237069170]
+transform = Transform3D(-9.616506e-09, 0, 0.4, 0, 0.02, 0, -0.22, 0, -1.7484556e-08, 0, 0.77, -0.44)
+size = Vector3(1.2, 1, 1.2)
+material = SubResource("mat_3")
+
+[node name="FlushBtn" type="CSGCylinder3D" parent="." unique_id=1738810738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.79, -0.44)
+radius = 0.025
+height = 0.012
+material = SubResource("mat_4")
+
+[node name="Seat" type="CSGBox3D" parent="." unique_id=973068282]
+transform = Transform3D(0.38, 0, 0, 0, 0.025, 0, 0, 0, 0.48, 0, 0.41, -0.16)
+size = Vector3(1.2, 1, 1)
+material = SubResource("mat_2")
+
+[node name="Lid" type="CSGBox3D" parent="." unique_id=1629970357]
+transform = Transform3D(0.37, 0, 0, 0, 0.02, 0, 0, 0, 0.47, 0, 0.43, -0.16)
+size = Vector3(1.2, 1, 1)
+material = SubResource("mat_3")

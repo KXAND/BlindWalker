@@ -1,0 +1,196 @@
+[gd_scene load_steps=9 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/plastic.tres" id="2_plastic"]
+
+[sub_resource type="StandardMaterial3D" id="mat_weathered_wood"]
+albedo_color = Color(0.38, 0.31, 0.24, 1)
+roughness = 0.95
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_barrel"]
+albedo_color = Color(0.12, 0.18, 0.24, 1)
+roughness = 0.65
+metallic = 0.15
+
+[sub_resource type="StandardMaterial3D" id="mat_cardboard"]
+albedo_color = Color(0.48, 0.41, 0.32, 1)
+roughness = 0.92
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_brick"]
+albedo_color = Color(0.58, 0.28, 0.18, 1)
+roughness = 0.88
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_tire"]
+albedo_color = Color(0.12, 0.11, 0.1, 1)
+roughness = 0.9
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_scrap_metal"]
+albedo_color = Color(0.45, 0.32, 0.18, 1)
+roughness = 0.7
+metallic = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_trash_bag"]
+albedo_color = Color(0.1, 0.1, 0.1, 1)
+roughness = 0.85
+metallic = 0.05
+
+[node name="OutdoorClutterPile" type="CSGCombiner3D"]
+
+[node name="Profile" type="Node" parent="."]
+script = ExtResource("1_prov")
+profile = ExtResource("2_plastic")
+
+; ============================================================
+; 底座：木托板 (pallet)，由三根纵梁 + 五块面板组成
+; ============================================================
+
+; --- 纵梁 (平行于 X 轴，底部) ---
+[node name="PalletStringer_L" type="CSGBox3D" parent="."]
+width = 1.15
+height = 0.1
+depth = 0.08
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.05, -0.35)
+
+[node name="PalletStringer_C" type="CSGBox3D" parent="."]
+width = 1.15
+height = 0.1
+depth = 0.08
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.05, 0.0)
+
+[node name="PalletStringer_R" type="CSGBox3D" parent="."]
+width = 1.15
+height = 0.1
+depth = 0.08
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.05, 0.35)
+
+; --- 面板 (平行于 Z 轴，覆盖在纵梁上方) ---
+[node name="PalletSlat_1" type="CSGBox3D" parent="."]
+width = 0.08
+height = 0.04
+depth = 0.85
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.46, 0.12, 0.0)
+
+[node name="PalletSlat_2" type="CSGBox3D" parent="."]
+width = 0.08
+height = 0.04
+depth = 0.85
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.23, 0.12, 0.0)
+
+[node name="PalletSlat_3" type="CSGBox3D" parent="."]
+width = 0.08
+height = 0.04
+depth = 0.85
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.12, 0.0)
+
+[node name="PalletSlat_4" type="CSGBox3D" parent="."]
+width = 0.07
+height = 0.04
+depth = 0.85
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.23, 0.12, 0.0)
+
+[node name="PalletSlat_5" type="CSGBox3D" parent="."]
+width = 0.06
+height = 0.04
+depth = 0.85
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.46, 0.12, 0.0)
+
+; ============================================================
+; 托板上摆放的物品
+; ============================================================
+
+; --- 大号塑料桶，靠左侧放在托板上 ---
+[node name="PlasticBarrel" type="CSGCylinder3D" parent="."]
+radius = 0.28
+height = 0.65
+material = SubResource("mat_barrel")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.2, 0.45, -0.18)
+
+; --- 破旧纸箱，压扁歪斜 ---
+[node name="CardboardBox" type="CSGBox3D" parent="."]
+width = 0.42
+height = 0.3
+depth = 0.35
+material = SubResource("mat_cardboard")
+use_collision = true
+transform = Transform3D(0.88, 0.0, 0.0, 0.0, 0.85, 0.0, 0.0, 0.1, 1.0, 0.25, 0.3, 0.2)
+
+; --- 破旧轮胎，滚落在地面 ---
+[node name="OldTire" type="CSGCylinder3D" parent="."]
+radius = 0.3
+height = 0.16
+material = SubResource("mat_tire")
+use_collision = true
+transform = Transform3D(0.95, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.5, 0.08, -0.3)
+
+; --- 散落砖块堆 ---
+[node name="Brick_A" type="CSGBox3D" parent="."]
+width = 0.22
+height = 0.08
+depth = 0.11
+material = SubResource("mat_brick")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.5, 0.04, 0.28)
+
+[node name="Brick_B" type="CSGBox3D" parent="."]
+width = 0.22
+height = 0.08
+depth = 0.11
+material = SubResource("mat_brick")
+use_collision = true
+transform = Transform3D(0.7, 0.0, 0.3, 0.0, 1.0, 0.0, -0.3, 0.0, 0.7, -0.42, 0.1, 0.22)
+
+[node name="Brick_C" type="CSGBox3D" parent="."]
+width = 0.22
+height = 0.08
+depth = 0.11
+material = SubResource("mat_brick")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.36, 0.16, 0.3)
+
+; --- 废金属片，斜靠桶边 ---
+[node name="ScrapMetal" type="CSGBox3D" parent="."]
+width = 0.5
+height = 0.03
+depth = 0.15
+material = SubResource("mat_scrap_metal")
+use_collision = true
+transform = Transform3D(0.6, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.2, 0.6, -0.1, 0.55, 0.05)
+
+; --- 黑色垃圾袋 ---
+[node name="TrashBag" type="CSGBox3D" parent="."]
+width = 0.35
+height = 0.4
+depth = 0.3
+material = SubResource("mat_trash_bag")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.48, 0.2, 0.25)
+
+; --- 断掉的木板，翘起靠在桶上 ---
+[node name="BrokenPlank" type="CSGBox3D" parent="."]
+width = 0.7
+height = 0.04
+depth = 0.1
+material = SubResource("mat_weathered_wood")
+use_collision = true
+transform = Transform3D(0.75, 0.0, 0.0, 0.1, 0.5, 0.86, 0.0, -0.86, 0.5, -0.1, 0.5, -0.05)

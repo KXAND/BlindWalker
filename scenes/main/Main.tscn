@@ -1,6 +1,23 @@
 [gd_scene format=3 uid="uid://dal5illn6p4c2"]
 
+[ext_resource type="PackedScene" uid="uid://b3ri3lpdbdwgi" path="res://scenes/Buildings/ConvenienceStore.tscn" id="12_p5fgu"]
 [ext_resource type="Script" uid="uid://bxphl3lug23f0" path="res://scripts/core/ContactProfile.gd" id="13_yub1f"]
+[ext_resource type="PackedScene" uid="uid://b4npwkulky4od" path="res://scenes/Buildings/Department.tscn" id="35_m1khv"]
+[ext_resource type="PackedScene" uid="uid://comuak68gyht4" path="res://scenes/Street/TactileStop.tscn" id="36_gwlw1"]
+[ext_resource type="PackedScene" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
+[ext_resource type="PackedScene" path="res://scenes/Street/OutdoorClutterPile.tscn" id="38_vennj"]
+[ext_resource type="PackedScene" uid="uid://bdhu4ytgnsqsc" path="res://scenes/Buildings/ClosedShop.tscn" id="39_12hjt"]
+[ext_resource type="PackedScene" uid="uid://btkumy0upxpe1" path="res://scenes/Buildings/BarberShop.tscn" id="40_n7vst"]
+[ext_resource type="PackedScene" uid="uid://c5eg86x4n5246" path="res://scenes/Street/SharedBike.tscn" id="41_8gxhd"]
+[ext_resource type="PackedScene" uid="uid://bugdq60dyphhd" path="res://addons/kaykit_city_builder_bits/Assets/gltf/firehydrant.gltf" id="45_2cgg3"]
+[ext_resource type="PackedScene" uid="uid://dv8evnrwf05sa" path="res://scenes/Buildings/building_E_withoutBase.tscn" id="46_o80qj"]
+[ext_resource type="PackedScene" uid="uid://b8ojlr6e4q5wu" path="res://scenes/Buildings/building_F_withoutBase.tscn" id="47_0sk6p"]
+[ext_resource type="PackedScene" uid="uid://bnrfbbl5u5vuh" path="res://scenes/Street/Dumpster.tscn" id="48_e8pg6"]
+[ext_resource type="PackedScene" uid="uid://x1pikttqpmae" path="res://scenes/Street/box_B.tscn" id="49_h05k6"]
+[ext_resource type="PackedScene" uid="uid://7qp4nigyqsaq" path="res://scenes/Street/box_A.tscn" id="50_ex0yv"]
+[ext_resource type="PackedScene" uid="uid://cr0rbti24wtec" path="res://scenes/Street/trash_A.tscn" id="51_s3bvh"]
+[ext_resource type="PackedScene" uid="uid://dowwrx47htw0d" path="res://scenes/Street/trash_b.tscn" id="52_hlhe2"]
+[ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/concrete.tres" id="contact_profile_concrete"]
@@ -12,27 +29,26 @@
 [ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
-[ext_resource type="Script" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
+[ext_resource type="Resource" uid="uid://dciusjfsxekxp" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" uid="uid://62enld8i2ubk" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" uid="uid://2y3wtnrsomn4" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
+[ext_resource type="Resource" uid="uid://1swfbp2gkaa2" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" uid="uid://b2cfiv1l8hy8h" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" uid="uid://crde16715pna6" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" uid="uid://b2r204bwyw824" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" uid="uid://bg320r2ftcsdl" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" uid="uid://csvj1jiq8migi" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
+[ext_resource type="Resource" uid="uid://bhji2b707aors" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
+[ext_resource type="Resource" uid="uid://b7c11pekdbd2e" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
-[ext_resource type="Script" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
-[ext_resource type="Script" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
+[ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
+[ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 
@@ -47,11 +63,11 @@ adjustment_brightness = 0.8
 radius = 0.35
 height = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
-size = Vector3(4, 2, 2)
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
 size = Vector3(2.2, 2.2, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_target"]
+size = Vector3(4, 2, 2)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
@@ -91,6 +107,10 @@ size = Vector3(2.3, 0.2, 2.969873)
 [sub_resource type="BoxShape3D" id="BoxShape3D_top_platform"]
 size = Vector3(2.4, 0.2, 1.55)
 
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bfdp3"]
+height = 0.5
+radius = 0.06
+
 [node name="Main" type="Node3D" unique_id=632612867]
 
 [node name="GameViewportContainer" type="SubViewportContainer" parent="." unique_id=286113931]
@@ -114,7 +134,7 @@ script = ExtResource("main_bootstrap")
 environment = SubResource("Environment_dark")
 
 [node name="Player" type="CharacterBody3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=136453261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.05, 14)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.798336, 1.9408579, 9.820101)
 script = ExtResource("gait_controller")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1681564081]
@@ -151,94 +171,94 @@ script = ExtResource("interaction_system")
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
 
-[node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot"]
+[node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
-[node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+[node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=899448566]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.1, 14)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_home_second_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor" unique_id=150967428]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
+[node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=329507835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.9, -22)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_stairwell")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell" unique_id=1591020283]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1.0, 11.5)
+[node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1421899385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7, 1, 11.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor" unique_id=1044255050]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1.0, 8)
+[node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=904467423]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 1, 8)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street" unique_id=173949092]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.0, 0)
+[node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1366362169]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, 0)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_crosswalk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk" unique_id=1619653346]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.0, -6)
+[node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=581767034]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -6)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_after_crosswalk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk" unique_id=1807718738]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1.0, -16.5)
+[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4, 1, -16.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_entrance")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance" unique_id=1504294838]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1.0, -13.2)
+[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=8978892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.2, 1, -13.2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_shelves")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves" unique_id=2120161715]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1.0, -14.5)
+[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1540126144]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5, 1, -14.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_supermarket_cashier")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier" unique_id=1761431894]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.0, -8)
+[node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1, -8)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_return")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn" unique_id=1578541053]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1.0, 13.2)
+[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=274148183]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 13.2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor_return")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn" unique_id=1463077057]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
@@ -251,9 +271,9 @@ shape = SubResource("BoxShape3D_target")
 [node name="Street" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
 
 [node name="Ground" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1470045671]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.6, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.225098, -0.6, -33.654663)
 use_collision = true
-size = Vector3(40, 1, 56)
+size = Vector3(137.94336, 1, 123.309326)
 material = SubResource("StandardMaterial3D_ground")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Ground" unique_id=254053117]
@@ -261,16 +281,37 @@ script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_concrete")
 
 [node name="Road" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=425199597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -27.602772)
 use_collision = true
-size = Vector3(8, 0.2, 42)
+size = Vector3(8, 0.2, 97.218445)
 material = SubResource("StandardMaterial3D_road")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Road" unique_id=1981896792]
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_asphalt")
 
+[node name="Road2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1661187601]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -20.761023, 0, -27.404572)
+use_collision = true
+size = Vector3(8, 0.2, 33.7)
+material = SubResource("StandardMaterial3D_road")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Road2" unique_id=1529954507]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_asphalt")
+
+[node name="Road3" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1642259475]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25.00641, 0, -27.404572)
+use_collision = true
+size = Vector3(8, 0.2, 42.034866)
+material = SubResource("StandardMaterial3D_road")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/Road3" unique_id=138843230]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_asphalt")
+
 [node name="SidewalkLeft" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=899168378]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.07667457, 0)
 use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
@@ -279,8 +320,18 @@ material = SubResource("StandardMaterial3D_sidewalk")
 script = ExtResource("contact_profile_provider")
 profile = SubResource("Resource_d8523")
 
+[node name="SidewalkLeft2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1088782112]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.25, 0.07667457, -54.8)
+use_collision = true
+size = Vector3(2.5, 0.35, 42)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkLeft2" unique_id=872228619]
+script = ExtResource("contact_profile_provider")
+profile = SubResource("Resource_d8523")
+
 [node name="SidewalkRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=793089957]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0.12, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0.07667457, 0)
 use_collision = true
 size = Vector3(2.5, 0.35, 42)
 material = SubResource("StandardMaterial3D_sidewalk")
@@ -289,48 +340,62 @@ material = SubResource("StandardMaterial3D_sidewalk")
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_pavement")
 
+[node name="SidewalkRight4" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1003043535]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.25, 0.07667457, -53.45)
+use_collision = true
+size = Vector3(2.5, 0.35, 39.100002)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight4" unique_id=2089180158]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
+[node name="SidewalkRight2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=507618181]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25.027418, 0.07667457, -22.2)
+use_collision = true
+size = Vector3(2.5, 0.35, 42.045166)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight2" unique_id=1498967935]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
+[node name="SidewalkRight5" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=919016332]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25.026075, 0.07667457, -32.700005)
+use_collision = true
+size = Vector3(2.5, 0.35, 42.04785)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight5" unique_id=2042236451]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
+[node name="SidewalkRight3" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1864637785]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24.997545, 0.07667457, -22.2)
+use_collision = true
+size = Vector3(2.5, 0.35, 41.984985)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight3" unique_id=713784291]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
+[node name="SidewalkRight6" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=223086287]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -24.997545, 0.07667457, -32.600002)
+use_collision = true
+size = Vector3(2.5, 0.35, 41.984985)
+material = SubResource("StandardMaterial3D_sidewalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/SidewalkRight6" unique_id=457893899]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_pavement")
+
 [node name="CrosswalkStripe01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=201212039]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -1.8)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1, 0.13, -1.8)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe01" unique_id=1643279282]
-script = ExtResource("contact_profile_provider")
-profile = ExtResource("contact_profile_tiles")
-
-[node name="CrosswalkStripe02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1892653201]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, -0.9)
-size = Vector3(7.2, 0.03, 0.65)
-material = SubResource("StandardMaterial3D_crosswalk")
-
-[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe02" unique_id=37624064]
-script = ExtResource("contact_profile_provider")
-profile = ExtResource("contact_profile_tiles")
-
-[node name="CrosswalkStripe03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=280423516]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0)
-size = Vector3(7.2, 0.03, 0.65)
-material = SubResource("StandardMaterial3D_crosswalk")
-
-[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe03" unique_id=774622898]
-script = ExtResource("contact_profile_provider")
-profile = ExtResource("contact_profile_tiles")
-
-[node name="CrosswalkStripe04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1444229985]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 0.9)
-size = Vector3(7.2, 0.03, 0.65)
-material = SubResource("StandardMaterial3D_crosswalk")
-
-[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe04" unique_id=1179080616]
-script = ExtResource("contact_profile_provider")
-profile = ExtResource("contact_profile_tiles")
-
-[node name="CrosswalkStripe05" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=341898632]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.13, 1.8)
-size = Vector3(7.2, 0.03, 0.65)
-material = SubResource("StandardMaterial3D_crosswalk")
-
-[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe05" unique_id=758060531]
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_tiles")
 
@@ -380,30 +445,6 @@ use_collision = true
 size = Vector3(5.2, 6.8, 5)
 material = SubResource("StandardMaterial3D_building")
 
-[node name="LeftBuilding03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=627140616]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.4, 3.1, 6)
-use_collision = true
-size = Vector3(4.8, 6.2, 6.5)
-material = SubResource("StandardMaterial3D_building")
-
-[node name="LeftBuilding04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=101223378]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.2, 2.3, 15)
-use_collision = true
-size = Vector3(5.4, 4.6, 5.8)
-material = SubResource("StandardMaterial3D_building")
-
-[node name="RightBuilding01" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=57624124]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.8, 2.5, -15)
-use_collision = true
-size = Vector3(4.6, 5, 5.2)
-material = SubResource("StandardMaterial3D_building")
-
-[node name="RightBuilding02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=65469449]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10.4, 3.7, -6.5)
-use_collision = true
-size = Vector3(5.6, 7.4, 5.5)
-material = SubResource("StandardMaterial3D_building")
-
 [node name="RightBuilding03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/BlockoutBuildings" unique_id=1202228969]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.5, 2.9, 6.5)
 use_collision = true
@@ -439,8 +480,92 @@ material = SubResource("StandardMaterial3D_lamp")
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_metal_pole")
 
+[node name="LampPostLeft5" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1591168143]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 1.6, 13)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostLeft5" unique_id=1462992039]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadLeft5" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=588295435]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, 13)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadLeft5" unique_id=323395081]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostLeft2" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=433533639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 1.6, 4.3483143)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostLeft2" unique_id=520162131]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadLeft2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1938653099]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, 4.3483143)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadLeft2" unique_id=1525696113]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostLeft3" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=351387721]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 1.6, -8.651686)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostLeft3" unique_id=674244518]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadLeft3" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1209209494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, -8.651686)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadLeft3" unique_id=1513183242]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostLeft4" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1199944734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6, 1.6, -15.651686)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostLeft4" unique_id=1586684200]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadLeft4" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1625496674]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.25, 3.1, -15.651686)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadLeft4" unique_id=104171168]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
 [node name="LampPostRight" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=302719271]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, -8.677225)
 use_collision = true
 radius = 0.08
 height = 3.2
@@ -451,7 +576,7 @@ script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_metal_pole")
 
 [node name="LampHeadRight" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=121970299]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -9)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -8.677225)
 use_collision = true
 size = Vector3(0.8, 0.15, 0.25)
 material = SubResource("StandardMaterial3D_lamp")
@@ -460,17 +585,146 @@ material = SubResource("StandardMaterial3D_lamp")
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_metal_pole")
 
+[node name="LampPostRight3" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1841080128]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, 4.322775)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostRight3" unique_id=360943244]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight3" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1688356666]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, 4.322775)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadRight3" unique_id=1433953876]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostRight4" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=934190018]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, 9.322775)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostRight4" unique_id=2120051302]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight4" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=167634356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, 9.322775)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadRight4" unique_id=1297419830]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostRight5" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=335647510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, 12.764192)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostRight5" unique_id=1473357032]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight5" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=1789398521]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, 12.764192)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadRight5" unique_id=757984044]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampPostRight2" type="CSGCylinder3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=2082968843]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.6, 1.6, -15.508015)
+use_collision = true
+radius = 0.08
+height = 3.2
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampPostRight2" unique_id=811459785]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="LampHeadRight2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture" unique_id=24021364]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.25, 3.1, -15.508015)
+use_collision = true
+size = Vector3(0.8, 0.15, 0.25)
+material = SubResource("StandardMaterial3D_lamp")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/StreetFurniture/LampHeadRight2" unique_id=138105066]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_metal_pole")
+
+[node name="CrosswalkStripe02" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1212660818]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.31963432, 0.13, -1.8)
+size = Vector3(7.2, 0.03, 0.65)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe02" unique_id=752751787]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
+[node name="CrosswalkStripe03" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=1064103918]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.2403686, 0.13, -1.8)
+size = Vector3(7.2, 0.03, 0.65)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe03" unique_id=1112002402]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
+[node name="CrosswalkStripe04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=2054508526]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5517316, 0.13, -1.8)
+size = Vector3(7.2, 0.03, 0.65)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe04" unique_id=413926221]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
+[node name="CrosswalkStripe05" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=62648849]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.4007502, 0.13, -1.8)
+size = Vector3(7.2, 0.03, 0.65)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe05" unique_id=1574192655]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
+[node name="CrosswalkStripe06" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/Street" unique_id=67842564]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.7718134, 0.13, -1.8)
+size = Vector3(7.2, 0.03, 0.65)
+material = SubResource("StandardMaterial3D_crosswalk")
+
+[node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Street/CrosswalkStripe06" unique_id=1263771653]
+script = ExtResource("contact_profile_provider")
+profile = ExtResource("contact_profile_tiles")
+
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
 
-[node name="QtePromptUI" type="CanvasLayer" parent="."]
+[node name="QtePromptUI" type="CanvasLayer" parent="." unique_id=356585125]
 script = ExtResource("qte_prompt_ui")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
 script = ExtResource("game_over_ui")
 
 [node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -0.22986984, -24)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.530083, -0.22986984, -14.265972)
 
 [node name="ContactProfileProvider" type="Node" parent="StaircaseTest" unique_id=1370335361]
 script = ExtResource("contact_profile_provider")
@@ -518,3 +772,1260 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.09, -3)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaircaseTest/TopPlatformCollider" unique_id=996452974]
 shape = SubResource("BoxShape3D_top_platform")
+
+[node name="ConvenienceStore" parent="." unique_id=1768788148 instance=ExtResource("12_p5fgu")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 12.768, 0, -16.464)
+
+[node name="Department" parent="." unique_id=566919902 instance=ExtResource("35_m1khv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -27.298334, 0.10230924, 17.478203)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=421876602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.606043, 3.2427053, 10.879034)
+editor_only = true
+
+[node name="LeftTactileGuides" type="Node3D" parent="." unique_id=232952592]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.10886145, 0)
+
+[node name="TactileGuide" parent="LeftTactileGuides" unique_id=2096861236 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.998117)
+
+[node name="TactileGuide28" parent="LeftTactileGuides" unique_id=1367339251 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.698117)
+
+[node name="TactileGuide29" parent="LeftTactileGuides" unique_id=1415326220 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.398117)
+
+[node name="TactileGuide30" parent="LeftTactileGuides" unique_id=1297140247 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.098117)
+
+[node name="TactileGuide31" parent="LeftTactileGuides" unique_id=2078606201 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.798117)
+
+[node name="TactileGuide32" parent="LeftTactileGuides" unique_id=108196121 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.4981165)
+
+[node name="TactileGuide33" parent="LeftTactileGuides" unique_id=1875657647 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.198116)
+
+[node name="TactileGuide34" parent="LeftTactileGuides" unique_id=1274106255 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.898116)
+
+[node name="TactileGuide35" parent="LeftTactileGuides" unique_id=1148477781 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.598116)
+
+[node name="TactileGuide36" parent="LeftTactileGuides" unique_id=312663799 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.298116)
+
+[node name="TactileGuide37" parent="LeftTactileGuides" unique_id=1064460982 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.998116)
+
+[node name="TactileGuide38" parent="LeftTactileGuides" unique_id=1633940268 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.698115)
+
+[node name="TactileGuide39" parent="LeftTactileGuides" unique_id=2006944026 instance=ExtResource("37_vennj")]
+
+[node name="TactileGuide40" parent="LeftTactileGuides" unique_id=1004056945 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.398115)
+
+[node name="TactileGuide41" parent="LeftTactileGuides" unique_id=1545816938 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.098116)
+
+[node name="TactileGuide42" parent="LeftTactileGuides" unique_id=464032338 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.798116)
+
+[node name="TactileGuide43" parent="LeftTactileGuides" unique_id=1097555713 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.498116)
+
+[node name="TactileGuide44" parent="LeftTactileGuides" unique_id=1812346225 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+
+[node name="TactileGuide45" parent="LeftTactileGuides" unique_id=243344169 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.198115)
+
+[node name="TactileGuide46" parent="LeftTactileGuides" unique_id=1612979502 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.898116)
+
+[node name="TactileGuide47" parent="LeftTactileGuides" unique_id=1116180355 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.598116)
+
+[node name="TactileGuide48" parent="LeftTactileGuides" unique_id=2145702871 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.2981157)
+
+[node name="TactileGuide49" parent="LeftTactileGuides" unique_id=861848414 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.4)
+
+[node name="TactileGuide50" parent="LeftTactileGuides" unique_id=102592750 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.9981155)
+
+[node name="TactileGuide51" parent="LeftTactileGuides" unique_id=1211865954 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.6981163)
+
+[node name="TactileGuide52" parent="LeftTactileGuides" unique_id=1577033465 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.3981156)
+
+[node name="TactileGuide53" parent="LeftTactileGuides" unique_id=1052462028 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.0981154)
+
+[node name="TactileGuide54" parent="LeftTactileGuides" unique_id=1156771053 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6000001)
+
+[node name="TactileGuide55" parent="LeftTactileGuides" unique_id=207385516 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.7981153)
+
+[node name="TactileGuide56" parent="LeftTactileGuides" unique_id=416379022 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.498116)
+
+[node name="TactileGuide57" parent="LeftTactileGuides" unique_id=2118171635 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.198116)
+
+[node name="TactileGuide58" parent="LeftTactileGuides" unique_id=2092395303 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.8981156)
+
+[node name="TactileGuide59" parent="LeftTactileGuides" unique_id=96513059 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.8)
+
+[node name="TactileGuide60" parent="LeftTactileGuides" unique_id=426099206 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.5981154)
+
+[node name="TactileGuide61" parent="LeftTactileGuides" unique_id=777538139 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.298116)
+
+[node name="TactileGuide62" parent="LeftTactileGuides" unique_id=1887053676 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.9981155)
+
+[node name="TactileGuide63" parent="LeftTactileGuides" unique_id=896532899 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.6981153)
+
+[node name="TactileGuide64" parent="LeftTactileGuides" unique_id=2057906108 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="TactileGuide65" parent="LeftTactileGuides" unique_id=706106514 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.3981152)
+
+[node name="TactileGuide66" parent="LeftTactileGuides" unique_id=1547869528 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.098116)
+
+[node name="TactileGuide67" parent="LeftTactileGuides" unique_id=1956279977 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.7981157)
+
+[node name="TactileGuide68" parent="LeftTactileGuides" unique_id=1345179871 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.4981155)
+
+[node name="TactileGuide69" parent="LeftTactileGuides" unique_id=369417534 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.2000003)
+
+[node name="TactileGuide70" parent="LeftTactileGuides" unique_id=654880732 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.1981153)
+
+[node name="TactileGuide71" parent="LeftTactileGuides" unique_id=978141381 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 1.8981161)
+
+[node name="TactileGuide72" parent="LeftTactileGuides" unique_id=808966338 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 1.5981154)
+
+[node name="TactileGuide73" parent="LeftTactileGuides" unique_id=767961949 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 1.2981153)
+
+[node name="TactileGuide74" parent="LeftTactileGuides" unique_id=523576525 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.4)
+
+[node name="TactileGuide75" parent="LeftTactileGuides" unique_id=1067442100 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.99811506)
+
+[node name="TactileGuide76" parent="LeftTactileGuides" unique_id=1148839767 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.6981158)
+
+[node name="TactileGuide77" parent="LeftTactileGuides" unique_id=1188213232 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.39811563)
+
+[node name="TactileGuide78" parent="LeftTactileGuides" unique_id=724869015 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.098115444)
+
+[node name="TactileGuide79" parent="LeftTactileGuides" unique_id=1199005741 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.6)
+
+[node name="TactileGuide80" parent="LeftTactileGuides" unique_id=398259676 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.19825482)
+
+[node name="TactileGuide81" parent="LeftTactileGuides" unique_id=2105613758 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.49825406)
+
+[node name="TactileGuide82" parent="LeftTactileGuides" unique_id=1102938538 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.7982547)
+
+[node name="TactileGuide83" parent="LeftTactileGuides" unique_id=583551973 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.0982549)
+
+[node name="TactileGuide84" parent="LeftTactileGuides" unique_id=523147964 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015769005, 0.0031771064, -10.79637)
+
+[node name="TactileGuide85" parent="LeftTactileGuides" unique_id=1377228656 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.3982551)
+
+[node name="TactileGuide86" parent="LeftTactileGuides" unique_id=32515276 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.6982551)
+
+[node name="TactileGuide88" parent="LeftTactileGuides" unique_id=1826201441 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.298255)
+
+[node name="TactileGuide89" parent="LeftTactileGuides" unique_id=701206037 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.5982552)
+
+[node name="TactileGuide90" parent="LeftTactileGuides" unique_id=56841102 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.898255)
+
+[node name="TactileGuide91" parent="LeftTactileGuides" unique_id=1723093849 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.198255)
+
+[node name="TactileGuide92" parent="LeftTactileGuides" unique_id=1048674539 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.498255)
+
+[node name="TactileGuide93" parent="LeftTactileGuides" unique_id=165683535 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.7982552)
+
+[node name="TactileGuide94" parent="LeftTactileGuides" unique_id=1386485496 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.098255)
+
+[node name="TactileGuide95" parent="LeftTactileGuides" unique_id=306334152 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.3982553)
+
+[node name="TactileGuide96" parent="LeftTactileGuides" unique_id=144251933 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.698255)
+
+[node name="TactileGuide97" parent="LeftTactileGuides" unique_id=1504931472 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.9982553)
+
+[node name="TactileGuide98" parent="LeftTactileGuides" unique_id=677199435 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.298255)
+
+[node name="TactileGuide99" parent="LeftTactileGuides" unique_id=688566726 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.598255)
+
+[node name="TactileGuide100" parent="LeftTactileGuides" unique_id=1293225848 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.8982553)
+
+[node name="TactileGuide101" parent="LeftTactileGuides" unique_id=1306931928 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.1982555)
+
+[node name="TactileGuide102" parent="LeftTactileGuides" unique_id=522268739 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.4982553)
+
+[node name="TactileGuide103" parent="LeftTactileGuides" unique_id=2090060801 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.7982554)
+
+[node name="TactileGuide104" parent="LeftTactileGuides" unique_id=392315113 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.098255)
+
+[node name="TactileGuide105" parent="LeftTactileGuides" unique_id=801510484 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.3982553)
+
+[node name="TactileGuide106" parent="LeftTactileGuides" unique_id=1043729173 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.698255)
+
+[node name="TactileGuide107" parent="LeftTactileGuides" unique_id=1814878770 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.9982553)
+
+[node name="TactileGuide108" parent="LeftTactileGuides" unique_id=298247828 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.298256)
+
+[node name="TactileGuide109" parent="LeftTactileGuides" unique_id=1022410937 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.598255)
+
+[node name="TactileGuide110" parent="LeftTactileGuides" unique_id=1087130934 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.898255)
+
+[node name="TactileGuide111" parent="LeftTactileGuides" unique_id=644372361 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.198256)
+
+[node name="TactileGuide112" parent="LeftTactileGuides" unique_id=527868003 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.498255)
+
+[node name="TactileGuide113" parent="LeftTactileGuides" unique_id=1989481480 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.798256)
+
+[node name="TactileGuide114" parent="LeftTactileGuides" unique_id=632216693 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.098255)
+
+[node name="TactileGuide115" parent="LeftTactileGuides" unique_id=1848827367 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.398255)
+
+[node name="TactileGuide116" parent="LeftTactileGuides" unique_id=1161529821 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.698256)
+
+[node name="TactileGuide117" parent="LeftTactileGuides" unique_id=136110900 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.998255)
+
+[node name="TactileGuide118" parent="LeftTactileGuides" unique_id=342842453 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.298256)
+
+[node name="TactileGuide119" parent="LeftTactileGuides" unique_id=976998794 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.598255)
+
+[node name="TactileGuide120" parent="LeftTactileGuides" unique_id=285476713 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.898254)
+
+[node name="TactileGuide121" parent="LeftTactileGuides" unique_id=1047644196 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.198256)
+
+[node name="TactileGuide122" parent="LeftTactileGuides" unique_id=343520746 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.498255)
+
+[node name="TactileGuide123" parent="LeftTactileGuides" unique_id=799847824 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.798256)
+
+[node name="TactileGuide124" parent="LeftTactileGuides" unique_id=508932151 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.098255)
+
+[node name="TactileGuide125" parent="LeftTactileGuides" unique_id=1892899410 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.398254)
+
+[node name="TactileGuide126" parent="LeftTactileGuides" unique_id=1346258381 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.698256)
+
+[node name="TactileGuide127" parent="LeftTactileGuides" unique_id=43239941 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.998255)
+
+[node name="TactileGuide128" parent="LeftTactileGuides" unique_id=450948056 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.298254)
+
+[node name="TactileGuide129" parent="LeftTactileGuides" unique_id=997574260 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.598255)
+
+[node name="TactileGuide130" parent="LeftTactileGuides" unique_id=1551046697 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.898254)
+
+[node name="TactileGuide131" parent="LeftTactileGuides" unique_id=382332524 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.198256)
+
+[node name="TactileGuide132" parent="LeftTactileGuides" unique_id=720541025 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.498255)
+
+[node name="TactileGuide133" parent="LeftTactileGuides" unique_id=1800682106 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.798254)
+
+[node name="TactileGuide134" parent="LeftTactileGuides" unique_id=1940902329 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.098255)
+
+[node name="TactileGuide135" parent="LeftTactileGuides" unique_id=761757518 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.398254)
+
+[node name="TactileGuide136" parent="LeftTactileGuides" unique_id=751684843 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.698254)
+
+[node name="TactileGuide137" parent="LeftTactileGuides" unique_id=2069327634 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.998255)
+
+[node name="TactileGuide138" parent="LeftTactileGuides" unique_id=1869376777 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.298254)
+
+[node name="TactileGuide139" parent="LeftTactileGuides" unique_id=1410823627 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.598255)
+
+[node name="TactileGuide140" parent="LeftTactileGuides" unique_id=1909476625 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.898254)
+
+[node name="TactileGuide141" parent="LeftTactileGuides" unique_id=1875014219 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.198254)
+
+[node name="TactileGuide142" parent="LeftTactileGuides" unique_id=719982994 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.498255)
+
+[node name="TactileGuide143" parent="LeftTactileGuides" unique_id=1712462673 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.798254)
+
+[node name="TactileGuide144" parent="LeftTactileGuides" unique_id=77793457 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.098253)
+
+[node name="TactileGuide145" parent="LeftTactileGuides" unique_id=759410606 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.398254)
+
+[node name="TactileGuide146" parent="LeftTactileGuides" unique_id=693121335 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.698254)
+
+[node name="TactileGuide2" parent="LeftTactileGuides" unique_id=1790460117 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.306888)
+
+[node name="TactileGuide3" parent="LeftTactileGuides" unique_id=1191983702 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.612577)
+
+[node name="TactileGuide4" parent="LeftTactileGuides" unique_id=1948916143 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.917338)
+
+[node name="TactileGuide5" parent="LeftTactileGuides" unique_id=946589296 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.229066)
+
+[node name="TactileGuide6" parent="LeftTactileGuides" unique_id=1073831547 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.529066)
+
+[node name="TactileGuide7" parent="LeftTactileGuides" unique_id=1243912154 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.829066)
+
+[node name="TactileGuide8" parent="LeftTactileGuides" unique_id=1054705363 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.129066)
+
+[node name="TactileGuide9" parent="LeftTactileGuides" unique_id=880018770 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.429067)
+
+[node name="TactileGuide10" parent="LeftTactileGuides" unique_id=1322090148 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.729067)
+
+[node name="TactileGuide11" parent="LeftTactileGuides" unique_id=1142664381 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.029066)
+
+[node name="TactileGuide12" parent="LeftTactileGuides" unique_id=1147527087 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.329065)
+
+[node name="TactileGuide13" parent="LeftTactileGuides" unique_id=41657277 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.629065)
+
+[node name="TactileGuide14" parent="LeftTactileGuides" unique_id=192839138 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.929064)
+
+[node name="TactileGuide15" parent="LeftTactileGuides" unique_id=401928725 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.229063)
+
+[node name="TactileGuide16" parent="LeftTactileGuides" unique_id=606267689 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.529062)
+
+[node name="TactileGuide17" parent="LeftTactileGuides" unique_id=1629961970 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.829062)
+
+[node name="TactileGuide18" parent="LeftTactileGuides" unique_id=1107817786 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.12906)
+
+[node name="TactileGuide19" parent="LeftTactileGuides" unique_id=1695185115 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.42906)
+
+[node name="TactileGuide20" parent="LeftTactileGuides" unique_id=38394283 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.72906)
+
+[node name="TactileGuide21" parent="LeftTactileGuides" unique_id=1748471688 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.029058)
+
+[node name="TactileGuide22" parent="LeftTactileGuides" unique_id=2094344303 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.329058)
+
+[node name="TactileGuide23" parent="LeftTactileGuides" unique_id=1482287235 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.629057)
+
+[node name="TactileGuide24" parent="LeftTactileGuides" unique_id=111349537 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.929056)
+
+[node name="TactileStop" parent="LeftTactileGuides" unique_id=1792656279 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -1.9982551)
+
+[node name="TactileStop2" parent="LeftTactileGuides" unique_id=715748779 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, -1.9982551)
+
+[node name="TactileStop5" parent="LeftTactileGuides" unique_id=1033702094 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.637341, 0.32317707, -1.9982551)
+
+[node name="TactileStop3" parent="LeftTactileGuides" unique_id=1112868890 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, -1.6982551)
+
+[node name="TactileStop4" parent="LeftTactileGuides" unique_id=928267537 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, -2.298255)
+
+[node name="TactileGuide87" parent="LeftTactileGuides" unique_id=1350682977 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9373407, 0.32317707, -1.9982551)
+
+[node name="TactileStop6" parent="LeftTactileGuides" unique_id=771400596 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.235764, 0.31999996, 20.529055)
+
+[node name="TactileStop9" parent="LeftTactileGuides" unique_id=143682863 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.235764, 0.31999996, 20.229055)
+
+[node name="TactileStop7" parent="LeftTactileGuides" unique_id=1420919924 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.935764, 0.31999996, 20.529055)
+
+[node name="TactileStop8" parent="LeftTactileGuides" unique_id=1470956656 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5357637, 0.31999996, 20.529055)
+
+[node name="TactileStop10" parent="LeftTactileGuides" unique_id=1036661546 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -19.998255)
+
+[node name="TactileStop11" parent="LeftTactileGuides" unique_id=1899060141 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -20.298254)
+
+[node name="TactileStop12" parent="LeftTactileGuides" unique_id=1784107108 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9373407, 0.32317707, -20.298254)
+
+[node name="TactileStop13" parent="LeftTactileGuides" unique_id=1269266612 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5373406, 0.32317707, -20.298254)
+
+[node name="OutdoorClutterPile" parent="." unique_id=971686217 instance=ExtResource("38_vennj")]
+transform = Transform3D(0.830419, 0, 0.5571394, 0, 1, 0, -0.5571394, 0, 0.830419, -14.450203, -0.05758226, 13.81573)
+use_collision = true
+
+[node name="RightTactileGuides" type="Node3D" parent="." unique_id=227615039]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -0.10886145, 0)
+
+[node name="TactileGuide" parent="RightTactileGuides" unique_id=1835610630 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.998117)
+
+[node name="TactileGuide28" parent="RightTactileGuides" unique_id=208047212 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.698117)
+
+[node name="TactileGuide29" parent="RightTactileGuides" unique_id=783831294 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.398117)
+
+[node name="TactileGuide30" parent="RightTactileGuides" unique_id=1790738478 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 12.098117)
+
+[node name="TactileGuide31" parent="RightTactileGuides" unique_id=1916462535 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.798117)
+
+[node name="TactileGuide32" parent="RightTactileGuides" unique_id=749335562 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.4981165)
+
+[node name="TactileGuide33" parent="RightTactileGuides" unique_id=297106183 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 11.198116)
+
+[node name="TactileGuide34" parent="RightTactileGuides" unique_id=1419087807 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.898116)
+
+[node name="TactileGuide35" parent="RightTactileGuides" unique_id=807118180 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.598116)
+
+[node name="TactileGuide36" parent="RightTactileGuides" unique_id=1156746189 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 10.298116)
+
+[node name="TactileGuide37" parent="RightTactileGuides" unique_id=924293431 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.998116)
+
+[node name="TactileGuide38" parent="RightTactileGuides" unique_id=1195810373 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.698115)
+
+[node name="TactileGuide39" parent="RightTactileGuides" unique_id=853576585 instance=ExtResource("37_vennj")]
+
+[node name="TactileGuide40" parent="RightTactileGuides" unique_id=340475284 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.398115)
+
+[node name="TactileGuide41" parent="RightTactileGuides" unique_id=341147723 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 9.098116)
+
+[node name="TactileGuide42" parent="RightTactileGuides" unique_id=176538214 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.798116)
+
+[node name="TactileGuide43" parent="RightTactileGuides" unique_id=807366652 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.498116)
+
+[node name="TactileGuide44" parent="RightTactileGuides" unique_id=385432186 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2)
+
+[node name="TactileGuide45" parent="RightTactileGuides" unique_id=812056239 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 8.198115)
+
+[node name="TactileGuide46" parent="RightTactileGuides" unique_id=1485577637 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.898116)
+
+[node name="TactileGuide47" parent="RightTactileGuides" unique_id=63695741 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.598116)
+
+[node name="TactileGuide48" parent="RightTactileGuides" unique_id=159515187 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 7.2981157)
+
+[node name="TactileGuide49" parent="RightTactileGuides" unique_id=1776949342 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2.4)
+
+[node name="TactileGuide50" parent="RightTactileGuides" unique_id=280419347 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.9981155)
+
+[node name="TactileGuide51" parent="RightTactileGuides" unique_id=1970193905 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.6981163)
+
+[node name="TactileGuide52" parent="RightTactileGuides" unique_id=1428866190 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.3981156)
+
+[node name="TactileGuide53" parent="RightTactileGuides" unique_id=2019906691 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 6.0981154)
+
+[node name="TactileGuide54" parent="RightTactileGuides" unique_id=751463164 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.6000001)
+
+[node name="TactileGuide55" parent="RightTactileGuides" unique_id=574927194 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.7981153)
+
+[node name="TactileGuide56" parent="RightTactileGuides" unique_id=1988725110 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.498116)
+
+[node name="TactileGuide57" parent="RightTactileGuides" unique_id=1496828627 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 5.198116)
+
+[node name="TactileGuide58" parent="RightTactileGuides" unique_id=513716439 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.8981156)
+
+[node name="TactileGuide59" parent="RightTactileGuides" unique_id=880203425 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.8)
+
+[node name="TactileGuide60" parent="RightTactileGuides" unique_id=1214329566 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.5981154)
+
+[node name="TactileGuide61" parent="RightTactileGuides" unique_id=1423772718 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 4.298116)
+
+[node name="TactileGuide62" parent="RightTactileGuides" unique_id=1217879333 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.9981155)
+
+[node name="TactileGuide63" parent="RightTactileGuides" unique_id=1478583701 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.6981153)
+
+[node name="TactileGuide64" parent="RightTactileGuides" unique_id=1130576463 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -6)
+
+[node name="TactileGuide65" parent="RightTactileGuides" unique_id=513035094 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.3981152)
+
+[node name="TactileGuide66" parent="RightTactileGuides" unique_id=1137661841 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 3.098116)
+
+[node name="TactileGuide67" parent="RightTactileGuides" unique_id=1181505415 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.7981157)
+
+[node name="TactileGuide68" parent="RightTactileGuides" unique_id=1329146004 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.4981155)
+
+[node name="TactileGuide69" parent="RightTactileGuides" unique_id=241359421 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -7.2000003)
+
+[node name="TactileGuide70" parent="RightTactileGuides" unique_id=111222054 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 2.1981153)
+
+[node name="TactileGuide72" parent="RightTactileGuides" unique_id=322274253 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 1.5981154)
+
+[node name="TactileGuide73" parent="RightTactileGuides" unique_id=2053408899 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 1.2981153)
+
+[node name="TactileGuide74" parent="RightTactileGuides" unique_id=1643730336 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -8.4)
+
+[node name="TactileGuide75" parent="RightTactileGuides" unique_id=328200946 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.99811506)
+
+[node name="TactileGuide76" parent="RightTactileGuides" unique_id=1612652564 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.6981158)
+
+[node name="TactileGuide77" parent="RightTactileGuides" unique_id=1016160926 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.39811563)
+
+[node name="TactileGuide78" parent="RightTactileGuides" unique_id=1697487336 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 0.098115444)
+
+[node name="TactileGuide79" parent="RightTactileGuides" unique_id=663823091 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -9.6)
+
+[node name="TactileGuide80" parent="RightTactileGuides" unique_id=1424064848 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.19825482)
+
+[node name="TactileGuide81" parent="RightTactileGuides" unique_id=2019193115 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.49825406)
+
+[node name="TactileGuide82" parent="RightTactileGuides" unique_id=1875679397 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -0.7982547)
+
+[node name="TactileGuide83" parent="RightTactileGuides" unique_id=7491325 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.0982549)
+
+[node name="TactileGuide84" parent="RightTactileGuides" unique_id=1404910544 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0015769005, 0.0031771064, -10.79637)
+
+[node name="TactileGuide85" parent="RightTactileGuides" unique_id=1028792091 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.3982551)
+
+[node name="TactileGuide86" parent="RightTactileGuides" unique_id=422132059 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -1.6982551)
+
+[node name="TactileGuide147" parent="RightTactileGuides" unique_id=1829308644 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.237341, 0.32317707, -1.998255)
+
+[node name="TactileGuide88" parent="RightTactileGuides" unique_id=496359411 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.298255)
+
+[node name="TactileGuide89" parent="RightTactileGuides" unique_id=161472529 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.5982552)
+
+[node name="TactileGuide90" parent="RightTactileGuides" unique_id=1552813955 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -2.898255)
+
+[node name="TactileGuide91" parent="RightTactileGuides" unique_id=775364732 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.198255)
+
+[node name="TactileGuide92" parent="RightTactileGuides" unique_id=1078916712 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.498255)
+
+[node name="TactileGuide93" parent="RightTactileGuides" unique_id=465583830 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -3.7982552)
+
+[node name="TactileGuide94" parent="RightTactileGuides" unique_id=233702809 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.098255)
+
+[node name="TactileGuide95" parent="RightTactileGuides" unique_id=276615354 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.3982553)
+
+[node name="TactileGuide96" parent="RightTactileGuides" unique_id=887727198 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.698255)
+
+[node name="TactileGuide97" parent="RightTactileGuides" unique_id=1953538157 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -4.9982553)
+
+[node name="TactileGuide98" parent="RightTactileGuides" unique_id=1679901199 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.298255)
+
+[node name="TactileGuide99" parent="RightTactileGuides" unique_id=1684831837 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.598255)
+
+[node name="TactileGuide100" parent="RightTactileGuides" unique_id=1481370141 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -5.8982553)
+
+[node name="TactileGuide101" parent="RightTactileGuides" unique_id=246223989 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.1982555)
+
+[node name="TactileGuide102" parent="RightTactileGuides" unique_id=1960948057 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.4982553)
+
+[node name="TactileGuide103" parent="RightTactileGuides" unique_id=1196709998 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -6.7982554)
+
+[node name="TactileGuide104" parent="RightTactileGuides" unique_id=1303711005 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.098255)
+
+[node name="TactileGuide105" parent="RightTactileGuides" unique_id=1117732196 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.3982553)
+
+[node name="TactileGuide106" parent="RightTactileGuides" unique_id=804296634 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.698255)
+
+[node name="TactileGuide107" parent="RightTactileGuides" unique_id=1593835245 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -7.9982553)
+
+[node name="TactileGuide108" parent="RightTactileGuides" unique_id=1855234419 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.298256)
+
+[node name="TactileGuide109" parent="RightTactileGuides" unique_id=979808336 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.598255)
+
+[node name="TactileGuide110" parent="RightTactileGuides" unique_id=260605530 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -8.898255)
+
+[node name="TactileGuide111" parent="RightTactileGuides" unique_id=1772256678 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.198256)
+
+[node name="TactileGuide112" parent="RightTactileGuides" unique_id=1638796499 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.498255)
+
+[node name="TactileGuide113" parent="RightTactileGuides" unique_id=1349809936 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -9.798256)
+
+[node name="TactileGuide114" parent="RightTactileGuides" unique_id=351272493 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.098255)
+
+[node name="TactileGuide115" parent="RightTactileGuides" unique_id=637203321 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.398255)
+
+[node name="TactileGuide116" parent="RightTactileGuides" unique_id=473119371 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.698256)
+
+[node name="TactileGuide117" parent="RightTactileGuides" unique_id=1486332406 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -10.998255)
+
+[node name="TactileGuide118" parent="RightTactileGuides" unique_id=1918081656 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.298256)
+
+[node name="TactileGuide119" parent="RightTactileGuides" unique_id=2145713370 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.598255)
+
+[node name="TactileGuide120" parent="RightTactileGuides" unique_id=57384446 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -11.898254)
+
+[node name="TactileGuide121" parent="RightTactileGuides" unique_id=1077644882 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.198256)
+
+[node name="TactileGuide122" parent="RightTactileGuides" unique_id=1384055468 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.498255)
+
+[node name="TactileGuide123" parent="RightTactileGuides" unique_id=782522956 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -12.798256)
+
+[node name="TactileGuide124" parent="RightTactileGuides" unique_id=1278178636 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.098255)
+
+[node name="TactileGuide125" parent="RightTactileGuides" unique_id=1989599398 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.398254)
+
+[node name="TactileGuide126" parent="RightTactileGuides" unique_id=1272226730 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.698256)
+
+[node name="TactileGuide127" parent="RightTactileGuides" unique_id=975573057 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -13.998255)
+
+[node name="TactileGuide128" parent="RightTactileGuides" unique_id=69099652 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.298254)
+
+[node name="TactileGuide129" parent="RightTactileGuides" unique_id=1989991045 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.598255)
+
+[node name="TactileGuide130" parent="RightTactileGuides" unique_id=923356584 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -14.898254)
+
+[node name="TactileGuide131" parent="RightTactileGuides" unique_id=2128385829 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.198256)
+
+[node name="TactileGuide132" parent="RightTactileGuides" unique_id=224617941 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.498255)
+
+[node name="TactileGuide133" parent="RightTactileGuides" unique_id=1052313441 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -15.798254)
+
+[node name="TactileGuide134" parent="RightTactileGuides" unique_id=505773854 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.098255)
+
+[node name="TactileGuide135" parent="RightTactileGuides" unique_id=530562243 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.398254)
+
+[node name="TactileGuide136" parent="RightTactileGuides" unique_id=215403119 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.698254)
+
+[node name="TactileGuide137" parent="RightTactileGuides" unique_id=1080633908 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -16.998255)
+
+[node name="TactileGuide138" parent="RightTactileGuides" unique_id=1951839041 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.298254)
+
+[node name="TactileGuide139" parent="RightTactileGuides" unique_id=1144202319 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.598255)
+
+[node name="TactileGuide140" parent="RightTactileGuides" unique_id=462046946 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -17.898254)
+
+[node name="TactileGuide141" parent="RightTactileGuides" unique_id=1720038892 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.198254)
+
+[node name="TactileGuide142" parent="RightTactileGuides" unique_id=902963026 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.498255)
+
+[node name="TactileGuide143" parent="RightTactileGuides" unique_id=1353956696 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -18.798254)
+
+[node name="TactileGuide144" parent="RightTactileGuides" unique_id=411694148 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.098253)
+
+[node name="TactileGuide145" parent="RightTactileGuides" unique_id=1179943523 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.398254)
+
+[node name="TactileGuide146" parent="RightTactileGuides" unique_id=718870592 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.237341, 0.32317707, -19.698254)
+
+[node name="TactileGuide2" parent="RightTactileGuides" unique_id=1917207190 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.306888)
+
+[node name="TactileGuide3" parent="RightTactileGuides" unique_id=907344520 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.612577)
+
+[node name="TactileGuide4" parent="RightTactileGuides" unique_id=669614129 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 13.917338)
+
+[node name="TactileGuide5" parent="RightTactileGuides" unique_id=1841293670 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.229066)
+
+[node name="TactileGuide6" parent="RightTactileGuides" unique_id=1759741444 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.529066)
+
+[node name="TactileGuide7" parent="RightTactileGuides" unique_id=184729138 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 14.829066)
+
+[node name="TactileGuide8" parent="RightTactileGuides" unique_id=1121196530 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.129066)
+
+[node name="TactileGuide9" parent="RightTactileGuides" unique_id=1251751848 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.429067)
+
+[node name="TactileGuide10" parent="RightTactileGuides" unique_id=1955919859 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 15.729067)
+
+[node name="TactileGuide11" parent="RightTactileGuides" unique_id=1079585289 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.029066)
+
+[node name="TactileGuide12" parent="RightTactileGuides" unique_id=277612185 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.329065)
+
+[node name="TactileGuide13" parent="RightTactileGuides" unique_id=148614846 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.629065)
+
+[node name="TactileGuide14" parent="RightTactileGuides" unique_id=1812941741 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 16.929064)
+
+[node name="TactileGuide15" parent="RightTactileGuides" unique_id=1813580281 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.229063)
+
+[node name="TactileGuide16" parent="RightTactileGuides" unique_id=909103212 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.529062)
+
+[node name="TactileGuide17" parent="RightTactileGuides" unique_id=273985752 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 17.829062)
+
+[node name="TactileGuide18" parent="RightTactileGuides" unique_id=307712018 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.12906)
+
+[node name="TactileGuide19" parent="RightTactileGuides" unique_id=1937251693 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.42906)
+
+[node name="TactileGuide20" parent="RightTactileGuides" unique_id=1966034993 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 18.72906)
+
+[node name="TactileGuide21" parent="RightTactileGuides" unique_id=325245238 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.029058)
+
+[node name="TactileGuide22" parent="RightTactileGuides" unique_id=1114275801 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.329058)
+
+[node name="TactileGuide23" parent="RightTactileGuides" unique_id=1780401595 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.629057)
+
+[node name="TactileGuide24" parent="RightTactileGuides" unique_id=577118896 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -5.235764, 0.31999996, 19.929056)
+
+[node name="TactileGuide25" parent="RightTactileGuides" unique_id=31149322 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.2357645, 0.31999996, 20.22906)
+
+[node name="TactileGuide26" parent="RightTactileGuides" unique_id=37203204 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.2357645, 0.31999996, 20.529058)
+
+[node name="TactileGuide27" parent="RightTactileGuides" unique_id=1016159158 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.235764, 0.31999996, 20.829058)
+
+[node name="TactileGuide71" parent="RightTactileGuides" unique_id=995542609 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.235764, 0.31999996, 21.129057)
+
+[node name="TactileGuide148" parent="RightTactileGuides" unique_id=1054326424 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.235764, 0.31999996, 21.429056)
+
+[node name="TactileGuide149" parent="RightTactileGuides" unique_id=1316063208 instance=ExtResource("37_vennj")]
+transform = Transform3D(-4.371138e-08, 0, 1, 0, 1, 0, -1, 0, -4.371138e-08, -5.235764, 0.31999996, 21.729057)
+
+[node name="TactileGuide150" parent="RightTactileGuides" unique_id=716435806 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.835764, 0.31999996, 22.329058)
+
+[node name="TactileGuide151" parent="RightTactileGuides" unique_id=190944715 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.135764, 0.31999996, 22.329058)
+
+[node name="TactileGuide152" parent="RightTactileGuides" unique_id=1101157554 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.4357643, 0.31999996, 22.329058)
+
+[node name="TactileGuide153" parent="RightTactileGuides" unique_id=464518504 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.7357645, 0.31999996, 22.329058)
+
+[node name="TactileGuide154" parent="RightTactileGuides" unique_id=315421127 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.0357647, 0.31999996, 22.329058)
+
+[node name="TactileGuide155" parent="RightTactileGuides" unique_id=1555441722 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.335765, 0.31999996, 22.329058)
+
+[node name="TactileGuide156" parent="RightTactileGuides" unique_id=1455857173 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.635764, 0.31999996, 22.329058)
+
+[node name="TactileGuide157" parent="RightTactileGuides" unique_id=1175727234 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.9357643, 0.31999996, 22.329058)
+
+[node name="TactileGuide158" parent="RightTactileGuides" unique_id=543436581 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.2357645, 0.31999996, 22.329058)
+
+[node name="TactileGuide159" parent="RightTactileGuides" unique_id=1518831920 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.535765, 0.31999996, 22.329058)
+
+[node name="TactileGuide160" parent="RightTactileGuides" unique_id=2136209580 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.835765, 0.31999996, 22.329058)
+
+[node name="TactileGuide161" parent="RightTactileGuides" unique_id=2080576197 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.135765, 0.31999996, 22.329058)
+
+[node name="TactileGuide162" parent="RightTactileGuides" unique_id=1235392772 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.435764, 0.31999996, 22.329058)
+
+[node name="TactileGuide163" parent="RightTactileGuides" unique_id=745822728 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.7357645, 0.31999996, 22.329058)
+
+[node name="TactileGuide164" parent="RightTactileGuides" unique_id=523586028 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.035765, 0.31999996, 22.329058)
+
+[node name="TactileGuide165" parent="RightTactileGuides" unique_id=984249167 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.335765, 0.31999996, 22.329058)
+
+[node name="TactileGuide166" parent="RightTactileGuides" unique_id=2097010013 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.635765, 0.31999996, 22.329058)
+
+[node name="TactileGuide167" parent="RightTactileGuides" unique_id=714055255 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.935765, 0.31999996, 22.329056)
+
+[node name="TactileGuide168" parent="RightTactileGuides" unique_id=1854693234 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.2357645, 0.31999996, 22.329056)
+
+[node name="TactileGuide169" parent="RightTactileGuides" unique_id=23096940 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.535765, 0.31999996, 22.329056)
+
+[node name="TactileGuide170" parent="RightTactileGuides" unique_id=1154389632 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.835765, 0.31999996, 22.329056)
+
+[node name="TactileGuide171" parent="RightTactileGuides" unique_id=92843887 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.135765, 0.31999996, 22.329056)
+
+[node name="TactileGuide172" parent="RightTactileGuides" unique_id=1691037081 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.435765, 0.31999996, 22.329056)
+
+[node name="TactileGuide173" parent="RightTactileGuides" unique_id=1133759419 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12.735765, 0.31999996, 22.329056)
+
+[node name="TactileGuide174" parent="RightTactileGuides" unique_id=2033686745 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.035765, 0.31999996, 22.329056)
+
+[node name="TactileGuide175" parent="RightTactileGuides" unique_id=1188207869 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.335765, 0.31999996, 22.329056)
+
+[node name="TactileGuide176" parent="RightTactileGuides" unique_id=1089050059 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.635765, 0.31999996, 22.329056)
+
+[node name="TactileGuide177" parent="RightTactileGuides" unique_id=1089507725 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -13.935765, 0.31999996, 22.329056)
+
+[node name="TactileGuide178" parent="RightTactileGuides" unique_id=1393191085 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.235765, 0.31999996, 22.329056)
+
+[node name="TactileGuide179" parent="RightTactileGuides" unique_id=2031523471 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.535766, 0.31999996, 22.329056)
+
+[node name="TactileGuide180" parent="RightTactileGuides" unique_id=1386422652 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14.835765, 0.31999996, 22.329056)
+
+[node name="TactileGuide181" parent="RightTactileGuides" unique_id=104296070 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.135765, 0.31999996, 22.329056)
+
+[node name="TactileGuide182" parent="RightTactileGuides" unique_id=1781358847 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.435765, 0.31999996, 22.329056)
+
+[node name="TactileGuide183" parent="RightTactileGuides" unique_id=2050326263 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.735765, 0.31999996, 22.329056)
+
+[node name="TactileGuide184" parent="RightTactileGuides" unique_id=300891310 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.035765, 0.31999996, 22.329056)
+
+[node name="TactileGuide185" parent="RightTactileGuides" unique_id=1022579189 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.335766, 0.31999996, 22.329056)
+
+[node name="TactileGuide186" parent="RightTactileGuides" unique_id=1986725671 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.635765, 0.31999996, 22.329056)
+
+[node name="TactileGuide187" parent="RightTactileGuides" unique_id=477768717 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.935764, 0.31999996, 22.329056)
+
+[node name="TactileGuide188" parent="RightTactileGuides" unique_id=1402301360 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.235765, 0.31999996, 22.329056)
+
+[node name="TactileGuide189" parent="RightTactileGuides" unique_id=2107573597 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.535765, 0.31999996, 22.329056)
+
+[node name="TactileGuide190" parent="RightTactileGuides" unique_id=7678604 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17.835764, 0.31999996, 22.329056)
+
+[node name="TactileGuide191" parent="RightTactileGuides" unique_id=127104156 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.135765, 0.31999996, 22.329056)
+
+[node name="TactileGuide192" parent="RightTactileGuides" unique_id=1191558478 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.435764, 0.31999996, 22.329056)
+
+[node name="TactileGuide193" parent="RightTactileGuides" unique_id=1225033914 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.735764, 0.31999996, 22.329056)
+
+[node name="TactileGuide194" parent="RightTactileGuides" unique_id=335004039 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.035765, 0.31999996, 22.329056)
+
+[node name="TactileGuide195" parent="RightTactileGuides" unique_id=428403931 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.335764, 0.31999996, 22.329056)
+
+[node name="TactileGuide196" parent="RightTactileGuides" unique_id=600379358 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.635763, 0.31999996, 22.329056)
+
+[node name="TactileGuide197" parent="RightTactileGuides" unique_id=1105347969 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19.935764, 0.31999996, 22.329056)
+
+[node name="TactileGuide198" parent="RightTactileGuides" unique_id=524896128 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.235764, 0.31999996, 22.329056)
+
+[node name="TactileGuide199" parent="RightTactileGuides" unique_id=991792784 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.535763, 0.31999996, 22.329056)
+
+[node name="TactileGuide200" parent="RightTactileGuides" unique_id=533982255 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.835764, 0.31999996, 22.329056)
+
+[node name="TactileGuide201" parent="RightTactileGuides" unique_id=515045326 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.135763, 0.31999996, 22.329056)
+
+[node name="TactileGuide202" parent="RightTactileGuides" unique_id=568885585 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.435762, 0.31999996, 22.329056)
+
+[node name="TactileGuide203" parent="RightTactileGuides" unique_id=591319215 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -21.735764, 0.31999996, 22.329056)
+
+[node name="TactileGuide204" parent="RightTactileGuides" unique_id=1566225490 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.035763, 0.31999996, 22.329056)
+
+[node name="TactileGuide205" parent="RightTactileGuides" unique_id=892829483 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.335762, 0.31999996, 22.329056)
+
+[node name="TactileGuide206" parent="RightTactileGuides" unique_id=10327890 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.635763, 0.31999996, 22.329056)
+
+[node name="TactileGuide207" parent="RightTactileGuides" unique_id=2100299095 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22.935762, 0.31999996, 22.329056)
+
+[node name="TactileGuide208" parent="RightTactileGuides" unique_id=1748649208 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.235762, 0.31999996, 22.329056)
+
+[node name="TactileGuide209" parent="RightTactileGuides" unique_id=517198650 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -23.535763, 0.31999996, 22.329056)
+
+[node name="TactileStop2" parent="RightTactileGuides" unique_id=613119297 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, 1.9017448)
+
+[node name="TactileStop5" parent="RightTactileGuides" unique_id=2044240768 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.637341, 0.32317707, 1.9017448)
+
+[node name="TactileStop14" parent="RightTactileGuides" unique_id=2130713427 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, 1.9017447)
+
+[node name="TactileStop3" parent="RightTactileGuides" unique_id=971900312 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, 2.201745)
+
+[node name="TactileStop4" parent="RightTactileGuides" unique_id=1931506093 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.337341, 0.32317707, 1.6017451)
+
+[node name="TactileGuide87" parent="RightTactileGuides" unique_id=906202108 instance=ExtResource("37_vennj")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9373407, 0.32317707, 1.9017447)
+
+[node name="TactileStop10" parent="RightTactileGuides" unique_id=596357151 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -19.998255)
+
+[node name="TactileStop11" parent="RightTactileGuides" unique_id=657810159 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.237341, 0.32317707, -20.298254)
+
+[node name="TactileStop12" parent="RightTactileGuides" unique_id=1978185830 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.9373407, 0.32317707, -20.298254)
+
+[node name="TactileStop13" parent="RightTactileGuides" unique_id=586489078 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.5373406, 0.32317707, -20.298254)
+
+[node name="TactileStop" parent="RightTactileGuides" unique_id=154341665 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.235764, 0.31999996, 22.329056)
+
+[node name="TactileStop7" parent="RightTactileGuides" unique_id=1993655682 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.535764, 0.31999996, 22.329056)
+
+[node name="TactileStop6" parent="RightTactileGuides" unique_id=1678856159 instance=ExtResource("36_gwlw1")]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -5.235764, 0.31999996, 22.029057)
+
+[node name="OutdoorClutterPile2" parent="." unique_id=1966260864 instance=ExtResource("38_vennj")]
+transform = Transform3D(0.27907586, 0, -0.9602691, 0, 1, 0, 0.9602691, 0, 0.27907586, -13.435625, -0.099999905, 14.4704275)
+use_collision = true
+
+[node name="ClosedShop" parent="." unique_id=66150729 instance=ExtResource("39_12hjt")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 10.849911, -0.10000026, -8.235579)
+
+[node name="BarberShop" parent="." unique_id=776126927 instance=ExtResource("40_n7vst")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11.874082, -0.040000264, -1.5832418)
+
+[node name="SharedBike" parent="." unique_id=640904997 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -34.079857, -0.099999785, 10.145315)
+
+[node name="SharedBike2" parent="." unique_id=118453080 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -35.085384, -0.099999785, 10.145315)
+
+[node name="OutdoorClutterPile3" parent="." unique_id=2127102225 instance=ExtResource("38_vennj")]
+transform = Transform3D(0.27129894, 0, -0.96249515, 0, 1, 0, 0.96249515, 0, 0.27129894, -35.743015, -0.099999785, 11.535702)
+
+[node name="SharedBike3" parent="." unique_id=141554281 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(0.55853343, 0.82347506, 0.09964518, 0, 0.12012942, -0.99275833, -0.82948214, 0.5544887, 0.06709629, -34.111805, 0.037519813, 11.189912)
+
+[node name="firehydrant2" parent="." unique_id=1346476968 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4.436784, 0.25167477, 6.754715)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="firehydrant2" unique_id=1628646703]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="firehydrant2/StaticBody3D" unique_id=416185119]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant4" parent="." unique_id=825267968 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4.463217, 0.25167477, 6.754715)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="firehydrant4" unique_id=1234896269]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="firehydrant4/StaticBody3D" unique_id=433253505]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant3" parent="." unique_id=203210701 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -4.436784, 0.25167477, -13.245285)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="firehydrant3" unique_id=648590644]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="firehydrant3/StaticBody3D" unique_id=741483213]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="firehydrant5" parent="." unique_id=417678700 instance=ExtResource("45_2cgg3")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 4.563216, 0.25167477, -13.245285)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="firehydrant5" unique_id=595556743]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="firehydrant5/StaticBody3D" unique_id=1669570200]
+shape = SubResource("CylinderShape3D_bfdp3")
+
+[node name="Node3D" parent="." unique_id=813718418 instance=ExtResource("46_o80qj")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.816, -0.5, 16.236)
+
+[node name="building_F_withoutBase" parent="." unique_id=1990741488 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -34.179646, -0.5, 4.339197)
+
+[node name="building_F_withoutBase2" parent="." unique_id=1891455265 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.179646, -0.5, 4.339197)
+
+[node name="building_F_withoutBase3" parent="." unique_id=1476872354 instance=ExtResource("47_0sk6p")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11.179646, -0.5, 4.339197)
+
+[node name="dumpster" parent="." unique_id=1871622347 instance=ExtResource("48_e8pg6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.189381, -0.09999812, 9.068544)
+
+[node name="Node3D2" parent="." unique_id=1869908957 instance=ExtResource("49_h05k6")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.717995, -0.09999996, 10.120262)
+
+[node name="Node3D3" parent="." unique_id=989557710 instance=ExtResource("49_h05k6")]
+transform = Transform3D(0.24185954, -0.2902888, 0.9258706, 0.7682835, 0.6401097, 0, -0.59265876, 0.71133107, 0.37784076, -10.367508, -0.09999996, 9.811167)
+
+[node name="Node3D4" parent="." unique_id=437191464 instance=ExtResource("50_ex0yv")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.356266, -0.10000041, 10.223393)
+
+[node name="trash_A" parent="." unique_id=443381828 instance=ExtResource("51_s3bvh")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.183944, 1.0427902, 9.465312)
+
+[node name="trash_B" parent="." unique_id=110919522 instance=ExtResource("52_hlhe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.883225, 1.0427902, 9.5083275)
+
+[node name="trash_B2" parent="." unique_id=459637996 instance=ExtResource("52_hlhe2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.214794, 0.66394997, 10.246281)
+
+[node name="SharedBike4" parent="." unique_id=1052258408 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.084621, -0.100000024, 11.405691)
+
+[node name="SharedBike5" parent="." unique_id=446800828 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -12.484621, -0.100000024, 11.405691)
+
+[node name="SharedBike6" parent="." unique_id=1224728060 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.684621, -0.100000024, 11.405691)
+
+[node name="SharedBike8" parent="." unique_id=652565843 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10.184621, -0.100000024, 11.405691)
+
+[node name="SharedBike9" parent="." unique_id=890617809 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9.684621, -0.100000024, 11.405691)
+
+[node name="SharedBike7" parent="." unique_id=1829867437 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(0.6165249, -0.4493055, 0.64654577, -2.4944601e-08, 0.82118213, 0.570666, -0.7873354, -0.35182983, 0.5062793, -11.282294, -0.100000024, 11.596546)
+
+[node name="Node3D5" parent="." unique_id=369481999 instance=ExtResource("50_ex0yv")]
+transform = Transform3D(0.9134933, 0, 0.4068538, 0, 1, 0, -0.4068538, 0, 0.9134933, -34.449993, -0.099999934, 8.8835945)

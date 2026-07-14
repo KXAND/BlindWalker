@@ -1,0 +1,174 @@
+[gd_scene format=3 uid="uid://desk01"]
+
+[sub_resource type="StandardMaterial3D" id="mat_desk_leg"]
+albedo_color = Color(0.45, 0.26, 0.12, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_apron"]
+albedo_color = Color(0.48, 0.28, 0.13, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_desk_top"]
+albedo_color = Color(0.62, 0.38, 0.18, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_drawer_inner"]
+albedo_color = Color(0.35, 0.2, 0.1, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_drawer_front"]
+albedo_color = Color(0.52, 0.32, 0.15, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_handle"]
+albedo_color = Color(0.62, 0.62, 0.62, 1)
+metallic = 0.9
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_book_1"]
+albedo_color = Color(0.2, 0.3, 0.7, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_book_2"]
+albedo_color = Color(0.7, 0.25, 0.25, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_book_3"]
+albedo_color = Color(0.15, 0.55, 0.15, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_pencil_holder"]
+albedo_color = Color(0.5, 0.5, 0.55, 1)
+metallic = 0.7
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_lamp_base"]
+albedo_color = Color(0.25, 0.25, 0.28, 1)
+metallic = 0.8
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_lamp_shade"]
+albedo_color = Color(0.95, 0.92, 0.78, 1)
+roughness = 0.3
+
+[node name="Desk" type="Node3D" unique_id=1493402217]
+
+[node name="Leg_1_1" type="CSGBox3D" parent="." unique_id=1934376683]
+transform = Transform3D(0.05, 0, 0, 0, 0.72, 0, 0, 0, 0.05, 0.635, 0.1903882, 0.285)
+use_collision = true
+size = Vector3(1, 1.4594116, 1)
+material = SubResource("mat_desk_leg")
+
+[node name="Leg_-1_1" type="CSGBox3D" parent="." unique_id=854554939]
+transform = Transform3D(0.05, 0, 0, 0, 0.72, 0, 0, 0, 0.05, -0.635, 0.14387208, 0.285)
+use_collision = true
+size = Vector3(1, 1.3302002, 1)
+material = SubResource("mat_desk_leg")
+
+[node name="Leg_-1_-1" type="CSGBox3D" parent="." unique_id=178775181]
+transform = Transform3D(0.05, 0, 0, 0, 0.72, 0, 0, 0, 0.05, -0.635, 0.1952002, -0.285)
+use_collision = true
+size = Vector3(1, 1.4727783, 1)
+material = SubResource("mat_desk_leg")
+
+[node name="Leg_1_-1" type="CSGBox3D" parent="." unique_id=237638876]
+transform = Transform3D(0.05, 0, 0, 0, 0.72, 0, 0, 0, 0.05, 0.635, 0.1887842, -0.285)
+use_collision = true
+size = Vector3(1, 1.454956, 1)
+material = SubResource("mat_desk_leg")
+
+[node name="Apron_Front" type="CSGBox3D" parent="." unique_id=1130640658]
+transform = Transform3D(1.22, 0, 0, 0, 0.1, 0, 0, 0, 0.04, 0, 0.67, 0.33)
+use_collision = true
+material = SubResource("mat_apron")
+
+[node name="Apron_Back" type="CSGBox3D" parent="." unique_id=1594769701]
+transform = Transform3D(1.22, 0, 0, 0, 0.1, 0, 0, 0, 0.04, 0, 0.67, -0.33)
+use_collision = true
+material = SubResource("mat_apron")
+
+[node name="Apron_Left" type="CSGBox3D" parent="." unique_id=1127181975]
+transform = Transform3D(0.04, 0, 0, 0, 0.1, 0, 0, 0, 0.52, -0.68, 0.67, 0)
+use_collision = true
+material = SubResource("mat_apron")
+
+[node name="Desktop" type="CSGBox3D" parent="." unique_id=243863948]
+transform = Transform3D(1.4, 0, 0, 0, 0.03, 0, 0, 0, 0.7, 0, 0.735, 0)
+use_collision = true
+material = SubResource("mat_desk_top")
+
+[node name="DrawerBox" type="CSGBox3D" parent="." unique_id=1767625437]
+transform = Transform3D(0.35, 0, 0, 0, 0.62, 0, 0, 0, 0.48, 0.435, 0.31, 0)
+use_collision = true
+material = SubResource("mat_drawer_inner")
+
+[node name="Drawer0_Inner" type="CSGBox3D" parent="." unique_id=913660663]
+transform = Transform3D(0.334, 0, 0, 0, 0.124, 0, 0, 0, 0.464, 0.435, 0.31, 0)
+use_collision = true
+material = SubResource("mat_drawer_inner")
+
+[node name="Drawer0_Front" type="CSGBox3D" parent="." unique_id=1310254827]
+transform = Transform3D(0.354, 0, 0, 0, 0.14, 0, 0, 0, 0.016, 0.435, 0.128, -0.018)
+use_collision = true
+material = SubResource("mat_drawer_front")
+
+[node name="Handle0" type="CSGBox3D" parent="." unique_id=4344606]
+transform = Transform3D(0.08, 0, 0, 0, 0.012, 0, 0, 0, 0.006, 0.435, 0.128, -0.032)
+use_collision = true
+material = SubResource("mat_handle")
+
+[node name="Drawer1_Inner" type="CSGBox3D" parent="." unique_id=616986503]
+transform = Transform3D(0.334, 0, 0, 0, 0.124, 0, 0, 0, 0.464, 0.435, 0.31, 0)
+use_collision = true
+material = SubResource("mat_drawer_inner")
+
+[node name="Drawer1_Front" type="CSGBox3D" parent="." unique_id=1334518910]
+transform = Transform3D(0.354, 0, 0, 0, 0.14, 0, 0, 0, 0.016, 0.435, 0.276, -0.018)
+use_collision = true
+material = SubResource("mat_drawer_front")
+
+[node name="Handle1" type="CSGBox3D" parent="." unique_id=972289186]
+transform = Transform3D(0.08, 0, 0, 0, 0.012, 0, 0, 0, 0.006, 0.435, 0.276, -0.032)
+use_collision = true
+material = SubResource("mat_handle")
+
+[node name="Book1" type="CSGBox3D" parent="." unique_id=452218341]
+transform = Transform3D(0.22, 0, 0, 0, 0.03, 0, 0, 0, 0.16, -0.35, 0.765, 0.1)
+use_collision = true
+material = SubResource("mat_book_1")
+
+[node name="Book2" type="CSGBox3D" parent="." unique_id=1817324891]
+transform = Transform3D(0.2, 0, 0, 0, 0.03, 0, 0, 0, 0.15, -0.35, 0.795, 0.12)
+use_collision = true
+material = SubResource("mat_book_2")
+
+[node name="Book3" type="CSGBox3D" parent="." unique_id=949194516]
+transform = Transform3D(0.25, 0, 0, 0, 0.025, 0, 0, 0, 0.17, -0.35, 0.825, 0.14)
+use_collision = true
+material = SubResource("mat_book_3")
+
+[node name="PencilHolder" type="CSGCylinder3D" parent="." unique_id=957056700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4416806, 0.79, -0.1)
+use_collision = true
+radius = 0.06
+height = 0.08
+material = SubResource("mat_pencil_holder")
+
+[node name="LampBase" type="CSGBox3D" parent="." unique_id=647164080]
+transform = Transform3D(0.12, 0, 0, 0, 0.01, 0, 0, 0, 0.1, 0.48, 0.755, -0.18)
+use_collision = true
+material = SubResource("mat_lamp_base")
+
+[node name="LampArm1" type="CSGBox3D" parent="." unique_id=1798285100]
+transform = Transform3D(0.02, 0, 0, 0, 0.15, 0, 0, 0, 0.02, 0.48, 0.83, -0.18)
+use_collision = true
+material = SubResource("mat_lamp_base")
+
+[node name="LampArm2" type="CSGBox3D" parent="." unique_id=1996947263]
+transform = Transform3D(0.22, 0, 0, 0, 0.015, 0, 0, 0, 0.02, 0.38, 0.91, -0.18)
+use_collision = true
+material = SubResource("mat_lamp_base")
+
+[node name="LampShade" type="CSGCylinder3D" parent="." unique_id=1748754005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.28, 0.95, -0.18)
+use_collision = true
+radius = 0.1
+height = 0.1
+material = SubResource("mat_lamp_shade")

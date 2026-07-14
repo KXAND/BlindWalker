@@ -1,0 +1,151 @@
+[gd_scene format=3 uid="uid://bdedpw5qj6qao"]
+
+[ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/default_contact.tres" id="2_contact"]
+
+[sub_resource type="StandardMaterial3D" id="mat_shoe"]
+albedo_color = Color(0.12, 0.08, 0.05, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_pants"]
+albedo_color = Color(0.22, 0.2, 0.18, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_jacket"]
+albedo_color = Color(0.18, 0.22, 0.32, 1)
+roughness = 0.8
+
+[sub_resource type="StandardMaterial3D" id="mat_skin"]
+albedo_color = Color(0.9, 0.76, 0.6, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_hair"]
+albedo_color = Color(0.72, 0.7, 0.68, 1)
+roughness = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_cane"]
+albedo_color = Color(0.42, 0.3, 0.18, 1)
+roughness = 0.55
+
+[node name="ElderlyMan" type="CSGCombiner3D" unique_id=170175885]
+
+[node name="Profile" type="Node" parent="." unique_id=706300393]
+script = ExtResource("1_prov")
+profile = ExtResource("2_contact")
+
+[node name="LeftShoe" type="CSGBox3D" parent="." unique_id=1342676838]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.025, 0.05)
+use_collision = true
+size = Vector3(0.08, 0.05, 0.18)
+material = SubResource("mat_shoe")
+
+[node name="RightShoe" type="CSGBox3D" parent="." unique_id=1064502581]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.025, 0.05)
+use_collision = true
+size = Vector3(0.08, 0.05, 0.18)
+material = SubResource("mat_shoe")
+
+[node name="LeftLowerLeg" type="CSGBox3D" parent="." unique_id=607556255]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.24, 0.02)
+use_collision = true
+size = Vector3(0.08, 0.36, 0.08)
+material = SubResource("mat_pants")
+
+[node name="RightLowerLeg" type="CSGBox3D" parent="." unique_id=786403635]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.24, 0.02)
+use_collision = true
+size = Vector3(0.08, 0.36, 0.08)
+material = SubResource("mat_pants")
+
+[node name="LeftUpperLeg" type="CSGBox3D" parent="." unique_id=905211305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.08, 0.6, 0.02)
+use_collision = true
+size = Vector3(0.09, 0.36, 0.09)
+material = SubResource("mat_pants")
+
+[node name="RightUpperLeg" type="CSGBox3D" parent="." unique_id=534287579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.08, 0.6, 0.02)
+use_collision = true
+size = Vector3(0.09, 0.36, 0.09)
+material = SubResource("mat_pants")
+
+[node name="Pelvis" type="CSGBox3D" parent="." unique_id=180407445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.78, 0)
+use_collision = true
+size = Vector3(0.22, 0.12, 0.16)
+material = SubResource("mat_pants")
+
+[node name="Torso" type="CSGBox3D" parent="." unique_id=1854738760]
+transform = Transform3D(0.978, 0, -0.208, 0, 1, 0, 0.208, 0, 0.978, 0, 1.02, 0.05)
+use_collision = true
+size = Vector3(0.28, 0.46, 0.15)
+material = SubResource("mat_jacket")
+
+[node name="Neck" type="CSGCylinder3D" parent="." unique_id=1067020061]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3, 0)
+use_collision = true
+radius = 0.04
+height = 0.05
+material = SubResource("mat_skin")
+
+[node name="Head" type="CSGSphere3D" parent="." unique_id=857806201]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.43, 0)
+use_collision = true
+radius = 0.1
+material = SubResource("mat_skin")
+
+[node name="Hair" type="CSGCylinder3D" parent="." unique_id=1892142065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.505, 0)
+use_collision = true
+radius = 0.104
+height = 0.035
+material = SubResource("mat_hair")
+
+[node name="Nose" type="CSGBox3D" parent="." unique_id=1543471759]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.41, 0.10076389)
+use_collision = true
+size = Vector3(0.03, 0.03, 0.04)
+material = SubResource("mat_skin")
+
+[node name="LeftUpperArm" type="CSGBox3D" parent="." unique_id=1439014167]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.18, 1.16, 0.02)
+use_collision = true
+size = Vector3(0.07, 0.26, 0.07)
+material = SubResource("mat_jacket")
+
+[node name="RightUpperArm" type="CSGBox3D" parent="." unique_id=1762030900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.18, 1.16, 0.02)
+use_collision = true
+size = Vector3(0.07, 0.26, 0.07)
+material = SubResource("mat_jacket")
+
+[node name="LeftLowerArm" type="CSGBox3D" parent="." unique_id=356864728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.19, 0.9, 0.08)
+use_collision = true
+size = Vector3(0.06, 0.24, 0.06)
+material = SubResource("mat_skin")
+
+[node name="RightLowerArm" type="CSGBox3D" parent="." unique_id=1163366954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19, 0.9, 0.08)
+use_collision = true
+size = Vector3(0.06, 0.24, 0.06)
+material = SubResource("mat_skin")
+
+[node name="LeftHand" type="CSGBox3D" parent="." unique_id=812794863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.75, 0.11)
+use_collision = true
+size = Vector3(0.05, 0.06, 0.05)
+material = SubResource("mat_skin")
+
+[node name="RightHand" type="CSGBox3D" parent="." unique_id=461603087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2, 0.75, 0.11)
+use_collision = true
+size = Vector3(0.05, 0.06, 0.05)
+material = SubResource("mat_skin")
+
+[node name="Cane" type="CSGCylinder3D" parent="." unique_id=949951286]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.23, 0.38, 0.15)
+use_collision = true
+radius = 0.014
+height = 0.76
+material = SubResource("mat_cane")

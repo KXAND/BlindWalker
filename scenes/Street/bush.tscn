@@ -1,0 +1,16 @@
+[gd_scene format=3 uid="uid://bhsu53wnepmak"]
+
+[ext_resource type="PackedScene" uid="uid://dcaqyiy6j0jty" path="res://addons/kaykit_city_builder_bits/Assets/gltf/bush.gltf" id="1_remg1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
+
+[node name="bush" type="Node3D" unique_id=743469717]
+
+[node name="bush2" parent="." unique_id=524924856 instance=ExtResource("1_remg1")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1954036098]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=946285326]
+transform = Transform3D(0.6775111, 0, 0, 0, 1, 0, 0, 0, 0.6695685, 0, 0.70260096, 0)
+shape = SubResource("BoxShape3D_bfdp3")

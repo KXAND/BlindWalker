@@ -1,0 +1,524 @@
+[gd_scene format=3 uid="uid://playerhome2f"]
+
+[ext_resource type="PackedScene" uid="uid://shoecab01" path="res://scenes/Home/ShoeCabinet.tscn" id="1_gqpp8"]
+[ext_resource type="PackedScene" uid="uid://desk01" path="res://scenes/Home/Desk.tscn" id="2_ktood"]
+[ext_resource type="PackedScene" uid="uid://chair01" path="res://scenes/Home/Chair.tscn" id="3_gtexk"]
+[ext_resource type="PackedScene" uid="uid://bem21867c3d6h" path="res://scenes/Home/Bed.tscn" id="4_h8vgv"]
+[ext_resource type="PackedScene" uid="uid://co0xbe1nox2g4" path="res://scenes/Home/Toilet.tscn" id="5_2diic"]
+[ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="6_dxlhg"]
+[ext_resource type="PackedScene" path="res://scenes/Home/ClutterPile.tscn" id="6_qdxcq"]
+[ext_resource type="PackedScene" uid="uid://wardrobe01" path="res://scenes/Home/Wardrobe.tscn" id="7_vnwve"]
+[ext_resource type="PackedScene" uid="uid://da2tbmjnvxva7" path="res://scenes/Home/TV.tscn" id="8_ibdgp"]
+[ext_resource type="PackedScene" uid="uid://or1jixcp5w4d" path="res://scenes/Home/Sofa.tscn" id="9_2diic"]
+[ext_resource type="PackedScene" uid="uid://fridge01" path="res://scenes/Home/Fridge.tscn" id="10_dxlhg"]
+[ext_resource type="PackedScene" uid="uid://diningtable01" path="res://scenes/Home/DiningTable.tscn" id="11_vnwve"]
+[ext_resource type="PackedScene" uid="uid://diningchair01" path="res://scenes/Home/DiningChair.tscn" id="12_ibdgp"]
+[ext_resource type="PackedScene" path="res://scenes/Home/CoffeeTable.tscn" id="13_ibdgp"]
+[ext_resource type="PackedScene" path="res://scenes/Home/IndoorTrashCan.tscn" id="14_qdxcq"]
+[ext_resource type="PackedScene" path="res://scenes/Home/ApplePlate.tscn" id="15_mfc46"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.45, 0.32, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_floor_bath"]
+albedo_color = Color(0.38, 0.38, 0.42, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_ceiling"]
+albedo_color = Color(0.94, 0.94, 0.91, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_wall_ext"]
+albedo_color = Color(0.88, 0.85, 0.8, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_window"]
+transparency = 1
+albedo_color = Color(0.6, 0.72, 0.85, 0.45)
+
+[sub_resource type="StandardMaterial3D" id="mat_wall_int"]
+albedo_color = Color(0.86, 0.83, 0.78, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_door"]
+albedo_color = Color(0.5, 0.35, 0.22, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.55, 0.55, 0.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_bed_frame"]
+albedo_color = Color(0.36, 0.22, 0.11, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_mattress"]
+albedo_color = Color(0.92, 0.92, 0.89, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_bedding"]
+albedo_color = Color(0.72, 0.82, 0.88, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_pillow"]
+albedo_color = Color(0.68, 0.78, 0.88, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_cabinet"]
+albedo_color = Color(0.32, 0.18, 0.1, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_sink"]
+albedo_color = Color(0.91, 0.91, 0.89, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_stove"]
+albedo_color = Color(0.2, 0.2, 0.2, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+transparency = 1
+albedo_color = Color(0.75, 0.85, 0.9, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="mat_shower"]
+albedo_color = Color(0.7, 0.7, 0.75, 1)
+
+[sub_resource type="StandardMaterial3D" id="mat_rug"]
+albedo_color = Color(0.55, 0.45, 0.35, 1)
+
+[node name="PlayerHome" type="Node3D" unique_id=119255540]
+
+[node name="Structure" type="Node3D" parent="." unique_id=1017863993]
+
+[node name="FloorMasterBed" type="CSGBox3D" parent="Structure" unique_id=232521453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1559567, 0.025, -3.9)
+use_collision = true
+size = Vector3(2.688086, 0.05, 4.2)
+material = SubResource("mat_floor")
+
+[node name="FloorKitchen" type="CSGBox3D" parent="Structure" unique_id=200985708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1515622, 0.025, 0.4395508)
+use_collision = true
+size = Vector3(2.696875, 0.05, 4.4791017)
+material = SubResource("mat_floor")
+
+[node name="FloorBath" type="CSGBox3D" parent="Structure" unique_id=323165405]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.1570213, 0.025, 4.328338)
+use_collision = true
+size = Vector3(2.8085694, 0.05, 3.3084474)
+material = SubResource("mat_floor_bath")
+
+[node name="FloorLiving" type="CSGBox3D" parent="Structure" unique_id=98651319]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3423339, 0.025, 0.025050879)
+use_collision = true
+size = Vector3(6.315332, 0.05, 11.8187895)
+material = SubResource("mat_floor")
+
+[node name="Ceiling" type="CSGBox3D" parent="Structure" unique_id=1426858957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.775, 0.55718994)
+use_collision = true
+size = Vector3(9, 0.05, 13.11438)
+material = SubResource("mat_ceiling")
+
+[node name="WallLeftLower" type="CSGBox3D" parent="Structure" unique_id=2073457797]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 1.4, 3)
+use_collision = true
+size = Vector3(0.1, 2.8, 6)
+material = SubResource("mat_wall_ext")
+
+[node name="WallLeftUpper" type="CSGBox3D" parent="Structure" unique_id=185117606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 1.4, -3.8935547)
+use_collision = true
+size = Vector3(0.1, 2.8, 4.2128906)
+material = SubResource("mat_wall_ext")
+
+[node name="WallLeftWindow1" type="CSGBox3D" parent="Structure" unique_id=251887717]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 1.6, -3.75)
+use_collision = true
+size = Vector3(0.08, 1.2, 1.5)
+material = SubResource("mat_window")
+
+[node name="WallLeftWindow2" type="CSGBox3D" parent="Structure" unique_id=1929087265]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.4869466, 1.390126, -0.86080945)
+use_collision = true
+size = Vector3(0.08, 2.6460938, 1.7185669)
+material = SubResource("mat_window")
+
+[node name="WallLeftWindow3" type="CSGBox3D" parent="Structure" unique_id=876125551]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.45, 1.6, 3.25)
+use_collision = true
+size = Vector3(0.08, 1.2, 1.5)
+material = SubResource("mat_window")
+
+[node name="WallTopLeft" type="CSGBox3D" parent="Structure" unique_id=2082176572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8448071, 1.406105, -5.9544873)
+use_collision = true
+size = Vector3(3.3, 2.8, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallTopRight" type="CSGBox3D" parent="Structure" unique_id=903829003]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 1.4, -5.95)
+use_collision = true
+size = Vector3(5.7, 2.8, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallTopWindowBath" type="CSGBox3D" parent="Structure" unique_id=1576945982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.6, -5.95)
+use_collision = true
+size = Vector3(1.2, 0.8, 0.08)
+material = SubResource("mat_window")
+
+[node name="WallRight" type="CSGBox3D" parent="Structure" unique_id=152758662]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45075, 1.4041839, 0.5730239)
+use_collision = true
+size = Vector3(0.1, 2.8, 13.14563)
+material = SubResource("mat_wall_ext")
+
+[node name="WallRightWindow" type="CSGBox3D" parent="Structure" unique_id=1181933066]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4.45, 1.6, 1)
+use_collision = true
+size = Vector3(0.08, 1.5, 2.2)
+material = SubResource("mat_window")
+
+[node name="WallBottomLeft" type="CSGBox3D" parent="Structure" unique_id=2145963829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.8331418, 1.4, 5.95)
+use_collision = true
+size = Vector3(3.333716, 2.8, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallBottomRightEntrance" type="CSGBox3D" parent="Structure" unique_id=1466561801]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.2136414, 1.4, 7.1183777)
+use_collision = true
+size = Vector3(4.572717, 2.8, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallIntV1" type="CSGBox3D" parent="Structure" unique_id=1553620617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.15, 1.4, -4.323224)
+use_collision = true
+size = Vector3(0.1, 2.8, 3.3535523)
+material = SubResource("mat_wall_int")
+
+[node name="WallIntV2" type="CSGBox3D" parent="Structure" unique_id=1430995407]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.544821, 1.4, 2.7397964)
+use_collision = true
+size = Vector3(0.1, 2.8, 1.7426269)
+material = SubResource("mat_wall_int")
+
+[node name="WallIntV3" type="CSGBox3D" parent="Structure" unique_id=2012886133]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.1974666, 1.4, 4.231687)
+use_collision = true
+size = Vector3(0.1, 2.8, 4.476172)
+material = SubResource("mat_wall_int")
+
+[node name="WallIntV4" type="CSGBox3D" parent="Structure" unique_id=709564795]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062837124, 1.4, 5.780994)
+use_collision = true
+size = Vector3(0.1, 2.8, 0.43801272)
+material = SubResource("mat_wall_int")
+
+[node name="WallH1" type="CSGBox3D" parent="Structure" unique_id=1318861300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85, 1.4, -1.8)
+use_collision = true
+size = Vector3(3.3, 2.8, 0.1)
+material = SubResource("mat_wall_int")
+
+[node name="WallH2" type="CSGBox3D" parent="Structure" unique_id=1064260345]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.8252742, 1.4, 4.334833)
+use_collision = true
+size = Vector3(3.3, 2.8, 0.1)
+material = SubResource("mat_wall_int")
+
+[node name="WallBathBottomL" type="CSGBox3D" parent="Structure" unique_id=704813178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.4, -2.687262)
+use_collision = true
+size = Vector3(0.8, 2.8, 0.1)
+material = SubResource("mat_wall_int")
+
+[node name="WallBathBottomR" type="CSGBox3D" parent="Structure" unique_id=846837369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.45, 1.4, -2.6084692)
+use_collision = true
+size = Vector3(4.1, 2.8, 0.1)
+material = SubResource("mat_wall_int")
+
+[node name="DoorBed2" type="CSGBox3D" parent="Structure" unique_id=886906923]
+transform = Transform3D(0.34202015, 0, 0.9396926, 0, 1, 0, -0.9396926, 0, 0.34202015, 0.34245622, 1.05, 4.7537065)
+use_collision = true
+size = Vector3(0.05, 2.1, 0.9)
+material = SubResource("mat_door")
+
+[node name="BalconyRailingPost1" type="CSGBox3D" parent="Structure" unique_id=1553212900]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.5, 5.95)
+use_collision = true
+size = Vector3(0.05, 1, 0.05)
+material = SubResource("mat_metal")
+
+[node name="WallBottomRightEntrance2" type="CSGBox3D" parent="Structure" unique_id=1798674533]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.013681336, 1.4, 6.5703363)
+use_collision = true
+size = Vector3(1.1315216, 2.8, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallBottomRightEntrance3" type="CSGBox3D" parent="Structure" unique_id=943617355]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.6025695, 2.4896727, 5.9556327)
+use_collision = true
+size = Vector3(1.1315216, 0.6206543, 0.1)
+material = SubResource("mat_wall_ext")
+
+[node name="WallIntV5" type="CSGBox3D" parent="Structure" unique_id=1447619073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.062837124, 1.4, 4.397725)
+use_collision = true
+size = Vector3(0.1, 2.8, 0.43801272)
+material = SubResource("mat_wall_int")
+
+[node name="Node3D" type="Node3D" parent="Structure" unique_id=408763510]
+
+[node name="ShoeCabinet" parent="Structure" unique_id=1344843869 instance=ExtResource("1_gqpp8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.5707356, 0.050000094, 5.4446855)
+
+[node name="Desk" parent="Structure" unique_id=1493402217 instance=ExtResource("2_ktood")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.977887, 0.38500005, -5.488823)
+
+[node name="Chair" parent="Structure" unique_id=445232758 instance=ExtResource("3_gtexk")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.0937867, 0.049999975, -4.8243327)
+
+[node name="Bed" parent="Structure" unique_id=253534105 instance=ExtResource("4_h8vgv")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.6158159, 0.049999855, -4.9739685)
+
+[node name="Desk2" parent="Structure" unique_id=1682468517 instance=ExtResource("2_ktood")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0072575, 0.38500005, -3.4871843)
+
+[node name="Furniture" type="Node3D" parent="." unique_id=722846288]
+
+[node name="Bed1Frame" type="CSGBox3D" parent="Furniture" unique_id=1153882032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.3, -4.5)
+use_collision = true
+size = Vector3(1.6, 0.4, 2.1)
+material = SubResource("mat_bed_frame")
+
+[node name="Bed1Mattress" type="CSGBox3D" parent="Furniture" unique_id=1123345446]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.6, -4.5)
+use_collision = true
+size = Vector3(1.4, 0.2, 2)
+material = SubResource("mat_mattress")
+
+[node name="Bed1Bedding" type="CSGBox3D" parent="Furniture" unique_id=1405859240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.72, -4.5)
+use_collision = true
+size = Vector3(1.45, 0.05, 2.05)
+material = SubResource("mat_bedding")
+
+[node name="Bed1Pillow1" type="CSGBox3D" parent="Furniture" unique_id=2119315594]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.127385, 0.8345363, -5.257254)
+use_collision = true
+size = Vector3(0.45, 0.15, 0.3)
+material = SubResource("mat_pillow")
+
+[node name="Bed1Pillow2" type="CSGBox3D" parent="Furniture" unique_id=247063532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.9, 0.84321797, -5.258903)
+use_collision = true
+size = Vector3(0.45, 0.15, 0.3)
+material = SubResource("mat_pillow")
+
+[node name="KitchenCounterL" type="CSGBox3D" parent="Furniture" unique_id=1583706475]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.5, -0.15)
+use_collision = true
+size = Vector3(0.6, 0.8, 2.8)
+material = SubResource("mat_cabinet")
+
+[node name="KitchenCounterTop" type="CSGBox3D" parent="Furniture" unique_id=599620700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0.95, -0.15)
+use_collision = true
+size = Vector3(0.65, 0.05, 2.85)
+material = SubResource("mat_sink")
+
+[node name="KitchenCounterBack" type="CSGBox3D" parent="Furniture" unique_id=2144661899]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85, 0.5, -1.3)
+use_collision = true
+size = Vector3(3, 0.8, 0.6)
+material = SubResource("mat_cabinet")
+
+[node name="KitchenCounterBackTop" type="CSGBox3D" parent="Furniture" unique_id=258308065]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.85, 0.95, -1.3)
+use_collision = true
+size = Vector3(3.05, 0.05, 0.65)
+material = SubResource("mat_sink")
+
+[node name="KitchenSink" type="CSGBox3D" parent="Furniture" unique_id=1568203444]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.3, 0.98, -1.3)
+use_collision = true
+size = Vector3(0.6, 0.05, 0.45)
+material = SubResource("mat_metal")
+
+[node name="KitchenStove" type="CSGBox3D" parent="Furniture" unique_id=2137298092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0.98, -1.3)
+use_collision = true
+size = Vector3(0.5, 0.05, 0.45)
+material = SubResource("mat_stove")
+
+[node name="KitchenStoveBody" type="CSGBox3D" parent="Furniture" unique_id=1326731057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 0.6, -1.3)
+use_collision = true
+size = Vector3(0.5, 0.5, 0.45)
+material = SubResource("mat_metal")
+
+[node name="Microwave" type="CSGBox3D" parent="Furniture" unique_id=1797778821]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.862699, 1.0989727, 0.5245756)
+use_collision = true
+size = Vector3(0.5, 0.25, 0.35)
+material = SubResource("mat_metal")
+
+[node name="Node3D" type="Node3D" parent="Furniture" unique_id=1391824725]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -4.48555, 0, 3.6612818)
+
+[node name="BathSinkCabinet" type="CSGBox3D" parent="Furniture/Node3D" unique_id=1255049737]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15700203, 0.5, 0.32028532)
+use_collision = true
+size = Vector3(1, 0.8, 0.5)
+material = SubResource("mat_cabinet")
+
+[node name="BathSinkBasin" type="CSGBox3D" parent="Furniture/Node3D" unique_id=7175032]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15700203, 0.95, 0.32028532)
+use_collision = true
+size = Vector3(0.8, 0.05, 0.4)
+material = SubResource("mat_sink")
+
+[node name="BathMirror" type="CSGBox3D" parent="Furniture/Node3D" unique_id=1510886989]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.15700203, 1.6, 0.14028502)
+use_collision = true
+size = Vector3(0.6, 0.6, 0.05)
+material = SubResource("mat_glass")
+
+[node name="ShowerTray" type="CSGBox3D" parent="Furniture" unique_id=527813905]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.6572506, 0.05, 4.9868193)
+use_collision = true
+size = Vector3(1.2, 0.05, 1.2)
+material = SubResource("mat_shower")
+
+[node name="ShowerGlass1" type="CSGBox3D" parent="Furniture" unique_id=1827219896]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.7508671, 1, 4.3368196)
+use_collision = true
+size = Vector3(1.2, 1.8, 0.05)
+material = SubResource("mat_glass")
+
+[node name="ShowerGlass2" type="CSGBox3D" parent="Furniture" unique_id=1534981391]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.4789352, 1, 4.265575)
+use_collision = true
+size = Vector3(0.05, 1.8, 1.2)
+material = SubResource("mat_glass")
+
+[node name="Rug" type="CSGBox3D" parent="Furniture" unique_id=1362253217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 0.03, 1)
+use_collision = true
+size = Vector3(3, 0.03, 2)
+material = SubResource("mat_rug")
+
+[node name="Toilet" parent="Furniture" unique_id=175823859 instance=ExtResource("5_2diic")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.4302006, 0.049999855, 5.320941)
+
+[node name="Lighting" type="Node3D" parent="." unique_id=1371502561]
+
+[node name="LightMasterBed" type="OmniLight3D" parent="Lighting" unique_id=1241983477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.4, -4)
+light_energy = 0.6
+editor_only = true
+omni_range = 4.0
+
+[node name="LightBed2" type="OmniLight3D" parent="Lighting" unique_id=1115354684]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 2.4, 3.5)
+light_energy = 0.6
+editor_only = true
+omni_range = 4.0
+
+[node name="LightKitchen" type="OmniLight3D" parent="Lighting" unique_id=1060491127]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2.4, -0.15)
+light_energy = 0.7
+editor_only = true
+omni_range = 3.5
+
+[node name="LightBath" type="OmniLight3D" parent="Lighting" unique_id=122010909]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, -4.5)
+light_energy = 0.7
+editor_only = true
+omni_range = 3.5
+
+[node name="LightLiving" type="OmniLight3D" parent="Lighting" unique_id=676928992]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 2.4, 1)
+light_energy = 0.8
+editor_only = true
+
+[node name="LightDining" type="OmniLight3D" parent="Lighting" unique_id=313505617]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.4, -2)
+light_energy = 0.6
+editor_only = true
+omni_range = 3.5
+
+[node name="ClutterPile" parent="Lighting" unique_id=1785705141 instance=ExtResource("6_qdxcq")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.7994218, 0.08799996, 6.4848514)
+
+[node name="Door" parent="." unique_id=948328897 instance=ExtResource("6_dxlhg")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.6059917, 0, 5.94568)
+
+[node name="DoorPivot" type="Node3D" parent="." unique_id=273109286]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6873238, 1.05, 2.7213097)
+
+[node name="DoorBath" type="CSGBox3D" parent="DoorPivot" unique_id=1528792947]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41640007, 0, 0)
+use_collision = true
+size = Vector3(0.8, 2.1, 0.05)
+material = SubResource("mat_door")
+
+[node name="DoorPivot2" type="Node3D" parent="." unique_id=1289467817]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, -1.2107579, 1.05, -2.6642654)
+
+[node name="DoorBath" type="CSGBox3D" parent="DoorPivot2" unique_id=2104344395]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41640007, 0, 0)
+use_collision = true
+size = Vector3(0.8, 2.1, 0.05)
+material = SubResource("mat_door")
+
+[node name="Wardrobe" parent="." unique_id=672047832 instance=ExtResource("7_vnwve")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -4.1397552, 0.050000094, -2.5967968)
+
+[node name="Bed1Frame" type="CSGBox3D" parent="." unique_id=1026718292]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 0.63365483, -5.722881)
+use_collision = true
+size = Vector3(1.6, 1.0673096, 0.33955073)
+material = SubResource("mat_bed_frame")
+
+[node name="Chair" parent="." unique_id=2041899753 instance=ExtResource("3_gtexk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.3617504, 0.04999999, -3.4677346)
+
+[node name="Wardrobe2" parent="." unique_id=2144362090 instance=ExtResource("7_vnwve")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7621272, 0.050000094, -5.1907043)
+
+[node name="Tv" parent="." unique_id=551586452 instance=ExtResource("8_ibdgp")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.1658685, 0.049999855, -1.8472321)
+
+[node name="Sofa" parent="." unique_id=115734805 instance=ExtResource("9_2diic")]
+transform = Transform3D(-0.9998339, 0, 0.018224986, 0, 1, 0, -0.018224986, 0, -0.9998339, 3.0608296, 0.050000094, 3.407332)
+
+[node name="Fridge" parent="." unique_id=254301845 instance=ExtResource("10_dxlhg")]
+transform = Transform3D(-0.006237391, 0, 0.99998057, 0, 1, 0, -0.99998057, 0, -0.006237391, -3.9813726, 0.050000094, 1.9663659)
+
+[node name="DiningTable" parent="." unique_id=649434791 instance=ExtResource("11_vnwve")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0041112304, 0.049999855, 0.8287334)
+
+[node name="DiningChair" parent="." unique_id=216591209 instance=ExtResource("12_ibdgp")]
+transform = Transform3D(-0.9889906, 0, 0.14797844, 0, 1, 0, -0.14797844, 0, -0.9889906, -0.2261576, 0.049999855, 1.8889863)
+
+[node name="DiningChair2" parent="." unique_id=143506430 instance=ExtResource("12_ibdgp")]
+transform = Transform3D(0.36485255, 0, 0.9310653, 0, 1, 0, -0.9310653, 0, 0.36485255, -1.0431393, 0.050000094, 0.3160752)
+
+[node name="DiningChair3" parent="." unique_id=928192979 instance=ExtResource("12_ibdgp")]
+transform = Transform3D(0.53573203, 0, -0.84438807, 0, 1, 0, 0.84438807, 0, 0.53573203, 0.8650123, 0.050000213, 0.23076081)
+
+[node name="CoffeeTable" parent="." unique_id=1922143731 instance=ExtResource("13_ibdgp")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5719557, 0.050000094, 1.3372897)
+
+[node name="IndoorTrashCan" parent="." unique_id=1552957164 instance=ExtResource("14_qdxcq")]
+transform = Transform3D(-0.080621906, 0, 0.99674475, 0, 1, 0, -0.99674475, 0, -0.080621906, -1.5412992, 0.049999975, 4.695141)
+
+[node name="DoorPivot3" type="Node3D" parent="." unique_id=589656933]
+transform = Transform3D(0.46287078, 0, 0.88642573, 0, 1, 0, -0.88642573, 0, 0.46287078, 0.4043373, 1.05, -2.6642654)
+
+[node name="DoorBath" type="CSGBox3D" parent="DoorPivot3" unique_id=1222470124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41640007, 0, 0)
+use_collision = true
+size = Vector3(0.8, 2.1, 0.05)
+material = SubResource("mat_door")
+
+[node name="ApplePlate" parent="." unique_id=1457202027 instance=ExtResource("15_mfc46")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5318086, 0.50412434, 1.3153183)
+
+[node name="FloorLiving" type="CSGBox3D" parent="." unique_id=245501394]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.240747, 0.025, 6.494248)
+use_collision = true
+size = Vector3(4.518506, 0.05, 1.1433643)
+material = SubResource("mat_floor")

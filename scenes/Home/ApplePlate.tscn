@@ -1,0 +1,108 @@
+[gd_scene load_steps=7 format=3]
+
+[sub_resource type="StandardMaterial3D" id="mat_1"]
+resource_name = "plate"
+albedo_color = Color(0.92, 0.90, 0.86, 1)
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="mat_2"]
+resource_name = "apple_red"
+albedo_color = Color(0.82, 0.15, 0.10, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_3"]
+resource_name = "apple_grn"
+albedo_color = Color(0.35, 0.72, 0.28, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_4"]
+resource_name = "apple_ylw"
+albedo_color = Color(0.92, 0.78, 0.22, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_5"]
+resource_name = "stem"
+albedo_color = Color(0.35, 0.22, 0.10, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_6"]
+resource_name = "leaf"
+albedo_color = Color(0.22, 0.55, 0.18, 1)
+roughness = 0.4
+
+[node name="ApplePlate" type="CSGCombiner3D"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+use_collision = true
+
+[node name="Plate" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+material = SubResource("mat_1")
+radius = 0.16
+height = 0.025
+
+[node name="PlateRim" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.008, 0)
+material = SubResource("mat_1")
+radius = 0.17
+height = 0.012
+
+[node name="Apple_1" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.045, 0, 0, 0, 0.042749999999999996, 0, 0, 0, 0.045, -0.04, 0.075, 0.03)
+material = SubResource("mat_2")
+radius = 1.0
+
+[node name="Stem_1" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04, 0.10875, 0.03)
+material = SubResource("mat_5")
+radius = 0.005
+height = 0.025
+
+[node name="Leaf_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.005, 0, 0, 0, 0.02, -0.028, 0.11549999999999999, 0.03)
+material = SubResource("mat_6")
+
+[node name="Apple_2" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.042, 0, 0, 0, 0.0399, 0, 0, 0, 0.042, 0.02, 0.07200000000000001, -0.05)
+material = SubResource("mat_3")
+radius = 1.0
+
+[node name="Stem_2" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.02, 0.10350000000000001, -0.05)
+material = SubResource("mat_5")
+radius = 0.005
+height = 0.025
+
+[node name="Leaf_2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.005, 0, 0, 0, 0.02, 0.032, 0.10980000000000001, -0.05)
+material = SubResource("mat_6")
+
+[node name="Apple_3" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.048, 0, 0, 0, 0.0456, 0, 0, 0, 0.048, 0.05, 0.078, 0.04)
+material = SubResource("mat_2")
+radius = 1.0
+
+[node name="Stem_3" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.114, 0.04)
+material = SubResource("mat_5")
+radius = 0.005
+height = 0.025
+
+[node name="Leaf_3" type="CSGBox3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.005, 0, 0, 0, 0.02, 0.062, 0.1212, 0.04)
+material = SubResource("mat_6")
+
+[node name="Apple_4" type="CSGSphere3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.038, 0, 0, 0, 0.04, -0.05, 0.07, -0.04)
+material = SubResource("mat_4")
+radius = 1.0
+
+[node name="Stem_4" type="CSGCylinder3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.05, 0.1, -0.04)
+material = SubResource("mat_5")
+radius = 0.005
+height = 0.025
+
+[node name="Leaf_4" type="CSGBox3D" parent="."]
+transform = Transform3D(0.015, 0, 0, 0, 0.005, 0, 0, 0, 0.02, -0.038000000000000006, 0.10600000000000001, -0.04)
+material = SubResource("mat_6")
+

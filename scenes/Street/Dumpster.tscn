@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://bnrfbbl5u5vuh"]
+
+[ext_resource type="PackedScene" uid="uid://cchnp82rpvnb3" path="res://addons/kaykit_city_builder_bits/Assets/gltf/dumpster.gltf" id="1_402cd"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
+size = Vector3(2.1000001, 1.1, 1.2)
+
+[node name="dumpster" type="Node3D" unique_id=1871622347]
+
+[node name="dumpster2" parent="." unique_id=1207565888 instance=ExtResource("1_402cd")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1077350051]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1647109038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.049999923, 0.5927884, 0)
+shape = SubResource("BoxShape3D_bfdp3")

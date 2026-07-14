@@ -1,0 +1,84 @@
+[gd_scene format=3 uid="uid://chair01"]
+
+[sub_resource type="StandardMaterial3D" id="mat_seat"]
+albedo_color = Color(0.60, 0.36, 0.16, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_leg"]
+albedo_color = Color(0.42, 0.24, 0.10, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_backrest"]
+albedo_color = Color(0.50, 0.30, 0.14, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_cross"]
+albedo_color = Color(0.38, 0.22, 0.09, 1)
+roughness = 0.65
+
+[node name="Chair" type="Node3D"]
+
+[node name="Leg_FR" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.46, 0, 0, 0, 0.04, 0.18000000000000002, 0.23, 0.18000000000000002)
+material = SubResource("mat_leg")
+use_collision = true
+
+[node name="Leg_FL" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.46, 0, 0, 0, 0.04, -0.18000000000000002, 0.23, 0.18000000000000002)
+material = SubResource("mat_leg")
+use_collision = true
+
+[node name="Leg_BL" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.46, 0, 0, 0, 0.04, -0.18000000000000002, 0.23, -0.18000000000000002)
+material = SubResource("mat_leg")
+use_collision = true
+
+[node name="Leg_BR" type="CSGBox3D" parent="."]
+transform = Transform3D(0.04, 0, 0, 0, 0.46, 0, 0, 0, 0.04, 0.18000000000000002, 0.23, -0.18000000000000002)
+material = SubResource("mat_leg")
+use_collision = true
+
+[node name="Seat" type="CSGBox3D" parent="."]
+transform = Transform3D(0.46, 0, 0, 0, 0.035, 0, 0, 0, 0.46, 0, 0.47750000000000004, 0)
+material = SubResource("mat_seat")
+use_collision = true
+
+[node name="Post_L" type="CSGBox3D" parent="."]
+transform = Transform3D(0.06, 0, 0, 0, 0.42, 0, 0, 0, 0.018, -0.18000000000000002, 0.705, -0.18000000000000002)
+material = SubResource("mat_backrest")
+use_collision = true
+
+[node name="Post_R" type="CSGBox3D" parent="."]
+transform = Transform3D(0.06, 0, 0, 0, 0.42, 0, 0, 0, 0.018, 0.18000000000000002, 0.705, -0.18000000000000002)
+material = SubResource("mat_backrest")
+use_collision = true
+
+[node name="Rail_0" type="CSGBox3D" parent="."]
+transform = Transform3D(0.32, 0, 0, 0, 0.025, 0, 0, 0, 0.018, 0, 0.52, -0.18000000000000002)
+material = SubResource("mat_backrest")
+use_collision = true
+
+[node name="Rail_1" type="CSGBox3D" parent="."]
+transform = Transform3D(0.32, 0, 0, 0, 0.025, 0, 0, 0, 0.018, 0, 0.705, -0.18000000000000002)
+material = SubResource("mat_backrest")
+use_collision = true
+
+[node name="Rail_2" type="CSGBox3D" parent="."]
+transform = Transform3D(0.32, 0, 0, 0, 0.025, 0, 0, 0, 0.018, 0, 0.8899999999999999, -0.18000000000000002)
+material = SubResource("mat_backrest")
+use_collision = true
+
+[node name="Cross_Left" type="CSGBox3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.035, 0, 0, 0, 0.36000000000000004, -0.18000000000000002, 0.161, 0)
+material = SubResource("mat_cross")
+use_collision = true
+
+[node name="Cross_Right" type="CSGBox3D" parent="."]
+transform = Transform3D(0.02, 0, 0, 0, 0.035, 0, 0, 0, 0.36000000000000004, 0.18000000000000002, 0.161, 0)
+material = SubResource("mat_cross")
+use_collision = true
+
+[node name="Cross_Front" type="CSGBox3D" parent="."]
+transform = Transform3D(0.36000000000000004, 0, 0, 0, 0.035, 0, 0, 0, 0.02, 0, 0.161, 0.18000000000000002)
+material = SubResource("mat_cross")
+use_collision = true

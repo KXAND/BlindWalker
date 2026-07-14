@@ -1,0 +1,581 @@
+[gd_scene format=3 uid="uid://bagbch1ttjdjs"]
+
+[sub_resource type="StandardMaterial3D" id="mat_sidewalk"]
+albedo_color = Color(0.55, 0.53, 0.5, 1)
+roughness = 0.68
+
+[sub_resource type="StandardMaterial3D" id="mat_facade"]
+albedo_color = Color(0.72, 0.7, 0.67, 1)
+metallic = 0.08
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_facade_dark"]
+albedo_color = Color(0.38, 0.36, 0.34, 1)
+metallic = 0.1
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_window"]
+albedo_color = Color(0.35, 0.45, 0.55, 1)
+metallic = 0.85
+roughness = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.22, 0.21, 0.2, 1)
+metallic = 0.05
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_ground_band"]
+albedo_color = Color(0.3, 0.28, 0.26, 1)
+metallic = 0.12
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+albedo_color = Color(0.42, 0.52, 0.62, 1)
+metallic = 0.88
+roughness = 0.04
+
+[sub_resource type="StandardMaterial3D" id="mat_frame"]
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+metallic = 0.85
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="mat_step"]
+albedo_color = Color(0.55, 0.53, 0.5, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_column"]
+albedo_color = Color(0.82, 0.8, 0.77, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_door_handle"]
+albedo_color = Color(0.78, 0.8, 0.84, 1)
+metallic = 0.95
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="mat_canopy_glass"]
+albedo_color = Color(0.55, 0.65, 0.75, 0.65)
+metallic = 0.85
+roughness = 0.02
+
+[sub_resource type="StandardMaterial3D" id="mat_canopy_frame"]
+albedo_color = Color(0.28, 0.3, 0.32, 1)
+metallic = 0.82
+roughness = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.15, 0.22, 0.32, 1)
+metallic = 0.3
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_text"]
+albedo_color = Color(0.95, 0.93, 0.88, 1)
+metallic = 0.25
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="mat_planter"]
+albedo_color = Color(0.55, 0.52, 0.48, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_plant"]
+albedo_color = Color(0.15, 0.42, 0.18, 1)
+roughness = 0.7
+
+[node name="OfficeTower" type="Node3D" unique_id=269122508]
+
+[node name="SidewalkFront" type="CSGBox3D" parent="." unique_id=709285763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.05, -0.6)
+use_collision = true
+size = Vector3(14, 0.1, 3)
+material = SubResource("mat_sidewalk")
+
+[node name="SidewalkLeft" type="CSGBox3D" parent="." unique_id=1795080254]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0.05, -5.8)
+use_collision = true
+size = Vector3(4, 0.1, 8)
+material = SubResource("mat_sidewalk")
+
+[node name="SidewalkRight" type="CSGBox3D" parent="." unique_id=1484968975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0.05, -5.8)
+use_collision = true
+size = Vector3(4, 0.1, 8)
+material = SubResource("mat_sidewalk")
+
+[node name="FrontWallLeft" type="CSGBox3D" parent="." unique_id=1332582733]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 2.5, -1.8)
+use_collision = true
+size = Vector3(2, 5, 0.25)
+material = SubResource("mat_facade")
+
+[node name="FrontWallRight" type="CSGBox3D" parent="." unique_id=544052438]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 2.5, -1.8)
+use_collision = true
+size = Vector3(2, 5, 0.25)
+material = SubResource("mat_facade")
+
+[node name="FrontWallTop" type="CSGBox3D" parent="." unique_id=511940224]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.82, -1.8)
+use_collision = true
+size = Vector3(12.4, 0.34, 0.25)
+material = SubResource("mat_facade_dark")
+
+[node name="LeftWall" type="CSGBox3D" parent="." unique_id=1850200239]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.5, -5.8)
+use_collision = true
+size = Vector3(0.25, 5, 8)
+material = SubResource("mat_facade")
+
+[node name="LeftWindow_01" type="CSGBox3D" parent="." unique_id=1058898762]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 1.8, -3)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="LeftWindow_02" type="CSGBox3D" parent="." unique_id=895911499]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 1.8, -5.5)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="LeftWindow_03" type="CSGBox3D" parent="." unique_id=272294419]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 1.8, -8)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="LeftBand_01" type="CSGBox3D" parent="." unique_id=1315573031]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 1.15, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="LeftBand_02" type="CSGBox3D" parent="." unique_id=2094334787]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 2.45, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="LeftBand_03" type="CSGBox3D" parent="." unique_id=71377353]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.88, 3.65, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="RightWall" type="CSGBox3D" parent="." unique_id=385523456]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.5, -5.8)
+use_collision = true
+size = Vector3(0.25, 5, 8)
+material = SubResource("mat_facade")
+
+[node name="RightWindow_01" type="CSGBox3D" parent="." unique_id=1963353098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 1.8, -3)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="RightWindow_02" type="CSGBox3D" parent="." unique_id=198898641]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 1.8, -5.5)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="RightWindow_03" type="CSGBox3D" parent="." unique_id=1798218145]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 1.8, -8)
+use_collision = true
+size = Vector3(0.04, 1.6, 1.2)
+material = SubResource("mat_window")
+
+[node name="RightBand_01" type="CSGBox3D" parent="." unique_id=1029884344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 1.15, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="RightBand_02" type="CSGBox3D" parent="." unique_id=1199216338]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 2.45, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="RightBand_03" type="CSGBox3D" parent="." unique_id=728612425]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.88, 3.65, -5.8)
+use_collision = true
+size = Vector3(0.04, 0.04, 8)
+material = SubResource("mat_facade_dark")
+
+[node name="BackWall" type="CSGBox3D" parent="." unique_id=1215205116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.5, -9.8)
+use_collision = true
+size = Vector3(12, 5, 0.25)
+material = SubResource("mat_facade")
+
+[node name="BackWindow_01" type="CSGBox3D" parent="." unique_id=1853954173]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1.8, -9.68)
+use_collision = true
+size = Vector3(1.4, 1.6, 0.04)
+material = SubResource("mat_window")
+
+[node name="BackWindow_02" type="CSGBox3D" parent="." unique_id=474305330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.8, -9.68)
+use_collision = true
+size = Vector3(1.4, 1.6, 0.04)
+material = SubResource("mat_window")
+
+[node name="BackWindow_03" type="CSGBox3D" parent="." unique_id=1856446116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, -9.68)
+use_collision = true
+size = Vector3(1.4, 1.6, 0.04)
+material = SubResource("mat_window")
+
+[node name="BackWindow_04" type="CSGBox3D" parent="." unique_id=442416107]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.8, -9.68)
+use_collision = true
+size = Vector3(1.4, 1.6, 0.04)
+material = SubResource("mat_window")
+
+[node name="BackWindow_05" type="CSGBox3D" parent="." unique_id=1250073529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1.8, -9.68)
+use_collision = true
+size = Vector3(1.4, 1.6, 0.04)
+material = SubResource("mat_window")
+
+[node name="BackBand_01" type="CSGBox3D" parent="." unique_id=731330878]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.15, -9.68)
+use_collision = true
+size = Vector3(12, 0.04, 0.04)
+material = SubResource("mat_facade_dark")
+
+[node name="BackBand_02" type="CSGBox3D" parent="." unique_id=1939636017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.45, -9.68)
+use_collision = true
+size = Vector3(12, 0.04, 0.04)
+material = SubResource("mat_facade_dark")
+
+[node name="BackBand_03" type="CSGBox3D" parent="." unique_id=1547813174]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.65, -9.68)
+use_collision = true
+size = Vector3(12, 0.04, 0.04)
+material = SubResource("mat_facade_dark")
+
+[node name="Roof" type="CSGBox3D" parent="." unique_id=1643308347]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -5.8)
+use_collision = true
+size = Vector3(12.4, 0.2, 8.4)
+material = SubResource("mat_roof")
+
+[node name="CorniceFront" type="CSGBox3D" parent="." unique_id=917568436]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85, -1.75)
+use_collision = true
+size = Vector3(12.6, 0.12, 0.15)
+material = SubResource("mat_facade_dark")
+
+[node name="CorniceLeft" type="CSGBox3D" parent="." unique_id=185731802]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.05, 4.85, -5.8)
+use_collision = true
+size = Vector3(0.15, 0.12, 8.6)
+material = SubResource("mat_facade_dark")
+
+[node name="CorniceRight" type="CSGBox3D" parent="." unique_id=998505284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6.05, 4.85, -5.8)
+use_collision = true
+size = Vector3(0.15, 0.12, 8.6)
+material = SubResource("mat_facade_dark")
+
+[node name="CorniceBack" type="CSGBox3D" parent="." unique_id=461906139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.85, -9.85)
+use_collision = true
+size = Vector3(12.6, 0.12, 0.15)
+material = SubResource("mat_facade_dark")
+
+[node name="BaseBandFront" type="CSGBox3D" parent="." unique_id=1625534156]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -1.78)
+use_collision = true
+size = Vector3(12.3, 0.3, 0.1)
+material = SubResource("mat_ground_band")
+
+[node name="BaseBandLeft" type="CSGBox3D" parent="." unique_id=196386006]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.9, 0.22, -5.8)
+use_collision = true
+size = Vector3(0.1, 0.3, 8.2)
+material = SubResource("mat_ground_band")
+
+[node name="BaseBandRight" type="CSGBox3D" parent="." unique_id=821721240]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9, 0.22, -5.8)
+use_collision = true
+size = Vector3(0.1, 0.3, 8.2)
+material = SubResource("mat_ground_band")
+
+[node name="BaseBandBack" type="CSGBox3D" parent="." unique_id=662998972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.22, -9.78)
+use_collision = true
+size = Vector3(12.3, 0.3, 0.1)
+material = SubResource("mat_ground_band")
+
+[node name="GlassWallLeft" type="CSGBox3D" parent="." unique_id=354988675]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 2, -1.8)
+use_collision = true
+size = Vector3(2.8, 3.6, 0.06)
+material = SubResource("mat_glass")
+
+[node name="GlassWallRight" type="CSGBox3D" parent="." unique_id=1798993334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 2, -1.8)
+use_collision = true
+size = Vector3(2.8, 3.6, 0.06)
+material = SubResource("mat_glass")
+
+[node name="GlassWallTop" type="CSGBox3D" parent="." unique_id=659387639]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 4.22, -1.8)
+use_collision = true
+size = Vector3(8.4, 0.45, 0.06)
+material = SubResource("mat_glass")
+
+[node name="Frame_V1" type="CSGBox3D" parent="." unique_id=1386456046]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.95, 2, -1.78)
+use_collision = true
+size = Vector3(0.06, 3.6, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_V2" type="CSGBox3D" parent="." unique_id=1391121584]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.05, 2, -1.78)
+use_collision = true
+size = Vector3(0.06, 3.6, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_V3" type="CSGBox3D" parent="." unique_id=1571607503]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.05, 2, -1.78)
+use_collision = true
+size = Vector3(0.06, 3.6, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_V4" type="CSGBox3D" parent="." unique_id=2120038803]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.95, 2, -1.78)
+use_collision = true
+size = Vector3(0.06, 3.6, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_H1" type="CSGBox3D" parent="." unique_id=1941045668]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2, -1.78)
+use_collision = true
+size = Vector3(8.4, 0.06, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_H2" type="CSGBox3D" parent="." unique_id=231785302]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.4, -1.78)
+use_collision = true
+size = Vector3(8.4, 0.06, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Frame_H3" type="CSGBox3D" parent="." unique_id=669664354]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.48, -1.78)
+use_collision = true
+size = Vector3(8.4, 0.06, 0.08)
+material = SubResource("mat_frame")
+
+[node name="Step1" type="CSGBox3D" parent="." unique_id=138861822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, -1.05)
+use_collision = true
+size = Vector3(6.4, 0.16, 1.2)
+material = SubResource("mat_step")
+
+[node name="Step2" type="CSGBox3D" parent="." unique_id=249386839]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.26, -0.55)
+use_collision = true
+size = Vector3(5.6, 0.16, 1)
+material = SubResource("mat_step")
+
+[node name="Step3" type="CSGBox3D" parent="." unique_id=508978602]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.42, -0.15)
+use_collision = true
+size = Vector3(4.8, 0.16, 0.8)
+material = SubResource("mat_step")
+
+[node name="Column_FL" type="CSGCylinder3D" parent="." unique_id=433647691]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.45, -1.55)
+use_collision = true
+radius = 0.2
+height = 2.7
+material = SubResource("mat_column")
+
+[node name="Column_FR" type="CSGCylinder3D" parent="." unique_id=1151343412]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.45, -1.55)
+use_collision = true
+radius = 0.2
+height = 2.7
+material = SubResource("mat_column")
+
+[node name="Column_BL" type="CSGCylinder3D" parent="." unique_id=66760057]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.45, -3.1)
+use_collision = true
+radius = 0.2
+height = 2.7
+material = SubResource("mat_column")
+
+[node name="Column_BR" type="CSGCylinder3D" parent="." unique_id=506689467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.45, -3.1)
+use_collision = true
+radius = 0.2
+height = 2.7
+material = SubResource("mat_column")
+
+[node name="DoorLeft" type="CSGBox3D" parent="." unique_id=2131155854]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.0419257, 1.35, -1.7)
+use_collision = true
+size = Vector3(0.9, 2, 0.04)
+material = SubResource("mat_glass")
+
+[node name="DoorRight" type="CSGBox3D" parent="." unique_id=370455680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0525231, 1.35, -1.7)
+use_collision = true
+size = Vector3(0.9, 2, 0.04)
+material = SubResource("mat_glass")
+
+[node name="DoorCenterLeft" type="CSGBox3D" parent="." unique_id=1076346017]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.29140434, 1.35, -1.7)
+use_collision = true
+size = Vector3(0.6, 2, 0.04)
+material = SubResource("mat_glass")
+
+[node name="DoorCenterRight" type="CSGBox3D" parent="." unique_id=935241119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.30588815, 1.35, -1.7)
+use_collision = true
+size = Vector3(0.6, 2, 0.04)
+material = SubResource("mat_glass")
+
+[node name="Handle_L" type="CSGCylinder3D" parent="." unique_id=1318573872]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.38, 1.35, -1.65)
+use_collision = true
+radius = 0.015
+height = 0.4
+material = SubResource("mat_door_handle")
+
+[node name="Handle_R" type="CSGCylinder3D" parent="." unique_id=698471669]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 1.38, 1.35, -1.65)
+use_collision = true
+radius = 0.015
+height = 0.4
+material = SubResource("mat_door_handle")
+
+[node name="CanopyGlass" type="CSGBox3D" parent="." unique_id=1608606716]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -1.6)
+use_collision = true
+size = Vector3(6.4, 0.04, 2.5)
+material = SubResource("mat_canopy_glass")
+
+[node name="CanopyFrameFront" type="CSGBox3D" parent="." unique_id=1094213579]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -0.38)
+use_collision = true
+size = Vector3(6.4, 0.06, 0.06)
+material = SubResource("mat_canopy_frame")
+
+[node name="CanopyFrameBack" type="CSGBox3D" parent="." unique_id=978053719]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.15, -2.82)
+use_collision = true
+size = Vector3(6.4, 0.06, 0.06)
+material = SubResource("mat_canopy_frame")
+
+[node name="CanopyFrameLeft" type="CSGBox3D" parent="." unique_id=1511433357]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.17, 3.15, -1.6)
+use_collision = true
+size = Vector3(0.06, 0.06, 2.44)
+material = SubResource("mat_canopy_frame")
+
+[node name="CanopyFrameRight" type="CSGBox3D" parent="." unique_id=1649217272]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.17, 3.15, -1.6)
+use_collision = true
+size = Vector3(0.06, 0.06, 2.44)
+material = SubResource("mat_canopy_frame")
+
+[node name="CanopyBracketLeft" type="CSGBox3D" parent="." unique_id=1671651382]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 2.72, -1.6)
+use_collision = true
+size = Vector3(0.04, 0.12, 0.08)
+material = SubResource("mat_canopy_frame")
+
+[node name="CanopyBracketRight" type="CSGBox3D" parent="." unique_id=1916472834]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 2.72, -1.6)
+use_collision = true
+size = Vector3(0.04, 0.12, 0.08)
+material = SubResource("mat_canopy_frame")
+
+[node name="SignPlaque" type="CSGBox3D" parent="." unique_id=1360744811]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85, -1.78)
+use_collision = true
+size = Vector3(4, 0.32, 0.04)
+material = SubResource("mat_sign")
+
+[node name="SignText" type="CSGBox3D" parent="." unique_id=1453294734]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.85, -2.72)
+use_collision = true
+size = Vector3(3, 0.14, 0.05)
+material = SubResource("mat_sign_text")
+
+[node name="PlanterBoxLeft" type="CSGBox3D" parent="." unique_id=936969902]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.24, -0.5)
+use_collision = true
+size = Vector3(1.2, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="PlanterPlantLeft" type="CSGSphere3D" parent="." unique_id=1976517244]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.65, -0.5)
+use_collision = true
+radius = 0.35
+material = SubResource("mat_plant")
+
+[node name="PlanterBoxRight" type="CSGBox3D" parent="." unique_id=2071030284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.24, -0.5)
+use_collision = true
+size = Vector3(1.2, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="PlanterPlantRight" type="CSGSphere3D" parent="." unique_id=1174394211]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.65, -0.5)
+use_collision = true
+radius = 0.35
+material = SubResource("mat_plant")
+
+[node name="BackPlanterLeft" type="CSGBox3D" parent="." unique_id=1020434321]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7060356, 0.24, -8.066355)
+use_collision = true
+size = Vector3(1.5, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="BackPlantLeft" type="CSGSphere3D" parent="." unique_id=1248851589]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7060356, 0.7, -8.066355)
+use_collision = true
+radius = 0.38
+material = SubResource("mat_plant")
+
+[node name="BackPlanterLeft2" type="CSGBox3D" parent="." unique_id=109083861]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7060356, 0.24, -4.0663548)
+use_collision = true
+size = Vector3(1.5, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="BackPlantLeft2" type="CSGSphere3D" parent="." unique_id=1847885214]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -6.7060356, 0.7, -4.0663548)
+use_collision = true
+radius = 0.38
+material = SubResource("mat_plant")
+
+[node name="BackPlanterRight" type="CSGBox3D" parent="." unique_id=348754046]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.610588, 0.24, -3.7580514)
+use_collision = true
+size = Vector3(1.5, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="BackPlantRight" type="CSGSphere3D" parent="." unique_id=2062690589]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.610588, 0.7, -3.7580514)
+use_collision = true
+radius = 0.38
+material = SubResource("mat_plant")
+
+[node name="BackPlanterRight2" type="CSGBox3D" parent="." unique_id=1877812883]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.610588, 0.24, -7.7580514)
+use_collision = true
+size = Vector3(1.5, 0.38, 0.6)
+material = SubResource("mat_planter")
+
+[node name="BackPlantRight2" type="CSGSphere3D" parent="." unique_id=994560181]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 6.610588, 0.7, -7.7580514)
+use_collision = true
+radius = 0.38
+material = SubResource("mat_plant")
