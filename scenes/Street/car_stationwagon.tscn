@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://32evomc2jmlj"]
+
+[ext_resource type="PackedScene" uid="uid://dbj30f2cy2tln" path="res://addons/kaykit_city_builder_bits/Assets/gltf/car_stationwagon.gltf" id="1_i2idt"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
+size = Vector3(1.6, 1.2, 3.8)
+
+[node name="car_stationwagon" type="Node3D" unique_id=1479765871]
+
+[node name="car_stationwagon2" parent="." unique_id=158621461 instance=ExtResource("1_i2idt")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1478000743]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=923085700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.9604645e-08, 0.39999998, 1.1920929e-07)
+shape = SubResource("BoxShape3D_bfdp3")

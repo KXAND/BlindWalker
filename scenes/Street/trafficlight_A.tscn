@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://drdpokp24tjle"]
+
+[ext_resource type="PackedScene" uid="uid://blmjge8qweh8w" path="res://addons/kaykit_city_builder_bits/Assets/gltf/trafficlight_A.gltf" id="1_vsiqe"]
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_bfdp3"]
+height = 0.975708
+radius = 0.125
+
+[node name="trafficlight_A" type="Node3D" unique_id=992782459]
+
+[node name="trafficlight_A2" parent="." unique_id=419265710 instance=ExtResource("1_vsiqe")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1928457345]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=1547946264]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.512146, 0)
+shape = SubResource("CylinderShape3D_bfdp3")

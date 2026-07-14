@@ -70,47 +70,38 @@ material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_1" type="CSGBox3D" parent="." unique_id=216456416]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 1.515, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_2" type="CSGBox3D" parent="." unique_id=846494497]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.1, 1.675, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_3" type="CSGBox3D" parent="." unique_id=1952658637]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.82, 1.835, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_4" type="CSGBox3D" parent="." unique_id=1812028628]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.54, 1.995, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_5" type="CSGBox3D" parent="." unique_id=1457618769]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.26, 2.155, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_6" type="CSGBox3D" parent="." unique_id=631245791]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.98, 2.315, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_7" type="CSGBox3D" parent="." unique_id=1696259130]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.7, 2.475, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_8" type="CSGBox3D" parent="." unique_id=1639461968]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.42, 2.635, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_B_9" type="CSGBox3D" parent="." unique_id=429297469]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.14, 2.795, 1.8)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Landing" type="CSGBox3D" parent="." unique_id=2043923647]
@@ -362,47 +353,38 @@ material = SubResource("mat_3")
 
 [node name="Stairwell#Step_A_10" type="CSGBox3D" parent="." unique_id=1216327105]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.14, 3.1043625, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_11" type="CSGBox3D" parent="." unique_id=651984226]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.42, 3.2643623, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_12" type="CSGBox3D" parent="." unique_id=1523365354]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.7, 3.4243624, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_13" type="CSGBox3D" parent="." unique_id=1685865829]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 0.98, 3.5843625, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_14" type="CSGBox3D" parent="." unique_id=519175857]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.26, 3.7443624, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_15" type="CSGBox3D" parent="." unique_id=1273977480]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.54, 3.9043624, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_16" type="CSGBox3D" parent="." unique_id=85122335]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 1.82, 4.0643625, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_17" type="CSGBox3D" parent="." unique_id=180037574]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.1, 4.2243624, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#Step_A_18" type="CSGBox3D" parent="." unique_id=2044256517]
 transform = Transform3D(0.28, 0, 0, 0, 0.15, 0, 0, 0, 1.2, 2.38, 4.384362, 0.6)
-use_collision = true
 material = SubResource("mat_1")
 
 [node name="Stairwell#SideWall_Left3" type="CSGBox3D" parent="." unique_id=123230404]
@@ -420,7 +402,24 @@ use_collision = true
 material = SubResource("mat_4")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=114700903]
+collision_mask = 0
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=489793936]
+transform = Transform3D(0.86545557, -0.50098586, 0, 0.50098586, 0.86545557, 0, 0, 0, 1, 1.3691542, 0.4680693, 0.56121063)
+shape = SubResource("BoxShape3D_bfdp3")
+
+[node name="StaticBody3D2" type="StaticBody3D" parent="." unique_id=1400780190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.0000002, 0)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D2" unique_id=1209812062]
+transform = Transform3D(0.86545557, -0.50098586, 0, 0.50098586, 0.86545557, 0, 0, 0, 1, 1.3691542, 0.4680693, 0.56121063)
+shape = SubResource("BoxShape3D_bfdp3")
+
+[node name="StaticBody3D3" type="StaticBody3D" parent="." unique_id=1405034029]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 2.6000001, 1.4000002, 2.3999999)
+collision_mask = 0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1964820117]
 transform = Transform3D(0.86545557, -0.50098586, 0, 0.50098586, 0.86545557, 0, 0, 0, 1, 1.3691542, 0.4680693, 0.56121063)
 shape = SubResource("BoxShape3D_bfdp3")

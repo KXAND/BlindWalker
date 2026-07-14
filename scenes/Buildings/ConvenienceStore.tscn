@@ -131,13 +131,13 @@ size = Vector3(5, 0.06, 1.2)
 material = SubResource("material_awning")
 
 [node name="AwningPostLeft" type="CSGBox3D" parent="." unique_id=363529357]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 4.15)
-size = Vector3(0.08, 2.8, 0.08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.4, 4.15)
+size = Vector3(0.08, 3, 0.08)
 material = SubResource("material_post")
 
 [node name="AwningPostRight" type="CSGBox3D" parent="." unique_id=2041598525]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 4.15)
-size = Vector3(0.08, 2.8, 0.08)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.4, 4.15)
+size = Vector3(0.08, 3, 0.08)
 material = SubResource("material_post")
 
 [node name="DoorStep" type="CSGBox3D" parent="." unique_id=848099295]
