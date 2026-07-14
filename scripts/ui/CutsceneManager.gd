@@ -9,10 +9,13 @@ extends Node
 @export var play_initial_sequence_on_ready: bool = false
 
 const CANVAS_LAYER := 5
+const SKIP_LINE_KEY := KEY_SPACE
+const SKIP_SEQUENCE_KEY := KEY_ESCAPE
 const _NarrativeLine = preload("res://scripts/core/NarrativeLine.gd")
 const _NarrativeSequence = preload("res://scripts/core/NarrativeSequence.gd")
 
 var _subtitle_panel: Panel
+var _skip_hint_label: Label
 var _current_sequence: Resource
 var _line_index: int = -1
 var _line_elapsed: float = 0.0
@@ -25,6 +28,10 @@ var _is_playing_sequence: bool = false
 func _ready() -> void:
 	if not subtitle_label:
 		_create_subtitle_ui()
+	else:
+		_create_skip_hint_ui(subtitle_label.get_parent())
+	EventBus.player_fall_started.connect(_interrupt_sequence)
+	EventBus.player_died.connect(_interrupt_sequence)
 	if play_initial_sequence_on_ready and initial_sequence:
 		call_deferred("play_sequence", initial_sequence)
 
@@ -45,10 +52,10 @@ func _input(event: InputEvent) -> void:
 	if not _is_playing_sequence:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
-		if event.keycode == KEY_SPACE:
+		if event.keycode == SKIP_LINE_KEY:
 			get_viewport().set_input_as_handled()
 			_advance_line()
-		elif event.keycode == KEY_ESCAPE:
+		elif event.keycode == SKIP_SEQUENCE_KEY:
 			get_viewport().set_input_as_handled()
 			_finish_sequence()
 
@@ -154,6 +161,11 @@ func _finish_sequence() -> void:
 		print("[DEBUG][CutsceneManager] sequence ended id=%s" % sequence_id)
 
 
+func _interrupt_sequence() -> void:
+	if _is_playing_sequence:
+		_finish_sequence()
+
+
 func _clear_narrative_locks() -> void:
 	if _input_locked_by_sequence:
 		GameState.set_cutscene_active(false)
@@ -180,6 +192,8 @@ func _show_line(line: Resource) -> void:
 	subtitle_label.visible = true
 	if _subtitle_panel:
 		_subtitle_panel.visible = true
+	if _skip_hint_label:
+		_skip_hint_label.visible = true
 
 	if not speaker_label:
 		return
@@ -203,6 +217,8 @@ func _hide_subtitle() -> void:
 		speaker_label.visible = false
 	if _subtitle_panel:
 		_subtitle_panel.visible = false
+	if _skip_hint_label:
+		_skip_hint_label.visible = false
 
 
 func _subtitle_for(cutscene_id: String) -> String:
@@ -261,3 +277,23 @@ func _create_subtitle_ui() -> void:
 	subtitle_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
 	subtitle_label.add_theme_font_size_override("font_size", 24)
 	vbox.add_child(subtitle_label)
+
+	_create_skip_hint_ui(vbox)
+
+
+func _create_skip_hint_ui(parent: Node) -> void:
+	if _skip_hint_label or not parent:
+		return
+	_skip_hint_label = Label.new()
+	_skip_hint_label.name = "SkipHintLabel"
+	_skip_hint_label.visible = false
+	_skip_hint_label.text = "%s 下一句    %s 跳过" % [
+		OS.get_keycode_string(SKIP_LINE_KEY),
+		OS.get_keycode_string(SKIP_SEQUENCE_KEY),
+	]
+	_skip_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	_skip_hint_label.add_theme_font_size_override("font_size", 15)
+	_skip_hint_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 0.7))
+	_skip_hint_label.add_theme_color_override("font_outline_color", Color(0.0, 0.0, 0.0, 1.0))
+	_skip_hint_label.add_theme_constant_override("outline_size", 3)
+	parent.add_child(_skip_hint_label)

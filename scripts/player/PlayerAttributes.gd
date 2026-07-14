@@ -39,7 +39,15 @@ func _process(delta: float) -> void:
 
 
 func take_damage(amount: int) -> void:
-	if GameState.is_gameplay_locked():
+	_take_damage(amount, false)
+
+
+func take_damage_ignoring_gameplay_lock(amount: int) -> void:
+	_take_damage(amount, true)
+
+
+func _take_damage(amount: int, ignore_gameplay_lock: bool) -> void:
+	if GameState.is_gameplay_locked() and not ignore_gameplay_lock:
 		if GameConfig.DEBUG:
 			print("[DEBUG][PlayerAttributes] damage ignored reason=gameplay_locked amount=%d" % amount)
 		return

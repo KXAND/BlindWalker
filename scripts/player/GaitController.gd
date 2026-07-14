@@ -364,6 +364,10 @@ func _do_fall(fall_distance: float) -> void:
 func _start_fall(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:
 	if GameState.is_gameplay_locked():
 		return
+	_start_fall_ignoring_gameplay_lock(direction, fall_distance, lift_delta)
+
+
+func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:
 	_balance_state = BalanceState.FALLING
 	_balance_timer = 0.0
 	_tumble_elapsed = 0.0
@@ -421,7 +425,7 @@ func _update_balance_state(delta: float) -> void:
 				EventBus.player_recovery_qte_progress.emit(_unstable_stumble_progress, _recovery_qte_pressed)
 			_balance_timer = (1.0 - _unstable_stumble_progress) * GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
 			if _unstable_stumble_progress >= 1.0:
-				_start_fall(-global_transform.basis.z.normalized(), 0.0, _pending_stumble_lift_delta)
+				_start_fall_ignoring_gameplay_lock(-global_transform.basis.z.normalized(), 0.0, _pending_stumble_lift_delta)
 		BalanceState.FALLING:
 			_tumble_elapsed += delta
 			_fall_damage_elapsed += delta
@@ -475,7 +479,7 @@ func _apply_fall_damage(amount: int) -> void:
 	var applied := mini(amount, remaining)
 	_fall_damage_total += applied
 	_time_since_fall_damage = 0.0
-	_attributes.take_damage(applied)
+	_attributes.take_damage_ignoring_gameplay_lock(applied)
 
 
 func _is_on_stable_surface() -> bool:
