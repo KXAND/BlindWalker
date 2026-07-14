@@ -27,6 +27,7 @@
 [ext_resource type="PackedScene" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
+[ext_resource type="Script" path="res://scripts/perception/AmbientPerceptionSystem.gd" id="ambient_perception"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/concrete.tres" id="contact_profile_concrete"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/glass.tres" id="contact_profile_glass"]
@@ -216,6 +217,13 @@ script = ExtResource("cane_system")
 
 [node name="TouchMemorySystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1172192135]
 script = ExtResource("touch_memory")
+
+[node name="AmbientPerceptionSystem" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/Player"]
+script = ExtResource("ambient_perception")
+heat_direction = Vector3(-0.35, 0.82, -0.45)
+heat_intensity = 0.7
+wind_direction = Vector3(1, 0, -0.25)
+wind_strength = 0.55
 
 [node name="InteractionSystem" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=244460627]
 script = ExtResource("interaction_system")
