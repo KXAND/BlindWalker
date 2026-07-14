@@ -32,8 +32,10 @@
 [ext_resource type="Resource" uid="uid://0avmssud2v7q" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
 [ext_resource type="Resource" uid="uid://buun7cgf4r7r2" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
+[ext_resource type="Script" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
+[ext_resource type="Script" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
@@ -139,6 +141,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.6, 0)
 [node name="Camera3D" type="Camera3D" parent="GameViewportContainer/GameViewport/GameRoot/Player/Head" unique_id=850429435]
 current = true
 fov = 78.0
+script = ExtResource("camera_motion")
 
 [node name="AudioListener3D" type="AudioListener3D" parent="GameViewportContainer/GameViewport/GameRoot/Player/Head" unique_id=52901594]
 current = true
@@ -719,6 +722,9 @@ profile = ExtResource("contact_profile_tiles")
 
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
+
+[node name="QtePromptUI" type="CanvasLayer" parent="."]
+script = ExtResource("qte_prompt_ui")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
 script = ExtResource("game_over_ui")

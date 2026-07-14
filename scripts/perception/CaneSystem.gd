@@ -26,6 +26,8 @@ var _has_last_cane_memory_point: bool = false
 var _last_cane_memory_point: Vector3 = Vector3.ZERO
 var _last_cane_memory_profile_id: StringName = &""
 var _cane_touch_elapsed: float = 0.0
+var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
+var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
 
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
@@ -95,8 +97,10 @@ func _physics_process(delta: float) -> void:
 		contact_info = _full_length_contact_info()
 	if contact_info.is_empty():
 		_set_visible_length(cane_length if full_length_safe else MIN_VISIBLE_LENGTH)
+		_update_contact_segment(false, delta)
 		return
 
+	_update_contact_segment(true, delta)
 	_set_visible_length(_blocked_visible_length(contact_info))
 	_emit_contact_feedback(
 		contact_info["collider"],
@@ -138,6 +142,7 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 	)
 
 	if spawned:
+		_contact_segment_active = true
 		_has_last_cane_memory_point = true
 		_last_cane_memory_point = contact_point
 		_last_cane_memory_profile_id = profile_id
@@ -146,15 +151,25 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 
 
 func _should_spawn_cane_touch_memory(contact_point: Vector3, profile_id: StringName) -> bool:
+	if not _contact_segment_active:
+		return true
 	if not _has_last_cane_memory_point:
 		return true
 	if _last_cane_memory_profile_id != profile_id:
 		return true
-	if _last_cane_memory_point.distance_to(contact_point) >= GameConfig.CANE_TOUCH_MEMORY_MIN_DISTANCE:
-		return true
-	if _cane_touch_elapsed >= GameConfig.CANE_TOUCH_MEMORY_COOLDOWN:
-		return true
-	return false
+	if _last_cane_memory_point.distance_to(contact_point) < GameConfig.CANE_TOUCH_MEMORY_MIN_DISTANCE:
+		return false
+	return _cane_touch_elapsed >= GameConfig.CANE_TOUCH_MEMORY_COOLDOWN
+
+
+func _update_contact_segment(has_contact: bool, delta: float) -> void:
+	if has_contact:
+		_contact_break_elapsed = 0.0
+		return
+
+	_contact_break_elapsed += delta
+	if _contact_break_elapsed >= GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE:
+		_contact_segment_active = false
 
 
 ## 从当前姿态分步靠近目标姿态，避免一次大位移直接跳进深重叠。

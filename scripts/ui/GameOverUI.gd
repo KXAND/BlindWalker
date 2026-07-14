@@ -1,16 +1,19 @@
 class_name GameOverUI
 extends CanvasLayer
-## 胜利/失败结局 UI —— 显示全屏提示并等待玩家按空格重玩。
+## 胜利/失败结局 UI —— 显示全屏提示并等待玩家按空格继续。
 ## Issue #0013
 ##
-## 重置序列（按空格后）：
+## 失败重置序列（按空格后）：
 ##   AudioManager.stop_all() → 等 0.08s（Web Audio 缓冲）→ GameState.reset_to_loading() → reload_current_scene()
+## 胜利后回到 Loading 页，重新经过项目介绍和开始入口。
 ##
 ## 层级规划：
 ##   HealthUI = 1, CutsceneManager CanvasLayer = 5, GameOverUI = 10
 
 var _panel: Panel
 var _label: Label
+
+const LOADING_SCENE := "res://scenes/main/LoadingScreen.tscn"
 
 
 func _ready() -> void:
@@ -41,7 +44,7 @@ func _build_ui() -> void:
 
 func _on_game_state_changed(_old_state: StringName, new_state: StringName) -> void:
 	if new_state == &"SUCCESS":
-		_label.text = "你到达了目的地\n按 [空格] 重玩"
+		_label.text = "你到达了目的地\n按 [空格] 回到开始页"
 		visible = true
 	elif new_state == &"FAILURE":
 		_label.text = "血量耗尽\n按 [空格] 重玩"
@@ -60,8 +63,12 @@ func _input(event: InputEvent) -> void:
 
 
 func _do_reset() -> void:
+	var was_success := GameState.current_state == GameState.State.SUCCESS
 	visible = false
 	AudioManager.stop_all()
 	await get_tree().create_timer(0.08).timeout
 	GameState.reset_to_loading()
-	get_tree().reload_current_scene()
+	if was_success:
+		get_tree().change_scene_to_file(LOADING_SCENE)
+	else:
+		get_tree().reload_current_scene()
