@@ -1,0 +1,819 @@
+[gd_scene format=3 uid="uid://d0nrm8qv2xkju"]
+
+[sub_resource type="StandardMaterial3D" id="mat_facade"]
+albedo_color = Color(0.82, 0.76, 0.68, 1)
+metallic = 0.04
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+albedo_color = Color(0.28, 0.38, 0.48, 1)
+metallic = 0.85
+roughness = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_frame"]
+albedo_color = Color(0.2, 0.19, 0.18, 1)
+metallic = 0.75
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_sill"]
+albedo_color = Color(0.58, 0.56, 0.53, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.18, 0.17, 0.16, 1)
+metallic = 0.05
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_base"]
+albedo_color = Color(0.3, 0.28, 0.25, 1)
+metallic = 0.1
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_cornice"]
+albedo_color = Color(0.38, 0.35, 0.3, 1)
+metallic = 0.08
+roughness = 0.42
+
+[sub_resource type="StandardMaterial3D" id="mat_door"]
+albedo_color = Color(0.42, 0.24, 0.12, 1)
+metallic = 0.02
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_door_frame"]
+albedo_color = Color(0.16, 0.15, 0.14, 1)
+metallic = 0.82
+roughness = 0.22
+
+[sub_resource type="StandardMaterial3D" id="mat_step"]
+albedo_color = Color(0.48, 0.46, 0.43, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_sidewalk"]
+albedo_color = Color(0.54, 0.52, 0.49, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_band"]
+albedo_color = Color(0.72, 0.68, 0.6, 1)
+metallic = 0.05
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_awning"]
+albedo_color = Color(0.42, 0.14, 0.1, 1)
+roughness = 0.7
+
+[sub_resource type="StandardMaterial3D" id="mat_mailbox"]
+albedo_color = Color(0.22, 0.21, 0.2, 1)
+metallic = 0.85
+roughness = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_number_plate"]
+albedo_color = Color(0.75, 0.72, 0.65, 1)
+metallic = 0.6
+roughness = 0.3
+
+[node name="ResidentialBuilding" type="Node3D"]
+
+; ---- SIDEWALK ----
+[node name="SidewalkFront" type="CSGBox3D" parent="."]
+position = Vector3(0, 0.05, 1.12)
+dimensions = Vector3(16.8, 0.1, 1.8)
+material = SubResource("mat_sidewalk")
+use_collision = true
+
+[node name="SidewalkLeft" type="CSGBox3D" parent="."]
+position = Vector3(-8.75, 0.05, -5.0)
+dimensions = Vector3(1.5, 0.1, 10.0)
+material = SubResource("mat_sidewalk")
+use_collision = true
+
+[node name="SidewalkRight" type="CSGBox3D" parent="."]
+position = Vector3(8.75, 0.05, -5.0)
+dimensions = Vector3(1.5, 0.1, 10.0)
+material = SubResource("mat_sidewalk")
+use_collision = true
+
+; ---- BASE BAND (四面包围) ----
+[node name="BaseBandFront" type="CSGBox3D" parent="."]
+position = Vector3(0, 0.2, -0.09)
+dimensions = Vector3(16.0, 0.4, 0.22)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="BaseBandLeft" type="CSGBox3D" parent="."]
+position = Vector3(-7.91, 0.2, -5.0)
+dimensions = Vector3(0.22, 0.4, 10.0)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="BaseBandRight" type="CSGBox3D" parent="."]
+position = Vector3(7.91, 0.2, -5.0)
+dimensions = Vector3(0.22, 0.4, 10.0)
+material = SubResource("mat_base")
+use_collision = true
+
+[node name="BaseBandBack" type="CSGBox3D" parent="."]
+position = Vector3(0, 0.2, -10.09)
+dimensions = Vector3(16.0, 0.4, 0.22)
+material = SubResource("mat_base")
+use_collision = true
+
+; ---- HORIZONTAL DECORATIVE BAND (y=2.8, 四面包围, 模拟楼层分割线) ----
+[node name="BandFront" type="CSGBox3D" parent="."]
+position = Vector3(0, 2.8, -0.1)
+dimensions = Vector3(16.0, 0.08, 0.24)
+material = SubResource("mat_band")
+use_collision = true
+
+[node name="BandLeft" type="CSGBox3D" parent="."]
+position = Vector3(-7.92, 2.8, -5.0)
+dimensions = Vector3(0.24, 0.08, 10.0)
+material = SubResource("mat_band")
+use_collision = true
+
+[node name="BandRight" type="CSGBox3D" parent="."]
+position = Vector3(7.92, 2.8, -5.0)
+dimensions = Vector3(0.24, 0.08, 10.0)
+material = SubResource("mat_band")
+use_collision = true
+
+[node name="BandBack" type="CSGBox3D" parent="."]
+position = Vector3(0, 2.8, -10.1)
+dimensions = Vector3(16.0, 0.08, 0.24)
+material = SubResource("mat_band")
+use_collision = true
+
+; ---- CORNICE 顶沿 (四面包围) ----
+[node name="CorniceFront" type="CSGBox3D" parent="."]
+position = Vector3(0, 4.45, -0.13)
+dimensions = Vector3(16.0, 0.1, 0.3)
+material = SubResource("mat_cornice")
+use_collision = true
+
+[node name="CorniceLeft" type="CSGBox3D" parent="."]
+position = Vector3(-7.95, 4.45, -5.0)
+dimensions = Vector3(0.3, 0.1, 10.0)
+material = SubResource("mat_cornice")
+use_collision = true
+
+[node name="CorniceRight" type="CSGBox3D" parent="."]
+position = Vector3(7.95, 4.45, -5.0)
+dimensions = Vector3(0.3, 0.1, 10.0)
+material = SubResource("mat_cornice")
+use_collision = true
+
+[node name="CorniceBack" type="CSGBox3D" parent="."]
+position = Vector3(0, 4.45, -10.13)
+dimensions = Vector3(16.0, 0.1, 0.3)
+material = SubResource("mat_cornice")
+use_collision = true
+
+; ---- ROOF ----
+[node name="Roof" type="CSGBox3D" parent="."]
+position = Vector3(0, 4.52, -5.0)
+dimensions = Vector3(16.2, 0.12, 10.0)
+material = SubResource("mat_roof")
+use_collision = true
+
+; ---- FRONT WALL (split for door opening, x=-1.3 to 1.3) ----
+[node name="WallFrontLeft" type="CSGBox3D" parent="."]
+position = Vector3(-4.65, 2.25, -0.09)
+dimensions = Vector3(6.7, 4.5, 0.18)
+material = SubResource("mat_facade")
+use_collision = true
+
+[node name="WallFrontRight" type="CSGBox3D" parent="."]
+position = Vector3(4.65, 2.25, -0.09)
+dimensions = Vector3(6.7, 4.5, 0.18)
+material = SubResource("mat_facade")
+use_collision = true
+
+; ---- SIDE & BACK WALLS ----
+[node name="WallLeft" type="CSGBox3D" parent="."]
+position = Vector3(-7.91, 2.25, -5.0)
+dimensions = Vector3(0.18, 4.5, 10.0)
+material = SubResource("mat_facade")
+use_collision = true
+
+[node name="WallRight" type="CSGBox3D" parent="."]
+position = Vector3(7.91, 2.25, -5.0)
+dimensions = Vector3(0.18, 4.5, 10.0)
+material = SubResource("mat_facade")
+use_collision = true
+
+[node name="WallBack" type="CSGBox3D" parent="."]
+position = Vector3(0, 2.25, -10.09)
+dimensions = Vector3(16.0, 4.5, 0.18)
+material = SubResource("mat_facade")
+use_collision = true
+
+; ---- ENTRANCE ----
+[node name="DoorStep" type="CSGBox3D" parent="."]
+position = Vector3(0, 0.06, 0.6)
+dimensions = Vector3(3.0, 0.12, 1.4)
+material = SubResource("mat_step")
+use_collision = true
+
+[node name="DoorFrameTop" type="CSGBox3D" parent="."]
+position = Vector3(0, 2.85, -0.01)
+dimensions = Vector3(2.8, 0.08, 0.2)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+[node name="DoorFrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-1.36, 1.42, -0.01)
+dimensions = Vector3(0.08, 2.85, 0.2)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+[node name="DoorFrameRight" type="CSGBox3D" parent="."]
+position = Vector3(1.36, 1.42, -0.01)
+dimensions = Vector3(0.08, 2.85, 0.2)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+[node name="DoorLeft" type="CSGBox3D" parent="."]
+position = Vector3(-0.62, 1.42, -0.04)
+dimensions = Vector3(1.15, 2.75, 0.06)
+material = SubResource("mat_door")
+use_collision = true
+
+[node name="DoorRight" type="CSGBox3D" parent="."]
+position = Vector3(0.62, 1.42, -0.04)
+dimensions = Vector3(1.15, 2.75, 0.06)
+material = SubResource("mat_door")
+use_collision = true
+
+[node name="DoorHandleLeft" type="CSGBox3D" parent="."]
+position = Vector3(-0.1, 1.15, 0.04)
+dimensions = Vector3(0.04, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+[node name="DoorHandleRight" type="CSGBox3D" parent="."]
+position = Vector3(0.1, 1.15, 0.04)
+dimensions = Vector3(0.04, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+; ---- ENTRANCE AWNING ----
+[node name="AwningTop" type="CSGBox3D" parent="."]
+position = Vector3(0, 3.05, 0.25)
+dimensions = Vector3(3.0, 0.04, 1.2)
+material = SubResource("mat_awning")
+use_collision = true
+
+[node name="AwningPostLeft" type="CSGBox3D" parent="."]
+position = Vector3(-1.3, 2.4, 0.55)
+dimensions = Vector3(0.06, 1.3, 0.06)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+[node name="AwningPostRight" type="CSGBox3D" parent="."]
+position = Vector3(1.3, 2.4, 0.55)
+dimensions = Vector3(0.06, 1.3, 0.06)
+material = SubResource("mat_door_frame")
+use_collision = true
+
+; ---- ADDRESS PLATE (above door) ----
+[node name="NumberPlate" type="CSGBox3D" parent="."]
+position = Vector3(0, 2.92, -0.13)
+dimensions = Vector3(0.6, 0.18, 0.04)
+material = SubResource("mat_number_plate")
+use_collision = true
+
+; ---- MAILBOXES (left of entrance) ----
+[node name="MailboxGroup" type="CSGBox3D" parent="."]
+position = Vector3(-1.85, 0.65, 0.08)
+dimensions = Vector3(0.5, 1.1, 0.3)
+material = SubResource("mat_mailbox")
+use_collision = true
+
+[node name="MailboxSlot1" type="CSGBox3D" parent="."]
+position = Vector3(-1.85, 0.95, 0.24)
+dimensions = Vector3(0.42, 0.04, 0.04)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="MailboxSlot2" type="CSGBox3D" parent="."]
+position = Vector3(-1.85, 0.75, 0.24)
+dimensions = Vector3(0.42, 0.04, 0.04)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="MailboxSlot3" type="CSGBox3D" parent="."]
+position = Vector3(-1.85, 0.55, 0.24)
+dimensions = Vector3(0.42, 0.04, 0.04)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="MailboxSlot4" type="CSGBox3D" parent="."]
+position = Vector3(-1.85, 0.35, 0.24)
+dimensions = Vector3(0.42, 0.04, 0.04)
+material = SubResource("mat_frame")
+use_collision = true
+
+; ---- FRONT WINDOWS (left half: 4 windows, x=-6.5, -4.9, -3.3, -1.7) ----
+; Window sizes: 1.1m wide x 1.5m tall, sill at y=1.0
+; Glass slightly recessed at z=-0.02
+
+[node name="FW_L1_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-6.5, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_L1_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-6.5, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_L1_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-6.5, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L1_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-7.06, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L1_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-5.94, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L2_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-4.9, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_L2_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-4.9, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_L2_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-4.9, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L2_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-5.46, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L2_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-4.34, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L3_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-3.3, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_L3_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-3.3, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_L3_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-3.3, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L3_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-3.86, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L3_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-2.74, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L4_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-1.7, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_L4_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-1.7, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_L4_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-1.7, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L4_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-2.26, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_L4_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-1.14, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+; ---- FRONT WINDOWS (right half: 4 windows, x=1.7, 3.3, 4.9, 6.5) ----
+[node name="FW_R1_Glass" type="CSGBox3D" parent="."]
+position = Vector3(1.7, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_R1_Sill" type="CSGBox3D" parent="."]
+position = Vector3(1.7, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_R1_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(1.7, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R1_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(1.14, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R1_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(2.26, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R2_Glass" type="CSGBox3D" parent="."]
+position = Vector3(3.3, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_R2_Sill" type="CSGBox3D" parent="."]
+position = Vector3(3.3, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_R2_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(3.3, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R2_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(2.74, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R2_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(3.86, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R3_Glass" type="CSGBox3D" parent="."]
+position = Vector3(4.9, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_R3_Sill" type="CSGBox3D" parent="."]
+position = Vector3(4.9, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_R3_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(4.9, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R3_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(4.34, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R3_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(5.46, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R4_Glass" type="CSGBox3D" parent="."]
+position = Vector3(6.5, 1.75, -0.04)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="FW_R4_Sill" type="CSGBox3D" parent="."]
+position = Vector3(6.5, 1.0, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="FW_R4_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(6.5, 2.51, -0.02)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R4_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(5.94, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="FW_R4_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(7.06, 1.75, -0.02)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+; ---- LEFT WALL WINDOWS (3 windows, z=-2, -5, -8) ----
+[node name="LW1_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-7.98, 1.75, -2.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="LW1_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 1.0, -2.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="LW1_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 2.51, -2.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="LW2_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-7.98, 1.75, -5.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="LW2_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 1.0, -5.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="LW2_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 2.51, -5.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="LW3_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-7.98, 1.75, -8.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="LW3_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 1.0, -8.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="LW3_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-7.97, 2.51, -8.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+; ---- RIGHT WALL WINDOWS (3 windows, z=-2, -5, -8) ----
+[node name="RW1_Glass" type="CSGBox3D" parent="."]
+position = Vector3(7.98, 1.75, -2.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="RW1_Sill" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 1.0, -2.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="RW1_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 2.51, -2.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="RW2_Glass" type="CSGBox3D" parent="."]
+position = Vector3(7.98, 1.75, -5.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="RW2_Sill" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 1.0, -5.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="RW2_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 2.51, -5.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="RW3_Glass" type="CSGBox3D" parent="."]
+position = Vector3(7.98, 1.75, -8.0)
+dimensions = Vector3(0.04, 1.5, 1.1)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="RW3_Sill" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 1.0, -8.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="RW3_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(7.97, 2.51, -8.0)
+dimensions = Vector3(0.14, 0.06, 1.24)
+material = SubResource("mat_frame")
+use_collision = true
+
+; ---- BACK WALL WINDOWS (5 windows, x=-6, -3, 0, 3, 6) ----
+[node name="BW1_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-6.0, 1.75, -10.07)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="BW1_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-6.0, 1.0, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="BW1_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-6.0, 2.51, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW1_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-6.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW1_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-5.44, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW2_Glass" type="CSGBox3D" parent="."]
+position = Vector3(-3.0, 1.75, -10.07)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="BW2_Sill" type="CSGBox3D" parent="."]
+position = Vector3(-3.0, 1.0, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="BW2_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(-3.0, 2.51, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW2_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-3.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW2_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(-2.44, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW3_Glass" type="CSGBox3D" parent="."]
+position = Vector3(0.0, 1.75, -10.07)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="BW3_Sill" type="CSGBox3D" parent="."]
+position = Vector3(0.0, 1.0, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="BW3_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(0.0, 2.51, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW3_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(-0.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW3_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(0.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW4_Glass" type="CSGBox3D" parent="."]
+position = Vector3(3.0, 1.75, -10.07)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="BW4_Sill" type="CSGBox3D" parent="."]
+position = Vector3(3.0, 1.0, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="BW4_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(3.0, 2.51, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW4_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(2.44, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW4_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(3.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW5_Glass" type="CSGBox3D" parent="."]
+position = Vector3(6.0, 1.75, -10.07)
+dimensions = Vector3(1.1, 1.5, 0.04)
+material = SubResource("mat_glass")
+use_collision = true
+
+[node name="BW5_Sill" type="CSGBox3D" parent="."]
+position = Vector3(6.0, 1.0, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_sill")
+use_collision = true
+
+[node name="BW5_FrameTop" type="CSGBox3D" parent="."]
+position = Vector3(6.0, 2.51, -10.07)
+dimensions = Vector3(1.24, 0.06, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW5_FrameLeft" type="CSGBox3D" parent="."]
+position = Vector3(5.44, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true
+
+[node name="BW5_FrameRight" type="CSGBox3D" parent="."]
+position = Vector3(6.56, 1.75, -10.07)
+dimensions = Vector3(0.06, 1.5, 0.14)
+material = SubResource("mat_frame")
+use_collision = true

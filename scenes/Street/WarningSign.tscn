@@ -1,0 +1,149 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/metal_pole.tres" id="2_metal"]
+
+[sub_resource type="StandardMaterial3D" id="mat_metal_gray"]
+albedo_color = Color(0.56, 0.56, 0.57, 1)
+roughness = 0.35
+metallic = 0.8
+
+[sub_resource type="StandardMaterial3D" id="mat_concrete"]
+albedo_color = Color(0.52, 0.5, 0.47, 1)
+roughness = 0.95
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_yellow"]
+albedo_color = Color(0.98, 0.84, 0.08, 1)
+roughness = 0.55
+metallic = 0.1
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_border"]
+albedo_color = Color(0.08, 0.08, 0.08, 1)
+roughness = 0.5
+metallic = 0.15
+
+[node name="WarningSign" type="CSGCombiner3D"]
+
+[node name="Profile" type="Node" parent="."]
+script = ExtResource("1_prov")
+profile = ExtResource("2_metal")
+
+; ============================================================
+; 底座 (混凝土墩)
+; ============================================================
+
+[node name="Base" type="CSGCylinder3D" parent="."]
+radius = 0.22
+height = 0.08
+material = SubResource("mat_concrete")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.04, 0.0)
+
+[node name="BasePlate" type="CSGCylinder3D" parent="."]
+radius = 0.26
+height = 0.04
+material = SubResource("mat_concrete")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.09, 0.0)
+
+; ============================================================
+; 立柱
+; ============================================================
+
+[node name="Pole" type="CSGCylinder3D" parent="."]
+radius = 0.035
+height = 2.3
+material = SubResource("mat_metal_gray")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.19, 0.0)
+
+; ============================================================
+; 固定横梁 (连接立柱与牌面)
+; ============================================================
+
+[node name="BracketTop" type="CSGBox3D" parent="."]
+width = 0.1
+height = 0.025
+depth = 0.03
+material = SubResource("mat_metal_gray")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.05, 0.0)
+
+[node name="BracketBot" type="CSGBox3D" parent="."]
+width = 0.08
+height = 0.025
+depth = 0.03
+material = SubResource("mat_metal_gray")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.55, 0.0)
+
+; ============================================================
+; 警示牌面板 (黄色矩形)
+; ============================================================
+
+; --- 面板主体 ---
+[node name="SignBoard" type="CSGBox3D" parent="."]
+width = 0.75
+height = 0.55
+depth = 0.03
+material = SubResource("mat_sign_yellow")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.08, 0.0)
+
+; --- 顶部边框 ---
+[node name="BorderTop" type="CSGBox3D" parent="."]
+width = 0.79
+height = 0.03
+depth = 0.035
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.36, 0.0)
+
+; --- 底部边框 ---
+[node name="BorderBot" type="CSGBox3D" parent="."]
+width = 0.79
+height = 0.03
+depth = 0.035
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.80, 0.0)
+
+; --- 左侧边框 ---
+[node name="BorderLeft" type="CSGBox3D" parent="."]
+width = 0.03
+height = 0.49
+depth = 0.035
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.37, 2.08, 0.0)
+
+; --- 右侧边框 ---
+[node name="BorderRight" type="CSGBox3D" parent="."]
+width = 0.03
+height = 0.49
+depth = 0.035
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.37, 2.08, 0.0)
+
+; ============================================================
+; 警示标识图案 (用两个小方块模拟感叹号 "!")
+; ============================================================
+
+; --- 感叹号竖条 ---
+[node name="ExclaimBar" type="CSGBox3D" parent="."]
+width = 0.05
+height = 0.2
+depth = 0.032
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.08, 0.001)
+
+; --- 感叹号圆点 ---
+[node name="ExclaimDot" type="CSGCylinder3D" parent="."]
+radius = 0.035
+height = 0.035
+material = SubResource("mat_sign_border")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.93, 0.001)

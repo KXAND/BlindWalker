@@ -1,0 +1,133 @@
+[gd_scene load_steps=12 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/plastic.tres" id="2_plastic"]
+
+[sub_resource type="StandardMaterial3D" id="mat_cardboard"]
+albedo_color = Color(0.55, 0.42, 0.28, 1)
+roughness = 0.9
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_dark_box"]
+albedo_color = Color(0.25, 0.23, 0.2, 1)
+roughness = 0.85
+metallic = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_gray_plastic"]
+albedo_color = Color(0.35, 0.35, 0.38, 1)
+roughness = 0.75
+metallic = 0.1
+
+[sub_resource type="StandardMaterial3D" id="mat_metal"]
+albedo_color = Color(0.5, 0.48, 0.45, 1)
+roughness = 0.5
+metallic = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_wood_crate"]
+albedo_color = Color(0.62, 0.48, 0.32, 1)
+roughness = 0.8
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_cloth_bag"]
+albedo_color = Color(0.52, 0.55, 0.35, 1)
+roughness = 0.95
+metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_white_plastic"]
+albedo_color = Color(0.88, 0.87, 0.82, 1)
+roughness = 0.7
+metallic = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_red_plastic"]
+albedo_color = Color(0.72, 0.18, 0.15, 1)
+roughness = 0.7
+metallic = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_newsprint"]
+albedo_color = Color(0.78, 0.75, 0.68, 1)
+roughness = 0.85
+metallic = 0.0
+
+[node name="ClutterPile" type="CSGCombiner3D"]
+
+[node name="Profile" type="Node" parent="."]
+script = ExtResource("1_prov")
+profile = ExtResource("2_plastic")
+
+; ---- 底座：一个歪斜的大纸板箱 ----
+[node name="BaseBox" type="CSGBox3D" parent="."]
+width = 0.95
+height = 0.6
+depth = 0.7
+material = SubResource("mat_cardboard")
+use_collision = true
+transform = Transform3D(0.94, -0.08, 0.0, 0.08, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.3, 0.0)
+
+; ---- 压在底座上的木条板箱 ----
+[node name="WoodCrate" type="CSGBox3D" parent="."]
+width = 0.55
+height = 0.45
+depth = 0.5
+material = SubResource("mat_wood_crate")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.25, 0.5, -0.08)
+
+; ---- 灰塑料收纳盒，斜放在木箱旁 ----
+[node name="PlasticBin" type="CSGBox3D" parent="."]
+width = 0.45
+height = 0.35
+depth = 0.4
+material = SubResource("mat_gray_plastic")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.3, 0.5, 0.1)
+
+; ---- 金属小罐 ----
+[node name="MetalCan" type="CSGCylinder3D" parent="."]
+radius = 0.1
+height = 0.18
+material = SubResource("mat_metal")
+use_collision = true
+transform = Transform3D(0.97, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.35, 0.7, 0.15)
+
+; ---- 布袋 ----
+[node name="ClothBag" type="CSGBox3D" parent="."]
+width = 0.32
+height = 0.25
+depth = 0.28
+material = SubResource("mat_cloth_bag")
+use_collision = true
+transform = Transform3D(0.86, 0.0, 0.0, 0.1, 0.8, 0.0, 0.0, 0.0, 1.0, -0.15, 0.7, -0.2)
+
+; ---- 歪倒的小纸箱 ----
+[node name="SmallBox" type="CSGBox3D" parent="."]
+width = 0.28
+height = 0.22
+depth = 0.25
+material = SubResource("mat_dark_box")
+use_collision = true
+transform = Transform3D(0.7, 0.0, 0.2, 0.0, 1.0, 0.0, -0.2, 0.0, 0.7, 0.4, 0.68, -0.05)
+
+; ---- 白色塑料瓶 ----
+[node name="Bottle" type="CSGCylinder3D" parent="."]
+radius = 0.06
+height = 0.25
+material = SubResource("mat_white_plastic")
+use_collision = true
+transform = Transform3D(0.87, 0.0, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.87, -0.38, 0.65, 0.0)
+
+; ---- 红色塑料盖子 ----
+[node name="BottleCap" type="CSGCylinder3D" parent="."]
+radius = 0.065
+height = 0.03
+material = SubResource("mat_red_plastic")
+use_collision = true
+transform = Transform3D(0.87, 0.0, -0.5, 0.0, 1.0, 0.0, 0.5, 0.0, 0.87, -0.38, 0.78, 0.0)
+
+; ---- 地上散落的旧书/杂志 ----
+[node name="Magazine" type="CSGBox3D" parent="."]
+width = 0.35
+height = 0.03
+depth = 0.28
+material = SubResource("mat_newsprint")
+use_collision = true
+transform = Transform3D(0.97, 0.0, -0.24, 0.0, 1.0, 0.0, 0.24, 0.0, 0.97, 0.1, 0.015, -0.35)

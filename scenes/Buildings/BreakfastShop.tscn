@@ -1,0 +1,617 @@
+[gd_scene format=3 uid="uid://cqk53stvdaayi"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.58, 0.55, 0.5, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.9, 0.86, 0.78, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.22, 0.21, 0.19, 1)
+metallic = 0.05
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_step"]
+albedo_color = Color(0.52, 0.5, 0.47, 1)
+roughness = 0.62
+
+[sub_resource type="StandardMaterial3D" id="mat_door_frame"]
+albedo_color = Color(0.3, 0.28, 0.26, 1)
+metallic = 0.8
+roughness = 0.25
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+albedo_color = Color(0.45, 0.55, 0.6, 1)
+metallic = 0.88
+roughness = 0.04
+
+[sub_resource type="StandardMaterial3D" id="mat_handle"]
+albedo_color = Color(0.78, 0.8, 0.84, 1)
+metallic = 0.95
+roughness = 0.1
+
+[sub_resource type="StandardMaterial3D" id="mat_awning"]
+albedo_color = Color(0.9, 0.42, 0.18, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_awning_post"]
+albedo_color = Color(0.28, 0.29, 0.31, 1)
+metallic = 0.85
+roughness = 0.22
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.72, 0.38, 0.15, 1)
+metallic = 0.1
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_text"]
+albedo_color = Color(0.96, 0.94, 0.88, 1)
+metallic = 0.2
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="mat_kitchen_steel"]
+albedo_color = Color(0.62, 0.64, 0.66, 1)
+metallic = 0.9
+roughness = 0.12
+
+[sub_resource type="StandardMaterial3D" id="mat_stove"]
+albedo_color = Color(0.15, 0.14, 0.13, 1)
+metallic = 0.75
+roughness = 0.2
+
+[sub_resource type="StandardMaterial3D" id="mat_steamer"]
+albedo_color = Color(0.55, 0.42, 0.28, 1)
+roughness = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_counter"]
+albedo_color = Color(0.45, 0.38, 0.3, 1)
+metallic = 0.05
+roughness = 0.48
+
+[sub_resource type="StandardMaterial3D" id="mat_counter_top"]
+albedo_color = Color(0.92, 0.89, 0.84, 1)
+metallic = 0.08
+roughness = 0.28
+
+[sub_resource type="StandardMaterial3D" id="mat_stool"]
+albedo_color = Color(0.25, 0.24, 0.23, 1)
+metallic = 0.15
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_table"]
+albedo_color = Color(0.62, 0.5, 0.36, 1)
+metallic = 0.04
+roughness = 0.45
+
+[node name="BreakfastShop" type="Node3D" unique_id=549879072]
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1192006233]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.04, -2.5)
+use_collision = true
+size = Vector3(5.2, 0.08, 5.2)
+material = SubResource("mat_floor")
+
+[node name="BackWall" type="CSGBox3D" parent="." unique_id=1218651106]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -4.91)
+use_collision = true
+size = Vector3(5, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="LeftWall" type="CSGBox3D" parent="." unique_id=1439429791]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.41, 1.5, -2.5)
+use_collision = true
+size = Vector3(0.18, 3, 5)
+material = SubResource("mat_wall")
+
+[node name="RightWall" type="CSGBox3D" parent="." unique_id=1070391866]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.41, 1.5, -2.5)
+use_collision = true
+size = Vector3(0.18, 3, 5)
+material = SubResource("mat_wall")
+
+[node name="FrontWallLeft" type="CSGBox3D" parent="." unique_id=1713497417]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85, 1.5, -0.09)
+use_collision = true
+size = Vector3(1.3, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="FrontWallRight" type="CSGBox3D" parent="." unique_id=131800940]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.5, -0.09)
+use_collision = true
+size = Vector3(1.3, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="DoorLintel" type="CSGBox3D" parent="." unique_id=1796644703]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82, -0.09)
+use_collision = true
+size = Vector3(2.56, 0.34, 0.18)
+material = SubResource("mat_wall")
+
+[node name="Roof" type="CSGBox3D" parent="." unique_id=1627440982]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, -2.5)
+use_collision = true
+size = Vector3(5.4, 0.15, 5.4)
+material = SubResource("mat_roof")
+
+[node name="DoorStep" type="CSGBox3D" parent="." unique_id=1207540657]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.08, 0.32)
+use_collision = true
+size = Vector3(2.8, 0.14, 0.45)
+material = SubResource("mat_step")
+
+[node name="DoorFrameLeft" type="CSGBox3D" parent="." unique_id=1484738822]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.22, 1.35, -0.06)
+use_collision = true
+size = Vector3(0.06, 2.7, 0.12)
+material = SubResource("mat_door_frame")
+
+[node name="DoorFrameRight" type="CSGBox3D" parent="." unique_id=1973563]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.22, 1.35, -0.06)
+use_collision = true
+size = Vector3(0.06, 2.7, 0.12)
+material = SubResource("mat_door_frame")
+
+[node name="GlassDoorLeft" type="CSGBox3D" parent="." unique_id=123811256]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.395921, 1.35, -0.06)
+use_collision = true
+size = Vector3(1.1, 2.5, 0.04)
+material = SubResource("mat_glass")
+
+[node name="GlassDoorRight" type="CSGBox3D" parent="." unique_id=971098708]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.36354, 1.35, -0.06)
+use_collision = true
+size = Vector3(1.1, 2.5, 0.04)
+material = SubResource("mat_glass")
+
+[node name="DoorHandleLeft" type="CSGCylinder3D" parent="." unique_id=977995075]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.4859211, 1.35, 0)
+use_collision = true
+radius = 0.014
+height = 0.35
+material = SubResource("mat_handle")
+
+[node name="DoorHandleRight" type="CSGCylinder3D" parent="." unique_id=1900171311]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, 1.4535401, 1.35, 0)
+use_collision = true
+radius = 0.014
+height = 0.35
+material = SubResource("mat_handle")
+
+[node name="Awning" type="CSGBox3D" parent="." unique_id=573681285]
+transform = Transform3D(0.951, 0, -0.309, 0, 1, 0, 0.309, 0, 0.951, 0, 2.86, -0.18)
+use_collision = true
+size = Vector3(3.4, 0.06, 0.78)
+material = SubResource("mat_awning")
+
+[node name="AwningPostLeft" type="CSGBox3D" parent="." unique_id=1258340959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 2.62, 0.28)
+use_collision = true
+size = Vector3(0.04, 0.5, 0.04)
+material = SubResource("mat_awning_post")
+
+[node name="AwningPostRight" type="CSGBox3D" parent="." unique_id=1163340568]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.55, 2.62, 0.28)
+use_collision = true
+size = Vector3(0.04, 0.5, 0.04)
+material = SubResource("mat_awning_post")
+
+[node name="SignBoard" type="CSGBox3D" parent="." unique_id=871336824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55, -0.07)
+use_collision = true
+size = Vector3(2.4, 0.26, 0.04)
+material = SubResource("mat_sign")
+
+[node name="SignText" type="CSGBox3D" parent="." unique_id=1522394690]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.55, -2.35)
+use_collision = true
+size = Vector3(1.8, 0.12, 0.05)
+material = SubResource("mat_sign_text")
+
+[node name="KitchenCounterBase" type="CSGBox3D" parent="." unique_id=336414474]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.44, -4.4)
+use_collision = true
+size = Vector3(3.8, 0.85, 0.55)
+material = SubResource("mat_kitchen_steel")
+
+[node name="KitchenCounterTop" type="CSGBox3D" parent="." unique_id=361387139]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.3, 0.88, -4.4)
+use_collision = true
+size = Vector3(4, 0.04, 0.65)
+material = SubResource("mat_kitchen_steel")
+
+[node name="StoveRange" type="CSGBox3D" parent="." unique_id=1320710508]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.92, -4.4)
+use_collision = true
+size = Vector3(0.7, 0.04, 0.55)
+material = SubResource("mat_stove")
+
+[node name="Burner1" type="CSGCylinder3D" parent="." unique_id=1380556593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.95, -4.3)
+use_collision = true
+radius = 0.06
+height = 0.02
+material = SubResource("mat_stove")
+
+[node name="Burner2" type="CSGCylinder3D" parent="." unique_id=1445137736]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 0.95, -4.3)
+use_collision = true
+radius = 0.06
+height = 0.02
+material = SubResource("mat_stove")
+
+[node name="Burner3" type="CSGCylinder3D" parent="." unique_id=1833858700]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.95, -4.5)
+use_collision = true
+radius = 0.06
+height = 0.02
+material = SubResource("mat_stove")
+
+[node name="Burner4" type="CSGCylinder3D" parent="." unique_id=664260124]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 0.95, -4.5)
+use_collision = true
+radius = 0.06
+height = 0.02
+material = SubResource("mat_stove")
+
+[node name="Steamer1" type="CSGCylinder3D" parent="." unique_id=1499127655]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 0.98, -4.4)
+use_collision = true
+radius = 0.16
+height = 0.1
+material = SubResource("mat_steamer")
+
+[node name="Steamer2" type="CSGCylinder3D" parent="." unique_id=1047351998]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.1, -4.4)
+use_collision = true
+radius = 0.16
+height = 0.1
+material = SubResource("mat_steamer")
+
+[node name="Steamer3" type="CSGCylinder3D" parent="." unique_id=1413665329]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.22, -4.4)
+use_collision = true
+radius = 0.16
+height = 0.1
+material = SubResource("mat_steamer")
+
+[node name="Steamer4" type="CSGCylinder3D" parent="." unique_id=546416582]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 0.98, -4.4)
+use_collision = true
+radius = 0.16
+height = 0.1
+material = SubResource("mat_steamer")
+
+[node name="Steamer5" type="CSGCylinder3D" parent="." unique_id=754776268]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4, 1.1, -4.4)
+use_collision = true
+radius = 0.16
+height = 0.1
+material = SubResource("mat_steamer")
+
+[node name="ExhaustHood" type="CSGBox3D" parent="." unique_id=2045243209]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.55, -4.35)
+use_collision = true
+size = Vector3(0.9, 0.55, 0.65)
+material = SubResource("mat_kitchen_steel")
+
+[node name="ExhaustDuct" type="CSGCylinder3D" parent="." unique_id=1519175450]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.15, -4.35)
+use_collision = true
+radius = 0.1
+height = 0.65
+material = SubResource("mat_kitchen_steel")
+
+[node name="Tabel" type="Node3D" parent="." unique_id=694389013]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.1884607, 0, -2.215113)
+
+[node name="PrepTableTop" type="CSGBox3D" parent="Tabel" unique_id=1857011885]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11987293, 0.86, -0.28290653)
+use_collision = true
+size = Vector3(0.8, 0.04, 0.5)
+material = SubResource("mat_kitchen_steel")
+
+[node name="PrepTableLeg1" type="CSGBox3D" parent="Tabel" unique_id=1728773744]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg2" type="CSGBox3D" parent="Tabel" unique_id=621450016]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg3" type="CSGBox3D" parent="Tabel" unique_id=1908812140]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg4" type="CSGBox3D" parent="Tabel" unique_id=154755820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Tabel2" type="Node3D" parent="." unique_id=1696801221]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.1884607, 0, -3.415113)
+
+[node name="PrepTableTop" type="CSGBox3D" parent="Tabel2" unique_id=1392377358]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11987293, 0.86, -0.28290653)
+use_collision = true
+size = Vector3(0.8, 0.04, 0.5)
+material = SubResource("mat_kitchen_steel")
+
+[node name="PrepTableLeg1" type="CSGBox3D" parent="Tabel2" unique_id=217365492]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg2" type="CSGBox3D" parent="Tabel2" unique_id=1738777155]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg3" type="CSGBox3D" parent="Tabel2" unique_id=1976084300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg4" type="CSGBox3D" parent="Tabel2" unique_id=761344951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="CounterBase" type="CSGBox3D" parent="." unique_id=1572595356]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.5, -2.5)
+use_collision = true
+size = Vector3(1.6, 1, 0.5)
+material = SubResource("mat_counter")
+
+[node name="CounterTop" type="CSGBox3D" parent="." unique_id=1824301995]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.02, -2.5)
+use_collision = true
+size = Vector3(1.8, 0.04, 0.6)
+material = SubResource("mat_counter_top")
+
+[node name="CounterFrontPanel" type="CSGBox3D" parent="." unique_id=1829446465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 0.62, -2.23)
+use_collision = true
+size = Vector3(1.5, 0.45, 0.03)
+material = SubResource("mat_counter")
+
+[node name="CashRegister" type="CSGBox3D" parent="." unique_id=890848033]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 1.08, -2.25)
+use_collision = true
+size = Vector3(0.3, 0.1, 0.18)
+material = SubResource("mat_stool")
+
+[node name="MenuBoard" type="CSGBox3D" parent="." unique_id=2139551040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.8, -2.4)
+use_collision = true
+size = Vector3(1.4, 0.75, 0.03)
+material = SubResource("mat_sign")
+
+[node name="MenuBoardText" type="CSGBox3D" parent="." unique_id=1393202846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.8, -2.37)
+use_collision = true
+size = Vector3(1, 0.45, 0.02)
+material = SubResource("mat_sign_text")
+
+[node name="Table1_Top" type="CSGBox3D" parent="." unique_id=1869130007]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.45, -2.2)
+use_collision = true
+size = Vector3(0.15917969, 0.04, 0.65)
+material = SubResource("mat_table")
+
+[node name="Table1_LegFL" type="CSGBox3D" parent="." unique_id=1768592830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -1.94)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegFR" type="CSGBox3D" parent="." unique_id=823593775]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -2.46)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegBL" type="CSGBox3D" parent="." unique_id=1910473100]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7869724, 0.24, -2.0807705)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegBR" type="CSGBox3D" parent="." unique_id=861470986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7869724, 0.24, -2.6007705)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_StoolA" type="CSGCylinder3D" parent="." unique_id=267070263]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7863859, 0.47815156, -2.0984893)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="Table1_StoolB" type="CSGCylinder3D" parent="." unique_id=1796287673]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7768477, 0.45891386, -2.6191335)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="Tabel3" type="Node3D" parent="." unique_id=1993984191]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -1.1884607, 0, -1.1151129)
+
+[node name="PrepTableTop" type="CSGBox3D" parent="Tabel3" unique_id=345618855]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.11987293, 0.86, -0.28290653)
+use_collision = true
+size = Vector3(0.8, 0.04, 0.5)
+material = SubResource("mat_kitchen_steel")
+
+[node name="PrepTableLeg1" type="CSGBox3D" parent="Tabel3" unique_id=777336875]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg2" type="CSGBox3D" parent="Tabel3" unique_id=1100139497]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.082906485)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg3" type="CSGBox3D" parent="Tabel3" unique_id=731328343]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.200127, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="PrepTableLeg4" type="CSGBox3D" parent="Tabel3" unique_id=9642824]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.43987298, 0.44, -0.4829067)
+use_collision = true
+size = Vector3(0.03, 0.8, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_Top2" type="CSGBox3D" parent="." unique_id=250773114]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.45, -1.1)
+use_collision = true
+size = Vector3(0.15917969, 0.04, 0.65)
+material = SubResource("mat_table")
+
+[node name="Table1_LegFL2" type="CSGBox3D" parent="." unique_id=336489227]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -0.84000003)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegFR2" type="CSGBox3D" parent="." unique_id=990313774]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -1.36)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegBL2" type="CSGBox3D" parent="." unique_id=1193406710]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7869724, 0.24, -0.98077047)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_LegBR2" type="CSGBox3D" parent="." unique_id=1921072421]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7869724, 0.24, -1.5007704)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table1_StoolA2" type="CSGCylinder3D" parent="." unique_id=338335321]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7863859, 0.47815156, -0.99848926)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="Table1_StoolB2" type="CSGCylinder3D" parent="." unique_id=1031887368]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.7768477, 0.45891386, -1.5191334)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="Table2_Top" type="CSGBox3D" parent="." unique_id=774985782]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.45, -3.6)
+use_collision = true
+size = Vector3(0.140625, 0.04, 0.65)
+material = SubResource("mat_table")
+
+[node name="Table2_LegFL" type="CSGBox3D" parent="." unique_id=1842722706]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -3.34)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table2_LegFR" type="CSGBox3D" parent="." unique_id=1181996820]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.9, 0.24, -3.86)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table2_LegBL" type="CSGBox3D" parent="." unique_id=1469856844]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 0.24, -3.34)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table2_LegBR" type="CSGBox3D" parent="." unique_id=1406255334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84, 0.24, -3.86)
+use_collision = true
+size = Vector3(0.03, 0.4, 0.03)
+material = SubResource("mat_door_frame")
+
+[node name="Table2_StoolA" type="CSGCylinder3D" parent="." unique_id=1785998585]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.84761304, 0.4702741, -3.3426285)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="Table2_StoolB" type="CSGCylinder3D" parent="." unique_id=1167741409]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8106682, 0.46223032, -3.8626661)
+use_collision = true
+radius = 0.14
+height = 0.06
+material = SubResource("mat_stool")
+
+[node name="WallClock" type="CSGCylinder3D" parent="." unique_id=65498800]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.33, 2.2, -1.5)
+use_collision = true
+radius = 0.18
+height = 0.03
+material = SubResource("mat_sign_text")
+
+[node name="WallMenuLeft" type="CSGBox3D" parent="." unique_id=1410659447]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.32, 1.8, -3)
+use_collision = true
+size = Vector3(0.03, 0.6, 0.45)
+material = SubResource("mat_sign")
+
+[node name="WallShelf" type="CSGBox3D" parent="." unique_id=2025411895]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.65, -4.82)
+use_collision = true
+size = Vector3(1.5, 0.04, 0.12)
+material = SubResource("mat_table")
+
+[node name="SpiceBottle1" type="CSGCylinder3D" parent="." unique_id=1794070846]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 1.73, -4.78)
+use_collision = true
+radius = 0.03
+height = 0.1
+material = SubResource("mat_sign_text")
+
+[node name="SpiceBottle2" type="CSGCylinder3D" parent="." unique_id=452542977]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.73, -4.78)
+use_collision = true
+radius = 0.03
+height = 0.1
+material = SubResource("mat_sign_text")
+
+[node name="SpiceBottle3" type="CSGCylinder3D" parent="." unique_id=2043220105]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8, 1.73, -4.78)
+use_collision = true
+radius = 0.03
+height = 0.1
+material = SubResource("mat_sign_text")
+
+[node name="PosterRight" type="CSGBox3D" parent="." unique_id=1260619119]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.33, 1.8, -1.5)
+use_collision = true
+size = Vector3(0.03, 0.5, 0.4)
+material = SubResource("mat_sign")

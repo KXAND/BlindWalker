@@ -1,6 +1,6 @@
-[gd_scene format=3]
+[gd_scene format=3 uid="uid://comuak68gyht4"]
 
-[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/pavement.tres" id="2_pav"]
 
 [sub_resource type="StandardMaterial3D" id="mat_base"]
@@ -9,76 +9,76 @@ albedo_color = Color(0.55, 0.52, 0.45, 1)
 [sub_resource type="StandardMaterial3D" id="mat_raised"]
 albedo_color = Color(0.93, 0.78, 0.12, 1)
 
-[node name="TactileStop" type="Node3D"]
+[node name="TactileStop" type="Node3D" unique_id=1792656279]
 
-[node name="Base" type="CSGBox3D" parent="."]
+[node name="Base" type="CSGBox3D" parent="." unique_id=228500903]
 use_collision = true
 size = Vector3(0.3, 0.05, 0.3)
 material = SubResource("mat_base")
 
-[node name="Dot_1_1" type="CSGCylinder3D" parent="."]
-use_collision = true
-radius = 0.03
-height = 0.02
-material = SubResource("mat_raised")
+[node name="Dot_1_1" type="CSGCylinder3D" parent="." unique_id=1024149811]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.035, -0.09)
-
-[node name="Dot_1_2" type="CSGCylinder3D" parent="."]
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.035, -0.09)
 
-[node name="Dot_1_3" type="CSGCylinder3D" parent="."]
+[node name="Dot_1_2" type="CSGCylinder3D" parent="." unique_id=116140944]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, -0.09)
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
+
+[node name="Dot_1_3" type="CSGCylinder3D" parent="." unique_id=859897251]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.035, -0.09)
-
-[node name="Dot_2_1" type="CSGCylinder3D" parent="."]
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.035, 0.0)
 
-[node name="Dot_2_2" type="CSGCylinder3D" parent="."]
+[node name="Dot_2_1" type="CSGCylinder3D" parent="." unique_id=2074581168]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.035, 0)
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.035, 0.0)
 
-[node name="Dot_2_3" type="CSGCylinder3D" parent="."]
+[node name="Dot_2_2" type="CSGCylinder3D" parent="." unique_id=299784098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, 0)
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.035, 0.0)
 
-[node name="Dot_3_1" type="CSGCylinder3D" parent="."]
+[node name="Dot_2_3" type="CSGCylinder3D" parent="." unique_id=514534381]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.035, 0)
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
+
+[node name="Dot_3_1" type="CSGCylinder3D" parent="." unique_id=308191200]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09, 0.035, 0.09)
-
-[node name="Dot_3_2" type="CSGCylinder3D" parent="."]
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.0, 0.035, 0.09)
 
-[node name="Dot_3_3" type="CSGCylinder3D" parent="."]
+[node name="Dot_3_2" type="CSGCylinder3D" parent="." unique_id=1047098027]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.035, 0.09)
 use_collision = true
 radius = 0.03
 height = 0.02
 material = SubResource("mat_raised")
+
+[node name="Dot_3_3" type="CSGCylinder3D" parent="." unique_id=1649565649]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09, 0.035, 0.09)
+use_collision = true
+radius = 0.03
+height = 0.02
+material = SubResource("mat_raised")
 
-[node name="Profile" type="Node" parent="."]
+[node name="Profile" type="Node" parent="." unique_id=1525940633]
 script = ExtResource("1_prov")
 profile = ExtResource("2_pav")

@@ -1,0 +1,627 @@
+[gd_scene load_steps=23 format=3 uid="uid://delivery_station_001"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.40, 0.38, 0.36, 1)
+roughness = 0.70
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.90, 0.88, 0.82, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.22, 0.21, 0.20, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_step"]
+albedo_color = Color(0.50, 0.48, 0.45, 1)
+roughness = 0.60
+
+[sub_resource type="StandardMaterial3D" id="mat_awning"]
+albedo_color = Color(0.92, 0.45, 0.08, 1)
+roughness = 0.50
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.92, 0.45, 0.08, 1)
+roughness = 0.36
+metallic = 0.10
+
+[sub_resource type="StandardMaterial3D" id="mat_sign_text"]
+albedo_color = Color(0.96, 0.95, 0.90, 1)
+roughness = 0.38
+
+[sub_resource type="StandardMaterial3D" id="mat_door_frame"]
+albedo_color = Color(0.25, 0.23, 0.21, 1)
+roughness = 0.35
+metallic = 0.70
+
+[sub_resource type="StandardMaterial3D" id="mat_glass"]
+albedo_color = Color(0.75, 0.80, 0.86, 1)
+roughness = 0.05
+metallic = 0.90
+
+[sub_resource type="StandardMaterial3D" id="mat_counter"]
+albedo_color = Color(0.30, 0.28, 0.26, 1)
+roughness = 0.50
+metallic = 0.15
+
+[sub_resource type="StandardMaterial3D" id="mat_counter_top"]
+albedo_color = Color(0.88, 0.86, 0.82, 1)
+roughness = 0.32
+
+[sub_resource type="StandardMaterial3D" id="mat_shelf"]
+albedo_color = Color(0.35, 0.37, 0.40, 1)
+roughness = 0.30
+metallic = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_shelf_leg"]
+albedo_color = Color(0.15, 0.15, 0.17, 1)
+roughness = 0.28
+metallic = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_package_brown"]
+albedo_color = Color(0.58, 0.40, 0.22, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_package_tape"]
+albedo_color = Color(0.85, 0.78, 0.60, 1)
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_package_white"]
+albedo_color = Color(0.92, 0.90, 0.86, 1)
+roughness = 0.50
+
+[sub_resource type="StandardMaterial3D" id="mat_computer"]
+albedo_color = Color(0.16, 0.16, 0.18, 1)
+roughness = 0.25
+metallic = 0.50
+
+[sub_resource type="StandardMaterial3D" id="mat_screen"]
+albedo_color = Color(0.18, 0.22, 0.28, 1)
+roughness = 0.15
+metallic = 0.20
+
+[sub_resource type="StandardMaterial3D" id="mat_trolley"]
+albedo_color = Color(0.55, 0.55, 0.58, 1)
+roughness = 0.30
+metallic = 0.80
+
+[sub_resource type="StandardMaterial3D" id="mat_trolley_basket"]
+albedo_color = Color(0.30, 0.32, 0.35, 1)
+roughness = 0.25
+metallic = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_chrome"]
+albedo_color = Color(0.78, 0.80, 0.84, 1)
+roughness = 0.12
+metallic = 0.95
+
+[sub_resource type="StandardMaterial3D" id="mat_label_red"]
+albedo_color = Color(0.82, 0.15, 0.10, 1)
+roughness = 0.45
+
+[node name="DeliveryStation" type="Node3D"]
+
+; ── 建筑结构 ──
+
+[node name="Floor" type="CSGBox3D" parent="."]
+use_collision = true
+size = Vector3(5.2, 0.12, 5.4)
+material = SubResource("mat_floor")
+
+[node name="BackWall" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.6)
+size = Vector3(5, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="LeftWall" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1.5, 0)
+size = Vector3(0.18, 3, 5.2)
+material = SubResource("mat_wall")
+
+[node name="RightWall" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1.5, 0)
+size = Vector3(0.18, 3, 5.2)
+material = SubResource("mat_wall")
+
+[node name="FrontWallLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 1.5, 2.6)
+size = Vector3(1.6, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="FrontWallRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 1.5, 2.6)
+size = Vector3(1.6, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="DoorLintel" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82, 2.6)
+size = Vector3(2.8, 0.34, 0.18)
+material = SubResource("mat_wall")
+
+[node name="Roof" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06, 0)
+size = Vector3(5.6, 0.10, 5.8)
+material = SubResource("mat_roof")
+
+[node name="DoorStep" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 2.82)
+size = Vector3(3.2, 0.14, 0.44)
+material = SubResource("mat_step")
+
+; ── 遮阳篷 ──
+
+[node name="Awning" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(0.95, 0, 0.31, 0, 1, 0, -0.31, 0, 0.95, 0, 2.95, 2.32)
+size = Vector3(3.8, 0.04, 0.78)
+material = SubResource("mat_awning")
+
+[node name="AwningPostLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.7, 2.55, 2.6)
+size = Vector3(0.04, 0.50, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="AwningPostRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.7, 2.55, 2.6)
+size = Vector3(0.04, 0.50, 0.04)
+material = SubResource("mat_shelf_leg")
+
+; ── 招牌 ──
+
+[node name="SignBoard" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68, 2.68)
+size = Vector3(2.6, 0.30, 0.03)
+material = SubResource("mat_sign")
+
+[node name="SignText" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68, 2.86)
+size = Vector3(1.8, 0.14, 0.035)
+material = SubResource("mat_sign_text")
+
+; ── 门口 ──
+
+[node name="DoorFrameLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.3, 1.35, 2.6)
+size = Vector3(0.08, 2.7, 0.14)
+material = SubResource("mat_door_frame")
+
+[node name="DoorFrameRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.3, 1.35, 2.6)
+size = Vector3(0.08, 2.7, 0.14)
+material = SubResource("mat_door_frame")
+
+[node name="GlassDoorLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.65, 1.35, 2.6)
+size = Vector3(0.65, 2.5, 0.04)
+material = SubResource("mat_glass")
+
+[node name="GlassDoorRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.65, 1.35, 2.6)
+size = Vector3(0.65, 2.5, 0.04)
+material = SubResource("mat_glass")
+
+[node name="DoorHandleLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82, 1.35, 2.66)
+size = Vector3(0.03, 0.18, 0.04)
+material = SubResource("mat_chrome")
+
+[node name="DoorHandleRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.82, 1.35, 2.66)
+size = Vector3(0.03, 0.18, 0.04)
+material = SubResource("mat_chrome")
+
+; ── 服务柜台（后部居中） ──
+
+[node name="CounterBase" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50, -1.0)
+size = Vector3(2.4, 0.88, 0.55)
+material = SubResource("mat_counter")
+
+[node name="CounterTop" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.95, -1.0)
+size = Vector3(2.6, 0.04, 0.65)
+material = SubResource("mat_counter_top")
+
+[node name="CounterFrontPanel" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55, -1.28)
+size = Vector3(2.2, 0.6, 0.03)
+material = SubResource("mat_sign")
+
+; 电脑屏幕
+
+[node name="MonitorBase" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.02, -1.0)
+size = Vector3(0.15, 0.03, 0.12)
+material = SubResource("mat_computer")
+
+[node name="MonitorStand" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.12, -1.0)
+size = Vector3(0.04, 0.18, 0.04)
+material = SubResource("mat_computer")
+
+[node name="MonitorScreen" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.28, -1.0)
+size = Vector3(0.38, 0.26, 0.03)
+material = SubResource("mat_screen")
+
+[node name="MonitorBezel" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 1.28, -1.02)
+size = Vector3(0.42, 0.30, 0.015)
+material = SubResource("mat_computer")
+
+; 键盘
+
+[node name="Keyboard" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.2, 0.98, -1.0)
+size = Vector3(0.35, 0.02, 0.12)
+material = SubResource("mat_computer")
+
+; ── 左侧货架（3 层，摆放包裹） ──
+
+[node name="LeftShelf_Leg1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 1.2, -2.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="LeftShelf_Leg2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 1.2, -1.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="LeftShelf_Leg3" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 1.2, 1.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="LeftShelf_Leg4" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.3, 1.2, 2.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="LeftShelf_Level1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 0.30, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+[node name="LeftShelf_Level2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.05, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+[node name="LeftShelf_Level3" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.80, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+; 左侧货架包裹（每层 4 个，大小不一）
+
+[node name="LPkg_1A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 0.40, -1.8)
+size = Vector3(0.28, 0.18, 0.22)
+material = SubResource("mat_package_brown")
+
+[node name="LPkg_1B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 0.37, -1.3)
+size = Vector3(0.20, 0.12, 0.18)
+material = SubResource("mat_package_white")
+
+[node name="LPkg_1C" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 0.38, 0.2)
+size = Vector3(0.24, 0.15, 0.20)
+material = SubResource("mat_package_brown")
+
+[node name="LPkg_1D" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 0.39, 1.5)
+size = Vector3(0.30, 0.16, 0.24)
+material = SubResource("mat_package_brown")
+
+[node name="LPkg_2A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.14, -1.6)
+size = Vector3(0.15, 0.14, 0.18)
+material = SubResource("mat_package_white")
+
+[node name="LPkg_2B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.15, -0.8)
+size = Vector3(0.22, 0.16, 0.22)
+material = SubResource("mat_package_brown")
+
+[node name="LPkg_2C" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.13, 0.6)
+size = Vector3(0.18, 0.11, 0.20)
+material = SubResource("mat_package_brown")
+
+[node name="LPkg_3A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.88, -2.0)
+size = Vector3(0.12, 0.12, 0.15)
+material = SubResource("mat_package_white")
+
+[node name="LPkg_3B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.08, 1.89, 0.0)
+size = Vector3(0.16, 0.13, 0.16)
+material = SubResource("mat_package_brown")
+
+; ── 右侧货架（3 层，摆放包裹） ──
+
+[node name="RightShelf_Leg1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 1.2, -2.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="RightShelf_Leg2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 1.2, -1.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="RightShelf_Leg3" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 1.2, 1.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="RightShelf_Leg4" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3, 1.2, 2.0)
+size = Vector3(0.04, 2.28, 0.04)
+material = SubResource("mat_shelf_leg")
+
+[node name="RightShelf_Level1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0.30, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+[node name="RightShelf_Level2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.05, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+[node name="RightShelf_Level3" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.80, -0.5)
+size = Vector3(0.48, 0.03, 3.0)
+material = SubResource("mat_shelf")
+
+; 右侧货架包裹
+
+[node name="RPkg_1A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0.41, -2.0)
+size = Vector3(0.32, 0.20, 0.28)
+material = SubResource("mat_package_brown")
+
+[node name="RPkg_1B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0.37, -1.4)
+size = Vector3(0.18, 0.12, 0.16)
+material = SubResource("mat_package_white")
+
+[node name="RPkg_1C" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0.38, 0.4)
+size = Vector3(0.26, 0.16, 0.22)
+material = SubResource("mat_package_brown")
+
+[node name="RPkg_1D" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 0.40, 1.8)
+size = Vector3(0.22, 0.18, 0.18)
+material = SubResource("mat_package_brown")
+
+[node name="RPkg_2A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.14, -1.8)
+size = Vector3(0.20, 0.14, 0.20)
+material = SubResource("mat_package_white")
+
+[node name="RPkg_2B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.15, -0.5)
+size = Vector3(0.28, 0.18, 0.26)
+material = SubResource("mat_package_brown")
+
+[node name="RPkg_2C" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.12, 1.0)
+size = Vector3(0.14, 0.10, 0.16)
+material = SubResource("mat_package_brown")
+
+[node name="RPkg_3A" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.88, -1.0)
+size = Vector3(0.12, 0.12, 0.14)
+material = SubResource("mat_package_white")
+
+[node name="RPkg_3B" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.08, 1.89, 1.5)
+size = Vector3(0.18, 0.15, 0.18)
+material = SubResource("mat_package_brown")
+
+; ── 地面大件包裹堆积（右侧中段） ──
+
+[node name="FloorPkg_Big1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.22, 1.5)
+size = Vector3(0.50, 0.32, 0.40)
+material = SubResource("mat_package_brown")
+
+[node name="FloorPkg_Big2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.18, 0.5)
+size = Vector3(0.45, 0.24, 0.38)
+material = SubResource("mat_package_white")
+
+[node name="FloorPkg_Big3" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.44, 1.0)
+size = Vector3(0.40, 0.20, 0.35)
+material = SubResource("mat_package_brown")
+
+[node name="FloorPkg_Tape1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.40, 1.5)
+size = Vector3(0.08, 0.04, 0.38)
+material = SubResource("mat_package_tape")
+
+[node name="FloorPkg_Tape2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.44, 1.0)
+size = Vector3(0.06, 0.03, 0.33)
+material = SubResource("mat_package_tape")
+
+; ── 后墙标签板 ──
+
+[node name="LabelBoard" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.35, -2.50)
+size = Vector3(1.6, 0.18, 0.025)
+material = SubResource("mat_label_red")
+
+; ── 左侧推车 ──
+
+[node name="Trolley_Handle" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.78, 2.2)
+size = Vector3(0.60, 0.03, 0.04)
+material = SubResource("mat_trolley")
+
+[node name="Trolley_HandleLeft" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.05, 0.58, 2.2)
+size = Vector3(0.04, 0.42, 0.04)
+material = SubResource("mat_trolley")
+
+[node name="Trolley_HandleRight" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.55, 0.58, 2.2)
+size = Vector3(0.04, 0.42, 0.04)
+material = SubResource("mat_trolley")
+
+[node name="Trolley_Basket" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.32, 1.6)
+size = Vector3(0.58, 0.46, 1.0)
+material = SubResource("mat_trolley_basket")
+
+[node name="Trolley_WheelFL" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -2.02, 0.06, 1.25)
+radius = 0.06
+height = 0.03
+material = SubResource("mat_computer")
+
+[node name="Trolley_WheelFR" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -1.58, 0.06, 1.25)
+radius = 0.06
+height = 0.03
+material = SubResource("mat_computer")
+
+[node name="Trolley_WheelRL" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -2.02, 0.06, 1.85)
+radius = 0.06
+height = 0.03
+material = SubResource("mat_computer")
+
+[node name="Trolley_WheelRR" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 0, 1, 0, -1, 0, -1.58, 0.06, 1.85)
+radius = 0.06
+height = 0.03
+material = SubResource("mat_computer")
+
+; 推车里的包裹
+
+[node name="TrolleyPkg1" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.48, 1.5)
+size = Vector3(0.30, 0.22, 0.24)
+material = SubResource("mat_package_brown")
+
+[node name="TrolleyPkg2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.44, 1.85)
+size = Vector3(0.22, 0.16, 0.20)
+material = SubResource("mat_package_white")
+
+; ── 墙上海报 ──
+
+[node name="PosterBack" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 1.8, -2.48)
+size = Vector3(0.02, 0.60, 0.50)
+material = SubResource("mat_sign")
+
+[node name="PosterBack2" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 1.8, -2.48)
+size = Vector3(0.02, 0.45, 0.35)
+material = SubResource("mat_sign")
+
+; ── 门口扫码枪/巴枪 ──
+
+[node name="ScannerStand" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.58, -0.88)
+radius = 0.03
+height = 0.50
+material = SubResource("mat_shelf_leg")
+
+[node name="ScannerBase" type="CSGCylinder3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.30, -0.88)
+radius = 0.10
+height = 0.04
+material = SubResource("mat_computer")
+
+[node name="ScannerHead" type="CSGBox3D" parent="."]
+use_collision = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.8, 0.88, -0.88)
+size = Vector3(0.08, 0.06, 0.12)
+material = SubResource("mat_computer")

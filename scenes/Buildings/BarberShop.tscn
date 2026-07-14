@@ -1,0 +1,555 @@
+[gd_scene format=3 uid="uid://btkumy0upxpe1"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.36, 0.34, 0.32, 1)
+roughness = 0.65
+
+[sub_resource type="StandardMaterial3D" id="mat_wall"]
+albedo_color = Color(0.94, 0.92, 0.87, 1)
+roughness = 0.72
+
+[sub_resource type="StandardMaterial3D" id="mat_roof"]
+albedo_color = Color(0.2, 0.19, 0.18, 1)
+roughness = 0.75
+
+[sub_resource type="StandardMaterial3D" id="mat_step"]
+albedo_color = Color(0.48, 0.46, 0.44, 1)
+roughness = 0.62
+
+[sub_resource type="StandardMaterial3D" id="mat_awning"]
+albedo_color = Color(0.88, 0.24, 0.18, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_pole_bracket"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+metallic = 0.85
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_sign"]
+albedo_color = Color(0.1, 0.22, 0.55, 1)
+metallic = 0.15
+roughness = 0.38
+
+[sub_resource type="StandardMaterial3D" id="mat_awning_stripe"]
+albedo_color = Color(0.95, 0.95, 0.92, 1)
+roughness = 0.5
+
+[sub_resource type="StandardMaterial3D" id="mat_mirror_frame"]
+albedo_color = Color(0.25, 0.23, 0.21, 1)
+metallic = 0.7
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_mirror"]
+albedo_color = Color(0.78, 0.82, 0.88, 1)
+metallic = 0.95
+roughness = 0.05
+
+[sub_resource type="StandardMaterial3D" id="mat_chair_chrome"]
+albedo_color = Color(0.75, 0.78, 0.82, 1)
+metallic = 0.95
+roughness = 0.15
+
+[sub_resource type="StandardMaterial3D" id="mat_pole_red"]
+albedo_color = Color(0.85, 0.15, 0.1, 1)
+metallic = 0.25
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_pole_white"]
+albedo_color = Color(0.96, 0.95, 0.92, 1)
+metallic = 0.25
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_pole_blue"]
+albedo_color = Color(0.1, 0.18, 0.7, 1)
+metallic = 0.25
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_chair_base"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+metallic = 0.8
+roughness = 0.3
+
+[sub_resource type="StandardMaterial3D" id="mat_chair_seat"]
+albedo_color = Color(0.1, 0.09, 0.08, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_counter"]
+albedo_color = Color(0.4, 0.25, 0.14, 1)
+roughness = 0.55
+
+[sub_resource type="StandardMaterial3D" id="mat_counter_top"]
+albedo_color = Color(0.92, 0.9, 0.86, 1)
+roughness = 0.35
+
+[sub_resource type="StandardMaterial3D" id="mat_product"]
+albedo_color = Color(0.15, 0.58, 0.52, 1)
+metallic = 0.2
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_waiting_seat"]
+albedo_color = Color(0.55, 0.28, 0.14, 1)
+roughness = 0.62
+
+[sub_resource type="StandardMaterial3D" id="mat_waiting_legs"]
+albedo_color = Color(0.22, 0.22, 0.24, 1)
+metallic = 0.8
+roughness = 0.3
+
+[node name="BarberShop" type="Node3D" unique_id=776126927]
+
+[node name="Floor" type="CSGBox3D" parent="." unique_id=1163141012]
+use_collision = true
+size = Vector3(4.2, 0.12, 5.2)
+material = SubResource("mat_floor")
+
+[node name="BackWall" type="CSGBox3D" parent="." unique_id=1310666073]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -2.5)
+use_collision = true
+size = Vector3(4, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="LeftWall" type="CSGBox3D" parent="." unique_id=1422492574]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1.5, 0)
+use_collision = true
+size = Vector3(0.18, 3, 5)
+material = SubResource("mat_wall")
+
+[node name="RightWall" type="CSGBox3D" parent="." unique_id=643801443]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 1.5, 0)
+use_collision = true
+size = Vector3(0.18, 3, 5)
+material = SubResource("mat_wall")
+
+[node name="FrontWallLeft" type="CSGBox3D" parent="." unique_id=1466764567]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.35, 1.5, 2.5)
+use_collision = true
+size = Vector3(1.3, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="FrontWallRight" type="CSGBox3D" parent="." unique_id=246733910]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.35, 1.5, 2.5)
+use_collision = true
+size = Vector3(1.3, 3, 0.18)
+material = SubResource("mat_wall")
+
+[node name="DoorLintel" type="CSGBox3D" parent="." unique_id=138771460]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.82, 2.5)
+use_collision = true
+size = Vector3(2.3, 0.34, 0.18)
+material = SubResource("mat_wall")
+
+[node name="Roof" type="CSGBox3D" parent="." unique_id=6762671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.06, 0)
+use_collision = true
+size = Vector3(4.6, 0.1, 5.6)
+material = SubResource("mat_roof")
+
+[node name="DoorStep" type="CSGBox3D" parent="." unique_id=1988929510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.07, 2.72)
+use_collision = true
+size = Vector3(2.6, 0.14, 0.42)
+material = SubResource("mat_step")
+
+[node name="Awning" type="CSGBox3D" parent="." unique_id=2003154144]
+transform = Transform3D(0.99929976, 0, 0, 0, 1, 0, 0, 0, 0.99929976, 0, 2.95, 3.019438)
+use_collision = true
+size = Vector3(3.4, 0.04, 0.74)
+material = SubResource("mat_awning")
+
+[node name="AwningPostLeft" type="CSGBox3D" parent="." unique_id=2074421087]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2.55, 2.5)
+use_collision = true
+size = Vector3(0.04, 0.5, 0.04)
+material = SubResource("mat_pole_bracket")
+
+[node name="AwningPostRight" type="CSGBox3D" parent="." unique_id=2126609793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.55, 2.5)
+use_collision = true
+size = Vector3(0.04, 0.5, 0.04)
+material = SubResource("mat_pole_bracket")
+
+[node name="SignBoard" type="CSGBox3D" parent="." unique_id=688460605]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68, 2.58)
+use_collision = true
+size = Vector3(2.2, 0.28, 0.03)
+material = SubResource("mat_sign")
+
+[node name="SignText" type="CSGBox3D" parent="." unique_id=1212004606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.68, 2.74)
+use_collision = true
+size = Vector3(1.6, 0.12, 0.035)
+material = SubResource("mat_awning_stripe")
+
+[node name="DoorFrameLeft" type="CSGBox3D" parent="." unique_id=166755694]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 1.35, 2.5)
+use_collision = true
+size = Vector3(0.08, 2.7, 0.14)
+material = SubResource("mat_mirror_frame")
+
+[node name="DoorFrameRight" type="CSGBox3D" parent="." unique_id=2057342629]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 1.35, 2.5)
+use_collision = true
+size = Vector3(0.08, 2.7, 0.14)
+material = SubResource("mat_mirror_frame")
+
+[node name="GlassDoorLeft" type="CSGBox3D" parent="." unique_id=75200957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.82542574, 1.35, 2.5)
+use_collision = true
+size = Vector3(0.55, 2.5, 0.04)
+material = SubResource("mat_mirror")
+
+[node name="GlassDoorRight" type="CSGBox3D" parent="." unique_id=4777300]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.81443316, 1.35, 2.5)
+use_collision = true
+size = Vector3(0.55, 2.5, 0.04)
+material = SubResource("mat_mirror")
+
+[node name="DoorHandleLeft" type="CSGBox3D" parent="." unique_id=919942524]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.72, 1.35, 2.56)
+use_collision = true
+size = Vector3(0.03, 0.18, 0.04)
+material = SubResource("mat_chair_chrome")
+
+[node name="DoorHandleRight" type="CSGBox3D" parent="." unique_id=1983555661]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.72, 1.35, 2.56)
+use_collision = true
+size = Vector3(0.03, 0.18, 0.04)
+material = SubResource("mat_chair_chrome")
+
+[node name="PoleBracketBase" type="CSGBox3D" parent="." unique_id=1363650015]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.82, 2.45)
+use_collision = true
+size = Vector3(0.08, 0.06, 0.1)
+material = SubResource("mat_pole_bracket")
+
+[node name="PoleRed1" type="CSGCylinder3D" parent="." unique_id=1490598619]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.32618034, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_red")
+
+[node name="PoleWhite1" type="CSGCylinder3D" parent="." unique_id=1973248876]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.5061803, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_white")
+
+[node name="PoleBlue1" type="CSGCylinder3D" parent="." unique_id=900328501]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.68618023, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_blue")
+
+[node name="PoleRed2" type="CSGCylinder3D" parent="." unique_id=873710572]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.8661803, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_red")
+
+[node name="PoleWhite2" type="CSGCylinder3D" parent="." unique_id=1221393807]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.0461802, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_white")
+
+[node name="PoleBlue2" type="CSGCylinder3D" parent="." unique_id=346973270]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.2261802, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_blue")
+
+[node name="PoleTopCap" type="CSGCylinder3D" parent="." unique_id=767593965]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 1.3461803, 2.63)
+use_collision = true
+radius = 0.07
+height = 0.06
+material = SubResource("mat_pole_bracket")
+
+[node name="PoleBottomCap" type="CSGCylinder3D" parent="." unique_id=383925951]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.8, 0.20618033, 2.63)
+use_collision = true
+radius = 0.07
+height = 0.06
+material = SubResource("mat_pole_bracket")
+
+[node name="PoleRed3" type="CSGCylinder3D" parent="." unique_id=1627570190]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 0.32618034, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_red")
+
+[node name="PoleWhite3" type="CSGCylinder3D" parent="." unique_id=1836152477]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 0.5061803, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_white")
+
+[node name="PoleBlue3" type="CSGCylinder3D" parent="." unique_id=907358830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 0.68618023, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_blue")
+
+[node name="PoleRed4" type="CSGCylinder3D" parent="." unique_id=167726334]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 0.8661803, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_red")
+
+[node name="PoleWhite4" type="CSGCylinder3D" parent="." unique_id=421370640]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 1.0461802, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_white")
+
+[node name="PoleBlue4" type="CSGCylinder3D" parent="." unique_id=860145514]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 1.2261802, 2.63)
+use_collision = true
+radius = 0.06
+height = 0.18
+material = SubResource("mat_pole_blue")
+
+[node name="PoleTopCap2" type="CSGCylinder3D" parent="." unique_id=1628321451]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 1.3461803, 2.63)
+use_collision = true
+radius = 0.07
+height = 0.06
+material = SubResource("mat_pole_bracket")
+
+[node name="PoleBottomCap2" type="CSGCylinder3D" parent="." unique_id=159496975]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.719703, 0.20618033, 2.63)
+use_collision = true
+radius = 0.07
+height = 0.06
+material = SubResource("mat_pole_bracket")
+
+[node name="MirrorFrame" type="CSGBox3D" parent="." unique_id=1659663465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.38)
+use_collision = true
+size = Vector3(3.2, 1.6, 0.04)
+material = SubResource("mat_mirror_frame")
+
+[node name="MirrorGlass" type="CSGBox3D" parent="." unique_id=1470309961]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4, -2.36)
+use_collision = true
+size = Vector3(2.9, 1.4, 0.02)
+material = SubResource("mat_mirror")
+
+[node name="MirrorShelf" type="CSGBox3D" parent="." unique_id=1699663291]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.62, -2.36)
+use_collision = true
+size = Vector3(2.8, 0.03, 0.18)
+material = SubResource("mat_mirror_frame")
+
+[node name="Chair1_Base" type="CSGCylinder3D" parent="." unique_id=1470566680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.08, -1.8)
+use_collision = true
+radius = 0.22
+height = 0.06
+material = SubResource("mat_chair_base")
+
+[node name="Chair1_Pedestal" type="CSGCylinder3D" parent="." unique_id=839604727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.28, -1.8)
+use_collision = true
+radius = 0.06
+height = 0.4
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair1_Seat" type="CSGBox3D" parent="." unique_id=705786847]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.53, -1.8)
+use_collision = true
+size = Vector3(0.38, 0.06, 0.36)
+material = SubResource("mat_chair_seat")
+
+[node name="Chair1_Backrest" type="CSGBox3D" parent="." unique_id=847234965]
+transform = Transform3D(1, 0, 0, 0, 0.94, -0.34, 0, 0.34, 0.94, -1.2, 0.85, -2)
+use_collision = true
+size = Vector3(0.32, 0.44, 0.06)
+material = SubResource("mat_chair_seat")
+
+[node name="Chair1_ArmLeft" type="CSGBox3D" parent="." unique_id=2126288606]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.42, 0.56, -1.8)
+use_collision = true
+size = Vector3(0.04, 0.03, 0.3)
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair1_ArmRight" type="CSGBox3D" parent="." unique_id=1056325828]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.98, 0.56, -1.8)
+use_collision = true
+size = Vector3(0.04, 0.03, 0.3)
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair1_Footrest" type="CSGBox3D" parent="." unique_id=1058849162]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.2, 0.25, -2.02)
+use_collision = true
+size = Vector3(0.3, 0.04, 0.12)
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair2_Base" type="CSGCylinder3D" parent="." unique_id=718244917]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.08, -1.8)
+use_collision = true
+radius = 0.22
+height = 0.06
+material = SubResource("mat_chair_base")
+
+[node name="Chair2_Pedestal" type="CSGCylinder3D" parent="." unique_id=602734718]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.28, -1.8)
+use_collision = true
+radius = 0.06
+height = 0.4
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair2_Seat" type="CSGBox3D" parent="." unique_id=2027365433]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.53, -1.8)
+use_collision = true
+size = Vector3(0.38, 0.06, 0.36)
+material = SubResource("mat_chair_seat")
+
+[node name="Chair2_Backrest" type="CSGBox3D" parent="." unique_id=877512284]
+transform = Transform3D(1, 0, 0, 0, 0.94, -0.34, 0, 0.34, 0.94, 1.2, 0.85, -2)
+use_collision = true
+size = Vector3(0.32, 0.44, 0.06)
+material = SubResource("mat_chair_seat")
+
+[node name="Chair2_ArmLeft" type="CSGBox3D" parent="." unique_id=147483845]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.98, 0.56, -1.8)
+use_collision = true
+size = Vector3(0.04, 0.03, 0.3)
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair2_ArmRight" type="CSGBox3D" parent="." unique_id=557102390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.42, 0.56, -1.8)
+use_collision = true
+size = Vector3(0.04, 0.03, 0.3)
+material = SubResource("mat_chair_chrome")
+
+[node name="Chair2_Footrest" type="CSGBox3D" parent="." unique_id=819687109]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.2, 0.25, -2.02)
+use_collision = true
+size = Vector3(0.3, 0.04, 0.12)
+material = SubResource("mat_chair_chrome")
+
+[node name="CounterBase" type="CSGBox3D" parent="." unique_id=1152546193]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.44, -0.6)
+use_collision = true
+size = Vector3(0.5, 0.76, 1.5)
+material = SubResource("mat_counter")
+
+[node name="CounterTop" type="CSGBox3D" parent="." unique_id=467687030]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.84, -0.6)
+use_collision = true
+size = Vector3(0.56, 0.04, 1.6)
+material = SubResource("mat_counter_top")
+
+[node name="CounterMirror" type="CSGBox3D" parent="." unique_id=365142941]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.82, 1, -0.6)
+use_collision = true
+size = Vector3(0.02, 0.7, 0.85)
+material = SubResource("mat_mirror")
+
+[node name="Product01" type="CSGCylinder3D" parent="." unique_id=1369172278]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.91, -0.95)
+use_collision = true
+radius = 0.04
+height = 0.12
+material = SubResource("mat_product")
+
+[node name="Product02" type="CSGCylinder3D" parent="." unique_id=492680892]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.89, -0.75)
+use_collision = true
+radius = 0.035
+height = 0.1
+material = SubResource("mat_pole_red")
+
+[node name="Product03" type="CSGCylinder3D" parent="." unique_id=1955689098]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.9, -0.45)
+use_collision = true
+radius = 0.04
+height = 0.11
+material = SubResource("mat_pole_blue")
+
+[node name="Product04" type="CSGCylinder3D" parent="." unique_id=1862746050]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.65, 0.91, -0.25)
+use_collision = true
+radius = 0.035
+height = 0.13
+material = SubResource("mat_awning_stripe")
+
+[node name="WashBasin_Stand" type="CSGBox3D" parent="." unique_id=139352603]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6, 0.3, -2.1)
+use_collision = true
+size = Vector3(0.35, 0.48, 0.4)
+material = SubResource("mat_counter")
+
+[node name="WashBasin_Bowl" type="CSGCylinder3D" parent="." unique_id=1218443960]
+transform = Transform3D(0.87, 0, -0.5, 0, 1, 0, 0.5, 0, 0.87, -1.6, 0.58, -2.1)
+use_collision = true
+radius = 0.18
+height = 0.1
+material = SubResource("mat_awning_stripe")
+
+[node name="WashBasin_Faucet" type="CSGCylinder3D" parent="." unique_id=302168588]
+transform = Transform3D(0, 0, 1, 0, 1, 0, -1, 0, 0, -1.6, 0.68, -2.1)
+use_collision = true
+radius = 0.015
+height = 0.18
+material = SubResource("mat_chair_chrome")
+
+[node name="WaitingBench_Seat" type="CSGBox3D" parent="." unique_id=1575506671]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.32, 1)
+use_collision = true
+size = Vector3(1.2, 0.05, 0.35)
+material = SubResource("mat_waiting_seat")
+
+[node name="WaitingBench_Back" type="CSGBox3D" parent="." unique_id=1114463609]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.62, 1.18)
+use_collision = true
+size = Vector3(1.2, 0.38, 0.04)
+material = SubResource("mat_waiting_seat")
+
+[node name="WaitingBench_LegLeft" type="CSGBox3D" parent="." unique_id=1998366465]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.16, 0.9)
+use_collision = true
+size = Vector3(0.04, 0.28, 0.04)
+material = SubResource("mat_waiting_legs")
+
+[node name="WaitingBench_LegRight" type="CSGBox3D" parent="." unique_id=1977404095]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.16, 0.9)
+use_collision = true
+size = Vector3(0.04, 0.28, 0.04)
+material = SubResource("mat_waiting_legs")
+
+[node name="WaitingBench_LegFrontL" type="CSGBox3D" parent="." unique_id=1464430471]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.16, 1.1)
+use_collision = true
+size = Vector3(0.04, 0.28, 0.04)
+material = SubResource("mat_waiting_legs")
+
+[node name="WaitingBench_LegFrontR" type="CSGBox3D" parent="." unique_id=719985755]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0.16, 1.1)
+use_collision = true
+size = Vector3(0.04, 0.28, 0.04)
+material = SubResource("mat_waiting_legs")
+
+[node name="PosterLeft" type="CSGBox3D" parent="." unique_id=1442910434]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.85, 1.55, 1.8)
+use_collision = true
+size = Vector3(0.02, 0.55, 0.4)
+material = SubResource("mat_sign")
+
+[node name="PosterRight" type="CSGBox3D" parent="." unique_id=1902001509]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.85, 1.55, 1.8)
+use_collision = true
+size = Vector3(0.02, 0.55, 0.4)
+material = SubResource("mat_sign")

@@ -1,0 +1,161 @@
+[gd_scene format=3 uid="uid://c5eg86x4n5246"]
+
+[ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/metal_pole.tres" id="2_metal"]
+
+[sub_resource type="StandardMaterial3D" id="mat_black"]
+albedo_color = Color(0.08, 0.08, 0.08, 1)
+roughness = 0.9
+
+[sub_resource type="StandardMaterial3D" id="mat_metal_gray"]
+albedo_color = Color(0.62, 0.62, 0.63, 1)
+metallic = 0.75
+roughness = 0.4
+
+[sub_resource type="StandardMaterial3D" id="mat_frame_yellow"]
+albedo_color = Color(0.96, 0.72, 0.04, 1)
+metallic = 0.35
+roughness = 0.45
+
+[sub_resource type="StandardMaterial3D" id="mat_basket"]
+albedo_color = Color(0.18, 0.18, 0.2, 1)
+metallic = 0.7
+roughness = 0.55
+
+[node name="SharedBike" type="CSGCombiner3D" unique_id=640904997]
+
+[node name="Profile" type="Node" parent="." unique_id=635828622]
+script = ExtResource("1_prov")
+profile = ExtResource("2_metal")
+
+[node name="RearWheel" type="CSGCylinder3D" parent="." unique_id=891795133]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -0.5, 0.28, 0)
+use_collision = true
+radius = 0.28
+height = 0.05
+material = SubResource("mat_black")
+
+[node name="FrontWheel" type="CSGCylinder3D" parent="." unique_id=1389929861]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0.55, 0.28, 0)
+use_collision = true
+radius = 0.28
+height = 0.05
+material = SubResource("mat_black")
+
+[node name="RearHub" type="CSGCylinder3D" parent="." unique_id=1308161529]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.28, 0)
+use_collision = true
+radius = 0.025
+height = 0.06
+material = SubResource("mat_metal_gray")
+
+[node name="FrontHub" type="CSGCylinder3D" parent="." unique_id=1274434840]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.28, 0)
+use_collision = true
+radius = 0.025
+height = 0.06
+material = SubResource("mat_metal_gray")
+
+[node name="ChainStay" type="CSGBox3D" parent="." unique_id=2083720711]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.22, 0.28, 0)
+use_collision = true
+size = Vector3(0.52, 0.035, 0.03)
+material = SubResource("mat_frame_yellow")
+
+[node name="SeatTube" type="CSGBox3D" parent="." unique_id=78835918]
+transform = Transform3D(0.92, -0.25, 0, 0.25, 0.92, 0, 0, 0, 1, -0.05, 0.5, 0)
+use_collision = true
+size = Vector3(0.03, 0.44, 0.03)
+material = SubResource("mat_frame_yellow")
+
+[node name="TopTube" type="CSGBox3D" parent="." unique_id=1548258229]
+transform = Transform3D(0.995, -0.06, 0, 0.06, 0.995, 0, 0, 0, 1, 0.18, 0.66, 0)
+use_collision = true
+size = Vector3(0.63, 0.03, 0.03)
+material = SubResource("mat_frame_yellow")
+
+[node name="DownTube" type="CSGBox3D" parent="." unique_id=747022798]
+transform = Transform3D(0.83, 0.56, 0, -0.56, 0.83, 0, 0, 0, 1, 0.28, 0.45, 0)
+use_collision = true
+size = Vector3(0.63, 0.035, 0.03)
+material = SubResource("mat_frame_yellow")
+
+[node name="SeatStay" type="CSGBox3D" parent="." unique_id=817319452]
+transform = Transform3D(0.72, 0.7, 0, -0.7, 0.72, 0, 0, 0, 1, -0.35, 0.48, 0)
+use_collision = true
+size = Vector3(0.55, 0.028, 0.028)
+material = SubResource("mat_frame_yellow")
+
+[node name="HeadTube" type="CSGCylinder3D" parent="." unique_id=920660916]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53, 0.66, 0)
+use_collision = true
+radius = 0.028
+height = 0.12
+material = SubResource("mat_frame_yellow")
+
+[node name="Fork" type="CSGBox3D" parent="." unique_id=1126315055]
+transform = Transform3D(0.05, 0, 0, 0, 1, 0, 0, 0, 1, 0.55, 0.46, 0)
+use_collision = true
+size = Vector3(0.025, 0.36, 0.025)
+material = SubResource("mat_metal_gray")
+
+[node name="Stem" type="CSGBox3D" parent="." unique_id=1418329038]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.53, 0.73, 0)
+use_collision = true
+size = Vector3(0.025, 0.1, 0.025)
+material = SubResource("mat_metal_gray")
+
+[node name="Handlebar" type="CSGBox3D" parent="." unique_id=2066340636]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.53, 0.79, 0)
+use_collision = true
+size = Vector3(0.26, 0.022, 0.022)
+material = SubResource("mat_black")
+
+[node name="SeatPost" type="CSGBox3D" parent="." unique_id=1150592005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.09909876, 0.76, 0)
+use_collision = true
+size = Vector3(0.022, 0.14, 0.022)
+material = SubResource("mat_metal_gray")
+
+[node name="Seat" type="CSGBox3D" parent="." unique_id=1019244805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.11909875, 0.84, 0)
+use_collision = true
+size = Vector3(0.16, 0.04, 0.09)
+material = SubResource("mat_black")
+
+[node name="BottomBracket" type="CSGCylinder3D" parent="." unique_id=1725731727]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.03, 0.28, 0)
+use_collision = true
+radius = 0.03
+height = 0.06
+material = SubResource("mat_metal_gray")
+
+[node name="Pedal_R" type="CSGBox3D" parent="." unique_id=485887742]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.09031602, 0.24724646, 0.12634669)
+use_collision = true
+size = Vector3(0.06, 0.015, 0.035)
+material = SubResource("mat_black")
+
+[node name="Pedal_L" type="CSGBox3D" parent="." unique_id=1782232999]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.045628216, 0.45036855, 0.12751651)
+use_collision = true
+size = Vector3(0.06, 0.015, 0.035)
+material = SubResource("mat_black")
+
+[node name="Basket" type="CSGBox3D" parent="." unique_id=1007543785]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.68, 0.6305399, -0.02)
+use_collision = true
+size = Vector3(0.22, 0.16, 0.2)
+material = SubResource("mat_basket")
+
+[node name="LockBox" type="CSGBox3D" parent="." unique_id=1072169537]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.3, 0.48, 0.06)
+use_collision = true
+size = Vector3(0.07, 0.06, 0.06)
+material = SubResource("mat_frame_yellow")
+
+[node name="Kickstand" type="CSGBox3D" parent="." unique_id=822127298]
+transform = Transform3D(0.85, -0.52, 0, 0.52, 0.85, 0, 0, 0, 1, 0.016111284, 0.3496595, 0.13)
+use_collision = true
+size = Vector3(0.02, 0.24, 0.02)
+material = SubResource("mat_metal_gray")
