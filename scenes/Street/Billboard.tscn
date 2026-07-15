@@ -1,117 +1,83 @@
-[gd_scene load_steps=5 format=3]
+[gd_scene format=3 uid="uid://babm02k1iuyrj"]
 
-[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
+[ext_resource type="Script" uid="uid://b2mngileabcwy" path="res://scripts/interaction/ContactProfileProvider.gd" id="1_prov"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/metal_pole.tres" id="2_metal"]
-
-[sub_resource type="StandardMaterial3D" id="mat_metal_dark"]
-albedo_color = Color(0.22, 0.22, 0.23, 1)
-roughness = 0.4
-metallic = 0.75
 
 [sub_resource type="StandardMaterial3D" id="mat_concrete"]
 albedo_color = Color(0.5, 0.48, 0.45, 1)
 roughness = 0.95
-metallic = 0.0
+
+[sub_resource type="StandardMaterial3D" id="mat_metal_dark"]
+albedo_color = Color(0.22, 0.22, 0.23, 1)
+metallic = 0.75
+roughness = 0.4
 
 [sub_resource type="StandardMaterial3D" id="mat_panel"]
 albedo_color = Color(0.92, 0.91, 0.88, 1)
-roughness = 0.7
 metallic = 0.05
+roughness = 0.7
 
-[node name="Billboard" type="CSGCombiner3D"]
+[node name="Billboard" type="CSGCombiner3D" unique_id=1276938445]
+use_collision = true
 
-[node name="Profile" type="Node" parent="."]
+[node name="Profile" type="Node" parent="." unique_id=736526367]
 script = ExtResource("1_prov")
 profile = ExtResource("2_metal")
 
-; ============================================================
-; 底座
-; ============================================================
-
-[node name="BaseLeft" type="CSGCylinder3D" parent="."]
+[node name="BaseLeft" type="CSGCylinder3D" parent="." unique_id=120734453]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 0.05, 0)
+use_collision = true
 radius = 0.3
 height = 0.1
 material = SubResource("mat_concrete")
-use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.5, 0.05, 0.0)
 
-[node name="BaseRight" type="CSGCylinder3D" parent="."]
+[node name="BaseRight" type="CSGCylinder3D" parent="." unique_id=1545662374]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 0.05, 0)
+use_collision = true
 radius = 0.3
 height = 0.1
 material = SubResource("mat_concrete")
+
+[node name="PoleLeft" type="CSGCylinder3D" parent="." unique_id=1769786429]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 1.85, 0)
 use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.5, 0.05, 0.0)
-
-; ============================================================
-; 立柱
-; ============================================================
-
-[node name="PoleLeft" type="CSGCylinder3D" parent="."]
 radius = 0.06
 height = 3.6
 material = SubResource("mat_metal_dark")
-use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.5, 1.85, 0.0)
 
-[node name="PoleRight" type="CSGCylinder3D" parent="."]
+[node name="PoleRight" type="CSGCylinder3D" parent="." unique_id=1380786793]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 1.85, 0)
+use_collision = true
 radius = 0.06
 height = 3.6
 material = SubResource("mat_metal_dark")
+
+[node name="BeamTop" type="CSGBox3D" parent="." unique_id=1939902986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.58, 0)
 use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.5, 1.85, 0.0)
-
-; ============================================================
-; 顶部横梁
-; ============================================================
-
-[node name="BeamTop" type="CSGBox3D" parent="."]
-width = 3.0
-height = 0.08
-depth = 0.06
+size = Vector3(3, 0.08, 0.06)
 material = SubResource("mat_metal_dark")
+
+[node name="BeamBot" type="CSGBox3D" parent="." unique_id=1654801092]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.14, 0)
 use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 3.58, 0.0)
-
-; ============================================================
-; 底部横梁
-; ============================================================
-
-[node name="BeamBot" type="CSGBox3D" parent="."]
-width = 3.0
-height = 0.08
-depth = 0.06
+size = Vector3(3, 0.08, 0.06)
 material = SubResource("mat_metal_dark")
+
+[node name="PanelBack" type="CSGBox3D" parent="." unique_id=557207593]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.36, 0)
 use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 1.14, 0.0)
-
-; ============================================================
-; 广告牌面板
-; ============================================================
-
-[node name="PanelBack" type="CSGBox3D" parent="."]
-width = 3.2
-height = 2.2
-depth = 0.06
+size = Vector3(3.2, 2.2, 0.06)
 material = SubResource("mat_panel")
+
+[node name="BraceLeft" type="CSGBox3D" parent="." unique_id=1403477855]
+transform = Transform3D(0.42, 0, 0, 0, 1, 0, 0, 0, 1, -1.5, 2.36, 0)
 use_collision = true
-transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 2.36, 0.0)
-
-; ============================================================
-; 面板支撑条 (交叉对角)
-; ============================================================
-
-[node name="BraceLeft" type="CSGBox3D" parent="."]
-width = 0.04
-height = 2.3
-depth = 0.04
+size = Vector3(0.04, 2.3, 0.04)
 material = SubResource("mat_metal_dark")
-use_collision = true
-transform = Transform3D(0.42, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.5, 2.36, 0.0)
 
-[node name="BraceRight" type="CSGBox3D" parent="."]
-width = 0.04
-height = 2.3
-depth = 0.04
-material = SubResource("mat_metal_dark")
+[node name="BraceRight" type="CSGBox3D" parent="." unique_id=677549646]
+transform = Transform3D(0.42, 0, 0, 0, 1, 0, 0, 0, 1, 1.5, 2.36, 0)
 use_collision = true
-transform = Transform3D(0.42, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.5, 2.36, 0.0)
+size = Vector3(0.04, 2.3, 0.04)
+material = SubResource("mat_metal_dark")

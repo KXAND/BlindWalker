@@ -5,13 +5,13 @@
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
-text = "找到了，另一家开着。"
-duration = 2.0
+text = "王叔开着车，载着晓明，很快就回到了小区楼下。"
+duration = 3.5
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
-text = "白糖买到了。虽然多走了一段路，但答应了的事就要做到。"
-duration = 3.5
+text = "李奶奶接过白糖，连声道谢。虽然多走了一段路，但答应了的事就要做到。"
+duration = 4.5
 
 [resource]
 script = ExtResource("1_sequence")
