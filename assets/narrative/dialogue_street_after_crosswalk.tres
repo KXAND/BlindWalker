@@ -6,13 +6,13 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "过了马路了。另一家小卖部，应该就沿着这条路走到下一个路口。"
+text = "过了马路了。往左转，然后沿着这条盲道走吧"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "小卖部应该就在下一个路口的斜对面"
+text = "沿着这个盲道往前走一段路后应该会有一个路口，这时候记得是跟着盲道往右转，继续直走直到下一个路口"
 duration = 100.0
 
 [resource]

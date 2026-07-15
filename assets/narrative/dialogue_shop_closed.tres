@@ -21,8 +21,14 @@ speaker_name = "晓明"
 text = "可我已经答应李奶奶了……我记得后面的路口处右转走过去第二个路口拐角处还有一家小卖部，那应该也有的卖，虽然远一点。"
 duration = 100.0
 
+[sub_resource type="Resource" id="NarrativeLine_4"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "先沿着这边盲道返回然后过马路吧"
+duration = 100.0
+
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"shop_closed"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4")]
 default_line_duration = 3.0
