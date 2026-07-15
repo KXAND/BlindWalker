@@ -446,7 +446,6 @@ func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float
 	velocity.y = minf(velocity.y, -1.0)
 	if GameConfig.DEBUG:
 		print("[DEBUG][GaitController] fall_started distance=%.2f cap=%d" % [fall_distance, GameConfig.TUMBLE_DAMAGE_CAP])
-	EventBus.audio_requested.emit("fall", global_position, 0.0)
 	EventBus.player_fall_started.emit()
 	EventBus.player_tumble_started.emit()
 	EventBus.player_fell.emit(fall_distance)
@@ -529,6 +528,7 @@ func _apply_fall_damage(amount: int) -> void:
 	_fall_damage_total += applied
 	_time_since_fall_damage = 0.0
 	_attributes.take_damage_ignoring_gameplay_lock(applied)
+	EventBus.audio_requested.emit("fall", global_position, 0.0)
 
 
 func _is_on_stable_surface() -> bool:
