@@ -33,6 +33,13 @@ func set_failure() -> void:
 	_set_failure(false)
 
 
+func revive() -> bool:
+	if current_state != State.FAILURE:
+		return false
+	_transition_to(State.PLAYING)
+	return true
+
+
 func is_playing() -> bool:
 	return current_state == State.PLAYING
 

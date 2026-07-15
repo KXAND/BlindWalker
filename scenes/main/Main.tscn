@@ -53,7 +53,7 @@
 [ext_resource type="Resource" uid="uid://byxd23jsnh22f" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
 [ext_resource type="Script" uid="uid://cjp8lcegylcbv" path="res://scripts/ui/DistanceHUD.gd" id="distance_hud"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
-[ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
+[ext_resource type="Resource" path="res://assets/narrative/failure_fullscreen.tres" id="failure_fullscreen"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
@@ -187,6 +187,7 @@ render_target_update_mode = 4
 
 [node name="GameRoot" type="Node3D" parent="GameViewportContainer/GameViewport" unique_id=1119639457]
 script = ExtResource("main_bootstrap")
+failure_sequence = ExtResource("failure_fullscreen")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=747758012]
 environment = SubResource("Environment_dark")
@@ -11749,9 +11750,6 @@ script = ExtResource("qte_prompt_ui")
 
 [node name="TouchReticleUI" type="CanvasLayer" parent="." unique_id=1637134706]
 script = ExtResource("touch_reticle_ui")
-
-[node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
-script = ExtResource("game_over_ui")
 
 [node name="SettingsMenuUI" type="CanvasLayer" parent="."]
 script = ExtResource("settings_menu_ui")
