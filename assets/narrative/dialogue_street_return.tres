@@ -1,26 +1,22 @@
-[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://byxd23jsnh22f"]
 
-[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
-[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
-speaker_id = &""
 speaker_name = "晓明"
-text = "买到了，回去吧。"
-duration = 2.2
+text = "答应了李奶奶的事，不能让她白等。我记得远一点那条街上也有一家。"
+duration = 3.8
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
-speaker_id = &""
 speaker_name = "晓明"
-text = "路口……还是那个路口，再等等。"
-duration = 2.8
+text = "多走一段路而已，走吧。"
+duration = 2.5
 
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"street_return"
 lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
-lock_input = true
-lock_gameplay = true
 default_line_duration = 3.0

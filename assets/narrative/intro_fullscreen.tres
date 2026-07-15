@@ -1,28 +1,21 @@
-[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=5 format=3]
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://cvu7ijwdo40ry"]
 
-[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
-[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
-speaker_id = &""
-speaker_name = ""
-text = "你是晓明。"
-duration = 2.0
+text = "我叫晓明，是一名22岁的失明的大学生。"
+duration = 2.5
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
-speaker_id = &""
-speaker_name = ""
-text = "今天先从家里出发，去楼下扔垃圾。"
-duration = 2.8
+text = "因为看不见，我平时很少出门。不过有些事，还是得自己来。"
+duration = 3.0
 
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"intro_fullscreen"
 lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
-lock_input = true
-lock_gameplay = true
-default_line_duration = 2.0
+default_line_duration = 2.5
 presentation_mode = "fullscreen"
-fullscreen_background_color = Color(0, 0, 0, 1)

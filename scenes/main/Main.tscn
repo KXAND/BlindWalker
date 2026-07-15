@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4npwkulky4od" path="res://scenes/Buildings/Department.tscn" id="35_m1khv"]
 [ext_resource type="PackedScene" uid="uid://comuak68gyht4" path="res://scenes/Street/TactileStop.tscn" id="36_gwlw1"]
 [ext_resource type="PackedScene" uid="uid://bagbch1ttjdjs" path="res://scenes/Buildings/OfficeTower.tscn" id="37_hlhe2"]
-[ext_resource type="PackedScene" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
+[ext_resource type="PackedScene" uid="uid://kexev13g3tfx" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
 [ext_resource type="PackedScene" path="res://scenes/Street/OutdoorClutterPile.tscn" id="38_vennj"]
 [ext_resource type="PackedScene" uid="uid://bdhu4ytgnsqsc" path="res://scenes/Buildings/ClosedShop.tscn" id="39_12hjt"]
 [ext_resource type="PackedScene" uid="uid://btkumy0upxpe1" path="res://scenes/Buildings/BarberShop.tscn" id="40_n7vst"]
@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dowwrx47htw0d" path="res://scenes/Street/trash_b.tscn" id="52_hlhe2"]
 [ext_resource type="PackedScene" uid="uid://bv45wqrdcilun" path="res://scenes/Buildings/building_H_withoutBase.tscn" id="53_e8pg6"]
 [ext_resource type="PackedScene" uid="uid://cqk53stvdaayi" path="res://scenes/Buildings/BreakfastShop.tscn" id="56_ex0yv"]
-[ext_resource type="PackedScene" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
+[ext_resource type="PackedScene" uid="uid://cw7jkrlxwr21n" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://d0oji56k1y4e0" path="res://scenes/main/fps.gd" id="60_b6xsk"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
@@ -42,24 +42,21 @@
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor_return.tres" id="dialogue_ground_floor_return"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" path="res://assets/narrative/dialogue_shop_closed.tres" id="dialogue_shop_closed"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
-[ext_resource type="Resource" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
-[ext_resource type="Resource" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
+[ext_resource type="Resource" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
+[ext_resource type="Resource" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
 [ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
@@ -189,7 +186,7 @@ script = ExtResource("main_bootstrap")
 environment = SubResource("Environment_dark")
 
 [node name="Player" type="CharacterBody3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=136453261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.62042, 2.9397423, 18.043913)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.62042, 2.9397423, 16.043913)
 script = ExtResource("gait_controller")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1681564081]
@@ -316,50 +313,24 @@ sequence = ExtResource("dialogue_street_after_crosswalk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk" unique_id=1807718738]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
-[node name="SupermarketEntrance" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.6, 1, -36.5)
+[node name="ShopClosed" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -10)
 script = ExtResource("narrative_trigger_area")
-sequence = ExtResource("dialogue_supermarket_entrance")
+sequence = ExtResource("dialogue_shop_closed")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketEntrance" unique_id=1504294838]
-shape = SubResource("BoxShape3D_dialogue_trigger")
-
-[node name="SupermarketShelves" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=8978892]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 56.8, 1, -40.2)
-script = ExtResource("narrative_trigger_area")
-sequence = ExtResource("dialogue_supermarket_shelves")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketShelves" unique_id=2120161715]
-shape = SubResource("BoxShape3D_dialogue_trigger")
-
-[node name="SupermarketCashier" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1540126144]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59.5, 1, -42.5)
-script = ExtResource("narrative_trigger_area")
-sequence = ExtResource("dialogue_supermarket_cashier")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/SupermarketCashier" unique_id=1761431894]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/ShopClosed" unique_id=1504294838]
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 58.5, 1, -33)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_return")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetReturn" unique_id=1578541053]
 shape = SubResource("BoxShape3D_dialogue_trigger")
-disabled = true
-
-[node name="GroundFloorReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=274148183]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 13.2)
-script = ExtResource("narrative_trigger_area")
-sequence = ExtResource("dialogue_ground_floor_return")
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloorReturn" unique_id=1463077057]
-shape = SubResource("BoxShape3D_dialogue_trigger")
-disabled = true
 
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6094437, 0.9158894, -20)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.92, -25)
 script = ExtResource("target_area")
 outro_sequence = ExtResource("outro_fullscreen")
 

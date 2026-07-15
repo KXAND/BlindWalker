@@ -1,23 +1,23 @@
-[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=4 format=3]
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://dv0c42kwhsj2k"]
 
-[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
-[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
-speaker_id = &""
-speaker_name = ""
-text = "东西送到了。"
+text = "找到了，另一家开着。"
 duration = 2.0
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+text = "白糖买到了。虽然多走了一段路，但答应了的事就要做到。"
+duration = 3.5
 
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"outro_fullscreen"
-lines = [SubResource("NarrativeLine_1")]
-lock_input = true
-lock_gameplay = true
-default_line_duration = 2.0
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+default_line_duration = 2.5
 presentation_mode = "fullscreen"
-fullscreen_background_color = Color(0, 0, 0, 1)
 hold_final_line_for_input = true
 final_line_prompt = "按 Space 回到开始页"

@@ -1,30 +1,28 @@
-[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://dyjgsgkujorxb"]
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://okg20xyc8v5w"]
 
 [ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
-speaker_id = &"xiaoming"
 speaker_name = "晓明"
-text = "李奶奶，我正好要下楼扔垃圾，您有什么要带的吗？"
-audio_id = &"ui_click"
-duration = 3.0
+text = "到了……呃，怎么是铁门？"
+duration = 2.5
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
-speaker_id = &"li_grandma"
-speaker_name = "李奶奶"
-text = "晓明啊，能不能顺路帮我去小区门口的小超市买一包白糖？"
-duration = 3.2
+speaker_name = "晓明"
+text = "卷帘门拉下来了，今天没开门。"
+duration = 2.5
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
-text = "任务更新：前往小区门口的小超市，买一包白糖。"
-duration = 2.6
+speaker_name = "晓明"
+text = "可我已经答应李奶奶了……我记得前面那条街还有一家小卖部，虽然远一点。"
+duration = 4.0
 
 [resource]
 script = ExtResource("1_sequence")
-sequence_id = &"sample_neighbor_request"
+sequence_id = &"shop_closed"
 lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3")]
 default_line_duration = 3.0
