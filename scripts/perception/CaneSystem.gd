@@ -128,8 +128,8 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 	if not _should_spawn_cane_touch_memory(contact_point, profile_id):
 		return false
 
-	var cane_radius: float = TouchMemorySystem.INITIAL_RADIUS * GameConfig.CANE_TOUCH_MEMORY_SCALE
-	var cane_afterglow_radius: float = TouchMemorySystem.AFTERGLOW_RADIUS * GameConfig.CANE_TOUCH_MEMORY_SCALE
+	var cane_radius: float = GameConfig.CANE_TOUCH_MEMORY_RADIUS
+	var cane_afterglow_radius: float = GameConfig.CANE_TOUCH_AFTERGLOW_RADIUS
 	var spawned := _touch_memory.spawn_touch_memory(
 		contact_point,
 		cane_radius,

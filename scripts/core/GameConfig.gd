@@ -37,10 +37,13 @@ const CANE_LENGTH := 1.5
 
 # ---- 触摸参数 ----
 const TOUCH_YAW_OFFSET_DEG: float = 45.0    ## 手触摸射线相对相机正前方的左前方偏转角（相机局部坐标系，正值=左偏）
-const TOUCH_DISTANCE: float = 3.0            ## 手触摸最大探测距离（米）
+const TOUCH_DISTANCE: float = 1.2            ## 手触摸最大探测距离（米）
+const TOUCH_MEMORY_RADIUS: float = 0.5      ## 手触摸显影半径（米）
+const TOUCH_AFTERGLOW_RADIUS: float = 0.5   ## 手触摸残影半径（米）
 
 # ---- 杖触内存参数 ----
-const CANE_TOUCH_MEMORY_SCALE: float = 0.4   ## 杖触内存球半径相对手触摸的缩放比例
+const CANE_TOUCH_MEMORY_RADIUS: float = 0.6  ## 盲杖触碰显影半径（米）
+const CANE_TOUCH_AFTERGLOW_RADIUS: float = 0.6 ## 盲杖触碰残影半径（米）
 const CANE_TOUCH_MEMORY_LIFETIME: float = 8.0 ## 杖触内存显影球寿命（秒）
 const CANE_TOUCH_MEMORY_MIN_DISTANCE: float = 0.45 ## 杖触记忆点之间的最小空间间隔（米）
 const CANE_TOUCH_MEMORY_COOLDOWN: float = 0.75 ## 同一接触段内生成新杖触记忆点的最小时间间隔（秒）

@@ -194,9 +194,9 @@ func try_touch() -> void:
 	var profile: Resource = _ContactProfileProvider.resolve_profile(result["collider"], &"hand")
 	spawn_touch_memory(
 		result["position"],
-		INITIAL_RADIUS,
+		GameConfig.TOUCH_MEMORY_RADIUS,
 		ACTIVE_LIFE,
-		AFTERGLOW_RADIUS,
+		GameConfig.TOUCH_AFTERGLOW_RADIUS,
 		AFTERGLOW_LIFE,
 		_ContactProfileProvider.reveal_color(profile),
 		&"hand",
