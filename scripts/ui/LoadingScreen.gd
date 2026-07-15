@@ -64,13 +64,14 @@ func _ready() -> void:
 	else:
 		printerr("LoadingScreen: texture load FAILED")
 
+	# 标题隐藏，加载完成后才显示
 	_title_image.modulate.a = 0.0
 	_loading_label.modulate.a = 0.0
 	_progress_bar.modulate.a = 0.0
 	_tip_label.modulate.a = 0.0
+	_separator.visible = false
 
 	var tw: Tween = create_tween()
-	tw.tween_property(_title_image, "modulate:a", 1.0, 1.2).set_ease(Tween.EASE_OUT)
 	tw.tween_property(_loading_label, "modulate:a", 1.0, 0.6)
 	tw.parallel().tween_property(_progress_bar, "modulate:a", 1.0, 0.6)
 	tw.parallel().tween_property(_tip_label, "modulate:a", 1.0, 0.6)
@@ -136,7 +137,7 @@ func build_ui() -> void:
 	_title_image = TextureRect.new()
 	_title_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_title_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_title_image.custom_minimum_size = Vector2(600, 120)
+	_title_image.custom_minimum_size = Vector2(800, 160)
 	_title_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var title_tex := ResourceLoader.load("res://assets/textures/title_循暗晓明.png") as Texture2D
@@ -196,7 +197,7 @@ func build_ui() -> void:
 	_intro_close_button.visible = false
 
 	_loading_label = Label.new()
-	_loading_label.text = "正在准备"
+	_loading_label.text = "正在加载中"
 	_loading_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_loading_label.add_theme_font_size_override("font_size", 18)
 	_loading_label.add_theme_color_override("font_color", Color(0.75, 0.75, 0.75))
@@ -237,7 +238,7 @@ func _process(delta: float) -> void:
 		if _dot_timer >= 0.4:
 			_dot_timer = 0.0
 			_dot_count = (_dot_count + 1) % 4
-			_loading_label.text = "正在准备" + "".lpad(_dot_count, ".")
+			_loading_label.text = "正在加载中" + "".lpad(_dot_count, ".")
 
 	# 提示轮播（加载完成后停止）
 	if not _scene_loaded:
@@ -275,22 +276,29 @@ func _on_loading_complete() -> void:
 	if _started_transition:
 		return
 
-	# 阶段1：淡出加载元素（省略号+进度条+提示）
+	# 阶段1：遮罩从外到内推进至全黑，同时淡出加载元素
 	var tw_1: Tween = create_tween()
 	tw_1.set_parallel(true)
-	tw_1.tween_property(_loading_label, "modulate:a", 0.0, 0.4)
-	tw_1.tween_property(_progress_bar, "modulate:a", 0.0, 0.4)
-	tw_1.tween_property(_tip_label, "modulate:a", 0.0, 0.4)
+	tw_1.tween_method(_set_darkness,
+		_vignette_material.get_shader_parameter("darkness"), 1.0, 0.8)
+	tw_1.tween_property(_loading_label, "modulate:a", 0.0, 0.5)
+	tw_1.tween_property(_progress_bar, "modulate:a", 0.0, 0.5)
+	tw_1.tween_property(_tip_label, "modulate:a", 0.0, 0.5)
 	await tw_1.finished
 
-	# 阶段2：切换到"准备完成"，并停在可见圆形阶段
-	_loading_label.text = "准备完成"
-	var tw_2: Tween = create_tween()
-	tw_2.set_parallel(true)
-	tw_2.tween_property(_loading_label, "modulate:a", 1.0, 0.5)
-	tw_2.tween_method(_set_darkness,
-		_vignette_material.get_shader_parameter("darkness"), READY_CIRCLE_DARKNESS, 0.6)
-	await tw_2.finished
+	# _loading_label 和 _tip_label 已完成使命，隐藏
+	_loading_label.visible = false
+	_tip_label.visible = false
+	_progress_bar.visible = false
+
+	# 阶段2：画面全黑，淡入标题
+	if _title_image:
+		_separator.visible = true
+		var tw_2: Tween = create_tween()
+		tw_2.set_parallel(true)
+		tw_2.tween_property(_title_image, "modulate:a", 1.0, 0.8).set_ease(Tween.EASE_OUT)
+		tw_2.tween_property(_separator, "modulate:a", 1.0, 0.8)
+		await tw_2.finished
 
 	# 阶段3：淡入点击提示
 	_awaiting_click = true
@@ -298,11 +306,10 @@ func _on_loading_complete() -> void:
 	tw_3.tween_property(_click_prompt, "modulate:a", 1.0, 0.5).set_ease(Tween.EASE_OUT)
 	await tw_3.finished
 
-	# 阶段4：停留阶段只让圆形轻微呼吸，不再把画面推到全黑
-	_start_circle_breath()
+	# 阶段4：点击提示轻微呼吸
 	_breath_tween = create_tween()
-	_breath_tween.tween_property(_click_prompt, "modulate:a", 0.75, 0.8).set_ease(Tween.EASE_IN_OUT)
-	_breath_tween.tween_property(_click_prompt, "modulate:a", 1.0, 0.8).set_ease(Tween.EASE_IN_OUT)
+	_breath_tween.tween_property(_click_prompt, "modulate:a", 0.75, 1.2).set_ease(Tween.EASE_IN_OUT)
+	_breath_tween.tween_property(_click_prompt, "modulate:a", 1.0, 1.2).set_ease(Tween.EASE_IN_OUT)
 	_breath_tween.set_loops()
 
 
