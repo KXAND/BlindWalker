@@ -6,4 +6,4 @@
 script = ExtResource("1_prompt")
 tutorial_id = &"stumble"
 title = "失去平衡"
-body = "轻微碰撞会让身体短暂踉跄。更严重的失衡会出现 SHIFT + SPACE，请按住它稳住身体，否则会摔倒。"
+body = "碰撞会让晓明失去平衡，请注意观察道路。如果磕碰很严重，需要及时【长按 SHIFT + SPACE】 稳住身体，避免摔倒。"
