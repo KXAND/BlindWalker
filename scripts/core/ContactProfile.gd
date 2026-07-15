@@ -7,3 +7,5 @@ extends Resource
 @export var display_name: String = "默认触碰属性"
 @export var reveal_color: Color = Color(0.4, 0.75, 1.0, 1.0)
 @export var cane_sound_id: StringName = &"cane_tap_default"
+## 此表面被玩家踩踏时的脚步声 ID。未设置时使用 "step" 作为默认脚步。
+@export var step_sound_id: StringName = &""

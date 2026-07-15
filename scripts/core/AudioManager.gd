@@ -15,8 +15,16 @@ var _player_parent_3d: Node
 var _warned_missing_sounds: Dictionary = {}
 
 var _sound_paths: Dictionary = {
-	"step": "res://assets/audio/sfx/step.ogg",
-	"cane_hit": "res://assets/audio/sfx/cane_tap_default.ogg",
+	# 脚步声 —— 按地面材质分类
+	"step": "res://assets/audio/sfx/step.wav",
+	"step_asphalt": "res://assets/audio/sfx/step_asphalt.wav",
+	"step_concrete": "res://assets/audio/sfx/step_concrete.wav",
+	"step_pavement": "res://assets/audio/sfx/step_pavement.wav",
+	"step_tiles": "res://assets/audio/sfx/step_tiles.wav",
+	"step_wood": "res://assets/audio/sfx/step_wood.wav",
+	"step_metal": "res://assets/audio/sfx/step_metal.wav",
+	# 盲杖敲击
+	"cane_hit": "res://assets/audio/sfx/cane_tap_default.wav",
 	"cane_tap_asphalt": "res://assets/audio/sfx/cane_tap_asphalt.ogg",
 	"cane_tap_pavement": "res://assets/audio/sfx/cane_tap_pavement.wav",
 	"cane_tap_concrete": "res://assets/audio/sfx/cane_tap_concrete.wav",
@@ -24,7 +32,7 @@ var _sound_paths: Dictionary = {
 	"cane_tap_metal_pole": "res://assets/audio/sfx/cane_tap_metal_pole.wav",
 	"cane_tap_plastic": "res://assets/audio/sfx/cane_tap_plastic.ogg",
 	"cane_tap_wood_or_shelf": "res://assets/audio/sfx/cane_tap_wood.wav",
-	"cane_tap_default": "res://assets/audio/sfx/cane_tap_default.ogg",
+	"cane_tap_default": "res://assets/audio/sfx/cane_tap_default.wav",
 	"cane_tap_glass": "res://assets/audio/sfx/cane_tap_glass.wav",
 	"traffic_light_beep": "res://assets/audio/sfx/traffic_green.wav",
 	"traffic_green": "res://assets/audio/sfx/traffic_green.wav",
@@ -32,7 +40,7 @@ var _sound_paths: Dictionary = {
 	"traffic_yellow": "res://assets/audio/sfx/traffic_yellow.wav",
 	"ambient_noise": "res://assets/audio/sfx/ambient_noise.ogg",
 	"wall_hit": "res://assets/audio/sfx/wall_hit.ogg",
-	"fall": "res://assets/audio/sfx/fall.ogg",
+	"fall": "res://assets/audio/sfx/fall.wav",
 	"spray": "res://assets/audio/sfx/spray.ogg",
 	"touch": "res://assets/audio/sfx/touch.ogg",
 	"npc_approach": "res://assets/audio/sfx/npc_approach.ogg",
@@ -141,6 +149,13 @@ func _resolve_stream(sound_id: String, source: StringName = &"unknown") -> Audio
 			_warn_missing_sound_once(sound_id, source, path, DEFAULT_CANE_TAP_SOUND_ID)
 			return fallback_stream
 
+	if _should_fallback_to_default_step(sound_id, source):
+		var fallback_path: String = _sound_paths.get("step", "")
+		var fallback_stream := _resolve_stream_at_path(fallback_path)
+		if fallback_stream:
+			_warn_missing_sound_once(sound_id, source, path, "step")
+			return fallback_stream
+
 	_warn_missing_sound_once(sound_id, source, path, "silent")
 	return _silent_stream
 
@@ -159,6 +174,10 @@ func _resolve_stream_at_path(path: String) -> AudioStream:
 
 func _should_fallback_to_default_cane_tap(sound_id: String, source: StringName) -> bool:
 	return source == &"cane" and sound_id.begins_with("cane_tap_") and sound_id != DEFAULT_CANE_TAP_SOUND_ID
+
+
+func _should_fallback_to_default_step(sound_id: String, source: StringName) -> bool:
+	return source == &"gait" or (sound_id.begins_with("step_") and sound_id != "step")
 
 
 func _warn_missing_sound_once(sound_id: String, source: StringName, path: String, fallback: String) -> void:

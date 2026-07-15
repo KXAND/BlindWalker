@@ -4,3 +4,6 @@
 /dist/
 /exports/
 *.import
+.agents/
+.codebuddy/
+skills-lock.json

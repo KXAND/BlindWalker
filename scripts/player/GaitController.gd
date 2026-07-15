@@ -16,6 +16,8 @@ const WALL_HIT_COOLDOWN := 0.3
 const FALL_Y_THRESHOLD := -10.0
 const FLOOR_SNAP_LENGTH := 0.35
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
+const _ContactProfileProvider = preload("res://scripts/interaction/ContactProfileProvider.gd")
+const DEFAULT_STEP_SOUND_ID := &"step"
 
 enum BalanceState { STEADY, LIGHT_STUMBLE, UNSTABLE_STUMBLE, FALLING, GETTING_UP }
 
@@ -334,7 +336,22 @@ func _update_step_audio(pos_before: Vector3) -> void:
 	if _distance_since_last_step >= GameConfig.STEP_AUDIO_DISTANCE:
 		_distance_since_last_step = 0.0
 		_last_foot_left = not _last_foot_left
-		EventBus.audio_requested.emit("step", global_position, 0.0)
+		var sound_id: StringName = _resolve_step_sound_id()
+		EventBus.audio_requested.emit(sound_id, global_position, 0.0)
+
+
+## 向下投射射线，获取当前踩踏表面的 ContactProfile，返回对应的脚步声 ID。
+## 未找到 profile 时返回 "step" 作为默认。
+func _resolve_step_sound_id() -> StringName:
+	var space_state := get_world_3d().direct_space_state
+	var from := global_position + Vector3.UP * 0.3
+	var to := global_position + Vector3.DOWN * 1.5
+	var result := _RaycastUtil.query_body(space_state, from, to, get_rid())
+	if result.is_empty():
+		return DEFAULT_STEP_SOUND_ID
+	var collider: Object = result["collider"]
+	var profile := _ContactProfileProvider.resolve_profile(collider, &"gait")
+	return _ContactProfileProvider.step_sound_id(profile)
 
 
 func _enter_light_stumble(forward: Vector3) -> void:

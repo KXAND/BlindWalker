@@ -52,6 +52,15 @@ static func cane_sound_id(resolved_profile: Resource) -> StringName:
 	return resolved_profile.get("cane_sound_id") as StringName
 
 
+static func step_sound_id(resolved_profile: Resource) -> StringName:
+	if not resolved_profile:
+		return &"step"
+	var sid: StringName = resolved_profile.get("step_sound_id") as StringName
+	if sid != &"":
+		return sid
+	return &"step"
+
+
 static func _find_provider_on(node: Node) -> ContactProfileProvider:
 	var found_provider: ContactProfileProvider = null
 	for child in node.get_children():

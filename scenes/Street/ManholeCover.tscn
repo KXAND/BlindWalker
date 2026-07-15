@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://dkm2anvh4tcp8"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_bfdp3"]
+height = 0.05
+
+[node name="ManholeCover" type="Node3D" unique_id=2127303171]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=60719772]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.9741211, 0)
+mesh = SubResource("CylinderMesh_bfdp3")
