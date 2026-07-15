@@ -81,6 +81,15 @@ func heal(amount: int) -> void:
 		EventBus.player_healed.emit(healed, hp)
 
 
+func revive() -> void:
+	if hp > 0:
+		return
+	hp = max_hp
+	_idle_timer = 0.0
+	_heal_accumulator = 0.0
+	EventBus.player_healed.emit(max_hp, hp)
+
+
 func _can_idle_heal() -> bool:
 	if hp <= 0 or hp >= max_hp:
 		return false

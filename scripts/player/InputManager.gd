@@ -92,6 +92,8 @@ func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 
 
 func _handle_mouse_button(event: InputEventMouseButton) -> void:
+	if GameState.is_settings_menu_active():
+		return
 	if Input.get_mouse_mode() == Input.MOUSE_MODE_VISIBLE:
 		Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 		return
@@ -104,7 +106,7 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 func _handle_key_pressed(event: InputEventKey) -> void:
 	match event.keycode:
 		KEY_ESCAPE:
-			_toggle_mouse_capture()
+			return
 		GameConfig.KEY_INTERACT:
 			if _interaction_system and GameState.is_input_enabled():
 				_interaction_system.try_interact()

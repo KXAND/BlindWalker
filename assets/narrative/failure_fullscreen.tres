@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=4 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = ""
+text = "血量耗尽。"
+duration = 2.0
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"failure_fullscreen"
+lines = [SubResource("NarrativeLine_1")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 2.0
+presentation_mode = "fullscreen"
+fullscreen_background_color = Color(0, 0, 0, 1)
+hold_final_line_for_input = true
+final_line_prompt = "按 Space 回到开始页    按 Tab 原地复活"

@@ -2,6 +2,8 @@ class_name CutsceneManager
 extends Node
 ## 演出控制器：播放叙事序列，并在播放期间按需锁定输入和 gameplay。
 
+signal final_line_secondary_requested(cutscene_id: String)
+
 @export var subtitle_label: Label
 @export var speaker_label: Label
 @export var cutscene_duration: float = 2.0
@@ -11,6 +13,7 @@ extends Node
 const CANVAS_LAYER := 5
 const SKIP_LINE_KEY := KEY_SPACE
 const SKIP_SEQUENCE_KEY := KEY_ESCAPE
+const SECONDARY_FINAL_LINE_KEY := KEY_TAB
 const PRESENTATION_FULLSCREEN := "fullscreen"
 const _NarrativeLine = preload("res://scripts/core/NarrativeLine.gd")
 const _NarrativeSequence = preload("res://scripts/core/NarrativeSequence.gd")
@@ -61,7 +64,10 @@ func _input(event: InputEvent) -> void:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if _sequence_holds_final_line():
-			if event.keycode == SKIP_LINE_KEY and _is_on_final_line():
+			if event.keycode == SECONDARY_FINAL_LINE_KEY and _is_on_final_line():
+				get_viewport().set_input_as_handled()
+				final_line_secondary_requested.emit(String(_current_sequence.sequence_id))
+			elif event.keycode == SKIP_LINE_KEY and _is_on_final_line():
 				get_viewport().set_input_as_handled()
 				_finish_sequence()
 			elif event.keycode == SKIP_LINE_KEY or event.keycode == SKIP_SEQUENCE_KEY:
@@ -130,6 +136,10 @@ func play_sequence(sequence: Resource) -> bool:
 
 func is_sequence_playing() -> bool:
 	return _is_playing_sequence
+
+
+func finish_sequence() -> void:
+	_finish_sequence()
 
 
 func _advance_line() -> void:

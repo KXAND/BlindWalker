@@ -4,8 +4,13 @@ extends Node
 
 @export var master_volume_db: float = 0.0
 
+signal audio_settings_changed
+
 const POOL_SIZE: int = 4
 const DEFAULT_CANE_TAP_SOUND_ID := "cane_tap_default"
+const SETTINGS_PATH := "user://settings.cfg"
+const SETTINGS_SECTION := "audio"
+const MUTE_DB := -80.0
 
 var _players_3d: Array[AudioStreamPlayer3D] = []
 var _next_player_index: int = 0
@@ -13,6 +18,8 @@ var _player_2d: AudioStreamPlayer
 var _silent_stream: AudioStreamWAV
 var _player_parent_3d: Node
 var _warned_missing_sounds: Dictionary = {}
+var _music_volume: float = 1.0
+var _sfx_volume: float = 1.0
 
 var _sound_paths: Dictionary = {
 	# 脚步声 —— 按地面材质分类
@@ -56,6 +63,7 @@ var _sound_paths: Dictionary = {
 
 
 func _ready() -> void:
+	_load_audio_settings()
 	_silent_stream = _create_silent_stream()
 	_player_2d = AudioStreamPlayer.new()
 	_player_2d.name = "AudioStreamPlayer2D"
@@ -75,7 +83,7 @@ func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0, source
 	var player := _players_3d[_next_player_index]
 	_next_player_index = (_next_player_index + 1) % _players_3d.size()
 	player.global_position = position
-	player.volume_db = master_volume_db + volume_db
+	player.volume_db = sfx_volume_db(volume_db)
 	player.stream = _resolve_stream(sound_id, source)
 	player.play()
 
@@ -83,9 +91,38 @@ func play_3d(sound_id: String, position: Vector3, volume_db: float = 0.0, source
 func play_2d(sound_id: String, volume_db: float = 0.0, source: StringName = &"unknown") -> void:
 	if not _player_2d:
 		return
-	_player_2d.volume_db = master_volume_db + volume_db
+	_player_2d.volume_db = sfx_volume_db(volume_db)
 	_player_2d.stream = _resolve_stream(sound_id, source)
 	_player_2d.play()
+
+
+func get_music_volume() -> float:
+	return _music_volume
+
+
+func get_sfx_volume() -> float:
+	return _sfx_volume
+
+
+func set_music_volume(value: float) -> void:
+	_music_volume = clampf(value, 0.0, 1.0)
+	_save_audio_settings()
+	audio_settings_changed.emit()
+
+
+func set_sfx_volume(value: float) -> void:
+	_sfx_volume = clampf(value, 0.0, 1.0)
+	_apply_current_sfx_volume()
+	_save_audio_settings()
+	audio_settings_changed.emit()
+
+
+func music_volume_db(base_volume_db: float = 0.0) -> float:
+	return base_volume_db + _linear_to_volume_db(_music_volume)
+
+
+func sfx_volume_db(base_volume_db: float = 0.0) -> float:
+	return master_volume_db + base_volume_db + _linear_to_volume_db(_sfx_volume)
 
 
 func stop_2d() -> void:
@@ -206,3 +243,34 @@ func _create_silent_stream() -> AudioStreamWAV:
 	stream.stereo = false
 	stream.data = PackedByteArray()
 	return stream
+
+
+func _load_audio_settings() -> void:
+	var config := ConfigFile.new()
+	if config.load(SETTINGS_PATH) != OK:
+		return
+	_music_volume = clampf(float(config.get_value(SETTINGS_SECTION, "music_volume", _music_volume)), 0.0, 1.0)
+	_sfx_volume = clampf(float(config.get_value(SETTINGS_SECTION, "sfx_volume", _sfx_volume)), 0.0, 1.0)
+
+
+func _save_audio_settings() -> void:
+	var config := ConfigFile.new()
+	config.set_value(SETTINGS_SECTION, "music_volume", _music_volume)
+	config.set_value(SETTINGS_SECTION, "sfx_volume", _sfx_volume)
+	var err := config.save(SETTINGS_PATH)
+	if err != OK:
+		push_warning("AudioManager: failed to save audio settings err=%d" % err)
+
+
+func _linear_to_volume_db(value: float) -> float:
+	if value <= 0.0:
+		return MUTE_DB
+	return linear_to_db(value)
+
+
+func _apply_current_sfx_volume() -> void:
+	if is_instance_valid(_player_2d):
+		_player_2d.volume_db = sfx_volume_db()
+	for player in _players_3d:
+		if is_instance_valid(player):
+			player.volume_db = sfx_volume_db()
