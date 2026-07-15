@@ -28,6 +28,7 @@ var _loading_label: Label
 var _progress_bar: ProgressBar
 var _tip_label: Label
 var _intro_button: Button
+var _intro_overlay: CenterContainer
 var _intro_panel: PanelContainer
 var _intro_text: RichTextLabel
 var _intro_close_button: Button
@@ -164,38 +165,6 @@ func build_ui() -> void:
 	_separator = sep
 	vbox.add_child(sep)
 
-	_intro_panel = PanelContainer.new()
-	_intro_panel.name = "IntroPanel"
-	_intro_panel.custom_minimum_size = Vector2(720, 250)
-	_intro_panel.visible = false
-	vbox.add_child(_intro_panel)
-
-	var intro_margin := MarginContainer.new()
-	intro_margin.add_theme_constant_override("margin_left", 18)
-	intro_margin.add_theme_constant_override("margin_right", 18)
-	intro_margin.add_theme_constant_override("margin_top", 12)
-	intro_margin.add_theme_constant_override("margin_bottom", 12)
-	_intro_panel.add_child(intro_margin)
-
-	_intro_text = RichTextLabel.new()
-	_intro_text.name = "IntroText"
-	_intro_text.bbcode_enabled = true
-	_intro_text.scroll_active = true
-	_intro_text.fit_content = false
-	_intro_text.custom_minimum_size = Vector2(680, 220)
-	_intro_text.add_theme_font_size_override("normal_font_size", 15)
-	_intro_text.add_theme_color_override("default_color", Color(0.82, 0.82, 0.78))
-	_apply_text_outline(_intro_text, 2)
-	intro_margin.add_child(_intro_text)
-
-	_intro_close_button = Button.new()
-	_intro_close_button.name = "IntroCloseButton"
-	_intro_close_button.text = "关闭介绍"
-	_apply_text_outline(_intro_close_button, 2)
-	_intro_close_button.pressed.connect(_hide_intro_panel)
-	vbox.add_child(_intro_close_button)
-	_intro_close_button.visible = false
-
 	_loading_label = Label.new()
 	_loading_label.text = "正在加载中"
 	_loading_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
@@ -225,6 +194,8 @@ func build_ui() -> void:
 	_apply_text_outline(_click_prompt, 3)
 	_click_prompt.modulate.a = 0.0
 	vbox.add_child(_click_prompt)
+
+	_build_intro_overlay()
 
 
 func _process(delta: float) -> void:
@@ -319,7 +290,7 @@ func _on_loading_complete() -> void:
 func _gui_input(event: InputEvent) -> void:
 	if not _awaiting_click:
 		return
-	if _intro_panel and _intro_panel.visible:
+	if _intro_overlay and _intro_overlay.visible:
 		return
 	if event is InputEventMouseButton and event.pressed:
 		if event.button_index == MOUSE_BUTTON_LEFT:
@@ -384,15 +355,57 @@ func _start_circle_breath() -> void:
 
 
 func _show_intro_panel() -> void:
-	_intro_panel.visible = true
-	_intro_close_button.visible = true
+	_intro_overlay.visible = true
 	_intro_button.visible = false
 
 
 func _hide_intro_panel() -> void:
-	_intro_panel.visible = false
-	_intro_close_button.visible = false
+	_intro_overlay.visible = false
 	_intro_button.visible = true
+
+
+func _build_intro_overlay() -> void:
+	_intro_overlay = CenterContainer.new()
+	_intro_overlay.name = "IntroOverlay"
+	_intro_overlay.set_anchors_and_offsets_preset(Control.PRESET_FULL_RECT)
+	_intro_overlay.mouse_filter = Control.MOUSE_FILTER_STOP
+	_intro_overlay.visible = false
+	add_child(_intro_overlay)
+
+	var overlay_layout := VBoxContainer.new()
+	overlay_layout.alignment = BoxContainer.ALIGNMENT_CENTER
+	overlay_layout.add_theme_constant_override("separation", 12)
+	_intro_overlay.add_child(overlay_layout)
+
+	_intro_panel = PanelContainer.new()
+	_intro_panel.name = "IntroPanel"
+	_intro_panel.custom_minimum_size = Vector2(720, 250)
+	overlay_layout.add_child(_intro_panel)
+
+	var intro_margin := MarginContainer.new()
+	intro_margin.add_theme_constant_override("margin_left", 18)
+	intro_margin.add_theme_constant_override("margin_right", 18)
+	intro_margin.add_theme_constant_override("margin_top", 12)
+	intro_margin.add_theme_constant_override("margin_bottom", 12)
+	_intro_panel.add_child(intro_margin)
+
+	_intro_text = RichTextLabel.new()
+	_intro_text.name = "IntroText"
+	_intro_text.bbcode_enabled = true
+	_intro_text.scroll_active = true
+	_intro_text.fit_content = false
+	_intro_text.custom_minimum_size = Vector2(680, 220)
+	_intro_text.add_theme_font_size_override("normal_font_size", 15)
+	_intro_text.add_theme_color_override("default_color", Color(0.82, 0.82, 0.78))
+	_apply_text_outline(_intro_text, 2)
+	intro_margin.add_child(_intro_text)
+
+	_intro_close_button = Button.new()
+	_intro_close_button.name = "IntroCloseButton"
+	_intro_close_button.text = "关闭介绍"
+	_apply_text_outline(_intro_close_button, 2)
+	_intro_close_button.pressed.connect(_hide_intro_panel)
+	overlay_layout.add_child(_intro_close_button)
 
 
 func _start_loading_music() -> void:
