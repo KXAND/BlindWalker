@@ -11,6 +11,8 @@ extends "res://scripts/interaction/Interactable.gd"
 @export var closed_block_center_local: Vector3 = Vector3(0.0, -0.15, 0.45)
 @export var closed_block_half_extents: Vector3 = Vector3(0.55, 1.35, 0.75)
 
+const PLAYER_HOME_DOOR_PATH_SUFFIX := "/PlayerHome/Door/DoorInteraction"
+
 var _pivot: Node3D
 var _closed_rotation_degrees: Vector3
 var _is_open: bool = false
@@ -28,7 +30,7 @@ func _ready() -> void:
 
 
 func can_interact(player: Node3D) -> bool:
-	return not _is_animating and super.can_interact(player)
+	return _is_player_home_door() and not _is_animating and super.can_interact(player)
 
 
 func get_interaction_prompt(_player: Node3D) -> String:
@@ -124,3 +126,7 @@ func _closed_pivot_global_transform() -> Transform3D:
 
 func _degrees_to_radians(value: Vector3) -> Vector3:
 	return Vector3(deg_to_rad(value.x), deg_to_rad(value.y), deg_to_rad(value.z))
+
+
+func _is_player_home_door() -> bool:
+	return String(get_path()).ends_with(PLAYER_HOME_DOOR_PATH_SUFFIX)
