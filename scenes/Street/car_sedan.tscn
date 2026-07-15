@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://ytoxj3d4bwyq"]
+
+[ext_resource type="PackedScene" uid="uid://baj68bvtxbabr" path="res://addons/kaykit_city_builder_bits/Assets/gltf/car_sedan.gltf" id="1_vrd2x"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss1ga"]
+size = Vector3(1.6, 1.6, 3.6000001)
+
+[node name="car_sedan" type="Node3D" unique_id=1445005817]
+
+[node name="car_sedan2" parent="." unique_id=1462201532 instance=ExtResource("1_vrd2x")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=494056856]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=572787954]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.50000006, 0)
+shape = SubResource("BoxShape3D_ss1ga")

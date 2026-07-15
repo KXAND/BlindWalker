@@ -24,13 +24,13 @@ duration = 2.2
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "好心路人"
-text = "同学，要过马路吗？我带你过去。"
+text = "同学您好，您是要过马路吗？要帮帮忙吗？"
 duration = 2.8
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "谢谢，我自己可以，您不用特意等。"
+text = "谢谢，我尝试一下自己过马路，谢谢你的好意。"
 duration = 2.9
 
 [sub_resource type="Resource" id="NarrativeLine_6"]

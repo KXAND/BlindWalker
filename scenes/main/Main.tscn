@@ -28,6 +28,9 @@
 [ext_resource type="PackedScene" uid="uid://cqk53stvdaayi" path="res://scenes/Buildings/BreakfastShop.tscn" id="56_ex0yv"]
 [ext_resource type="PackedScene" uid="uid://cw7jkrlxwr21n" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://d0oji56k1y4e0" path="res://scenes/main/fps.gd" id="60_b6xsk"]
+[ext_resource type="PackedScene" uid="uid://dkm2anvh4tcp8" path="res://scenes/Street/ManholeCover.tscn" id="68_q8v2h"]
+[ext_resource type="PackedScene" uid="uid://beol3g7b40r1p" path="res://scenes/Street/car_hatchback.tscn" id="69_67ysi"]
+[ext_resource type="PackedScene" uid="uid://ytoxj3d4bwyq" path="res://scenes/Street/car_sedan.tscn" id="70_dudpu"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
@@ -40,32 +43,33 @@
 [ext_resource type="Resource" path="res://assets/contact_profiles/tiles.tres" id="contact_profile_tiles"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/wood_or_shelf.tres" id="contact_profile_wood_or_shelf"]
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_shop_closed.tres" id="dialogue_shop_closed"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Resource" uid="uid://dn6uxb83hj37h" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
+[ext_resource type="Resource" uid="uid://cjoj2thh0mqbt" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
+[ext_resource type="Resource" uid="uid://v7tjyuvk3wen" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
+[ext_resource type="Resource" uid="uid://okg20xyc8v5w" path="res://assets/narrative/dialogue_shop_closed.tres" id="dialogue_shop_closed"]
+[ext_resource type="Resource" uid="uid://7i8vgcltm422" path="res://assets/narrative/dialogue_stairwell.tres" id="dialogue_stairwell"]
+[ext_resource type="Resource" uid="uid://p08p8r7cptfs" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
+[ext_resource type="Resource" uid="uid://bm648hrnlsw5n" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
+[ext_resource type="Resource" uid="uid://byxd23jsnh22f" path="res://assets/narrative/dialogue_street_return.tres" id="dialogue_street_return"]
+[ext_resource type="Script" uid="uid://cjp8lcegylcbv" path="res://scripts/ui/DistanceHUD.gd" id="distance_hud"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
-[ext_resource type="Resource" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
+[ext_resource type="Resource" uid="uid://cvu7ijwdo40ry" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
-[ext_resource type="Resource" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
+[ext_resource type="Resource" uid="uid://dv0c42kwhsj2k" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
-[ext_resource type="Script" path="res://scripts/ui/TouchReticleUI.gd" id="touch_reticle_ui"]
 [ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
 [ext_resource type="Script" uid="uid://b0uat7wsc172a" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
 [ext_resource type="Script" uid="uid://bc41jf7mq25jm" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
 [ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="spawn_sugar"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
+[ext_resource type="Script" uid="uid://bcb71qfoqaxjw" path="res://scripts/ui/TouchReticleUI.gd" id="touch_reticle_ui"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -291,7 +295,7 @@ sequence = ExtResource("dialogue_ground_floor")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=904467423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.25, 1, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.25, 1, -1)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street")
 
@@ -307,15 +311,16 @@ sequence = ExtResource("dialogue_crosswalk")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=581767034]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 4, 1, -3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -3)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_after_crosswalk")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/StreetAfterCrosswalk" unique_id=1807718738]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="ShopClosed" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=626229172]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, 1, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 15)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_shop_closed")
 
@@ -323,7 +328,7 @@ sequence = ExtResource("dialogue_shop_closed")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="StreetReturn" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 1, -15)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 1, -36)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street_return")
 
@@ -817,7 +822,7 @@ script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_tiles")
 
 [node name="CrosswalkStripe04" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/zebraCrossing/zebraCrossing5" unique_id=81187598]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0051134, 0.13, -1.8)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -2.0051174, 0.13, 21.600002)
 size = Vector3(7.2, 0.03, 0.65)
 material = SubResource("StandardMaterial3D_crosswalk")
 
@@ -11735,10 +11740,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 11.3888855, -0.111111104, 17.
 [node name="HealthUI" type="CanvasLayer" parent="." unique_id=100000001]
 script = ExtResource("health_ui")
 
+[node name="DistanceHUD" type="CanvasLayer" parent="." unique_id=806680660]
+script = ExtResource("distance_hud")
+
 [node name="QtePromptUI" type="CanvasLayer" parent="." unique_id=356585125]
 script = ExtResource("qte_prompt_ui")
 
-[node name="TouchReticleUI" type="CanvasLayer" parent="."]
+[node name="TouchReticleUI" type="CanvasLayer" parent="." unique_id=1637134706]
 script = ExtResource("touch_reticle_ui")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
@@ -11813,7 +11821,7 @@ transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -11,
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -9, -0.5, 19)
 
 [node name="Bikes" type="Node3D" parent="." unique_id=78597262]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, -6.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.3, -7.5)
 
 [node name="SharedBike" parent="Bikes" unique_id=255943136 instance=ExtResource("41_8gxhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
@@ -11828,6 +11836,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
 
 [node name="SharedBike5" parent="Bikes" unique_id=261291722 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
+[node name="Bikes5" type="Node3D" parent="." unique_id=55477884]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 0.3, -8.5)
+
+[node name="SharedBike" parent="Bikes5" unique_id=921438179 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes5" unique_id=586072163 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes5" unique_id=1942423012 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes5" unique_id=1634123486 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes5" unique_id=1662035659 instance=ExtResource("41_8gxhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
 
 [node name="Bikes2" type="Node3D" parent="." unique_id=194805426]
@@ -11884,6 +11910,24 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
 [node name="SharedBike5" parent="Bikes4" unique_id=797358241 instance=ExtResource("41_8gxhd")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
 
+[node name="Bikes6" type="Node3D" parent="." unique_id=1251123990]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 37.200005, 0.3, -22.300001)
+
+[node name="SharedBike" parent="Bikes6" unique_id=412485955 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1.1999998)
+
+[node name="SharedBike2" parent="Bikes6" unique_id=1674036168 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.5999999)
+
+[node name="SharedBike3" parent="Bikes6" unique_id=284737523 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4.7683716e-07)
+
+[node name="SharedBike4" parent="Bikes6" unique_id=129124498 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.6000004)
+
+[node name="SharedBike5" parent="Bikes6" unique_id=1280055829 instance=ExtResource("41_8gxhd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.2000003)
+
 [node name="trafficlight_A" parent="." unique_id=167686739 instance=ExtResource("46_7wx6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.5, 0, -30.9)
 
@@ -11895,3 +11939,63 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -3.5
 
 [node name="trafficlight_A4" parent="." unique_id=1463173644 instance=ExtResource("46_7wx6u")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 44, 0, -23.9)
+
+[node name="Node3D" type="Node3D" parent="." unique_id=1465229189]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.21, -15)
+
+[node name="ManholeCover" parent="Node3D" unique_id=2127303171 instance=ExtResource("68_q8v2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.2, 0, 0)
+
+[node name="ManholeCover3" parent="Node3D" unique_id=1573271458 instance=ExtResource("68_q8v2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -7.4000015)
+
+[node name="ManholeCover4" parent="Node3D" unique_id=1332334112 instance=ExtResource("68_q8v2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 22, 0, -17.5)
+
+[node name="ManholeCover2" parent="Node3D" unique_id=415487413 instance=ExtResource("68_q8v2h")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.2, 0, 0)
+
+[node name="Node3D2" type="Node3D" parent="." unique_id=960098116]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.024999976, 0.15, -15.450001)
+
+[node name="car_hatchback" parent="Node3D2" unique_id=957266497 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -3.025, 0.15, -3.5499992)
+
+[node name="car_hatchback3" parent="Node3D2" unique_id=569054474 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.0749998, 0.15, 3.5500011)
+
+[node name="car_sedan" parent="Node3D2" unique_id=1445005817 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.975, 0.15, -3.5499992)
+
+[node name="car_sedan2" parent="Node3D2" unique_id=648777604 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.025, 0.15, 3.5500011)
+
+[node name="car_hatchback2" parent="Node3D2" unique_id=1622738846 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -3.025, 0.15, -44.55)
+
+[node name="car_hatchback4" parent="Node3D2" unique_id=1183054167 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 3.0749998, 0.15, -37.45)
+
+[node name="car_sedan3" parent="Node3D2" unique_id=582521415 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.975, 0.15, -44.55)
+
+[node name="car_sedan4" parent="Node3D2" unique_id=1392063212 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.025, 0.15, -37.45)
+
+[node name="car_hatchback5" parent="Node3D2" unique_id=1954844230 instance=ExtResource("69_67ysi")]
+transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 25.475002, 0.15, -14.749998)
+
+[node name="car_hatchback6" parent="Node3D2" unique_id=1886014752 instance=ExtResource("69_67ysi")]
+transform = Transform3D(-1.7484555e-07, 0, 4, 0, 4, 0, -4, 0, -1.7484555e-07, 70.67501, 0.15, -9.250002)
+
+[node name="car_sedan5" parent="Node3D2" unique_id=2037332630 instance=ExtResource("70_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 70.575005, 0.15, -14.749998)
+
+[node name="car_sedan6" parent="Node3D2" unique_id=1400337671 instance=ExtResource("70_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25.475002, 0.15, -9.250002)
+
+[node name="car_hatchback7" parent="Node3D2" unique_id=1463610925 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 50.375, 0.15, -36.449997)
+
+[node name="car_sedan7" parent="Node3D2" unique_id=1872198948 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.574997, 0.15, -36.850002)

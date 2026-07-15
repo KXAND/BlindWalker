@@ -33,7 +33,6 @@ speaker_name = "晓明"
 text = "那我帮您去买吧，我正好也没事。"
 duration = 2.5
 
-
 [sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
@@ -51,12 +50,6 @@ script = ExtResource("2_line")
 speaker_name = "李奶奶"
 text = "小卖部就在小区门口出去，往右走，那个小卖部就有卖。"
 duration = 3.2
-
-
-
-
-
-
 
 [resource]
 script = ExtResource("1_sequence")
