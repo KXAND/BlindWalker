@@ -16,34 +16,29 @@ duration = 4.0
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
-text = "结账的时候，一个熟悉的身影走进了店里。"
-duration = 3.2
-
-[sub_resource type="Resource" id="NarrativeLine_4"]
-script = ExtResource("2_line")
 speaker_name = "王叔"
 text = "晓明？"
 duration = 1.5
 
-[sub_resource type="Resource" id="NarrativeLine_5"]
+[sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "王叔？你怎么来了？"
 duration = 2.0
 
-[sub_resource type="Resource" id="NarrativeLine_6"]
+[sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
 speaker_name = "王叔"
 text = "晓明，你怎么跑这么远来了？"
 duration = 2.5
 
-[sub_resource type="Resource" id="NarrativeLine_7"]
+[sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "李奶奶腿脚不方便，托我帮她买一袋白糖。楼下的小卖部关门了，我就找到这边来了。"
 duration = 5.0
 
-[sub_resource type="Resource" id="NarrativeLine_8"]
+[sub_resource type="Resource" id="NarrativeLine_7"]
 script = ExtResource("2_line")
 speaker_name = "王叔"
 text = "我刚好也顺路买东西回去，我载你一程吧。"
