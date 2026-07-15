@@ -134,7 +134,7 @@ func build_ui() -> void:
 	center.add_child(vbox)
 
 	_title_label = Label.new()
-	_title_label.text = "BlindWalker"
+	_title_label.text = "循暗晓明"
 	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 	_title_label.uppercase = true
 	_title_label.add_theme_font_size_override("font_size", 42)
@@ -399,7 +399,7 @@ func _load_intro_text() -> void:
 	if FileAccess.file_exists(intro_text_path):
 		text = FileAccess.get_file_as_string(intro_text_path)
 	else:
-		text = "[font_size=28][b]BlindWalker[/b][/font_size]\n\n项目介绍文本未找到。"
+		text = "[font_size=28][b]循暗晓明[/b][/font_size]\n\n项目介绍文本未找到。"
 		push_warning("LoadingScreen: intro text missing path=%s" % intro_text_path)
 
 	_intro_text.text = text
