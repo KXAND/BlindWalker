@@ -62,6 +62,7 @@
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
+[ext_resource type="Script" path="res://scripts/ui/TouchReticleUI.gd" id="touch_reticle_ui"]
 [ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
 [ext_resource type="Script" uid="uid://b0uat7wsc172a" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
 [ext_resource type="Script" uid="uid://bc41jf7mq25jm" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
@@ -11765,6 +11766,9 @@ script = ExtResource("health_ui")
 
 [node name="QtePromptUI" type="CanvasLayer" parent="." unique_id=356585125]
 script = ExtResource("qte_prompt_ui")
+
+[node name="TouchReticleUI" type="CanvasLayer" parent="."]
+script = ExtResource("touch_reticle_ui")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
 script = ExtResource("game_over_ui")
