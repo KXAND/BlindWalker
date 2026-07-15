@@ -1,0 +1,219 @@
+[gd_scene format=3 uid="uid://up18bv4ucjry"]
+
+[sub_resource type="BoxMesh" id="chunk_a_mesh"]
+size = Vector3(0.45, 0.04, 0.35)
+
+[sub_resource type="StandardMaterial3D" id="broken_mat"]
+resource_name = "broken_asphalt"
+albedo_color = Color(0.32, 0.3, 0.28, 1)
+roughness = 0.75
+
+[sub_resource type="BoxShape3D" id="chunk_a_shape"]
+size = Vector3(0.45, 0.04, 0.35)
+
+[sub_resource type="BoxMesh" id="chunk_b_mesh"]
+size = Vector3(0.35, 0.04, 0.3)
+
+[sub_resource type="BoxShape3D" id="chunk_b_shape"]
+size = Vector3(0.35, 0.04, 0.3)
+
+[sub_resource type="BoxMesh" id="chunk_c_mesh"]
+size = Vector3(0.3, 0.04, 0.4)
+
+[sub_resource type="BoxShape3D" id="chunk_c_shape"]
+size = Vector3(0.3, 0.04, 0.4)
+
+[sub_resource type="BoxMesh" id="crack_long_mesh"]
+size = Vector3(0.01, 0.008, 0.55)
+
+[sub_resource type="StandardMaterial3D" id="crack_mat"]
+resource_name = "crack_dark"
+albedo_color = Color(0.05, 0.05, 0.07, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="crack_short_mesh"]
+size = Vector3(0.3, 0.008, 0.01)
+
+[sub_resource type="BoxMesh" id="crack_branch_mesh"]
+size = Vector3(0.01, 0.008, 0.22)
+
+[sub_resource type="PlaneMesh" id="pothole_floor_mesh"]
+size = Vector2(0.18, 0.14)
+orientation = 2
+
+[sub_resource type="StandardMaterial3D" id="dirt_mat"]
+resource_name = "dirt"
+albedo_color = Color(0.38, 0.26, 0.16, 1)
+roughness = 0.95
+
+[sub_resource type="BoxMesh" id="pothole_wall_short_mesh"]
+size = Vector3(0.18, 0.06, 0.02)
+
+[sub_resource type="BoxMesh" id="pothole_wall_long_mesh"]
+size = Vector3(0.02, 0.06, 0.14)
+
+[sub_resource type="BoxMesh" id="rubble_tiny_mesh"]
+size = Vector3(0.04, 0.02, 0.05)
+
+[sub_resource type="StandardMaterial3D" id="rubble_mat"]
+resource_name = "rubble"
+albedo_color = Color(0.28, 0.26, 0.24, 1)
+roughness = 0.8
+
+[sub_resource type="BoxShape3D" id="rubble_tiny_shape"]
+size = Vector3(0.04, 0.02, 0.05)
+
+[sub_resource type="BoxMesh" id="rubble_small_mesh"]
+size = Vector3(0.05, 0.025, 0.06)
+
+[sub_resource type="BoxShape3D" id="rubble_small_shape"]
+size = Vector3(0.05, 0.025, 0.06)
+
+[sub_resource type="BoxMesh" id="rubble_flat_mesh"]
+size = Vector3(0.07, 0.015, 0.04)
+
+[sub_resource type="BoxShape3D" id="rubble_flat_shape"]
+size = Vector3(0.07, 0.015, 0.04)
+
+[node name="BrokenRoad" type="Node3D" unique_id=159579461]
+
+[node name="RoadBase" type="StaticBody3D" parent="." unique_id=1045221012]
+
+[node name="BrokenChunks" type="Node3D" parent="." unique_id=1660225478]
+
+[node name="Chunk_A" type="StaticBody3D" parent="BrokenChunks" unique_id=2039405136]
+transform = Transform3D(0.990268, -0.139173, 0, 0.139173, 0.990268, 0, 0, 0, 1, -0.22, 0.02, -0.2)
+
+[node name="Chunk_A_Mesh" type="MeshInstance3D" parent="BrokenChunks/Chunk_A" unique_id=390010284]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("chunk_a_mesh")
+surface_material_override/0 = SubResource("broken_mat")
+
+[node name="Chunk_A_Collision" type="CollisionShape3D" parent="BrokenChunks/Chunk_A" unique_id=352973322]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("chunk_a_shape")
+
+[node name="Chunk_B" type="StaticBody3D" parent="BrokenChunks" unique_id=1314041633]
+transform = Transform3D(0.992546, 0.121869, 0, -0.121869, 0.992546, 0, 0, 0, 1, 0.25, 0.015, 0.05)
+
+[node name="Chunk_B_Mesh" type="MeshInstance3D" parent="BrokenChunks/Chunk_B" unique_id=960091554]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("chunk_b_mesh")
+surface_material_override/0 = SubResource("broken_mat")
+
+[node name="Chunk_B_Collision" type="CollisionShape3D" parent="BrokenChunks/Chunk_B" unique_id=2133442957]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("chunk_b_shape")
+
+[node name="Chunk_C" type="StaticBody3D" parent="BrokenChunks" unique_id=1950733105]
+transform = Transform3D(1, 0, 0, 0, 0.996195, -0.087156, 0, 0.087156, 0.996195, 0, -0.03, 0.22)
+
+[node name="Chunk_C_Mesh" type="MeshInstance3D" parent="BrokenChunks/Chunk_C" unique_id=1783715414]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+mesh = SubResource("chunk_c_mesh")
+surface_material_override/0 = SubResource("broken_mat")
+
+[node name="Chunk_C_Collision" type="CollisionShape3D" parent="BrokenChunks/Chunk_C" unique_id=1057584686]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.02, 0)
+shape = SubResource("chunk_c_shape")
+
+[node name="Cracks" type="Node3D" parent="." unique_id=1175184927]
+
+[node name="Crack_Long" type="MeshInstance3D" parent="Cracks" unique_id=1681765680]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.042, 0)
+mesh = SubResource("crack_long_mesh")
+surface_material_override/0 = SubResource("crack_mat")
+
+[node name="Crack_Across" type="MeshInstance3D" parent="Cracks" unique_id=1216262997]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.05, 0.042, 0.05)
+mesh = SubResource("crack_short_mesh")
+surface_material_override/0 = SubResource("crack_mat")
+
+[node name="Crack_Branch_L" type="MeshInstance3D" parent="Cracks" unique_id=633426567]
+transform = Transform3D(0.951057, -0.309017, 0, 0.309017, 0.951057, 0, 0, 0, 1, -0.12, 0.042, -0.1)
+mesh = SubResource("crack_branch_mesh")
+surface_material_override/0 = SubResource("crack_mat")
+
+[node name="Crack_Branch_R" type="MeshInstance3D" parent="Cracks" unique_id=1123852185]
+transform = Transform3D(0.965926, 0.258819, 0, -0.258819, 0.965926, 0, 0, 0, 1, 0.15, 0.042, -0.12)
+mesh = SubResource("crack_branch_mesh")
+surface_material_override/0 = SubResource("crack_mat")
+
+[node name="Pothole" type="Node3D" parent="." unique_id=1321203028]
+
+[node name="PotholeFloor" type="MeshInstance3D" parent="Pothole" unique_id=363403445]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.06, 0.25)
+mesh = SubResource("pothole_floor_mesh")
+surface_material_override/0 = SubResource("dirt_mat")
+
+[node name="PotholeWall_Front" type="MeshInstance3D" parent="Pothole" unique_id=30041956]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.01, 0.32)
+mesh = SubResource("pothole_wall_short_mesh")
+surface_material_override/0 = SubResource("dirt_mat")
+
+[node name="PotholeWall_Back" type="MeshInstance3D" parent="Pothole" unique_id=394804625]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.1, -0.01, 0.18)
+mesh = SubResource("pothole_wall_short_mesh")
+surface_material_override/0 = SubResource("dirt_mat")
+
+[node name="PotholeWall_Left" type="MeshInstance3D" parent="Pothole" unique_id=112973863]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19, -0.01, 0.25)
+mesh = SubResource("pothole_wall_long_mesh")
+surface_material_override/0 = SubResource("dirt_mat")
+
+[node name="PotholeWall_Right" type="MeshInstance3D" parent="Pothole" unique_id=1055149333]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.01, -0.01, 0.25)
+mesh = SubResource("pothole_wall_long_mesh")
+surface_material_override/0 = SubResource("dirt_mat")
+
+[node name="Debris" type="Node3D" parent="." unique_id=1585780923]
+
+[node name="Rubble_01" type="StaticBody3D" parent="Debris" unique_id=577550255]
+transform = Transform3D(0.866025, 0.5, 0, -0.5, 0.866025, 0, 0, 0, 1, -0.15, 0.045, 0.08)
+
+[node name="Rubble_01_Mesh" type="MeshInstance3D" parent="Debris/Rubble_01" unique_id=2039865696]
+mesh = SubResource("rubble_tiny_mesh")
+surface_material_override/0 = SubResource("rubble_mat")
+
+[node name="Rubble_01_Collision" type="CollisionShape3D" parent="Debris/Rubble_01" unique_id=1626260483]
+shape = SubResource("rubble_tiny_shape")
+
+[node name="Rubble_02" type="StaticBody3D" parent="Debris" unique_id=276719571]
+transform = Transform3D(0.707107, -0.707107, 0, 0.707107, 0.707107, 0, 0, 0, 1, 0.18, 0.04, -0.15)
+
+[node name="Rubble_02_Mesh" type="MeshInstance3D" parent="Debris/Rubble_02" unique_id=1468403039]
+mesh = SubResource("rubble_small_mesh")
+surface_material_override/0 = SubResource("rubble_mat")
+
+[node name="Rubble_02_Collision" type="CollisionShape3D" parent="Debris/Rubble_02" unique_id=1571741296]
+shape = SubResource("rubble_small_shape")
+
+[node name="Rubble_03" type="StaticBody3D" parent="Debris" unique_id=287826069]
+transform = Transform3D(0.573576, 0.819152, 0, -0.819152, 0.573576, 0, 0, 0, 1, -0.05, 0.045, 0.35)
+
+[node name="Rubble_03_Mesh" type="MeshInstance3D" parent="Debris/Rubble_03" unique_id=370254580]
+mesh = SubResource("rubble_flat_mesh")
+surface_material_override/0 = SubResource("rubble_mat")
+
+[node name="Rubble_03_Collision" type="CollisionShape3D" parent="Debris/Rubble_03" unique_id=961059977]
+shape = SubResource("rubble_flat_shape")
+
+[node name="Rubble_04" type="StaticBody3D" parent="Debris" unique_id=1435285754]
+transform = Transform3D(0.906308, 0.422618, 0, -0.422618, 0.906308, 0, 0, 0, 1, 0.35, 0.042, 0.28)
+
+[node name="Rubble_04_Mesh" type="MeshInstance3D" parent="Debris/Rubble_04" unique_id=908198356]
+mesh = SubResource("rubble_tiny_mesh")
+surface_material_override/0 = SubResource("rubble_mat")
+
+[node name="Rubble_04_Collision" type="CollisionShape3D" parent="Debris/Rubble_04" unique_id=2070009885]
+shape = SubResource("rubble_tiny_shape")
+
+[node name="Rubble_05" type="StaticBody3D" parent="Debris" unique_id=1005572325]
+transform = Transform3D(0.34202, -0.939693, 0, 0.939693, 0.34202, 0, 0, 0, 1, -0.28, 0.043, -0.25)
+
+[node name="Rubble_05_Mesh" type="MeshInstance3D" parent="Debris/Rubble_05" unique_id=1166148474]
+mesh = SubResource("rubble_small_mesh")
+surface_material_override/0 = SubResource("rubble_mat")
+
+[node name="Rubble_05_Collision" type="CollisionShape3D" parent="Debris/Rubble_05" unique_id=152845477]
+shape = SubResource("rubble_small_shape")

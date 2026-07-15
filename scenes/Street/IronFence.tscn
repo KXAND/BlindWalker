@@ -1,0 +1,220 @@
+[gd_scene load_steps=7 format=3]
+
+[ext_resource type="Script" path="res://scripts/interaction/ContactProfileProvider.gd" id="prov"]
+[ext_resource type="Resource" path="res://assets/contact_profiles/metal_pole.tres" id="metal_profile"]
+
+[sub_resource type="StandardMaterial3D" id="mat_iron"]
+albedo_color = Color(0.28, 0.27, 0.29, 1)
+roughness = 0.45
+metallic = 0.85
+
+[sub_resource type="StandardMaterial3D" id="mat_iron_rusted"]
+albedo_color = Color(0.35, 0.22, 0.15, 1)
+roughness = 0.65
+metallic = 0.6
+
+[sub_resource type="StandardMaterial3D" id="mat_iron_dark"]
+albedo_color = Color(0.18, 0.17, 0.19, 1)
+roughness = 0.4
+metallic = 0.9
+
+[node name="IronFence" type="CSGCombiner3D"]
+use_collision = true
+
+[node name="Profile" type="Node" parent="."]
+script = ExtResource("prov")
+profile = ExtResource("metal_profile")
+
+; ============================================================
+; 立柱 (左右两根)
+; ============================================================
+
+[node name="Post_L" type="CSGBox3D" parent="."]
+width = 0.06
+height = 1.0
+depth = 0.06
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.5, 0.0)
+
+; 左立柱顶部装饰球
+[node name="Post_L_Finial" type="CSGSphere3D" parent="."]
+radius = 0.045
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.0, 1.02, 0.0)
+
+; 左立柱顶部尖刺
+[node name="Post_L_Spike" type="CSGCylinder3D" parent="."]
+radius = 0.015
+height = 0.1
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.0, 1.08, 0.0)
+
+[node name="Post_R" type="CSGBox3D" parent="."]
+width = 0.06
+height = 1.0
+depth = 0.06
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.5, 0.0)
+
+; 右立柱顶部装饰球
+[node name="Post_R_Finial" type="CSGSphere3D" parent="."]
+radius = 0.045
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.02, 0.0)
+
+; 右立柱顶部尖刺
+[node name="Post_R_Spike" type="CSGCylinder3D" parent="."]
+radius = 0.015
+height = 0.1
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 1.08, 0.0)
+
+; ============================================================
+; 立柱底座
+; ============================================================
+
+[node name="Base_L" type="CSGBox3D" parent="."]
+width = 0.12
+height = 0.06
+depth = 0.12
+material = SubResource("mat_iron_rusted")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -1.0, 0.03, 0.0)
+
+[node name="Base_R" type="CSGBox3D" parent="."]
+width = 0.12
+height = 0.06
+depth = 0.12
+material = SubResource("mat_iron_rusted")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.03, 0.0)
+
+; ============================================================
+; 上下横梁
+; ============================================================
+
+[node name="Rail_Top" type="CSGBox3D" parent="."]
+width = 2.0
+height = 0.04
+depth = 0.03
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.88, 0.0)
+
+[node name="Rail_Bottom" type="CSGBox3D" parent="."]
+width = 2.0
+height = 0.04
+depth = 0.03
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.18, 0.0)
+
+; ============================================================
+; 中间装饰横梁 (增加层次感)
+; ============================================================
+
+[node name="Rail_Mid" type="CSGBox3D" parent="."]
+width = 1.94
+height = 0.02
+depth = 0.02
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.55, 0.0)
+
+; ============================================================
+; 竖向栅栏杆 (x 均匀分布)
+; ============================================================
+
+[node name="Bar_01" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.84, 0.53, 0.0)
+
+[node name="Bar_02" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.56, 0.53, 0.0)
+
+[node name="Bar_03" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, -0.28, 0.53, 0.0)
+
+[node name="Bar_04" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.53, 0.0)
+
+[node name="Bar_05" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.28, 0.53, 0.0)
+
+[node name="Bar_06" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.56, 0.53, 0.0)
+
+[node name="Bar_07" type="CSGBox3D" parent="."]
+width = 0.02
+height = 0.66
+depth = 0.02
+material = SubResource("mat_iron")
+use_collision = true
+transform = Transform3D(1.0, 0.0, 0.0, 0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 0.84, 0.53, 0.0)
+
+; ============================================================
+; 装饰环形箍 (位于立柱与横梁连接处)
+; ============================================================
+
+[node name="Collar_Top_L" type="CSGCylinder3D" parent="."]
+radius = 0.04
+height = 0.04
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, -1.0, 0.88, 0.0)
+
+[node name="Collar_Top_R" type="CSGCylinder3D" parent="."]
+radius = 0.04
+height = 0.04
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.88, 0.0)
+
+[node name="Collar_Bot_L" type="CSGCylinder3D" parent="."]
+radius = 0.04
+height = 0.04
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, -1.0, 0.18, 0.0)
+
+[node name="Collar_Bot_R" type="CSGCylinder3D" parent="."]
+radius = 0.04
+height = 0.04
+material = SubResource("mat_iron_dark")
+use_collision = true
+transform = Transform3D(0.0, 1.0, 0.0, 0.0, 0.0, 1.0, 1.0, 0.0, 0.0, 1.0, 0.18, 0.0)

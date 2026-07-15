@@ -30,8 +30,10 @@
 [ext_resource type="Script" uid="uid://d0oji56k1y4e0" path="res://scenes/main/fps.gd" id="60_b6xsk"]
 [ext_resource type="PackedScene" uid="uid://bhsu53wnepmak" path="res://scenes/Street/bush.tscn" id="65_7wpoh"]
 [ext_resource type="PackedScene" uid="uid://babm02k1iuyrj" path="res://scenes/Street/Billboard.tscn" id="66_7wx6u"]
+[ext_resource type="PackedScene" uid="uid://up18bv4ucjry" path="res://scenes/Street/BrokenRoad.tscn" id="68_a0vxn"]
 [ext_resource type="PackedScene" uid="uid://dkm2anvh4tcp8" path="res://scenes/Street/ManholeCover.tscn" id="68_q8v2h"]
 [ext_resource type="PackedScene" uid="uid://beol3g7b40r1p" path="res://scenes/Street/car_hatchback.tscn" id="69_67ysi"]
+[ext_resource type="PackedScene" path="res://scenes/Street/IronFence.tscn" id="69_a0vxn"]
 [ext_resource type="PackedScene" uid="uid://ytoxj3d4bwyq" path="res://scenes/Street/car_sedan.tscn" id="70_dudpu"]
 [ext_resource type="PackedScene" uid="uid://cruc7cjolmsep" path="res://scenes/Street/Motorcycle.tscn" id="71_dudpu"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
@@ -52,7 +54,7 @@
 [ext_resource type="Resource" uid="uid://p08p8r7cptfs" path="res://assets/narrative/dialogue_street.tres" id="dialogue_street"]
 [ext_resource type="Resource" uid="uid://bm648hrnlsw5n" path="res://assets/narrative/dialogue_street_after_crosswalk.tres" id="dialogue_street_after_crosswalk"]
 [ext_resource type="Script" uid="uid://cjp8lcegylcbv" path="res://scripts/ui/DistanceHUD.gd" id="distance_hud"]
-[ext_resource type="Resource" path="res://assets/narrative/failure_fullscreen.tres" id="failure_fullscreen"]
+[ext_resource type="Resource" uid="uid://dt2m7e2qvxtvk" path="res://assets/narrative/failure_fullscreen.tres" id="failure_fullscreen"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
 [ext_resource type="Script" uid="uid://dikpl6kao2bnw" path="res://scripts/player/InputManager.gd" id="input_manager"]
@@ -11068,20 +11070,11 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.128969, 0.108861595, -5.72
 [node name="TactileGuide236" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1485790143 instance=ExtResource("37_vennj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.428968, 0.108861595, -5.722046e-06)
 
-[node name="TactileGuide237" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1527969985 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72897, 0.108861595, -5.722046e-06)
-
 [node name="TactileGuide238" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1752991406 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.028969, 0.108861595, -5.722046e-06)
+transform = Transform3D(0.8660254, 0.5, 0, -0.5, 0.8660254, 0, 0, 0, 1, -10.028969, 0.108861595, -5.722046e-06)
 
 [node name="TactileGuide239" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1277556894 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.32897, 0.108861595, -5.722046e-06)
-
-[node name="TactileGuide240" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=760360343 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.628969, 0.108861595, -5.722046e-06)
-
-[node name="TactileGuide241" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1602572459 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.92897, 0.108861595, -5.722046e-06)
+transform = Transform3D(0.70710677, -0.70710677, 0, 0.6123724, 0.6123724, 0.5, -0.35355338, -0.35355338, 0.8660254, -10.32897, 0.108861595, -5.722046e-06)
 
 [node name="TactileGuide242" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1838670592 instance=ExtResource("37_vennj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.22897, 0.108861595, -5.722046e-06)
@@ -11095,20 +11088,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.128969, 0.108861595, -5.72
 [node name="TactileGuide245" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1121682062 instance=ExtResource("37_vennj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.428968, 0.108861595, -5.722046e-06)
 
-[node name="TactileGuide246" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1652326795 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.72897, 0.108861595, -5.722046e-06)
-
-[node name="TactileGuide247" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1812173500 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.028969, 0.108861595, -5.722046e-06)
-
-[node name="TactileGuide248" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=136910557 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.32897, 0.108861595, -5.722046e-06)
-
 [node name="TactileGuide249" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1053653796 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.628969, 0.108861595, -5.722046e-06)
-
-[node name="TactileGuide250" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1283758224 instance=ExtResource("37_vennj")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.92897, 0.108861595, -5.722046e-06)
+transform = Transform3D(0.8660254, -0.24999999, 0.43301272, 0.5, 0.43301266, -0.75, 0, 0.86602545, 0.49999997, -10.628969, 0.108861595, -5.722046e-06)
 
 [node name="TactileGuide251" parent="GameViewportContainer/GameViewport/GameRoot/w/Tactiles/TactileGroup4" unique_id=1178544492 instance=ExtResource("37_vennj")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -11.22897, 0.108861595, -5.722046e-06)
@@ -12020,3 +12001,18 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.999998, 0.3, -32.600002)
 
 [node name="Billboard2" parent="." unique_id=1276938445 instance=ExtResource("66_7wx6u")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 32.1, 0.3, -22.400002)
+
+[node name="BrokenRoad" parent="." unique_id=159579461 instance=ExtResource("68_a0vxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, -0.14431015, -1)
+
+[node name="IronFence" parent="." unique_id=408613093 instance=ExtResource("69_a0vxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3, 0.20000002, -23.1)
+
+[node name="IronFence2" parent="." unique_id=203239866 instance=ExtResource("69_a0vxn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10.3, 0.20000002, -22.1)
+
+[node name="IronFence4" parent="." unique_id=1287738109 instance=ExtResource("69_a0vxn")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 8.3, 0.20000002, -22.1)
+
+[node name="IronFence3" parent="." unique_id=364735946 instance=ExtResource("69_a0vxn")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9.3, 0.20000002, -21.1)
