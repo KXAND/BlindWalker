@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
+
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 text = "我叫晓明，是一名22岁的失明的大学生。"
@@ -13,9 +14,14 @@ script = ExtResource("2_line")
 text = "因为看不见，我平时很少出门。不过有些事，还是得自己来。"
 duration = 5
 
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+text = "提示：如果游戏太难了的话，游戏过程中按F3可以照亮所有视野"
+duration = 5
+
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"intro_fullscreen"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3")]
 default_line_duration = 2.5
 presentation_mode = "fullscreen"

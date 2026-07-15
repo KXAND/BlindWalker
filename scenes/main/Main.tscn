@@ -47,9 +47,10 @@
 [ext_resource type="Script" uid="uid://c16umi7cv7tt8" path="res://scripts/ui/CutsceneManager.gd" id="cutscene_manager"]
 [ext_resource type="Resource" uid="uid://dnl32nc1qcyri" path="res://assets/narrative/dialogue_blocked_go_left.tres" id="dialogue_blocked_go_left"]
 [ext_resource type="Resource" uid="uid://23wlfwv4dkqp" path="res://assets/narrative/dialogue_blocked_go_right.tres" id="dialogue_blocked_go_right"]
-[ext_resource type="Resource" path="res://assets/narrative/dialogue_crossroads_convenience_store.tres" id="dialogue_crossroads_convenience_store"]
+[ext_resource type="Resource" uid="uid://bvr6m532u4bel" path="res://assets/narrative/dialogue_crossroads_convenience_store.tres" id="dialogue_crossroads_convenience_store"]
 [ext_resource type="Resource" uid="uid://dn6uxb83hj37h" path="res://assets/narrative/dialogue_crosswalk.tres" id="dialogue_crosswalk"]
 [ext_resource type="Resource" uid="uid://b8xq7l3kpw2na" path="res://assets/narrative/dialogue_endpoint.tres" id="dialogue_endpoint"]
+[ext_resource type="Resource" uid="uid://pvpinnjpxust" path="res://assets/narrative/dialogue_first_crossroads_turn_right.tres" id="dialogue_first_crossroads_turn_right"]
 [ext_resource type="Resource" uid="uid://cjoj2thh0mqbt" path="res://assets/narrative/dialogue_ground_floor.tres" id="dialogue_ground_floor"]
 [ext_resource type="Resource" uid="uid://v7tjyuvk3wen" path="res://assets/narrative/dialogue_home_second_floor.tres" id="dialogue_home_second_floor"]
 [ext_resource type="Resource" uid="uid://okg20xyc8v5w" path="res://assets/narrative/dialogue_shop_closed.tres" id="dialogue_shop_closed"]
@@ -84,11 +85,35 @@ adjustment_brightness = 0.8
 radius = 0.35
 height = 1.2
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
-size = Vector3(5, 2.2, 2.2)
+[sub_resource type="BoxShape3D" id="BoxShape3D_ss1ga"]
+size = Vector3(1.4, 1, 1.6)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhng8"]
+size = Vector3(1.4, 2, 1.3000001)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_enpbb"]
+size = Vector3(2.5, 1, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_abejs"]
+size = Vector3(3, 1, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_8482y"]
+size = Vector3(1.9, 1, 3)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
 size = Vector3(2, 1, 39)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_6rt8v"]
+size = Vector3(3, 3, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
+size = Vector3(6, 2.2, 2.2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yasfj"]
+size = Vector3(3, 1, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ouoh4"]
+size = Vector3(2, 1, 2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_target"]
 size = Vector3(4, 2, 2)
@@ -234,41 +259,44 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.25, 4.1, 17)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_home_second_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor" unique_id=150967428]
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/HomeSecondFloor" unique_id=1285737959]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.20000076, 0, 0)
+shape = SubResource("BoxShape3D_ss1ga")
 
 [node name="Stairwell" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=329507835]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 4.9, 17)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_stairwell")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell" unique_id=1591020283]
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Stairwell" unique_id=1132107805]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20000076, -0.5, -0.14999962)
+shape = SubResource("BoxShape3D_lhng8")
 
 [node name="GroundFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1421899385]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28.7, 1, 14.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -27.7, 1, 14.5)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_ground_floor")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor" unique_id=1044255050]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 0, 0)
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/GroundFloor" unique_id=1832191332]
+shape = SubResource("BoxShape3D_enpbb")
 
 [node name="Street" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=904467423]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.95, 1, -1)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6.1499996, 1, -1)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_street")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street" unique_id=173949092]
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Street" unique_id=1776515731]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1, 0, 0)
+shape = SubResource("BoxShape3D_abejs")
 
 [node name="Crosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1366362169]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -2)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_crosswalk")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk" unique_id=1619653346]
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Crosswalk" unique_id=1857787773]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.4499998, 0, 0)
+shape = SubResource("BoxShape3D_8482y")
 
 [node name="StreetAfterCrosswalk" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=581767034]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 1, -3)
@@ -284,8 +312,8 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 1, 15)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_shop_closed")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/ShopClosed" unique_id=1504294838]
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/ShopClosed" unique_id=1729982158]
+shape = SubResource("BoxShape3D_6rt8v")
 
 [node name="Endpoint" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=547032366]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 59, 1, -36)
@@ -293,6 +321,7 @@ script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_endpoint")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/Endpoint" unique_id=1578541053]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 1)
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="BlockedGoLeft2" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1378805570]
@@ -310,10 +339,11 @@ script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_blocked_go_right")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/BlockedGoRight" unique_id=481950372]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0, 0)
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="BlockedGoRight2" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=1340020767]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -17, 1, -3.7)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.7, 1, -3.7)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_blocked_go_right")
 
@@ -321,13 +351,20 @@ sequence = ExtResource("dialogue_blocked_go_right")
 shape = SubResource("BoxShape3D_dialogue_trigger")
 
 [node name="CrossroadsConvenienceStore" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=672158394]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 42, 1, -20.3)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 42, 1, -22.3)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_crossroads_convenience_store")
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/CrossroadsConvenienceStore" unique_id=318756420]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2, 0, 0.79999924)
-shape = SubResource("BoxShape3D_dialogue_trigger")
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/CrossroadsConvenienceStore" unique_id=1816398116]
+shape = SubResource("BoxShape3D_yasfj")
+
+[node name="FirstCrossroadsTurnRight" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=845129763]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.3328986, 1, -22.3)
+script = ExtResource("narrative_trigger_area")
+sequence = ExtResource("dialogue_first_crossroads_turn_right")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers/FirstCrossroadsTurnRight" unique_id=1462225933]
+shape = SubResource("BoxShape3D_ouoh4")
 
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 0.92, -25)
