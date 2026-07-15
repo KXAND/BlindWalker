@@ -35,6 +35,10 @@ window/stretch/mode="viewport"
 
 project/assembly_name="BlindWalker"
 
+[gui]
+
+theme/custom_font="res://assets/fonts/noto_sans_sc_regular.ttf"
+
 [physics]
 
 common/enable_pause_aware_picking=true

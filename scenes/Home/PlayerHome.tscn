@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" path="res://scenes/Home/CoffeeTable.tscn" id="13_ibdgp"]
 [ext_resource type="PackedScene" path="res://scenes/Home/IndoorTrashCan.tscn" id="14_qdxcq"]
 [ext_resource type="PackedScene" path="res://scenes/Home/ApplePlate.tscn" id="15_mfc46"]
+[ext_resource type="Script" path="res://scripts/interaction/DoorInteractable.gd" id="16_door_interactable"]
 
 [sub_resource type="StandardMaterial3D" id="mat_floor"]
 albedo_color = Color(0.45, 0.32, 0.22, 1)
@@ -72,6 +73,9 @@ albedo_color = Color(0.7, 0.7, 0.75, 1)
 
 [sub_resource type="StandardMaterial3D" id="mat_rug"]
 albedo_color = Color(0.55, 0.45, 0.35, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_door_interaction"]
+size = Vector3(2, 2.2, 2)
 
 [node name="PlayerHome" type="Node3D" unique_id=119255540]
 
@@ -444,6 +448,18 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.79
 
 [node name="Door" parent="." unique_id=948328897 instance=ExtResource("6_dxlhg")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.6059917, 0, 5.94568)
+
+[node name="DoorInteraction" type="Area3D" parent="Door"]
+script = ExtResource("16_door_interactable")
+prompt_anchor_path = NodePath("../Pivot/HandleLever")
+reveal_target_path = NodePath("../Pivot/HandleLever")
+interaction_priority = 20
+focus_angle_degrees = 65.0
+open_angle_degrees = 90.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Door/DoorInteraction"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.05, 0)
+shape = SubResource("BoxShape3D_door_interaction")
 
 [node name="DoorPivot" type="Node3D" parent="." unique_id=273109286]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6873238, 1.05, 2.7213097)
