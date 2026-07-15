@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://bm648hrnlsw5n"]
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://pvpinnjpxust"]
 
 [ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
@@ -6,17 +6,17 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "过了马路了。往左转，然后沿着这条盲道走吧"
+text = "第一个十字路口到了，在这右转吧。"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "沿着这个盲道往前走一段路后应该会有一个路口，这时候记得是跟着盲道往右转，继续直走直到下一个路口"
+text = "之后继续沿着盲道走，商店就在下一个十字路口的斜对面"
 duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")
-sequence_id = &"street_after_crosswalk"
+sequence_id = &"first_crossroads_turn_right"
 lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
 default_line_duration = 3.0

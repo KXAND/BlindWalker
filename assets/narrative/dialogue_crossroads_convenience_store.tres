@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://bvr6m532u4bel"]
+
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "又到路口了，记得小卖部就在这个路口斜对面。"
+duration = 100.0
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"crossroads_convenience_store"
+lines = [SubResource("NarrativeLine_1")]
+default_line_duration = 3.0

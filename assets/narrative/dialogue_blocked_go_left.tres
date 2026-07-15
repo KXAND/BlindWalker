@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://dnl32nc1qcyri"]
+
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "这边被堵住了，往左走吧。"
+duration = 100.0
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"blocked_go_left"
+lines = [SubResource("NarrativeLine_1")]
+default_line_duration = 3.0
