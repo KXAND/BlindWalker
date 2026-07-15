@@ -179,7 +179,7 @@ func set_cautious(active: bool) -> void:
 
 func set_high_step(active: bool) -> void:
 	_high_step_active = active
-	if not active:
+	if not active and not is_handrail_assist_active():
 		_has_stair_up_target = false
 
 
@@ -290,8 +290,8 @@ func _check_terrain(forward: Vector3) -> void:
 	# Stair up
 	if terrain_delta > STAIR_UP_THRESHOLD:
 		_stair_up_handled = true
-		if _high_step_active and terrain_delta <= GameConfig.MAX_HIGH_STEP_HEIGHT:
-			# SPACE held + step within height limit: 设定抬升目标高度，Player.y 在 _physics_process 中平滑逼近
+		if _can_step_up_safely() and terrain_delta <= GameConfig.MAX_HIGH_STEP_HEIGHT:
+			# SPACE held or handrail assisted + step within height limit: 设定抬升目标高度，Player.y 在 _physics_process 中平滑逼近
 			# 这样相机不会在每帧 0.05s 节流触发时被瞬时跳变
 			_stair_up_target_y = global_position.y + terrain_delta
 			_has_stair_up_target = true
@@ -308,7 +308,7 @@ func _check_terrain(forward: Vector3) -> void:
 	elif terrain_delta < STAIR_DOWN_THRESHOLD:
 		_has_stair_up_target = false
 		if _cautious_active or is_handrail_assist_active():
-			# SHIFT held: let physics handle the drop naturally, no penalty
+			# SHIFT held or handrail assisted: let physics handle the drop naturally, no penalty
 			if GameConfig.DEBUG:
 				print("[DEBUG][GaitController] stair_down safe (cautious_or_handrail) delta=%.2f" % terrain_delta)
 		else:
@@ -401,6 +401,10 @@ func _enter_unstable_stumble(forward: Vector3, lift_delta: float = 0.0) -> void:
 
 func _do_fall(fall_distance: float) -> void:
 	_start_fall(-global_transform.basis.z.normalized(), fall_distance)
+
+
+func _can_step_up_safely() -> bool:
+	return _high_step_active or is_handrail_assist_active()
 
 
 func _start_fall(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cmhfxewa7xhoi"]
 
 [ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="1_826a0"]
-[ext_resource type="Script" path="res://scripts/interaction/HandrailInteractable.gd" id="2_handrail_interactable"]
+[ext_resource type="Script" uid="uid://b0uat7wsc172a" path="res://scripts/interaction/HandrailInteractable.gd" id="2_handrail_interactable"]
 
 [sub_resource type="StandardMaterial3D" id="mat_1"]
 resource_name = "concrete"
@@ -28,11 +28,11 @@ resource_name = "handrail"
 albedo_color = Color(0.18, 0.18, 0.2, 1)
 roughness = 0.3
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_handrail_interaction"]
+size = Vector3(4.8, 2.8, 1.2)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
 size = Vector3(3.1338806, 0.7651367, 1.1904297)
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_handrail_interaction"]
-size = Vector3(2.8, 1.0, 1.0)
 
 [node name="Stairwell" type="Node3D" unique_id=1555503850]
 
@@ -349,26 +349,52 @@ transform = Transform3D(2.0549033, 0.017633557, 0, -1.4929745, 0.02427051, 0, 0,
 use_collision = true
 material = SubResource("mat_5")
 
-[node name="HandrailInteraction_A" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 1.64, 0.04)
+[node name="HandrailInteraction_A" type="Area3D" parent="." unique_id=660746238]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 1.25, -0.25176093)
 script = ExtResource("2_handrail_interactable")
 prompt_text = "按 E 扶住"
 prompt_anchor_path = NodePath("../Stairwell#Handrail_A")
 reveal_target_path = NodePath("../Stairwell#Handrail_A")
 interaction_priority = 20
+focus_angle_degrees = 65.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_A"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_A" unique_id=334801716]
 shape = SubResource("BoxShape3D_handrail_interaction")
 
-[node name="HandrailInteraction_B" type="Area3D" parent="."]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 3.0854404, 2.36)
+[node name="HandrailInteraction_A2" type="Area3D" parent="." unique_id=1367811830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 1.25, 1.1062914)
+script = ExtResource("2_handrail_interactable")
+prompt_text = "按 E 扶住"
+prompt_anchor_path = NodePath("../Stairwell#Rail_A")
+reveal_target_path = NodePath("../Stairwell#Rail_A")
+interaction_priority = 20
+focus_angle_degrees = 65.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_A2" unique_id=513854935]
+shape = SubResource("BoxShape3D_handrail_interaction")
+
+[node name="HandrailInteraction_B" type="Area3D" parent="." unique_id=1674372786]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 2.55, 2.36)
 script = ExtResource("2_handrail_interactable")
 prompt_text = "按 E 扶住"
 prompt_anchor_path = NodePath("../Stairwell#Handrail_B")
 reveal_target_path = NodePath("../Stairwell#Handrail_B")
 interaction_priority = 20
+focus_angle_degrees = 65.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B" unique_id=477784520]
+shape = SubResource("BoxShape3D_handrail_interaction")
+
+[node name="HandrailInteraction_B2" type="Area3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 2.55, 1.2825165)
+script = ExtResource("2_handrail_interactable")
+prompt_text = "按 E 扶住"
+prompt_anchor_path = NodePath("../Stairwell#Rail_B")
+reveal_target_path = NodePath("../Stairwell#Rail_B")
+interaction_priority = 20
+focus_angle_degrees = 65.0
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B2"]
 shape = SubResource("BoxShape3D_handrail_interaction")
 
 [node name="Stairwell#SideWall_Left2" type="CSGBox3D" parent="." unique_id=649769941]
