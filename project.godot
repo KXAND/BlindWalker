@@ -14,7 +14,7 @@ compatibility/default_parent_skeleton_in_mesh_instance_3d=true
 
 [application]
 
-config/name="BlindWalker"
+config/name="循暗晓明"
 run/main_scene="res://scenes/main/LoadingScreen.tscn"
 config/features=PackedStringArray("4.7")
 
@@ -33,7 +33,7 @@ window/stretch/mode="viewport"
 
 [dotnet]
 
-project/assembly_name="BlindWalker"
+project/assembly_name="Xiaoming"
 
 [gui]
 
