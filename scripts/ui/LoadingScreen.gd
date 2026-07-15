@@ -64,8 +64,8 @@ func _ready() -> void:
 	else:
 		printerr("LoadingScreen: texture load FAILED")
 
-	# 标题隐藏，加载完成后才显示
-	_title_image.modulate.a = 0.0
+	# 标题和分隔线隐藏，加载完成后才显示
+	_title_image.visible = false
 	_loading_label.modulate.a = 0.0
 	_progress_bar.modulate.a = 0.0
 	_tip_label.modulate.a = 0.0
@@ -291,8 +291,11 @@ func _on_loading_complete() -> void:
 	_tip_label.visible = false
 	_progress_bar.visible = false
 
-	# 阶段2：画面全黑，淡入标题
+	# 阶段2：画面全黑，显示标题
 	if _title_image:
+		_title_image.modulate.a = 0.0
+		_title_image.visible = true
+		_separator.modulate.a = 0.0
 		_separator.visible = true
 		var tw_2: Tween = create_tween()
 		tw_2.set_parallel(true)
