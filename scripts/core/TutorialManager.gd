@@ -4,12 +4,15 @@ extends Node
 const INTRO_CONTROLS := &"intro_controls"
 const STUMBLE := &"stumble"
 const FALL := &"fall"
+const HEALTH_REST := &"health_rest"
 const INTRO_DELAY_SECONDS := 0.5
+const HEALTH_REST_THRESHOLD := 50
 
 const _PROMPTS := {
 	INTRO_CONTROLS: preload("res://assets/tutorials/intro_controls.tres"),
 	STUMBLE: preload("res://assets/tutorials/stumble.tres"),
 	FALL: preload("res://assets/tutorials/fall.tres"),
+	HEALTH_REST: preload("res://assets/tutorials/health_rest.tres"),
 }
 
 var _seen: Dictionary = {}
@@ -36,6 +39,7 @@ func _ready() -> void:
 	EventBus.player_unstable_stumbled.connect(_on_unstable_stumbled)
 	EventBus.player_fall_started.connect(_on_fall_started)
 	EventBus.player_balance_recovered.connect(_on_balance_recovered)
+	EventBus.player_damaged.connect(_on_player_damaged)
 	EventBus.player_died.connect(_on_player_died)
 
 
@@ -95,6 +99,11 @@ func _on_balance_recovered() -> void:
 		enqueue_tutorial(FALL, false)
 		_pending_fall = false
 	_try_show_next()
+
+
+func _on_player_damaged(_amount: int, current_hp: int) -> void:
+	if current_hp > 0 and current_hp < HEALTH_REST_THRESHOLD:
+		enqueue_tutorial(HEALTH_REST)
 
 
 func _on_player_died() -> void:

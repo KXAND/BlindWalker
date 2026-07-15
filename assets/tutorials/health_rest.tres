@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_prompt")
-tutorial_id = &"intro_controls"
-title = "先熟悉方向"
-body = "按住 【W】 前进。【移动鼠标】转动视角和操控盲杖探查地面。【单击右键】，用左手摸索更近的物体"
+tutorial_id = &"health_rest"
+title = "休息一下"
+body = "晓明摔了不少跤了，停下来缓一缓再继续前进吧。"
