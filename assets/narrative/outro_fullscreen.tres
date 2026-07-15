@@ -13,11 +13,16 @@ script = ExtResource("2_line")
 text = "李奶奶接过白糖，连声道谢。虽然多走了一段路，但答应了的事就要做到。"
 duration = 4.5
 
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+text = "在中国，有超过 1700 万视力障碍人士，约占全国人口的 1%。相当于在一所 50 人一班的学校里，每两个班就有一位视障者。然而，因为视力的缺失，他们大多难以真正融入我们的日常生活。您或许觉得游戏中的晓明走得慢、还容易摔倒——但现实中，视障人士的每一步都比这更加艰难。希望这段小小的旅程，能让您体会到他们日常的不易，也让您开始留意脚下那块不起眼的盲道砖。那一排小小的凸起，就是我们留给盲人出行最朴素的善意。"
+duration = 14.0
+
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"outro_fullscreen"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3")]
 default_line_duration = 2.5
 presentation_mode = "fullscreen"
 hold_final_line_for_input = true
-final_line_prompt = "按 Space 回到开始页"
+final_line_prompt = "按 Space 结束"
