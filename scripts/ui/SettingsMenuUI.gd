@@ -147,6 +147,7 @@ func _on_sfx_changed(value: float) -> void:
 
 func _restart_run() -> void:
 	close_menu()
+	_stop_game_scene_music()
 	AudioManager.stop_all()
 	await get_tree().create_timer(0.08).timeout
 	GameState.reset_to_loading()
@@ -155,6 +156,7 @@ func _restart_run() -> void:
 
 func _return_home() -> void:
 	close_menu()
+	_stop_game_scene_music()
 	AudioManager.stop_all()
 	await get_tree().create_timer(0.08).timeout
 	GameState.reset_to_loading()
@@ -167,3 +169,9 @@ func _is_cutscene_playing() -> bool:
 		if manager and manager.is_sequence_playing():
 			return true
 	return false
+
+
+func _stop_game_scene_music() -> void:
+	var game_root := get_tree().root.find_child("GameRoot", true, false)
+	if game_root and game_root.has_method("stop_game_music"):
+		game_root.call("stop_game_music")

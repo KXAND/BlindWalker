@@ -10,6 +10,9 @@ const POOL_SIZE: int = 4
 const DEFAULT_CANE_TAP_SOUND_ID := "cane_tap_default"
 const SETTINGS_PATH := "user://settings.cfg"
 const SETTINGS_SECTION := "audio"
+const SETTINGS_VERSION := 3
+const DEFAULT_MUSIC_VOLUME := 0.35
+const DEFAULT_SFX_VOLUME := 1.0
 const MUTE_DB := -80.0
 
 var _players_3d: Array[AudioStreamPlayer3D] = []
@@ -18,8 +21,8 @@ var _player_2d: AudioStreamPlayer
 var _silent_stream: AudioStreamWAV
 var _player_parent_3d: Node
 var _warned_missing_sounds: Dictionary = {}
-var _music_volume: float = 1.0
-var _sfx_volume: float = 1.0
+var _music_volume: float = DEFAULT_MUSIC_VOLUME
+var _sfx_volume: float = DEFAULT_SFX_VOLUME
 
 var _sound_paths: Dictionary = {
 	# 脚步声 —— 按地面材质分类
@@ -249,12 +252,16 @@ func _load_audio_settings() -> void:
 	var config := ConfigFile.new()
 	if config.load(SETTINGS_PATH) != OK:
 		return
-	_music_volume = clampf(float(config.get_value(SETTINGS_SECTION, "music_volume", _music_volume)), 0.0, 1.0)
-	_sfx_volume = clampf(float(config.get_value(SETTINGS_SECTION, "sfx_volume", _sfx_volume)), 0.0, 1.0)
+	var version := int(config.get_value(SETTINGS_SECTION, "version", 0))
+	_music_volume = DEFAULT_MUSIC_VOLUME if version < SETTINGS_VERSION else clampf(float(config.get_value(SETTINGS_SECTION, "music_volume", DEFAULT_MUSIC_VOLUME)), 0.0, 1.0)
+	_sfx_volume = clampf(float(config.get_value(SETTINGS_SECTION, "sfx_volume", DEFAULT_SFX_VOLUME)), 0.0, 1.0)
+	if version < SETTINGS_VERSION:
+		_save_audio_settings()
 
 
 func _save_audio_settings() -> void:
 	var config := ConfigFile.new()
+	config.set_value(SETTINGS_SECTION, "version", SETTINGS_VERSION)
 	config.set_value(SETTINGS_SECTION, "music_volume", _music_volume)
 	config.set_value(SETTINGS_SECTION, "sfx_volume", _sfx_volume)
 	var err := config.save(SETTINGS_PATH)

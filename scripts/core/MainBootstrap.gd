@@ -4,14 +4,25 @@ extends Node3D
 @export var failure_sequence: Resource
 
 const LOADING_SCENE := "res://scenes/main/LoadingScreen.tscn"
+const GAME_MUSIC_PATH := "res://assets/audio/music/Sun on Keys_2.mp3"
+const GAME_MUSIC_BASE_VOLUME_DB := -8.0
+
 var _failure_started := false
 var _reviving := false
+var _music_player: AudioStreamPlayer
 
 
 func _ready() -> void:
 	EventBus.game_state_changed.connect(_on_game_state_changed)
 	if GameState.current_state == GameState.State.LOADING:
 		GameState.set_playing()
+	_start_game_music()
+
+
+func _exit_tree() -> void:
+	stop_game_music()
+	if AudioManager.audio_settings_changed.is_connected(_sync_game_music_volume):
+		AudioManager.audio_settings_changed.disconnect(_sync_game_music_volume)
 
 
 func _on_game_state_changed(_old_state: StringName, new_state: StringName) -> void:
@@ -54,6 +65,35 @@ func _on_failure_cutscene_ended(cutscene_id: String) -> void:
 		return
 	if EventBus.cutscene_ended.is_connected(_on_failure_cutscene_ended):
 		EventBus.cutscene_ended.disconnect(_on_failure_cutscene_ended)
+	stop_game_music()
 	AudioManager.stop_all()
 	GameState.reset_to_loading()
 	get_tree().change_scene_to_file(LOADING_SCENE)
+
+
+func _start_game_music() -> void:
+	_music_player = AudioStreamPlayer.new()
+	_music_player.name = "GameMusicPlayer"
+	add_child(_music_player)
+
+	var stream := ResourceLoader.load(GAME_MUSIC_PATH) as AudioStream
+	if not stream:
+		push_warning("MainBootstrap: game music load FAILED path=%s" % GAME_MUSIC_PATH)
+		return
+	if stream is AudioStreamMP3:
+		stream.loop = true
+	_music_player.stream = stream
+	_sync_game_music_volume()
+	if not AudioManager.audio_settings_changed.is_connected(_sync_game_music_volume):
+		AudioManager.audio_settings_changed.connect(_sync_game_music_volume)
+	_music_player.play()
+
+
+func _sync_game_music_volume() -> void:
+	if _music_player:
+		_music_player.volume_db = AudioManager.music_volume_db(GAME_MUSIC_BASE_VOLUME_DB)
+
+
+func stop_game_music() -> void:
+	if is_instance_valid(_music_player) and _music_player.playing:
+		_music_player.stop()
