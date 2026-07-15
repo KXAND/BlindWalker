@@ -59,6 +59,7 @@
 [ext_resource type="Script" uid="uid://q7foqt17dsqk" path="res://scripts/interaction/InteractionSystem.gd" id="interaction_system"]
 [ext_resource type="Resource" uid="uid://cvu7ijwdo40ry" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
+[ext_resource type="Script" uid="uid://xide7x5phyf7" path="res://scripts/ui/SettingsMenuUI.gd" id="settings_menu_ui"]
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
 [ext_resource type="Resource" uid="uid://dv0c42kwhsj2k" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
@@ -11751,6 +11752,9 @@ script = ExtResource("touch_reticle_ui")
 
 [node name="GameOverUI" type="CanvasLayer" parent="." unique_id=100000003]
 script = ExtResource("game_over_ui")
+
+[node name="SettingsMenuUI" type="CanvasLayer" parent="."]
+script = ExtResource("settings_menu_ui")
 
 [node name="StaircaseTest" type="Node3D" parent="." unique_id=976694975]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -55.530083, -0.22986984, -14.265972)

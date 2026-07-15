@@ -380,9 +380,15 @@ func _start_loading_music() -> void:
 	if stream is AudioStreamMP3:
 		stream.loop = true
 	_music_player.stream = stream
-	_music_player.volume_db = -8.0
+	_music_player.volume_db = AudioManager.music_volume_db(-8.0)
+	AudioManager.audio_settings_changed.connect(_sync_music_volume)
 	_music_player.play()
 	print("LoadingScreen: music playing path=", loading_music_path)
+
+
+func _sync_music_volume() -> void:
+	if _music_player:
+		_music_player.volume_db = AudioManager.music_volume_db(-8.0)
 
 
 func _load_intro_text() -> void:

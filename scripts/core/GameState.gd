@@ -7,6 +7,7 @@ var current_state: State = State.LOADING
 
 var _cutscene_active: bool = false
 var _gameplay_locked: bool = false
+var _settings_menu_active: bool = false
 var _quest_items: Dictionary = {}
 
 
@@ -40,6 +41,10 @@ func set_cutscene_active(active: bool) -> void:
 	_cutscene_active = active
 
 
+func is_cutscene_active() -> bool:
+	return _cutscene_active
+
+
 func set_gameplay_locked(active: bool) -> void:
 	_gameplay_locked = active
 
@@ -48,8 +53,16 @@ func is_gameplay_locked() -> bool:
 	return _gameplay_locked
 
 
+func set_settings_menu_active(active: bool) -> void:
+	_settings_menu_active = active
+
+
+func is_settings_menu_active() -> bool:
+	return _settings_menu_active
+
+
 func is_input_enabled() -> bool:
-	return current_state == State.PLAYING and not _cutscene_active
+	return current_state == State.PLAYING and not _cutscene_active and not _settings_menu_active
 
 
 func collect_quest_item(item_id: StringName) -> bool:
@@ -82,6 +95,7 @@ func reset_to_loading() -> void:
 	current_state = State.LOADING
 	_cutscene_active = false
 	_gameplay_locked = false
+	_settings_menu_active = false
 	_quest_items.clear()
 
 
