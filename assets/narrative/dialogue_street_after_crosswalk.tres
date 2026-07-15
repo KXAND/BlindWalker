@@ -6,14 +6,14 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "过了马路了。李奶奶说的小卖部，应该就在前面不远。"
-duration = 3.3
+text = "过了马路了。另一家小卖部，应该就沿着这条路走到下一个路口。"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "继续往前走就到了。"
-duration = 2.2
+text = "小卖部应该就在下一个路口的斜对面"
+duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")

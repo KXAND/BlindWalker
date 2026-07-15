@@ -7,49 +7,49 @@
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "垃圾桶到了……好，扔进去。"
-duration = 2.4
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
 text = "晓明？你下来扔垃圾啊。"
-duration = 2.5
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "李奶奶好，您也出门呢？"
-duration = 2.2
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
 text = "唉，我这腿脚最近不太方便。家里的白糖用完了，想去外面小卖部买一袋来着……"
-duration = 4.2
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "那我帮您去买吧，我正好也没事。"
-duration = 2.5
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
 text = "那可太好了，麻烦你了啊。一袋白糖就行，钱你先拿着。"
-duration = 3.0
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_7"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "不用急，回来再说。您在家等着吧。"
-duration = 2.5
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_8"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
 text = "小卖部就在小区门口右拐，你出去后往右走就能到。"
-duration = 3.2
+duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")

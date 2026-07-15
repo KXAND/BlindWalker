@@ -6,38 +6,38 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "路口了。……等一下，听听。"
-duration = 2.6
+text = "前面就是路口了，慢慢走吧。"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "这个路口没有提示音。车声……还在响，先等。"
-duration = 3.3
+text = "这个路口没有提示音，小心一点。"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "静下来了，走。"
-duration = 2.2
+text = "好像没有车了。"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "好心路人"
 text = "同学您好，您是要过马路吗？要帮帮忙吗？"
-duration = 2.8
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "谢谢，我尝试一下自己过马路，谢谢你的好意。"
-duration = 2.9
+text = "不用了，我想尝试一下自己过马路，谢谢你的好意。"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
 speaker_name = "好心路人"
-text = "哦，好的好的，那您慢走。"
-duration = 2.6
+text = "哦，好的好的，那您小心一点。"
+duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")

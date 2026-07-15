@@ -7,13 +7,13 @@
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "提着垃圾，小心点下楼梯。右边扶手在这。"
-duration = 3.0
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "慢慢来，别又摔着了。"
-duration = 2.2
+duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")
