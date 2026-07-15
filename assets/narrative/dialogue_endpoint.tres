@@ -7,42 +7,47 @@
 script = ExtResource("2_line")
 speaker_name = "晓明"
 text = "就是这家店了。"
-duration = 1.8
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 text = "晓明走进店里，摸索着找到白糖的货架，拿了一袋白糖去结账。"
-duration = 4.0
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
-speaker_name = "王叔"
-text = "晓明？"
-duration = 1.5
+text = "此时一个熟悉的声音在身后响起"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
-speaker_name = "晓明"
-text = "王叔？你怎么来了？"
-duration = 2.0
+speaker_name = "王叔"
+text = "晓明？"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
-speaker_name = "王叔"
-text = "晓明，你怎么跑这么远来了？"
-duration = 2.5
+speaker_name = "晓明"
+text = "王叔？你怎么来了？"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
-speaker_name = "晓明"
-text = "李奶奶腿脚不方便，托我帮她买一袋白糖。楼下的小卖部关门了，我就找到这边来了。"
-duration = 5.0
+speaker_name = "王叔"
+text = "晓明，你怎么跑这么远来了？"
+duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_7"]
 script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "李奶奶腿脚不方便，托我帮她买一袋白糖。楼下的小卖部关门了，我就找到这边来了。"
+duration = 100.0
+
+[sub_resource type="Resource" id="NarrativeLine_8"]
+script = ExtResource("2_line")
 speaker_name = "王叔"
-text = "我刚好也顺路买东西回去，我载你一程吧。"
-duration = 3.5
+text = "我刚好也顺路买东西回去，我载你回去吧。"
+duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")
