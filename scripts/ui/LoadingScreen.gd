@@ -23,7 +23,7 @@ const BREATH_DARKNESS_HIGH := 0.66
 
 var _street_bg: TextureRect
 var _vignette_overlay: ColorRect
-var _title_label: Label
+var _title_image: TextureRect
 var _loading_label: Label
 var _progress_bar: ProgressBar
 var _tip_label: Label
@@ -64,13 +64,13 @@ func _ready() -> void:
 	else:
 		printerr("LoadingScreen: texture load FAILED")
 
-	_title_label.modulate.a = 0.0
+	_title_image.modulate.a = 0.0
 	_loading_label.modulate.a = 0.0
 	_progress_bar.modulate.a = 0.0
 	_tip_label.modulate.a = 0.0
 
 	var tw: Tween = create_tween()
-	tw.tween_property(_title_label, "modulate:a", 1.0, 1.2).set_ease(Tween.EASE_OUT)
+	tw.tween_property(_title_image, "modulate:a", 1.0, 1.2).set_ease(Tween.EASE_OUT)
 	tw.tween_property(_loading_label, "modulate:a", 1.0, 0.6)
 	tw.parallel().tween_property(_progress_bar, "modulate:a", 1.0, 0.6)
 	tw.parallel().tween_property(_tip_label, "modulate:a", 1.0, 0.6)
@@ -133,14 +133,30 @@ func build_ui() -> void:
 	vbox.alignment = BoxContainer.ALIGNMENT_CENTER
 	center.add_child(vbox)
 
-	_title_label = Label.new()
-	_title_label.text = "BlindWalker"
-	_title_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
-	_title_label.uppercase = true
-	_title_label.add_theme_font_size_override("font_size", 42)
-	_title_label.add_theme_color_override("font_color", Color(0.95, 0.9, 0.75))
-	_apply_text_outline(_title_label, 4)
-	vbox.add_child(_title_label)
+	_title_image = TextureRect.new()
+	_title_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
+	_title_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
+	_title_image.custom_minimum_size = Vector2(600, 120)
+	_title_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
+
+	var title_tex := ResourceLoader.load("res://assets/textures/title_循暗晓明.png") as Texture2D
+	if title_tex:
+		_title_image.texture = title_tex
+		print("LoadingScreen: title image loaded")
+	else:
+		# 兜底：回退为文字标题
+		var fallback_label := Label.new()
+		fallback_label.text = "循暗晓明"
+		fallback_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+		fallback_label.add_theme_font_size_override("font_size", 42)
+		fallback_label.add_theme_color_override("font_color", Color(0.95, 0.9, 0.75))
+		_apply_text_outline(fallback_label, 4)
+		vbox.add_child(fallback_label)
+		_title_image = null
+		printerr("LoadingScreen: title image load FAILED")
+		return
+
+	vbox.add_child(_title_image)
 
 	var sep: HSeparator = HSeparator.new()
 	sep.custom_minimum_size = Vector2(80, 0)
@@ -318,7 +334,8 @@ func _start_quit_transition() -> void:
 	# 退出过渡：圆形收缩到黑场 → 切换场景
 	var tw: Tween = create_tween()
 	tw.set_parallel(true)
-	tw.tween_property(_title_label, "modulate:a", 0.0, 0.5)
+	if _title_image:
+		tw.tween_property(_title_image, "modulate:a", 0.0, 0.5)
 	tw.tween_property(_separator, "modulate:a", 0.0, 0.5)
 	tw.tween_property(_loading_label, "modulate:a", 0.0, 0.5)
 	tw.tween_property(_intro_button, "modulate:a", 0.0, 0.5)
@@ -399,7 +416,7 @@ func _load_intro_text() -> void:
 	if FileAccess.file_exists(intro_text_path):
 		text = FileAccess.get_file_as_string(intro_text_path)
 	else:
-		text = "[font_size=28][b]BlindWalker[/b][/font_size]\n\n项目介绍文本未找到。"
+		text = "[font_size=28][b]循暗晓明[/b][/font_size]\n\n项目介绍文本未找到。"
 		push_warning("LoadingScreen: intro text missing path=%s" % intro_text_path)
 
 	_intro_text.text = text
