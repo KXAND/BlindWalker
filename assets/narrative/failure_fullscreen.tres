@@ -20,4 +20,4 @@ default_line_duration = 2.0
 presentation_mode = "fullscreen"
 fullscreen_background_color = Color(0, 0, 0, 1)
 hold_final_line_for_input = true
-final_line_prompt = "按 Space 回到开始页    按 Tab 原地复活"
+final_line_prompt = "按 Space 回到首页    按 Tab 再站起来"
