@@ -34,6 +34,9 @@ size = Vector3(4.8, 2.8, 1.2)
 [sub_resource type="BoxShape3D" id="BoxShape3D_bfdp3"]
 size = Vector3(3.1338806, 0.7651367, 1.1904297)
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_oltg1"]
+size = Vector3(1, 2.133789, 2.1320152)
+
 [node name="Stairwell" type="Node3D" unique_id=1555503850]
 
 [node name="Stairwell#Step_A_1" type="CSGBox3D" parent="." unique_id=1044005240]
@@ -385,7 +388,7 @@ focus_angle_degrees = 65.0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B" unique_id=477784520]
 shape = SubResource("BoxShape3D_handrail_interaction")
 
-[node name="HandrailInteraction_B2" type="Area3D" parent="."]
+[node name="HandrailInteraction_B2" type="Area3D" parent="." unique_id=583228198]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.12, 2.55, 1.2825165)
 script = ExtResource("2_handrail_interactable")
 prompt_text = "按 E 扶住"
@@ -394,13 +397,19 @@ reveal_target_path = NodePath("../Stairwell#Rail_B")
 interaction_priority = 20
 focus_angle_degrees = 65.0
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B2"]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="HandrailInteraction_B2" unique_id=1895887580]
 shape = SubResource("BoxShape3D_handrail_interaction")
 
 [node name="Stairwell#SideWall_Left2" type="CSGBox3D" parent="." unique_id=649769941]
-transform = Transform3D(-1.6260637e-07, 0, 0.15, 0, 3.23, 0, -3.72, 0, -6.5567085e-09, 3.7482128, 1.615, 1.1757255)
+transform = Transform3D(-1.6260637e-07, 0, 0.15, 0, 3.23, 0, -3.72, 0, -6.5567085e-09, 3.7482128, 3.1146712, 1.1757255)
 use_collision = true
-size = Vector3(0.7133789, 1, 1)
+size = Vector3(0.7133789, 1.9285889, 1)
+material = SubResource("mat_3")
+
+[node name="Stairwell#SideWall_Left4" type="CSGBox3D" parent="." unique_id=1049572994]
+transform = Transform3D(-0.558, 0, -2.5374463e-08, 0, 10.4329, 0, 6.2928666e-07, 0, -0.558, 2.4890988, 5.6270323, 1.7907416)
+use_collision = true
+size = Vector3(0.21618652, 0.24513578, 2.3644714)
 material = SubResource("mat_3")
 
 [node name="Stairwell#Step_A_10" type="CSGBox3D" parent="." unique_id=1216327105]
@@ -475,3 +484,9 @@ collision_mask = 0
 [node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D3" unique_id=1964820117]
 transform = Transform3D(0.86545557, -0.50098586, 0, 0.50098586, 0.86545557, 0, 0, 0, 1, 1.3691542, 0.4680693, 0.56121063)
 shape = SubResource("BoxShape3D_bfdp3")
+
+[node name="ThirdfloorWall" type="StaticBody3D" parent="." unique_id=302661639]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="ThirdfloorWall" unique_id=1843109911]
+transform = Transform3D(-0.5980853, 0, 0, 0, 1.0772322, 0, 0, 0, 0.67007583, 2.7534075, 5.8490896, 0.6680135)
+shape = SubResource("BoxShape3D_oltg1")

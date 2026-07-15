@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4npwkulky4od" path="res://scenes/Buildings/Department.tscn" id="35_m1khv"]
 [ext_resource type="PackedScene" uid="uid://comuak68gyht4" path="res://scenes/Street/TactileStop.tscn" id="36_gwlw1"]
 [ext_resource type="PackedScene" uid="uid://bagbch1ttjdjs" path="res://scenes/Buildings/OfficeTower.tscn" id="37_hlhe2"]
-[ext_resource type="PackedScene" uid="uid://kexev13g3tfx" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
+[ext_resource type="PackedScene" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
 [ext_resource type="PackedScene" path="res://scenes/Street/OutdoorClutterPile.tscn" id="38_vennj"]
 [ext_resource type="PackedScene" uid="uid://bdhu4ytgnsqsc" path="res://scenes/Buildings/ClosedShop.tscn" id="39_12hjt"]
 [ext_resource type="PackedScene" uid="uid://btkumy0upxpe1" path="res://scenes/Buildings/BarberShop.tscn" id="40_n7vst"]
@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dowwrx47htw0d" path="res://scenes/Street/trash_b.tscn" id="52_hlhe2"]
 [ext_resource type="PackedScene" uid="uid://bv45wqrdcilun" path="res://scenes/Buildings/building_H_withoutBase.tscn" id="53_e8pg6"]
 [ext_resource type="PackedScene" uid="uid://cqk53stvdaayi" path="res://scenes/Buildings/BreakfastShop.tscn" id="56_ex0yv"]
-[ext_resource type="PackedScene" uid="uid://cw7jkrlxwr21n" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
+[ext_resource type="PackedScene" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://d0oji56k1y4e0" path="res://scenes/main/fps.gd" id="60_b6xsk"]
 [ext_resource type="PackedScene" uid="uid://bhsu53wnepmak" path="res://scenes/Street/bush.tscn" id="65_7wpoh"]
 [ext_resource type="PackedScene" uid="uid://babm02k1iuyrj" path="res://scenes/Street/Billboard.tscn" id="66_7wx6u"]
@@ -90,6 +90,12 @@ size = Vector3(4, 2, 2)
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ground"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
 roughness = 0.5
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground_boundary_long"]
+size = Vector3(139.94336, 6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ground_boundary_deep"]
+size = Vector3(1, 6, 125.309326)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_road"]
 albedo_color = Color(0.9, 0.9, 0.9, 1)
@@ -302,6 +308,32 @@ material = SubResource("StandardMaterial3D_ground")
 script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_concrete")
 
+[node name="GroundBoundaryWalls" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w" unique_id=2098838215]
+
+[node name="NorthWall" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls" unique_id=452989663]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.225098, 2.9, 24.80143)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls/NorthWall" unique_id=210585191]
+shape = SubResource("BoxShape3D_ground_boundary_long")
+
+[node name="SouthWall" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls" unique_id=1366584653]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 27.225098, 2.9, -87.49881)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls/SouthWall" unique_id=1018745206]
+shape = SubResource("BoxShape3D_ground_boundary_long")
+
+[node name="EastWall" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls" unique_id=1348035026]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 86.95188, 2.9, -33.654663)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls/EastWall" unique_id=734902528]
+shape = SubResource("BoxShape3D_ground_boundary_deep")
+
+[node name="WestWall" type="StaticBody3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls" unique_id=1787897932]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -40.846138, 2.9, -33.654663)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/w/GroundBoundaryWalls/WestWall" unique_id=1933932099]
+shape = SubResource("BoxShape3D_ground_boundary_deep")
+
 [node name="Roads" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot/w" unique_id=1665835300]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 23.99495, 0, -27.50385)
 
@@ -326,9 +358,9 @@ script = ExtResource("contact_profile_provider")
 profile = ExtResource("contact_profile_asphalt")
 
 [node name="Road2" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/w/Roads" unique_id=1661187601]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -44.755974, 0, 0.0992794)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -47.08219, 0, 0.0992794)
 use_collision = true
-size = Vector3(8, 0.2, 33.7)
+size = Vector3(8, 0.2, 38.35244)
 material = SubResource("StandardMaterial3D_road")
 
 [node name="ContactProfileProvider" type="Node" parent="GameViewportContainer/GameViewport/GameRoot/w/Roads/Road2" unique_id=1529954507]
@@ -11249,7 +11281,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 55, 
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -18.107424, 0.0527061, 4.025627)
 
 [node name="Department" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=566919902 instance=ExtResource("35_m1khv")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -9.19091, 0.04960314, 13.452576)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -8.432068, -0.01891645, 13.323454)
 
 [node name="OmniLight3D" type="OmniLight3D" parent="GameViewportContainer/GameViewport/GameRoot/w/NorthWest" unique_id=421876602]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -9.498619, 3.1899993, 6.853407)
