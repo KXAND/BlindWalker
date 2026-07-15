@@ -51,6 +51,8 @@
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_cashier.tres" id="dialogue_supermarket_cashier"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_entrance.tres" id="dialogue_supermarket_entrance"]
 [ext_resource type="Resource" path="res://assets/narrative/dialogue_supermarket_shelves.tres" id="dialogue_supermarket_shelves"]
+[ext_resource type="Resource" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
+[ext_resource type="Resource" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://xrtqdwhjbips" path="res://scripts/player/GaitController.gd" id="gait_controller"]
 [ext_resource type="Script" uid="uid://dkv1v1iyyauku" path="res://scripts/ui/GameOverUI.gd" id="game_over_ui"]
 [ext_resource type="Script" uid="uid://c6mnjj6fu38dm" path="res://scripts/ui/HealthUI.gd" id="health_ui"]
@@ -223,6 +225,8 @@ script = ExtResource("interaction_system")
 
 [node name="CutsceneManager" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1922000117]
 script = ExtResource("cutscene_manager")
+initial_sequence = ExtResource("intro_fullscreen")
+play_initial_sequence_on_ready = true
 
 [node name="InteractionTestItems" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1667344835]
 
@@ -357,6 +361,7 @@ disabled = true
 [node name="TargetArea" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=844876083]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.6094437, 0.9158894, -20)
 script = ExtResource("target_area")
+outro_sequence = ExtResource("outro_fullscreen")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea" unique_id=1187328740]
 shape = SubResource("BoxShape3D_target")

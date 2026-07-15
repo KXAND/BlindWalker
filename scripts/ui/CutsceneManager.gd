@@ -11,10 +11,15 @@ extends Node
 const CANVAS_LAYER := 5
 const SKIP_LINE_KEY := KEY_SPACE
 const SKIP_SEQUENCE_KEY := KEY_ESCAPE
+const PRESENTATION_FULLSCREEN := "fullscreen"
 const _NarrativeLine = preload("res://scripts/core/NarrativeLine.gd")
 const _NarrativeSequence = preload("res://scripts/core/NarrativeSequence.gd")
 
+var _cutscene_layer: CanvasLayer
 var _subtitle_panel: Panel
+var _fullscreen_background: ColorRect
+var _fullscreen_label: Label
+var _fullscreen_hint_label: Label
 var _skip_hint_label: Label
 var _current_sequence: Resource
 var _line_index: int = -1
@@ -45,6 +50,8 @@ func _process(delta: float) -> void:
 	if not _is_playing_sequence:
 		return
 	_line_elapsed += delta
+	if _should_hold_current_line():
+		return
 	if _line_elapsed >= _line_duration:
 		_advance_line()
 
@@ -53,6 +60,13 @@ func _input(event: InputEvent) -> void:
 	if not _is_playing_sequence:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
+		if _sequence_holds_final_line():
+			if event.keycode == SKIP_LINE_KEY and _is_on_final_line():
+				get_viewport().set_input_as_handled()
+				_finish_sequence()
+			elif event.keycode == SKIP_LINE_KEY or event.keycode == SKIP_SEQUENCE_KEY:
+				get_viewport().set_input_as_handled()
+			return
 		if event.keycode == SKIP_LINE_KEY:
 			get_viewport().set_input_as_handled()
 			_advance_line()
@@ -186,9 +200,14 @@ func _duration_for(line: Resource) -> float:
 
 
 func _show_line(line: Resource) -> void:
+	if _is_fullscreen_sequence():
+		_show_fullscreen_line(line)
+		return
+
 	if not subtitle_label:
 		return
 
+	_hide_fullscreen()
 	subtitle_label.text = line.get("text")
 	subtitle_label.visible = true
 	if _subtitle_panel:
@@ -220,6 +239,7 @@ func _hide_subtitle() -> void:
 		_subtitle_panel.visible = false
 	if _skip_hint_label:
 		_skip_hint_label.visible = false
+	_hide_fullscreen()
 
 
 func _subtitle_for(cutscene_id: String) -> String:
@@ -232,10 +252,7 @@ func _subtitle_for(cutscene_id: String) -> String:
 
 
 func _create_subtitle_ui() -> void:
-	var layer := CanvasLayer.new()
-	layer.name = "CutsceneCanvasLayer"
-	layer.layer = CANVAS_LAYER
-	add_child(layer)
+	var layer := _ensure_cutscene_layer()
 
 	_subtitle_panel = Panel.new()
 	_subtitle_panel.name = "SubtitlePanel"
@@ -280,6 +297,128 @@ func _create_subtitle_ui() -> void:
 	vbox.add_child(subtitle_label)
 
 	_create_skip_hint_ui(vbox)
+
+
+func _ensure_cutscene_layer() -> CanvasLayer:
+	if _cutscene_layer:
+		return _cutscene_layer
+	_cutscene_layer = CanvasLayer.new()
+	_cutscene_layer.name = "CutsceneCanvasLayer"
+	_cutscene_layer.layer = CANVAS_LAYER
+	add_child(_cutscene_layer)
+	return _cutscene_layer
+
+
+func _ensure_fullscreen_ui() -> void:
+	if _fullscreen_background:
+		return
+	var layer := _ensure_cutscene_layer()
+
+	_fullscreen_background = ColorRect.new()
+	_fullscreen_background.name = "FullscreenBackground"
+	_fullscreen_background.visible = false
+	_fullscreen_background.set_anchors_preset(Control.PRESET_FULL_RECT)
+	layer.add_child(_fullscreen_background)
+
+	var margin := MarginContainer.new()
+	margin.name = "FullscreenMargin"
+	margin.set_anchors_preset(Control.PRESET_FULL_RECT)
+	margin.add_theme_constant_override("margin_left", 160)
+	margin.add_theme_constant_override("margin_right", 160)
+	margin.add_theme_constant_override("margin_top", 120)
+	margin.add_theme_constant_override("margin_bottom", 120)
+	_fullscreen_background.add_child(margin)
+
+	_fullscreen_label = Label.new()
+	_fullscreen_label.name = "FullscreenLabel"
+	_fullscreen_label.visible = true
+	_fullscreen_label.autowrap_mode = TextServer.AUTOWRAP_WORD_SMART
+	_fullscreen_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_fullscreen_label.vertical_alignment = VERTICAL_ALIGNMENT_CENTER
+	_fullscreen_label.add_theme_font_size_override("font_size", 32)
+	_fullscreen_label.add_theme_color_override("font_color", Color.WHITE)
+	margin.add_child(_fullscreen_label)
+
+	_fullscreen_hint_label = Label.new()
+	_fullscreen_hint_label.name = "FullscreenHintLabel"
+	_fullscreen_hint_label.visible = false
+	_fullscreen_hint_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	_fullscreen_hint_label.vertical_alignment = VERTICAL_ALIGNMENT_BOTTOM
+	_fullscreen_hint_label.add_theme_font_size_override("font_size", 18)
+	_fullscreen_hint_label.add_theme_color_override("font_color", Color(1.0, 1.0, 1.0, 0.72))
+	_fullscreen_hint_label.anchor_left = 0.0
+	_fullscreen_hint_label.anchor_right = 1.0
+	_fullscreen_hint_label.anchor_top = 0.82
+	_fullscreen_hint_label.anchor_bottom = 0.95
+	_fullscreen_background.add_child(_fullscreen_hint_label)
+
+
+func _show_fullscreen_line(line: Resource) -> void:
+	_ensure_fullscreen_ui()
+	if _subtitle_panel:
+		_subtitle_panel.visible = false
+	if subtitle_label:
+		subtitle_label.visible = false
+	if speaker_label:
+		speaker_label.visible = false
+	if _skip_hint_label:
+		_skip_hint_label.visible = false
+
+	_fullscreen_background.color = _fullscreen_color()
+	_fullscreen_label.text = line.get("text")
+	_fullscreen_background.visible = true
+	if _fullscreen_hint_label:
+		_fullscreen_hint_label.text = _final_line_prompt()
+		_fullscreen_hint_label.visible = _should_show_final_prompt()
+
+
+func _hide_fullscreen() -> void:
+	if _fullscreen_background:
+		_fullscreen_background.visible = false
+	if _fullscreen_hint_label:
+		_fullscreen_hint_label.visible = false
+
+
+func _is_fullscreen_sequence() -> bool:
+	if not _current_sequence:
+		return false
+	return String(_current_sequence.get("presentation_mode")) == PRESENTATION_FULLSCREEN
+
+
+func _fullscreen_color() -> Color:
+	if not _current_sequence:
+		return Color.BLACK
+	var color: Color = _current_sequence.get("fullscreen_background_color")
+	return color
+
+
+func _sequence_holds_final_line() -> bool:
+	if not _current_sequence:
+		return false
+	return bool(_current_sequence.get("hold_final_line_for_input"))
+
+
+func _is_on_final_line() -> bool:
+	if not _current_sequence:
+		return false
+	return _line_index == _current_sequence.lines.size() - 1
+
+
+func _should_hold_current_line() -> bool:
+	return _sequence_holds_final_line() and _is_on_final_line()
+
+
+func _should_show_final_prompt() -> bool:
+	return _sequence_holds_final_line() and _is_on_final_line()
+
+
+func _final_line_prompt() -> String:
+	if not _current_sequence:
+		return ""
+	var prompt := String(_current_sequence.get("final_line_prompt"))
+	if prompt.strip_edges().is_empty():
+		return "%s 回到开始页" % OS.get_keycode_string(SKIP_LINE_KEY)
+	return prompt
 
 
 func _create_skip_hint_ui(parent: Node) -> void:

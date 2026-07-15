@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=5 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = ""
+text = "你是晓明。"
+duration = 2.0
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &""
+speaker_name = ""
+text = "今天先从家里出发，去楼下扔垃圾。"
+duration = 2.8
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"intro_fullscreen"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 2.0
+presentation_mode = "fullscreen"
+fullscreen_background_color = Color(0, 0, 0, 1)
