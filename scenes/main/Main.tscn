@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://b4npwkulky4od" path="res://scenes/Buildings/Department.tscn" id="35_m1khv"]
 [ext_resource type="PackedScene" uid="uid://comuak68gyht4" path="res://scenes/Street/TactileStop.tscn" id="36_gwlw1"]
 [ext_resource type="PackedScene" uid="uid://bagbch1ttjdjs" path="res://scenes/Buildings/OfficeTower.tscn" id="37_hlhe2"]
-[ext_resource type="PackedScene" uid="uid://kexev13g3tfx" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
+[ext_resource type="PackedScene" path="res://scenes/Street/TactileGuide.tscn" id="37_vennj"]
 [ext_resource type="PackedScene" path="res://scenes/Street/OutdoorClutterPile.tscn" id="38_vennj"]
 [ext_resource type="PackedScene" uid="uid://bdhu4ytgnsqsc" path="res://scenes/Buildings/ClosedShop.tscn" id="39_12hjt"]
 [ext_resource type="PackedScene" uid="uid://btkumy0upxpe1" path="res://scenes/Buildings/BarberShop.tscn" id="40_n7vst"]
@@ -26,7 +26,7 @@
 [ext_resource type="PackedScene" uid="uid://dowwrx47htw0d" path="res://scenes/Street/trash_b.tscn" id="52_hlhe2"]
 [ext_resource type="PackedScene" uid="uid://bv45wqrdcilun" path="res://scenes/Buildings/building_H_withoutBase.tscn" id="53_e8pg6"]
 [ext_resource type="PackedScene" uid="uid://cqk53stvdaayi" path="res://scenes/Buildings/BreakfastShop.tscn" id="56_ex0yv"]
-[ext_resource type="PackedScene" uid="uid://cw7jkrlxwr21n" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
+[ext_resource type="PackedScene" path="res://scenes/Buildings/DeliveryStation.tscn" id="59_afy01"]
 [ext_resource type="Script" uid="uid://d0oji56k1y4e0" path="res://scenes/main/fps.gd" id="60_b6xsk"]
 [ext_resource type="PackedScene" uid="uid://bhsu53wnepmak" path="res://scenes/Street/bush.tscn" id="65_7wpoh"]
 [ext_resource type="PackedScene" uid="uid://babm02k1iuyrj" path="res://scenes/Street/Billboard.tscn" id="66_7wx6u"]
@@ -185,7 +185,7 @@ failure_sequence = ExtResource("failure_fullscreen")
 environment = SubResource("Environment_dark")
 
 [node name="Player" type="CharacterBody3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=136453261]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -36.62042, 2.9397423, 16.043913)
+transform = Transform3D(0.055564694, 0, -0.9984551, 0, 1, 0, 0.9984551, 0, 0.055564694, -36.62042, 2.9397423, 16.043913)
 script = ExtResource("gait_controller")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/Player" unique_id=1681564081]
