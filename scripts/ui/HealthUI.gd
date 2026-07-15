@@ -17,7 +17,7 @@ void fragment() {
 	COLOR = vec4(0.95, 0.0, 0.0, alpha);
 }"""
 
-const LOW_HP_THRESHOLD := 0.25
+const LOW_HP_THRESHOLD := 0.5
 const MAX_DANGER_WIDTH := 0.25
 const MAX_DANGER_ALPHA := 0.95
 const DAMAGE_FLASH_DECAY := 2.8
@@ -40,6 +40,7 @@ func _ready() -> void:
 	_build_vignette()
 	_label = Label.new()
 	_label.name = "HpLabel"
+	_label.visible = false
 	_label.set_anchors_preset(Control.PRESET_TOP_LEFT)
 	_label.offset_left = 12.0
 	_label.offset_top = 8.0

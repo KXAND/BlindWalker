@@ -10,7 +10,7 @@ const KEY_TOUCH := MOUSE_BUTTON_RIGHT
 const KEY_INTERACT := KEY_E
 
 # ---- 移动参数 ----
-const WALK_SPEED := 0.8
+const WALK_SPEED := 1.0
 const CAUTIOUS_SPEED := 0.3
 const HIGH_STEP_SPEED := 0.3
 const STEP_AUDIO_DISTANCE := 0.5
