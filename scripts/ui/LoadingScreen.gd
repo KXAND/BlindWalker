@@ -137,7 +137,7 @@ func build_ui() -> void:
 	_title_image = TextureRect.new()
 	_title_image.expand_mode = TextureRect.EXPAND_IGNORE_SIZE
 	_title_image.stretch_mode = TextureRect.STRETCH_KEEP_ASPECT_CENTERED
-	_title_image.custom_minimum_size = Vector2(800, 160)
+	_title_image.custom_minimum_size = Vector2(1000, 560)
 	_title_image.mouse_filter = Control.MOUSE_FILTER_IGNORE
 
 	var title_tex := ResourceLoader.load("res://assets/textures/title_循暗晓明.png") as Texture2D
