@@ -31,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://dkm2anvh4tcp8" path="res://scenes/Street/ManholeCover.tscn" id="68_q8v2h"]
 [ext_resource type="PackedScene" uid="uid://beol3g7b40r1p" path="res://scenes/Street/car_hatchback.tscn" id="69_67ysi"]
 [ext_resource type="PackedScene" uid="uid://ytoxj3d4bwyq" path="res://scenes/Street/car_sedan.tscn" id="70_dudpu"]
+[ext_resource type="PackedScene" uid="uid://cruc7cjolmsep" path="res://scenes/Street/Motorcycle.tscn" id="71_dudpu"]
 [ext_resource type="Script" uid="uid://gyrkl702y13v" path="res://scripts/player/CameraMotionController.gd" id="camera_motion"]
 [ext_resource type="Script" uid="uid://br783ub2uya2r" path="res://scripts/perception/CaneSystem.gd" id="cane_system"]
 [ext_resource type="Resource" path="res://assets/contact_profiles/asphalt.tres" id="contact_profile_asphalt"]
@@ -63,10 +64,6 @@
 [ext_resource type="Resource" uid="uid://dv0c42kwhsj2k" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
-[ext_resource type="PackedScene" uid="uid://bdedpw5qj6qao" path="res://scenes/npc/ElderlyMan.tscn" id="spawn_elderly"]
-[ext_resource type="Script" uid="uid://b0uat7wsc172a" path="res://scripts/interaction/HandrailInteractable.gd" id="spawn_handrail_interactable"]
-[ext_resource type="Script" uid="uid://bc41jf7mq25jm" path="res://scripts/interaction/QuestItemInteractable.gd" id="spawn_quest_interactable"]
-[ext_resource type="PackedScene" path="res://scenes/Home/SugarBag.tscn" id="spawn_sugar"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
 [ext_resource type="Script" uid="uid://bcb71qfoqaxjw" path="res://scripts/ui/TouchReticleUI.gd" id="touch_reticle_ui"]
@@ -81,17 +78,6 @@ adjustment_brightness = 0.8
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
 height = 1.2
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_item_interaction"]
-size = Vector3(1.4, 2.2, 1.4)
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_spawn_handrail"]
-albedo_color = Color(0.82, 0.82, 0.78, 1)
-metallic = 0.3
-roughness = 0.45
-
-[sub_resource type="BoxShape3D" id="BoxShape3D_spawn_handrail_interaction"]
-size = Vector3(2.4, 2.2, 1.2)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dialogue_trigger"]
 size = Vector3(2.2, 2.2, 2.2)
@@ -229,44 +215,6 @@ script = ExtResource("interaction_system")
 script = ExtResource("cutscene_manager")
 initial_sequence = ExtResource("intro_fullscreen")
 play_initial_sequence_on_ready = true
-
-[node name="InteractionTestItems" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1667344835]
-
-[node name="TestElderlyMan" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=323486957 instance=ExtResource("spawn_elderly")]
-transform = Transform3D(0.965926, 0, -0.258819, 0, 1, 0, 0.258819, 0, 0.965926, -18.1, -0.1, 8.35)
-
-[node name="TestSugarBag" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=599825812 instance=ExtResource("spawn_sugar")]
-transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, -16.8, 0.17, 8)
-
-[node name="TestSugarBagInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=1537444244]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.8, 0.9, 8)
-script = ExtResource("spawn_quest_interactable")
-item_id = &"sugar"
-prompt_text = "按 E 拿起"
-prompt_anchor_path = NodePath("../TestSugarBag")
-reveal_target_path = NodePath("../TestSugarBag")
-interaction_priority = 10
-interaction_sound_id = &"ui_click"
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestSugarBagInteraction" unique_id=2106498677]
-shape = SubResource("BoxShape3D_spawn_item_interaction")
-
-[node name="TestHandrailVisual" type="CSGBox3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=1607688081]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.95, 9.25)
-use_collision = true
-size = Vector3(1.6, 0.08, 0.08)
-material = SubResource("StandardMaterial3D_spawn_handrail")
-
-[node name="TestHandrailInteraction" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems" unique_id=2097830077]
-transform = Transform3D(1, 0, 0, 0, 0.965926, 0.258819, 0, -0.258819, 0.965926, -14.7, 0.9, 9.25)
-script = ExtResource("spawn_handrail_interactable")
-prompt_text = "按 E 扶住"
-prompt_anchor_path = NodePath("../TestHandrailVisual")
-reveal_target_path = NodePath("../TestHandrailVisual")
-interaction_priority = 20
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/InteractionTestItems/TestHandrailInteraction" unique_id=1658574897]
-shape = SubResource("BoxShape3D_spawn_handrail_interaction")
 
 [node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
@@ -11999,3 +11947,45 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 50.375, 0.15, -36.449997)
 
 [node name="car_sedan7" parent="Node3D2" unique_id=1872198948 instance=ExtResource("70_dudpu")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 44.574997, 0.15, -36.850002)
+
+[node name="Motorcycle" parent="." unique_id=615952160 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 0, -14.6)
+
+[node name="Motorcycle2" parent="." unique_id=890384795 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 0, -15.5)
+
+[node name="Motorcycle3" parent="." unique_id=354461236 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 7.5, 0, -16.5)
+
+[node name="car_sedan" parent="." unique_id=1013741726 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.3, 0, 5)
+
+[node name="car_hatchback" parent="." unique_id=1018686536 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -27, 0, 5.3)
+
+[node name="Motorcycle4" parent="." unique_id=279758951 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.9, 0, 5)
+
+[node name="Motorcycle5" parent="." unique_id=86460698 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -28.3, 0, 5)
+
+[node name="Motorcycle6" parent="." unique_id=311494708 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25.8, 0, 5)
+
+[node name="Motorcycle7" parent="." unique_id=1780504328 instance=ExtResource("71_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -31.8, 0, 5)
+
+[node name="car_sedan2" parent="." unique_id=872303301 instance=ExtResource("70_dudpu")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -22.6, 0, -1.4)
+
+[node name="Motorcycle8" parent="." unique_id=696526770 instance=ExtResource("71_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -22, 0, -0.1)
+
+[node name="car_sedan3" parent="." unique_id=670073410 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 0, -8)
+
+[node name="car_hatchback2" parent="." unique_id=2050654633 instance=ExtResource("69_67ysi")]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, -17, 0, -8)
+
+[node name="car_sedan4" parent="." unique_id=660176001 instance=ExtResource("70_dudpu")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -19, 0, -8)

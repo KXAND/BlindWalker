@@ -18,7 +18,7 @@ duration = 2.5
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "可我已经答应李奶奶了……我记得前面那条街还有一家小卖部，虽然远一点。"
+text = "可我已经答应李奶奶了……我记得后面的路口处右转走过去第二个路口拐角处还有一家小卖部，那应该也有的卖，虽然远一点。"
 duration = 4.0
 
 [resource]

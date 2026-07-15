@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "出来了。李奶奶说在右边……小区门口出去往右走。"
+text = "出来了。李奶奶说在右边……现在往右走吧。"
 duration = 3.2
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
