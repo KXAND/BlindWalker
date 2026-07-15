@@ -71,11 +71,58 @@ func _on_cutscene_ended(cutscene_id: String) -> void:
 
 
 func _end_game() -> void:
-	await get_tree().create_timer(1.0).timeout
+	# Use Timer node instead of await to avoid coroutine issues
+	# when called from within a signal handler.
+	var timer := Timer.new()
+	timer.one_shot = true
+	timer.wait_time = 1.0
+	timer.timeout.connect(_play_outro_delayed)
+	add_child(timer)
+	timer.start()
+
+
+func _play_outro_delayed() -> void:
+	var outro := load("res://assets/narrative/outro_fullscreen.tres") as Resource
+	var manager := _resolve_cutscene_manager()
+	if outro and manager:
+		EventBus.cutscene_ended.connect(_on_outro_ended, CONNECT_ONE_SHOT)
+		if manager.play_sequence(outro):
+			return
+		# Fallback: failed to play outro sequence, wait then transition.
+		_show_outro_fallback(outro)
+		return
+
+	_do_transition()
+
+
+func _on_outro_ended(cutscene_id: String) -> void:
+	if cutscene_id != &"outro_fullscreen":
+		return
+	_do_transition()
+
+
+func _do_transition() -> void:
 	if AudioManager:
 		AudioManager.stop_all()
 	GameState.reset_to_loading()
 	get_tree().change_scene_to_file(LOADING_SCENE)
+
+
+func _resolve_cutscene_manager() -> CutsceneManager:
+	@warning_ignore("unsafe_method_access")
+	for node in get_tree().get_nodes_in_group(&"cutscene_manager"):
+		var manager := node as CutsceneManager
+		if manager:
+			return manager
+	@warning_ignore("unsafe_method_access")
+	return get_tree().root.find_child("CutsceneManager", true, false) as CutsceneManager
+
+
+func _show_outro_fallback(outro: Resource) -> void:
+	# Fallback when CutsceneManager is unavailable: display outro text briefly.
+	var tween := create_tween()
+	tween.tween_interval(outro.default_line_duration * outro.lines.size() + 2.0)
+	tween.tween_callback(_do_transition)
 
 
 func _set_hud_visible(p_visible: bool) -> void:
