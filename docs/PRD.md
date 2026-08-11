@@ -1,4 +1,4 @@
-# BlindWalker MVP 产品需求文档
+# BlindWalker 交付版产品需求文档
 
 > 来源：`/grill-with-docs` 会话产出  
 > 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`  
@@ -36,8 +36,8 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 步态 | `MAX_HIGH_STEP_HEIGHT` | `0.3` | 最大抬腿高度 (m) |
 | 盲杖 | `CANE_SWEEP_ANGLE` | `60.0` | 扫动锥角 (±°) |
 | 盲杖 | `CANE_LENGTH` | `1.5` | 盲杖长度 (m) |
-| 触摸 | `TOUCH_YAW_OFFSET_DEG` | `45.0` | 手触方向相对相机正前方左偏角度 |
-| 触摸 | `TOUCH_DISTANCE` | `3.0` | 手触最大探测距离 (m) |
+| 触摸 | `TOUCH_YAW_OFFSET_DEG` | `0.0` | 手触射线默认沿相机正前方，可配置左右偏移 |
+| 触摸 | `TOUCH_DISTANCE` | `1.2` | 手触最大探测距离 (m) |
 | 杖触 | `CANE_TOUCH_MEMORY_SCALE` | `0.4` | 杖触记忆球相对手触半径的缩放 |
 | 杖触 | `CANE_TOUCH_MEMORY_LIFETIME` | `8.0` | 杖触显影球寿命 (s) |
 | 杖触 | `CANE_TOUCH_MEMORY_MIN_DISTANCE` | `0.45` | 连续杖触生成新记忆点的最小空间间隔 (m) |
@@ -145,7 +145,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | V5 | W 键持续检测：按住 = 通知 GaitController 前进，松开 = 停止 |
 | V6 | SHIFT / SPACE 持续状态检测，转发给 GaitController |
 | V7 | 鼠标右键触发 `TouchMemorySystem.try_touch()`；Web 平台阻止浏览器默认右键菜单 |
-| V8 | ESC 切换鼠标捕获/释放 |
+| V8 | ESC 由设置菜单/叙事层优先处理，InputManager 不触发 gameplay 行为 |
 | V9 | 输入处理入口查询 `GameState.is_input_enabled()` |
 
 ---
@@ -173,7 +173,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 
 | ID | 需求 |
 |----|------|
-| T1 | 鼠标右键触发手触记忆；方向为相机局部左前方约 45 度，随俯仰角联动 |
+| T1 | 鼠标右键触发手触记忆；方向默认沿相机正前方，随俯仰角联动，可通过 `TOUCH_YAW_OFFSET_DEG` 调整左右偏移 |
 | T2 | 暴露 `spawn_touch_memory(position, active_radius, active_life, afterglow_radius, afterglow_life)`，供 CaneSystem 直接生成杖触记忆 |
 | T3 | 每次触摸/杖触生成显影球和残影球；显影球靠近玩家时暂停衰减，远离时随时间缩小 |
 | T4 | 不同来源的记忆点保留自己的初始半径；达到 `MAX_SPHERES` 时淘汰最旧点 |
@@ -220,7 +220,7 @@ NPC 基类，`CharacterBody3D`。
 | I1 | 检测玩家与 NPC 的距离 |
 | I2 | 距离 < 阈值 → 通过 EventBus 发 `npc_interaction_available`（含提示文本） |
 | I3 | 距离 > 阈值 → 发 `npc_interaction_unavailable` |
-| I4 | 对话交互的具体按键搁置（MVP 后用） |
+| I4 | 对话与通用互动走 `InteractionSystem` / `Interactable`，按 E 触发 |
 
 ---
 
@@ -260,7 +260,7 @@ NPC 基类，`CharacterBody3D`。
 | GS2 | 监听 `player_died` → 切换到 FAILURE |
 | GS3 | 监听目标到达 → 切换到 SUCCESS |
 | GS4 | 无检查点，线性从头到尾 |
-| GS5 | 拥有 `is_input_enabled()`：返回 `current_state == PLAYING && !_cutscene_active`（ADR-0005） |
+| GS5 | 拥有 `is_input_enabled()`：返回 `current_state == PLAYING && !_cutscene_active && !_settings_menu_active`（ADR-0005） |
 | GS6 | 拥有 `set_cutscene_active(active: bool)`：供 CutsceneManager 调用 |
 | GS7 | 拥有 `reset_to_loading()`：直接将 `current_state` 重置回 `LOADING`，供场景 reload 前调用（issue #0013） |
 
@@ -359,5 +359,5 @@ RaycastUtil  ← GaitController, CaneSystem, TouchMemorySystem (共享射线查�
 - 所有代码使用 GDScript
 - 系统间通信优先使用 EventBus 信号
 - 节点引用优先 `@export`，避免深层硬编码路径
-- MVP 不引入 C#、不做多人联机
+- 交付版不引入 C#、不做多人联机
 - 目标帧率：桌面浏览器 30 FPS 以上

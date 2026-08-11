@@ -1,15 +1,15 @@
 # TODO
 
-> 记录当前 MVP 后续工作。这里不是需求入口，只放已经识别但暂不处理的事项。
+> 记录当前交付版的后续复盘和打磨事项。这里不是需求入口，只放已经识别但暂不处理的事项。
 
-## 合并 / 发布前
+## 交付后复盘 / 面试前
 
 - 将 `scripts/core/GameConfig.gd` 中的 `DEBUG := true` 改为 `false`，并确认关闭后不会影响必要的玩家反馈。
-- 确认当前文档与 PR 描述一致，避免把本 PR 表述为完整产品 MVP；更准确的范围是 playable navigation MVP。
+- 统一面试材料和项目说明中的阶段表述：本项目是已完成交付的 playable navigation 作品，不再表述为仍处于 MVP 阶段。
 
 ## 代码整理
 
-- Review `scripts/perception/CaneSystem.gd`，判断是否需要拆解。当前文件在 MVP 阶段同时承担盲杖姿态、碰撞检测、接触点定位、显影触发、音效触发和视觉节点创建，后续可考虑拆出接触定位与反馈触发模块。
+- Review `scripts/perception/CaneSystem.gd`，判断是否需要拆解。当前文件保留了短周期交付阶段的集中实现方式，同时承担盲杖姿态、碰撞检测、接触点定位、显影触发、音效触发和视觉节点创建，后续可考虑拆出接触定位与反馈触发模块。
 - 明确 `scripts/core/EventBus.gd` 中 `touch_detected(hit_point)` 的用途。如果没有消费者，删除该信号或在文档中标记为预留；如果需要 UI/音频/记录消费，则在 `scripts/interaction/TouchMemorySystem.gd` 命中手触时发出该信号。
 
 ## 功能接线
