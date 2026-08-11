@@ -6,13 +6,13 @@
 
 ## 步态 (Gait)
 
-玩家移动采用 ADR-0003 的单键连续移动：按住 W 前进，松开停止。挑战来自边走边探、速度控制和楼梯/墙体反馈，不再使用 W/E 交替迈步状态机。
+玩家移动采用 ADR-0003 与 ADR-0017 的四向连续移动：按住 WASD 相对身体朝向行走，松开停止。挑战来自边走边探、速度控制和楼梯/墙体反馈，不再使用 W/E 交替迈步状态机。
 
 | 术语 | 定义 |
 |------|------|
-| **连续移动 (Continuous Movement)** | 按住 W 沿身体/相机前方持续行走，松开停止。 |
-| **谨慎模式 (Cautious)** | 按住 SHIFT + W 减速行走。下楼梯时必须使用，否则会进入摔倒风险。 |
-| **高抬腿模式 (High Step)** | 按住 SPACE + W 减速行走，并允许跨过高度不超过 `MAX_HIGH_STEP_HEIGHT` 的台阶。 |
+| **连续移动 (Continuous Movement)** | 按住 WASD 相对身体朝向持续四向行走，松开停止；斜向移动不额外加速。 |
+| **谨慎模式 (Cautious)** | 按住 SHIFT + WASD 减速行走。下楼梯时必须使用，否则会进入摔倒风险。 |
+| **高抬腿模式 (High Step)** | 按住 SPACE + WASD 减速行走，并允许跨过高度不超过 `MAX_HIGH_STEP_HEIGHT` 的台阶。 |
 | **脚步节奏 (Step Cadence)** | 脚步音效由距离累加器触发，每移动 `STEP_AUDIO_DISTANCE` 播放一次，不再由离散步态状态机驱动。 |
 | **轻踉跄 (Light Stumble)** | 撞墙、小碰撞等轻微失衡反馈。玩家仍可移动，但继续冒进会延长恢复；若期间触发失衡踉跄，会升级为失衡踉跄。 |
 | **失衡踉跄 (Unstable Stumble)** | 未正确处理台阶或危险障碍时的严重失衡。玩家仍可移动，但移动会降低恢复稳定性；若期间再次触发轻踉跄或失衡踉跄，会直接摔倒。 |
@@ -39,6 +39,9 @@
 | **可视长度应急缩短 (Emergency Retract)** | 位移穿模无法恢复（整个锥角都重叠）时的最后防线：用射线求实际碰撞距，临时缩短可视杆至该距离，保证画面不穿墙。正常游玩几乎不触发。 |
 | **宏观探路 (Macro Probe)** | 盲杖扫动的用途：大范围感知前方地形与障碍。 |
 | **杖触记忆 (Cane Touch Memory)** | 盲杖接触环境时自动留下的局部触觉记忆点，半径和寿命小于手触记忆。 |
+| **盲杖展开 (Cane Deployed)** | 盲杖可扫动、碰撞、生成杖触记忆并触发 NPC 避让的可用状态。 |
+| **盲杖收起 (Cane Stowed)** | 盲杖完全不参与感知或碰撞的不可用状态；鼠标只控制视角。 |
+| **盲杖收放 (Cane Stow Toggle)** | 玩家按 T 在展开与收起状态之间切换。收放动画期间盲杖保持不可用，直至展杖完成。 |
 
 ## 视角 (View)
 
@@ -63,7 +66,7 @@
 | 术语 | 定义 |
 |------|------|
 | **GameConfig** | `class_name` 全局配置类，`scripts/core/GameConfig.gd`。非 autoload，通过 `class_name` 全局引用，类似 Python import。包含所有可调常量：按键映射、步态参数、盲杖参数、摔跤参数。 |
-| **按键映射** | `KEY_FORWARD`(W)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_TOUCH`(MOUSE_RIGHT)。运行时不可变。 |
+| **按键映射** | `KEY_FORWARD`(W)、`KEY_BACKWARD`(S)、`KEY_LEFT`(A)、`KEY_RIGHT`(D)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_CANE_TOGGLE`(T)、`KEY_TOUCH`(MOUSE_RIGHT)。运行时不可变。 |
 | **数据类 (Data Class)** | 自定义数据结构，独立 `.gd` 文件 + `class_name`，放 `scripts/core/`。如 `StepResult`、`CaneHitInfo`、`NpcDialogue`。GDScript 约定：一个 `.gd` 文件 = 一个 class。 |
 
 ## 交互 (Interaction)

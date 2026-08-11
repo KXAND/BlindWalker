@@ -35,7 +35,7 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not GameState.is_input_enabled() or not _player:
-	# 非 gameplay 状态要清空持续输入意图，避免菜单/叙事结束后继承上一帧移动或 QTE 按住状态。
+		# 非 gameplay 状态要清空持续输入意图，避免菜单/叙事结束后继承上一帧移动或 QTE 按住状态。
 		if _player:
 			_player.set_movement_input(Vector2.ZERO)
 			_player.set_recovery_qte_pressed(false)
@@ -124,6 +124,10 @@ func _handle_key_pressed(event: InputEventKey) -> void:
 			# E 是世界交互键，只在 gameplay 状态下交给 InteractionSystem。
 			if _interaction_system and GameState.is_input_enabled():
 				_interaction_system.try_interact()
+		GameConfig.KEY_CANE_TOGGLE:
+			# T 在 gameplay 中切换盲杖收放；过渡期间由 CaneSystem 忽略重复切换。
+			if _cane and GameState.is_input_enabled():
+				_cane.toggle_deployment()
 
 
 func _rotate_player_yaw(delta: float) -> void:

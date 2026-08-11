@@ -30,6 +30,11 @@ var _cane_touch_elapsed: float = 0.0
 var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
+var _is_deployed: bool = true
+var _is_transitioning: bool = false
+var _deployed_rotation: Vector3 = Vector3.ZERO
+var _stow_anchor: Vector3 = Vector3.ZERO
+var _transition_target_rotation: Vector3 = Vector3.ZERO
 
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
 
@@ -43,6 +48,8 @@ const HIT_RETRACT := 0.04
 const MIN_VISIBLE_LENGTH := 0.2
 const SIDE_CONTACT_SCAN_RADIUS := 0.25
 const SIDE_CONTACT_SAMPLES := 12
+const GRIP_OFFSET := Vector3(0.0, ROD_Y_OFFSET, 0.0)
+const STOWED_PITCH := -PI * 0.5
 
 
 func _ready() -> void:
@@ -57,6 +64,9 @@ func _ready() -> void:
 
 
 func apply_sweep(delta: Vector2) -> Vector2:
+	if not _is_deployed:
+		# 收杖后不再消耗鼠标输入，让 InputManager 将它全部用于视角旋转。
+		return delta
 	if not GameState.is_input_enabled():
 		return Vector2.ZERO
 
@@ -78,7 +88,23 @@ func get_tip_area() -> Area3D:
 	return _tip_area
 
 
+func is_deployed() -> bool:
+	return _is_deployed
+
+
+## 收起开始即失效，展杖动画结束才恢复；过渡期间不接受重复切换。
+func toggle_deployment() -> void:
+	if _is_transitioning:
+		return
+	if _is_deployed:
+		_begin_stow()
+	else:
+		_begin_deploy()
+
+
 func _physics_process(delta: float) -> void:
+	if not _is_deployed:
+		return
 	_cane_touch_elapsed += delta
 	_pending_contact_info = {}
 
@@ -407,6 +433,71 @@ func _set_visible_length(length: float) -> void:
 
 	if _tip_area:
 		_tip_area.position = Vector3(0.0, ROD_Y_OFFSET, -_visible_length)
+
+
+func _begin_stow() -> void:
+	_is_deployed = false
+	_is_transitioning = true
+	_deployed_rotation = rotation
+	_stow_anchor = position + Basis.from_euler(rotation) * GRIP_OFFSET
+	_transition_target_rotation = Vector3(STOWED_PITCH, rotation.y, 0.0)
+	_reset_contact_state()
+	_set_perception_enabled(false)
+	_rod.visible = true
+	_animate_rotation(rotation, _transition_target_rotation, _finish_stow)
+
+
+func _begin_deploy() -> void:
+	_is_transitioning = true
+	_rod.visible = true
+	_animate_rotation(rotation, _deployed_rotation, _finish_deploy)
+
+
+func _animate_rotation(from_rotation: Vector3, to_rotation: Vector3, completed: Callable) -> void:
+	var tween := create_tween()
+	tween.set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN_OUT)
+	tween.tween_method(_apply_rotation_about_grip, from_rotation, to_rotation, GameConfig.CANE_STOW_DURATION)
+	tween.tween_callback(completed)
+
+
+## 旋转根节点时同步补偿位置，使手端局部坐标保持不动。
+func _apply_rotation_about_grip(next_rotation: Vector3) -> void:
+	var pose_basis := Basis.from_euler(next_rotation)
+	rotation = next_rotation
+	position = _stow_anchor - pose_basis * GRIP_OFFSET
+
+
+func _finish_stow() -> void:
+	_apply_rotation_about_grip(_transition_target_rotation)
+	_rod.visible = false
+	_is_transitioning = false
+
+
+func _finish_deploy() -> void:
+	_apply_rotation_about_grip(_deployed_rotation)
+	_is_deployed = true
+	_is_transitioning = false
+	_set_perception_enabled(true)
+
+
+## Area 与碰撞形状同时关闭，避免收杖后仍触发 NPC 或物理查询。
+func _set_perception_enabled(active: bool) -> void:
+	for area in [_body_area, _tip_area]:
+		if not area:
+			continue
+		area.set_deferred("monitoring", active)
+		area.set_deferred("monitorable", active and area == _tip_area)
+		for shape in area.find_children("*", "CollisionShape3D", true, false):
+			(shape as CollisionShape3D).set_deferred("disabled", not active)
+
+
+func _reset_contact_state() -> void:
+	_pending_contact_info = {}
+	_contact_segment_active = false
+	_has_last_cane_memory_point = false
+	_last_cane_memory_profile_id = &""
+	_cane_touch_elapsed = 0.0
+	_contact_break_elapsed = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 
 
 ## 检测指定角度下杖身是否与环境重叠（intersect_shape 覆盖整根杖身）

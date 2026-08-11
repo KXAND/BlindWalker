@@ -1,8 +1,8 @@
 # BlindWalker 交付版产品需求文档
 
 > 来源：`/grill-with-docs` 会话产出  
-> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`、`docs/adr/0017-wasd-directional-movement.md`
-> 最后更新：2026-07-11
+> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`、`docs/adr/0017-wasd-directional-movement.md`、`docs/adr/0018-cane-stow-toggle.md`
+> 最后更新：2026-08-12
 
 ---
 
@@ -31,6 +31,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 按键 | `KEY_CAUTIOUS` | `KEY_SHIFT` | 谨慎模式（减速） |
 | 按键 | `KEY_HIGH_STEP` | `KEY_SPACE` | 高抬腿模式（减速+可上台阶） |
 | 按键 | `KEY_LOOK_DIRECT` | `KEY_R` | 视角直控 |
+| 按键 | `KEY_CANE_TOGGLE` | `KEY_T` | 收起或展开盲杖 |
 | 按键 | `KEY_TOUCH` | `MOUSE_BUTTON_RIGHT` | 手触确认 |
 | 移动 | `WALK_SPEED` | `1.0` | 正常行走速度 (m/s) |
 | 移动 | `CAUTIOUS_SPEED` | `0.3` | 谨慎模式速度 (m/s) |
@@ -39,6 +40,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 步态 | `MAX_HIGH_STEP_HEIGHT` | `0.4` | 最大抬腿高度 (m) |
 | 盲杖 | `CANE_SWEEP_ANGLE` | `60.0` | 扫动锥角 (±°) |
 | 盲杖 | `CANE_LENGTH` | `1.5` | 盲杖长度 (m) |
+| 盲杖 | `CANE_STOW_DURATION` | `0.25` | 盲杖收放动画时长 (s) |
 | 触摸 | `TOUCH_YAW_OFFSET_DEG` | `0.0` | 手触射线默认沿相机正前方，可配置左右偏移 |
 | 触摸 | `TOUCH_DISTANCE` | `1.2` | 手触最大探测距离 (m) |
 | 杖触 | `CANE_TOUCH_MEMORY_SCALE` | `0.4` | 杖触记忆球相对手触半径的缩放 |
@@ -124,10 +126,12 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | C7 | 盲杖尖端挂 Area3D，用于 NPC 躲避检测 |
 | C8 | Area3D 进入/离开 NPC 范围时通过 EventBus 发信号 |
 | C9 | 玩家位移穿模时，在锥角范围内搜索最近安全姿态恢复；极端情况下临时缩短可视杆防止画面穿墙（最后防线） |
-| C10 | 盲杖视觉用白色 MeshInstance3D + 低 emission，始终可见，不投影 |
+| C10 | 展开状态下，盲杖视觉用白色 MeshInstance3D + 低 emission，不投影 |
 | C11 | 输入处理入口查询 `GameState.is_input_enabled()` |
 | C12 | 盲杖接触环境时生成杖触记忆点；只有成功生成记忆点时播放 `cane_hit`，避免持续贴墙刷音 |
 | C13 | 杖触记忆按空间距离和时间节流，允许沿大物体留下连续但稀疏的局部记忆点 |
+| C14 | T 键切换盲杖展开/收起；收起开始时立即禁用扫动、形状查询、杖触记忆和 NPC 避让，展杖动画完成后恢复 |
+| C15 | 收放动画以手端为枢轴，在 0.25s 内将杖尖转到竖直向下；收起完成后杖身位于相机视野外 |
 
 ---
 
@@ -150,6 +154,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | V7 | 鼠标右键触发 `TouchMemorySystem.try_touch()`；Web 平台阻止浏览器默认右键菜单 |
 | V8 | ESC 由设置菜单/叙事层优先处理，InputManager 不触发 gameplay 行为 |
 | V9 | 输入处理入口查询 `GameState.is_input_enabled()` |
+| V10 | 盲杖收起或收放动画期间，鼠标位移全部转为玩家 Yaw/Pitch；展杖完成后恢复先扫杖再转视角的规则 |
 
 ---
 
