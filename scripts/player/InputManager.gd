@@ -35,14 +35,17 @@ func _ready() -> void:
 
 func _process(_delta: float) -> void:
 	if not GameState.is_input_enabled() or not _player:
-		# 非 gameplay 状态要清空持续输入意图，避免菜单/叙事结束后继承上一帧移动或 QTE 按住状态。
+	# 非 gameplay 状态要清空持续输入意图，避免菜单/叙事结束后继承上一帧移动或 QTE 按住状态。
 		if _player:
-			_player.set_moving(false)
+			_player.set_movement_input(Vector2.ZERO)
 			_player.set_recovery_qte_pressed(false)
 		return
 
-	# W 是连续移动输入，放在 _process 轮询比依赖按键事件更适合表达“当前是否仍在前进”。
-	_player.set_moving(Input.is_key_pressed(GameConfig.KEY_FORWARD))
+	# WASD 是连续移动输入，放在 _process 轮询以持续转发当前移动意图。
+	var movement_input := Vector2.ZERO
+	movement_input.x = float(Input.is_key_pressed(GameConfig.KEY_RIGHT)) - float(Input.is_key_pressed(GameConfig.KEY_LEFT))
+	movement_input.y = float(Input.is_key_pressed(GameConfig.KEY_BACKWARD)) - float(Input.is_key_pressed(GameConfig.KEY_FORWARD))
+	_player.set_movement_input(movement_input)
 	if _player.is_recovery_qte_active():
 		# 失衡 QTE 期间，SHIFT + SPACE 被解释为“稳住身体”，不再作为普通移动修饰键传递。
 		_player.set_recovery_qte_pressed(

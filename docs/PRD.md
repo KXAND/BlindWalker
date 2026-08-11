@@ -1,7 +1,7 @@
 # BlindWalker 交付版产品需求文档
 
 > 来源：`/grill-with-docs` 会话产出  
-> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`  
+> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`、`docs/adr/0017-wasd-directional-movement.md`
 > 最后更新：2026-07-11
 
 ---
@@ -24,16 +24,19 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 
 | 类别 | 常量 | 默认值 | 说明 |
 |------|------|--------|------|
-| 按键 | `KEY_FORWARD` | `KEY_W` | 前进行走 |
+| 按键 | `KEY_FORWARD` | `KEY_W` | 向前行走 |
+| 按键 | `KEY_BACKWARD` | `KEY_S` | 向后行走 |
+| 按键 | `KEY_LEFT` | `KEY_A` | 向左行走 |
+| 按键 | `KEY_RIGHT` | `KEY_D` | 向右行走 |
 | 按键 | `KEY_CAUTIOUS` | `KEY_SHIFT` | 谨慎模式（减速） |
 | 按键 | `KEY_HIGH_STEP` | `KEY_SPACE` | 高抬腿模式（减速+可上台阶） |
 | 按键 | `KEY_LOOK_DIRECT` | `KEY_R` | 视角直控 |
 | 按键 | `KEY_TOUCH` | `MOUSE_BUTTON_RIGHT` | 手触确认 |
-| 移动 | `WALK_SPEED` | `0.8` | 正常行走速度 (m/s) |
+| 移动 | `WALK_SPEED` | `1.0` | 正常行走速度 (m/s) |
 | 移动 | `CAUTIOUS_SPEED` | `0.3` | 谨慎模式速度 (m/s) |
 | 移动 | `HIGH_STEP_SPEED` | `0.3` | 高抬腿模式速度 (m/s) |
 | 移动 | `STEP_AUDIO_DISTANCE` | `0.5` | 脚步声间隔距离 (m) |
-| 步态 | `MAX_HIGH_STEP_HEIGHT` | `0.3` | 最大抬腿高度 (m) |
+| 步态 | `MAX_HIGH_STEP_HEIGHT` | `0.4` | 最大抬腿高度 (m) |
 | 盲杖 | `CANE_SWEEP_ANGLE` | `60.0` | 扫动锥角 (±°) |
 | 盲杖 | `CANE_LENGTH` | `1.5` | 盲杖长度 (m) |
 | 触摸 | `TOUCH_YAW_OFFSET_DEG` | `0.0` | 手触射线默认沿相机正前方，可配置左右偏移 |
@@ -92,12 +95,12 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 
 | ID | 需求 |
 |----|------|
-| G1 | 按住 W = 沿视角前方持续行走（`WALK_SPEED`），松开 = 停止 |
-| G2 | 按住 SHIFT + W = 谨慎模式减速行走（`CAUTIOUS_SPEED`），下楼梯不摔 |
-| G3 | 按住 SPACE + W = 高抬腿模式减速行走（`HIGH_STEP_SPEED`），固定高度 `MAX_HIGH_STEP_HEIGHT`（0.3m），允许跨过 ≤ 该高度的台阶 |
+| G1 | 按住 WASD = 相对身体朝向持续四向行走（`WALK_SPEED`），松开 = 停止；斜向输入不额外加速 |
+| G2 | 按住 SHIFT + WASD = 谨慎模式减速行走（`CAUTIOUS_SPEED`），下楼梯不摔 |
+| G3 | 按住 SPACE + WASD = 高抬腿模式减速行走（`HIGH_STEP_SPEED`），固定高度 `MAX_HIGH_STEP_HEIGHT`（0.4m），允许跨过 ≤ 该高度的台阶 |
 | G4 | 撞墙 → `move_and_slide()` 碰撞响应 + 短暂减速 + `wall_hit` 音效，**不扣血** |
-| G5 | 每帧（节流）射线检测前方地形高差：上坡高差 ≤ 0.3m + SPACE 按住 → 平滑抬升；SPACE 未按住 → 撞墙 |
-| G6 | 每帧射线检测前方地形高差：下坡高差 < -0.15m + SHIFT 未按住 → 摔倒扣血 |
+| G5 | 每帧（节流）沿实际移动方向检测地形高差：上坡高差 ≤ 0.4m + SPACE 按住 → 平滑抬升；SPACE 未按住 → 撞墙 |
+| G6 | 每帧沿实际移动方向检测地形高差：下坡高差 < -0.15m + SHIFT 未按住 → 摔倒扣血 |
 | G7 | 摔倒 → 扣 `FALL_DAMAGE` + `fall` 音效 + `player_fell` 信号 + 1-2s 移动禁用 |
 | G8 | 脚步音频：距离累加器每移动 `STEP_AUDIO_DISTANCE` 播放一次，交替左右声道 |
 | G9 | 输入处理入口查询 `GameState.is_input_enabled()`，非 PLAYING 状态或演出中不响应输入 |
@@ -142,7 +145,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | V2 | 默认模式下，鼠标先驱动盲杖扫动，锥角溢出量转为玩家 Yaw 旋转（视角 + 身体朝向同步） |
 | V3 | 身体朝向 = 摄像机朝向，永远一致 |
 | V4 | Pitch 限制在 -80° 到 +80° 之间 |
-| V5 | W 键持续检测：按住 = 通知 GaitController 前进，松开 = 停止 |
+| V5 | WASD 持续检测：将归一化移动向量转发给 GaitController，支持前后左右及斜向移动 |
 | V6 | SHIFT / SPACE 持续状态检测，转发给 GaitController |
 | V7 | 鼠标右键触发 `TouchMemorySystem.try_touch()`；Web 平台阻止浏览器默认右键菜单 |
 | V8 | ESC 由设置菜单/叙事层优先处理，InputManager 不触发 gameplay 行为 |
@@ -322,7 +325,7 @@ AudioManager ← EventBus.audio_requested / game_state_changed / cane_entered_np
 CutsceneManager → GameState.set_cutscene_active()
 MainBootstrap → GameState.set_playing()
 
-InputManager ────→ GaitController (set_moving / set_cautious / set_high_step)
+InputManager ────→ GaitController (set_movement_input / set_cautious / set_high_step)
                → CaneSystem (apply_sweep)
                → TouchMemorySystem (try_touch)
                → 玩家 Yaw 旋转 + Head Pitch 旋转（视角控制，ADR-0005）

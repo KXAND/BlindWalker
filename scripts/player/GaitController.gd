@@ -1,6 +1,6 @@
 class_name GaitController
 extends CharacterBody3D
-## 连续移动控制器。按住 W 前进，SHIFT 谨慎减速，SPACE 高抬腿模式。
+## 连续移动控制器。WASD 四向移动，SHIFT 谨慎减速，SPACE 高抬腿模式。
 ## 不读取键鼠输入——所有输入意图由 InputManager 转发。
 
 @export var gravity: float = 9.8
@@ -23,6 +23,7 @@ const DEFAULT_STEP_SOUND_ID := &"step"
 enum BalanceState { STEADY, LIGHT_STUMBLE, UNSTABLE_STUMBLE, FALLING, GETTING_UP }
 
 var _is_moving: bool = false
+var _movement_input: Vector2 = Vector2.ZERO
 var _cautious_active: bool = false
 var _high_step_active: bool = false
 var _recovery_qte_pressed: bool = false
@@ -114,13 +115,13 @@ func _physics_process(delta: float) -> void:
 		velocity.z = _tumble_direction.z * GameConfig.TUMBLE_SPEED
 	elif can_move and _is_moving:
 		var speed := _current_speed()
-		var forward := -global_transform.basis.z.normalized()
-		velocity.x = forward.x * speed
-		velocity.z = forward.z * speed
+		var movement_direction := _movement_direction()
+		velocity.x = movement_direction.x * speed
+		velocity.z = movement_direction.z * speed
 
 		# Throttled terrain check
 		if _terrain_check_timer <= 0.0:
-			_check_terrain(forward)
+			_check_terrain(movement_direction)
 			_terrain_check_timer = terrain_check_interval
 	else:
 		velocity.x = 0.0
@@ -160,7 +161,7 @@ func _physics_process(delta: float) -> void:
 			and velocity.y >= -0.1 \
 			and _stagger_timer <= 0.0 \
 			and not _has_stair_up_target:
-		_detect_wall_hit(pos_before)
+		_detect_wall_hit(pos_before, _movement_direction())
 
 	# Step audio
 	if _is_moving and can_move and is_on_floor():
@@ -171,8 +172,9 @@ func _physics_process(delta: float) -> void:
 
 # ---- Input interface (called by InputManager) ----
 
-func set_moving(active: bool) -> void:
-	_is_moving = active
+func set_movement_input(input: Vector2) -> void:
+	_movement_input = input.limit_length(1.0)
+	_is_moving = not _movement_input.is_zero_approx()
 
 
 func set_cautious(active: bool) -> void:
@@ -269,6 +271,12 @@ func _current_speed() -> float:
 	return GameConfig.WALK_SPEED
 
 
+func _movement_direction() -> Vector3:
+	var direction := global_transform.basis * Vector3(_movement_input.x, 0.0, _movement_input.y)
+	direction.y = 0.0
+	return direction.normalized()
+
+
 func _check_terrain(forward: Vector3) -> void:
 	if GameState.is_gameplay_locked():
 		return
@@ -317,7 +325,7 @@ func _check_terrain(forward: Vector3) -> void:
 			_start_fall(forward, absf(terrain_delta))
 
 
-func _detect_wall_hit(pos_before: Vector3) -> void:
+func _detect_wall_hit(pos_before: Vector3, movement_direction: Vector3) -> void:
 	if GameState.is_gameplay_locked():
 		return
 	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
@@ -331,7 +339,7 @@ func _detect_wall_hit(pos_before: Vector3) -> void:
 	var horizontal_move := Vector2(actual_move.x, actual_move.z).length()
 	var expected_move := _current_speed() * get_physics_process_delta_time()
 	if expected_move > 0.01 and horizontal_move < expected_move * 0.3:
-		_enter_light_stumble(-global_transform.basis.z.normalized())
+		_enter_light_stumble(movement_direction)
 		_wall_hit_cooldown = WALL_HIT_COOLDOWN
 
 

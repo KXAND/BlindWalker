@@ -3,6 +3,9 @@ class_name GameConfig
 
 # ---- 按键映射 ----
 const KEY_FORWARD := KEY_W
+const KEY_BACKWARD := KEY_S
+const KEY_LEFT := KEY_A
+const KEY_RIGHT := KEY_D
 const KEY_CAUTIOUS := KEY_SHIFT
 const KEY_HIGH_STEP := KEY_SPACE
 const KEY_LOOK_DIRECT := KEY_R
