@@ -171,11 +171,12 @@ func _update_sphere_uniforms() -> void:
 # ---- 触摸探测 ----
 
 ## 执行一次手触摸（由 InputManager 右键触发）。
-## 射线方向：相机局部坐标系左前方约 45 度，随俯仰角联动。
+## 射线方向：默认沿相机正前方，可通过 TOUCH_YAW_OFFSET_DEG 调整左右偏移。
 func try_touch() -> void:
 	if not _camera or not _material:
 		return
 
+	# 手触以相机为起点并跟随视角俯仰，避免做成屏幕中心无语义的固定点击。
 	var space_state := get_world_3d().direct_space_state
 	var from: Vector3 = _camera.global_position
 	var forward: Vector3 = -_camera.global_transform.basis.z.normalized()
@@ -191,6 +192,7 @@ func try_touch() -> void:
 	if result.is_empty():
 		return
 
+	# 接触表现由 ContactProfile 决定颜色/语义，手触和盲杖共用同一套材质解释。
 	var profile: Resource = _ContactProfileProvider.resolve_profile(result["collider"], &"hand")
 	spawn_touch_memory(
 		result["position"],
@@ -219,7 +221,7 @@ func spawn_touch_memory(
 	if not _material:
 		return false
 
-	# 生成显影球
+	# 显影球提供短期强反馈，告诉玩家“刚摸到这里”。
 	var active_sphere := _TouchSphere.new()
 	active_sphere.center = hit_point
 	active_sphere.radius = active_radius
@@ -231,7 +233,7 @@ func spawn_touch_memory(
 	active_sphere.strength = 1.0
 	_active_spheres.append(active_sphere)
 
-	# 生成残影球
+	# 残影球提供长期弱反馈，让玩家可以拼出刚探索过的空间轮廓。
 	var afterglow_sphere := _TouchSphere.new()
 	afterglow_sphere.center = hit_point
 	afterglow_sphere.radius = afterglow_radius
@@ -243,7 +245,7 @@ func spawn_touch_memory(
 	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
 	_afterglow_spheres.append(afterglow_sphere)
 
-	# 保持上限，避免着色器数组溢出
+	# 保持上限，避免着色器 uniform 数组溢出；旧记忆自然被新探索覆盖。
 	if _active_spheres.size() > MAX_SPHERES:
 		_active_spheres.pop_front()
 	if _afterglow_spheres.size() > MAX_SPHERES:

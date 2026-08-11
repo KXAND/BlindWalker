@@ -1,5 +1,5 @@
 extends Node
-## 线性流程状态机 + 输入闸门。本 MVP 只处理开始、成功和失败，不做检查点回滚。
+## 线性流程状态机 + 输入闸门。当前交付版本只处理开始、成功和失败，不做检查点回滚。
 
 enum State { LOADING, PLAYING, SUCCESS, FAILURE }
 
@@ -23,6 +23,7 @@ func set_playing() -> void:
 
 func set_victory() -> void:
 	if _gameplay_locked:
+		# 强叙事或摔倒结算期间不接受通关，避免状态被并发事件覆盖。
 		return
 	if current_state != State.PLAYING:
 		return
@@ -45,6 +46,7 @@ func is_playing() -> bool:
 
 
 func set_cutscene_active(active: bool) -> void:
+	# cutscene_active 只影响输入，让叙事能消费按键但不一定暂停世界模拟。
 	_cutscene_active = active
 
 
@@ -53,6 +55,7 @@ func is_cutscene_active() -> bool:
 
 
 func set_gameplay_locked(active: bool) -> void:
+	# gameplay_locked 表示世界流程被强制锁住，例如强叙事、死亡或结算段。
 	_gameplay_locked = active
 
 
@@ -61,6 +64,7 @@ func is_gameplay_locked() -> bool:
 
 
 func set_settings_menu_active(active: bool) -> void:
+	# settings_menu_active 让各 gameplay 输入入口统一退让给 UI。
 	_settings_menu_active = active
 
 
@@ -69,6 +73,7 @@ func is_settings_menu_active() -> bool:
 
 
 func is_input_enabled() -> bool:
+	# 输入闸门只判断“玩家能不能操作”，不等同于完整的世界暂停。
 	return current_state == State.PLAYING and not _cutscene_active and not _settings_menu_active
 
 

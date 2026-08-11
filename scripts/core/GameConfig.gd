@@ -36,7 +36,7 @@ const CANE_SWEEP_ANGLE := 60.0
 const CANE_LENGTH := 1.5
 
 # ---- 触摸参数 ----
-const TOUCH_YAW_OFFSET_DEG: float = 0.0
+const TOUCH_YAW_OFFSET_DEG: float = 0.0      ## 手触摸射线沿相机正前方
 const TOUCH_DISTANCE: float = 1.2            ## 手触摸最大探测距离（米）
 const TOUCH_MEMORY_RADIUS: float = 0.5      ## 手触摸显影半径（米）
 const TOUCH_AFTERGLOW_RADIUS: float = 0.5   ## 手触摸残影半径（米）

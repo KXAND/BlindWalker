@@ -31,9 +31,11 @@ func _process(_delta: float) -> void:
 
 
 func try_interact() -> bool:
+	# 交互入口仍走 GameState 闸门，确保菜单、叙事或结算期间不会触发世界对象。
 	if not GameState.is_input_enabled() or not _player:
 		return false
 	if _player.is_balance_view_locked():
+		# 摔倒/起身阶段玩家身体不可控，此时即使准星对准对象也不允许交互。
 		return false
 	var focus := _select_focus()
 	if not focus:
@@ -57,6 +59,7 @@ func debug_is_prompt_visible() -> bool:
 func _select_focus() -> Area3D:
 	if not _player or not _camera:
 		return null
+	# 每帧从候选对象中重新选焦点，避免对象状态变化后提示残留在旧目标上。
 	var best: Area3D = null
 	var best_angle := INF
 	var best_distance := INF
@@ -98,6 +101,7 @@ func _is_candidate_valid(interactable: Area3D, include_line_of_sight: bool) -> b
 	var angle := _focus_angle_to(anchor.global_position)
 	if angle > deg_to_rad(float(interactable.get("focus_angle_degrees"))):
 		return false
+	# 可视线检测只用于需要明确“看向/面对”的交互，触觉显影仍由 TouchMemorySystem 控制。
 	if include_line_of_sight and bool(interactable.get("requires_line_of_sight")) and not _has_line_of_sight(interactable, anchor):
 		return false
 	return true
@@ -113,6 +117,7 @@ func _is_better_candidate(
 ) -> bool:
 	const ANGLE_EPS := deg_to_rad(3.0)
 	const DISTANCE_EPS := 0.25
+	# 选择顺序是角度优先、距离次之、最后才看优先级，符合第一人称交互的直觉。
 	if angle < best_angle - ANGLE_EPS:
 		return true
 	if angle > best_angle + ANGLE_EPS:
@@ -174,6 +179,7 @@ func _update_prompt() -> void:
 	if not _prompt_panel:
 		return
 	if not _focus or not bool(_focus.get("show_prompt")) or not _is_focus_revealed(_focus):
+		# 只有被触摸/盲杖显影过的对象才显示提示，避免黑暗主题下 UI 直接泄露目标。
 		_prompt_panel.visible = false
 		return
 	var anchor := _focus.call("get_prompt_anchor") as Node3D

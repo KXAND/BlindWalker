@@ -23,11 +23,13 @@ func _ready() -> void:
 
 
 func _input(event: InputEvent) -> void:
+	# 设置菜单需要优先响应 ESC，因此放在 _input，先于 gameplay 的 _unhandled_input。
 	if not (event is InputEventKey):
 		return
 	if not event.pressed or event.echo or event.keycode != KEY_ESCAPE:
 		return
 	if _is_cutscene_playing():
+		# 叙事期间 ESC 归 CutsceneManager 处理，避免菜单打断强叙事段落。
 		return
 	if not GameState.is_playing() and not GameState.is_settings_menu_active():
 		return
@@ -42,8 +44,10 @@ func _input(event: InputEvent) -> void:
 func open_menu() -> void:
 	if visible:
 		return
+	# 记录进入菜单前的鼠标模式，关闭菜单时尽量恢复玩家原本的输入状态。
 	_previous_mouse_mode = Input.get_mouse_mode()
 	visible = true
+	# settings_menu_active 是 gameplay 输入的统一闸门，不依赖各系统单独判断 UI 是否可见。
 	GameState.set_settings_menu_active(true)
 	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
 	_resume_button.grab_focus()
@@ -55,6 +59,7 @@ func close_menu() -> void:
 	visible = false
 	GameState.set_settings_menu_active(false)
 	if GameState.is_playing():
+		# 只有仍在关卡内才恢复锁鼠标；若菜单触发返回首页，鼠标应保持可见。
 		Input.set_mouse_mode(_previous_mouse_mode)
 
 
@@ -147,15 +152,18 @@ func _on_sfx_changed(value: float) -> void:
 
 func _restart_run() -> void:
 	close_menu()
+	# 重开前先停场景音乐和全局音频，避免换场景后残留上一轮声音。
 	_stop_game_scene_music()
 	AudioManager.stop_all()
 	await get_tree().create_timer(0.08).timeout
+	# 重新加载关卡前重置运行态，保证锁输入/死亡/跌倒状态不会带到新实例。
 	GameState.reset_to_loading()
 	get_tree().reload_current_scene()
 
 
 func _return_home() -> void:
 	close_menu()
+	# 返回首页同样要清理音频与运行态，否则主菜单可能继承关卡内的锁或混音状态。
 	_stop_game_scene_music()
 	AudioManager.stop_all()
 	await get_tree().create_timer(0.08).timeout

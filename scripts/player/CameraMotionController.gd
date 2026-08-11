@@ -26,6 +26,7 @@ func _ready() -> void:
 
 func _process(delta: float) -> void:
 	_time += delta
+	# 镜头反馈只修改相机局部偏移，不改玩家朝向，避免和 InputManager 的 yaw/pitch 控制互相覆盖。
 	match _state:
 		MotionState.IDLE:
 			_apply_transform(_base_position, _base_rotation)
@@ -75,6 +76,7 @@ func _on_tumble_started() -> void:
 
 
 func _on_get_up_started(duration: float) -> void:
+	# 起身从当前摔倒姿态插回基准姿态，而不是强行跳回，减少镜头突变。
 	_get_up_start_position = position
 	_get_up_start_rotation = rotation
 	_start(MotionState.GET_UP, duration)
@@ -86,6 +88,7 @@ func _on_balance_recovered() -> void:
 
 
 func _start(next_state: int, duration: float) -> void:
+	# 所有失衡镜头都走同一个状态入口，方便和 GaitController 的平衡状态保持同步。
 	_state = next_state
 	_time = 0.0
 	_duration = duration

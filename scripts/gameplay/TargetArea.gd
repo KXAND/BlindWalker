@@ -1,6 +1,6 @@
 class_name TargetArea
 extends Area3D
-## 线性 MVP 的终点区域；玩家进入后请求 GameState 切到 SUCCESS。
+## 线性交付流程的终点区域；玩家进入后请求 GameState 切到 SUCCESS。
 
 @export var outro_sequence: Resource
 

@@ -60,6 +60,7 @@ func apply_sweep(delta: Vector2) -> Vector2:
 	if not GameState.is_input_enabled():
 		return Vector2.ZERO
 
+	# 输入阶段只更新目标姿态；真正的碰撞推进放到物理帧，保证接触结果稳定。
 	var half_yaw := deg_to_rad(cone_angle * 0.5)
 	var pitch_limits := _pitch_limits()
 
@@ -69,6 +70,7 @@ func apply_sweep(delta: Vector2) -> Vector2:
 	_target_angle = yaw_result.x
 	_target_pitch = pitch_result.x
 
+	# 返回“盲杖空间的溢出输入”，InputManager 再按 look/cane 灵敏度比例换算成视角旋转。
 	return Vector2(yaw_result.y, pitch_result.y)
 
 
@@ -95,6 +97,7 @@ func _physics_process(delta: float) -> void:
 
 	var contact_info := _pending_contact_info
 	if contact_info.is_empty():
+		# 分步推进未预测到碰撞时，再用全长姿态主动查询接触信息。
 		contact_info = _full_length_contact_info()
 	if contact_info.is_empty():
 		_set_visible_length(cane_length if full_length_safe else MIN_VISIBLE_LENGTH)
@@ -114,6 +117,7 @@ func _emit_contact_feedback(hit_collider: Object, contact_point: Vector3, contac
 	var profile: Resource = _ContactProfileProvider.resolve_profile(hit_collider, &"cane")
 	var memory_spawned := _try_spawn_cane_touch_memory(contact_point, profile)
 	if memory_spawned:
+		# 只有真正生成新触觉记忆时才播放反馈，避免连续物理帧重复刷提示音。
 		EventBus.cane_hit_object.emit(_object_name(hit_collider), contact_point, contact_normal)
 		var sound_id := _ContactProfileProvider.cane_sound_id(profile)
 		if sound_id != &"":
@@ -129,6 +133,7 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 	if not _should_spawn_cane_touch_memory(contact_point, profile_id):
 		return false
 
+	# TouchMemory 是“玩家记住碰到了什么”的统一出口，盲杖本身只负责提供接触语义。
 	var cane_radius: float = GameConfig.CANE_TOUCH_MEMORY_RADIUS
 	var cane_afterglow_radius: float = GameConfig.CANE_TOUCH_AFTERGLOW_RADIUS
 	var spawned := _touch_memory.spawn_touch_memory(
@@ -152,6 +157,7 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 
 
 func _should_spawn_cane_touch_memory(contact_point: Vector3, profile_id: StringName) -> bool:
+	# 同一段连续接触按距离和冷却节流；换物体材质或断开接触后允许立即生成新记忆。
 	if not _contact_segment_active:
 		return true
 	if not _has_last_cane_memory_point:
@@ -229,6 +235,7 @@ func _contact_info_for_basis(cane_basis: Basis) -> Dictionary:
 	var parent_body := get_parent() as CollisionObject3D
 	var exclude_rid := parent_body.get_rid() if parent_body else RID()
 	var space_state := get_world_3d().direct_space_state
+	# 先用细射线取最准确的表面点，再用形状重叠覆盖整根杖身厚度。
 	var ray_result := _forward_surface_contact(space_state, cane_basis, exclude_rid)
 	if not ray_result.is_empty():
 		return ray_result
@@ -247,10 +254,12 @@ func _contact_info_for_basis(cane_basis: Basis) -> Dictionary:
 	if shape_results.is_empty():
 		return {}
 
+	# 形状重叠只告诉我们“碰到了”，侧向采样进一步估计墙角/柱子的真实接触面。
 	var side_result := _side_surface_contact(space_state, cane_basis, exclude_rid)
 	if not side_result.is_empty():
 		return side_result
 
+	# rest/collide 是极端重叠兜底，保证即使初始贴住物体也能给出可用反馈点。
 	var rest_info := space_state.get_rest_info(shape_query)
 	if not rest_info.is_empty():
 		return {
@@ -436,6 +445,7 @@ func _apply_axis(current: float, delta: float, min_value: float, max_value: floa
 
 
 func _pitch_limits() -> Vector2:
+	# 下探范围保留原有锥角，上抬角单独收窄，避免盲杖抬离地面探索语义。
 	var half_pitch := deg_to_rad(pitch_angle * 0.5)
 	return Vector2(-half_pitch, minf(half_pitch, deg_to_rad(max_raise_angle)))
 

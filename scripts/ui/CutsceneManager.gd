@@ -60,10 +60,12 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
+	# 叙事播放期间要抢占 SPACE/ESC，所以使用 _input，而不是等到 gameplay 的 _unhandled_input。
 	if not _is_playing_sequence:
 		return
 	if event is InputEventKey and event.pressed and not event.echo:
 		if _sequence_holds_final_line():
+			# 终幕最后一句需要特殊确认逻辑；其他跳过键只消费，不让它们继续传给 gameplay/UI。
 			if event.keycode == SECONDARY_FINAL_LINE_KEY and _is_on_final_line():
 				get_viewport().set_input_as_handled()
 				final_line_secondary_requested.emit(String(_current_sequence.sequence_id))
@@ -100,6 +102,7 @@ func play_sequence(sequence: Resource) -> bool:
 	if not sequence:
 		return false
 	if _is_playing_sequence:
+		# 并发叙事会互相覆盖输入锁和字幕状态；当前单线流程直接拒绝新序列。
 		if GameConfig.DEBUG:
 			print("[DEBUG][CutsceneManager] sequence rejected reason=already_playing current=%s next=%s" % [
 				_current_sequence.sequence_id,
@@ -107,6 +110,7 @@ func play_sequence(sequence: Resource) -> bool:
 			])
 		return false
 	if sequence.lines.is_empty():
+		# 空叙事没有可展示内容，提前返回可以避免进入锁输入但无法退出的状态。
 		if GameConfig.DEBUG:
 			print("[DEBUG][CutsceneManager] sequence ignored reason=no_lines id=%s" % sequence.sequence_id)
 		return false
@@ -117,8 +121,10 @@ func play_sequence(sequence: Resource) -> bool:
 	_input_locked_by_sequence = sequence.lock_input
 	_gameplay_locked_by_sequence = sequence.lock_gameplay
 	if _input_locked_by_sequence:
+		# cutscene_active 负责阻断玩家输入层，让演出期间的按键不会同时驱动角色。
 		GameState.set_cutscene_active(true)
 	if _gameplay_locked_by_sequence:
+		# gameplay_locked 负责阻断世界交互/移动结算，适合强叙事或结算段落。
 		GameState.set_gameplay_locked(true)
 
 	EventBus.cutscene_started.emit(String(sequence.sequence_id))
@@ -172,6 +178,7 @@ func _finish_sequence() -> void:
 	if not _is_playing_sequence:
 		return
 
+	# 正常播完和被跳过都走同一套解锁流程，避免遗漏某个输入锁。
 	var sequence_id := String(_current_sequence.sequence_id)
 	AudioManager.stop_2d()
 	_hide_subtitle()
@@ -188,10 +195,12 @@ func _finish_sequence() -> void:
 
 func _interrupt_sequence() -> void:
 	if _is_playing_sequence:
+		# 死亡/跌落等高优先级事件会打断叙事，复用 finish 流程统一清锁。
 		_finish_sequence()
 
 
 func _clear_narrative_locks() -> void:
+	# 叙事锁必须集中释放，否则后续场景可能表现为鼠标不可控或角色无法移动。
 	if _input_locked_by_sequence:
 		GameState.set_cutscene_active(false)
 	if _gameplay_locked_by_sequence:

@@ -67,6 +67,7 @@ func _ready() -> void:
 
 func _physics_process(delta: float) -> void:
 	if is_instance_valid(_handrail_assist) and not _handrail_assist.is_player_inside():
+		# 扶手辅助只在玩家仍处于扶手区域时有效，离开后自动回到普通步态判定。
 		_handrail_assist = null
 	_update_balance_state(delta)
 
@@ -108,6 +109,7 @@ func _physics_process(delta: float) -> void:
 			and _balance_state != BalanceState.GETTING_UP
 	_stair_up_handled = false
 	if _balance_state == BalanceState.FALLING:
+		# 主动跌倒阶段由固定前冲/下坠表达失控感，不再读取玩家移动输入。
 		velocity.x = _tumble_direction.x * GameConfig.TUMBLE_SPEED
 		velocity.z = _tumble_direction.z * GameConfig.TUMBLE_SPEED
 	elif can_move and _is_moving:
@@ -296,7 +298,7 @@ func _check_terrain(forward: Vector3) -> void:
 			_stair_up_target_y = global_position.y + terrain_delta
 			_has_stair_up_target = true
 		else:
-			# No SPACE, or step too high: stagger + damage
+			# 未高抬腿或台阶过高时进入失衡流程，用状态机给玩家一个可恢复窗口，而不是直接扣血。
 			# 注意：stagger 路径不要碰 y，否则会和已经存在的抬升目标打架
 			_has_stair_up_target = false
 			velocity.x = 0.0
@@ -308,7 +310,7 @@ func _check_terrain(forward: Vector3) -> void:
 	elif terrain_delta < STAIR_DOWN_THRESHOLD:
 		_has_stair_up_target = false
 		if _cautious_active or is_handrail_assist_active():
-			# SHIFT held or handrail assisted: let physics handle the drop naturally, no penalty
+			# 谨慎或扶手辅助时，下台阶交给物理自然落地，不额外触发摔倒惩罚。
 			if GameConfig.DEBUG:
 				print("[DEBUG][GaitController] stair_down safe (cautious_or_handrail) delta=%.2f" % terrain_delta)
 		else:
@@ -454,11 +456,13 @@ func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float
 func _update_balance_state(delta: float) -> void:
 	match _balance_state:
 		BalanceState.LIGHT_STUMBLE:
+			# 轻微踉跄会自行恢复，但玩家继续前进会减慢恢复，提示“停下来调整”。
 			_balance_timer -= delta * (0.35 if _is_moving else 1.0)
 			if _balance_timer <= 0.0:
 				_recover_balance()
 		BalanceState.UNSTABLE_STUMBLE:
 			if _recovery_qte_pressed:
+				# 不稳定踉跄要求按住恢复组合键；移动中恢复更慢，鼓励先停止再稳住身体。
 				var recovery_speed := 1.0 / GameConfig.UNSTABLE_STUMBLE_QTE_HOLD_TIME
 				if _is_moving:
 					recovery_speed /= GameConfig.UNSTABLE_STUMBLE_MOVE_PENALTY
@@ -468,6 +472,7 @@ func _update_balance_state(delta: float) -> void:
 					_recover_balance()
 					return
 			else:
+				# 未执行 QTE 时风险进度持续上升，满值后进入真实摔倒。
 				var stumble_speed := 1.0 / GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
 				_unstable_stumble_progress = minf(_unstable_stumble_progress + delta * stumble_speed, 1.0)
 				EventBus.player_recovery_qte_progress.emit(_unstable_stumble_progress, _recovery_qte_pressed)
@@ -475,6 +480,7 @@ func _update_balance_state(delta: float) -> void:
 			if _unstable_stumble_progress >= 1.0:
 				_start_fall_ignoring_gameplay_lock(-global_transform.basis.z.normalized(), 0.0, _pending_stumble_lift_delta)
 		BalanceState.FALLING:
+			# 摔倒会持续滚动一小段距离并按节奏扣血，直到稳定地面或最大时长后起身。
 			_tumble_elapsed += delta
 			_fall_damage_elapsed += delta
 			_time_since_fall_damage += delta
@@ -521,6 +527,7 @@ func _recover_balance() -> void:
 func _apply_fall_damage(amount: int) -> void:
 	if not _attributes:
 		return
+	# 伤害按单次跌倒做总量上限，避免长时间滚动或重复回调造成连续扣血。
 	var remaining := GameConfig.TUMBLE_DAMAGE_CAP - _fall_damage_total
 	if remaining <= 0:
 		return
@@ -532,6 +539,7 @@ func _apply_fall_damage(amount: int) -> void:
 
 
 func _is_on_stable_surface() -> bool:
+	# 只有滚动足够距离且地面足够平才允许起身，避免在坡面/楼梯上刚恢复又立刻再摔。
 	if not is_on_floor() or _tumble_elapsed < 0.45:
 		return false
 	var horizontal_travel := Vector2(
