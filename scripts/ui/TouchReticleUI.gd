@@ -29,7 +29,7 @@ class _TouchReticle:
 
 	const RETICLE_COLOR := Color(0.42, 0.78, 1.0, 0.86)
 	const RETICLE_DIM_COLOR := Color(0.42, 0.78, 1.0, 0.28)
-	const RETICLE_CENTER := Vector2(0.16, 0.54)
+	const RETICLE_CENTER := Vector2(0.5, 0.5)
 
 	func _draw() -> void:
 		var viewport_size := get_viewport_rect().size

@@ -8,6 +8,7 @@ extends Node3D
 
 @export var cone_angle: float = GameConfig.CANE_SWEEP_ANGLE
 @export var pitch_angle: float = 120.0
+@export_range(0.0, 90.0, 1.0) var max_raise_angle: float = 30.0
 @export var cane_length: float = GameConfig.CANE_LENGTH
 @export var touch_memory_path: NodePath = ^"../TouchMemorySystem"
 
@@ -60,10 +61,10 @@ func apply_sweep(delta: Vector2) -> Vector2:
 		return Vector2.ZERO
 
 	var half_yaw := deg_to_rad(cone_angle * 0.5)
-	var half_pitch := deg_to_rad(pitch_angle * 0.5)
+	var pitch_limits := _pitch_limits()
 
 	var yaw_result := _apply_axis(_target_angle, delta.x, -half_yaw, half_yaw)
-	var pitch_result := _apply_axis(_target_pitch, delta.y, -half_pitch, half_pitch)
+	var pitch_result := _apply_axis(_target_pitch, delta.y, pitch_limits.x, pitch_limits.y)
 
 	_target_angle = yaw_result.x
 	_target_pitch = pitch_result.x
@@ -193,7 +194,7 @@ func _advance_to_safe_pose(from_angle: float, from_pitch: float, to_angle: float
 ## 在玩家移动把杖带进障碍时，搜索离当前姿态最近的安全姿态。
 func _find_recovery_pose() -> Vector2:
 	var half_yaw := deg_to_rad(cone_angle * 0.5)
-	var half_pitch := deg_to_rad(pitch_angle * 0.5)
+	var pitch_limits := _pitch_limits()
 	var best_pose := Vector2(_current_angle, _current_pitch)
 	var best_score := INF
 
@@ -201,7 +202,7 @@ func _find_recovery_pose() -> Vector2:
 	var yaw_steps := ceili(cone_angle / rad_to_deg(RECOVERY_STEP))
 
 	for pitch_index in range(-pitch_steps, pitch_steps + 1):
-		var pitch := clampf(_current_pitch + float(pitch_index) * RECOVERY_STEP, -half_pitch, half_pitch)
+		var pitch := clampf(_current_pitch + float(pitch_index) * RECOVERY_STEP, pitch_limits.x, pitch_limits.y)
 		for yaw_index in range(-yaw_steps, yaw_steps + 1):
 			var angle := clampf(_current_angle + float(yaw_index) * RECOVERY_STEP, -half_yaw, half_yaw)
 			if _shape_overlaps(angle, pitch):
@@ -432,6 +433,11 @@ func _apply_axis(current: float, delta: float, min_value: float, max_value: floa
 	var target := current + delta
 	var clamped_value := clampf(target, min_value, max_value)
 	return Vector2(clamped_value, target - clamped_value)
+
+
+func _pitch_limits() -> Vector2:
+	var half_pitch := deg_to_rad(pitch_angle * 0.5)
+	return Vector2(-half_pitch, minf(half_pitch, deg_to_rad(max_raise_angle)))
 
 
 func _create_visuals() -> void:
