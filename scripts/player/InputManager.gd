@@ -28,7 +28,7 @@ func _ready() -> void:
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
 	_interaction_system = get_node_or_null(interaction_system_path) as InteractionSystem
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
-	# Web 平台：阻止浏览器默认右键菜单，否则 MOUSE_BUTTON_RIGHT 会被拦截
+	# Web 平台：阻止浏览器默认右键菜单，否则记忆保留输入会被拦截。
 	if OS.has_feature("web") and Engine.has_singleton("JavaScriptBridge"):
 		JavaScriptBridge.eval("document.addEventListener('contextmenu', function(e){ e.preventDefault(); }, true);")
 
@@ -111,8 +111,11 @@ func _handle_mouse_button(event: InputEventMouseButton) -> void:
 		# 身体失衡锁视角期间也锁手触，避免摔倒/起身反馈中继续发起探测。
 		return
 	if event.button_index == GameConfig.KEY_TOUCH and _touch_memory and GameState.is_input_enabled():
-		# 右键是“手触”探测入口；它属于 gameplay 输入，所以仍要通过状态闸门。
+		# 左键是“手触”探测入口；它属于 gameplay 输入，所以仍要通过状态闸门。
 		_touch_memory.try_touch()
+	elif event.button_index == GameConfig.KEY_PIN_MEMORY and _touch_memory and GameState.is_input_enabled():
+		# 右键只操作屏幕中心已命中的记忆点；没有命中时由系统静默忽略。
+		_touch_memory.toggle_pinned_memory_at_screen_center()
 
 
 func _handle_key_pressed(event: InputEventKey) -> void:

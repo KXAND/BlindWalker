@@ -1,7 +1,7 @@
 # BlindWalker 交付版产品需求文档
 
 > 来源：`/grill-with-docs` 会话产出  
-> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`、`docs/adr/0017-wasd-directional-movement.md`、`docs/adr/0018-cane-stow-toggle.md`
+> 参考：`CONTEXT.md`（领域术语表）、`docs/adr/0003-continuous-movement.md`、`docs/adr/0017-wasd-directional-movement.md`、`docs/adr/0018-cane-stow-toggle.md`、`docs/adr/0019-pinned-touch-memory.md`
 > 最后更新：2026-08-12
 
 ---
@@ -10,7 +10,7 @@
 
 BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮演视障者，通过**盲杖探测**、**连续行走**和**触摸确认**，从街角安全走到目的地。核心挑战来自持续注意力分配（边走边探）+ 台阶/墙壁物理判定的组合。
 
-> **设计变更说明**：原设计采用离散步态（ADR-0001），经原型验证后改为连续移动（ADR-0003）。视角控制从独立模块改为 InputManager 统一管理（ADR-0005）。盲杖碰撞检测从射线方案迁移至 `intersect_shape` + 分步推进（ADR-0006，取代 ADR-0004）。触觉记忆系统改为右键手触 + 杖触共享显影（ADR-0007）。
+> **设计变更说明**：原设计采用离散步态（ADR-0001），经原型验证后改为连续移动（ADR-0003）。视角控制从独立模块改为 InputManager 统一管理（ADR-0005）。盲杖碰撞检测从射线方案迁移至 `intersect_shape` + 分步推进（ADR-0006，取代 ADR-0004）。触觉记忆系统改为左键手触 + 杖触共享显影，并支持右键保留关键记忆点（ADR-0007、ADR-0019）。
 
 ---
 
@@ -32,7 +32,8 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 按键 | `KEY_HIGH_STEP` | `KEY_SPACE` | 高抬腿模式（减速+可上台阶） |
 | 按键 | `KEY_LOOK_DIRECT` | `KEY_R` | 视角直控 |
 | 按键 | `KEY_CANE_TOGGLE` | `KEY_T` | 收起或展开盲杖 |
-| 按键 | `KEY_TOUCH` | `MOUSE_BUTTON_RIGHT` | 手触确认 |
+| 按键 | `KEY_TOUCH` | `MOUSE_BUTTON_LEFT` | 手触确认 |
+| 按键 | `KEY_PIN_MEMORY` | `MOUSE_BUTTON_RIGHT` | 切换屏幕中心记忆点的保留状态 |
 | 移动 | `WALK_SPEED` | `1.0` | 正常行走速度 (m/s) |
 | 移动 | `CAUTIOUS_SPEED` | `0.3` | 谨慎模式速度 (m/s) |
 | 移动 | `HIGH_STEP_SPEED` | `0.3` | 高抬腿模式速度 (m/s) |
@@ -43,6 +44,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 盲杖 | `CANE_STOW_DURATION` | `0.25` | 盲杖收放动画时长 (s) |
 | 触摸 | `TOUCH_YAW_OFFSET_DEG` | `0.0` | 手触射线默认沿相机正前方，可配置左右偏移 |
 | 触摸 | `TOUCH_DISTANCE` | `1.2` | 手触最大探测距离 (m) |
+| 触摸 | `MAX_PINNED_MEMORY_POINTS` | `8` | 最大保留触觉记忆点数 |
 | 杖触 | `CANE_TOUCH_MEMORY_SCALE` | `0.4` | 杖触记忆球相对手触半径的缩放 |
 | 杖触 | `CANE_TOUCH_MEMORY_LIFETIME` | `8.0` | 杖触显影球寿命 (s) |
 | 杖触 | `CANE_TOUCH_MEMORY_MIN_DISTANCE` | `0.45` | 连续杖触生成新记忆点的最小空间间隔 (m) |
@@ -151,7 +153,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | V4 | Pitch 限制在 -80° 到 +80° 之间 |
 | V5 | WASD 持续检测：将归一化移动向量转发给 GaitController，支持前后左右及斜向移动 |
 | V6 | SHIFT / SPACE 持续状态检测，转发给 GaitController |
-| V7 | 鼠标右键触发 `TouchMemorySystem.try_touch()`；Web 平台阻止浏览器默认右键菜单 |
+| V7 | 鼠标左键触发 `TouchMemorySystem.try_touch()`；右键切换屏幕中心命中的记忆点保留状态；Web 平台阻止浏览器默认右键菜单 |
 | V8 | ESC 由设置菜单/叙事层优先处理，InputManager 不触发 gameplay 行为 |
 | V9 | 输入处理入口查询 `GameState.is_input_enabled()` |
 | V10 | 盲杖收起或收放动画期间，鼠标位移全部转为玩家 Yaw/Pitch；展杖完成后恢复先扫杖再转视角的规则 |
@@ -175,17 +177,20 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 
 ### 2.6 TouchMemorySystem（感知 · 触摸确认）
 
-通过着色器后处理显示触觉记忆点。右键手触和盲杖接触共享同一套显影/残影生命周期（ADR-0007）。
+通过着色器后处理显示触觉记忆点。左键手触和杖触接触共享同一套显影/残影生命周期（ADR-0007）；右键可保留屏幕中心命中的记忆点（ADR-0019）。
 
 **需求**：
 
 | ID | 需求 |
 |----|------|
-| T1 | 鼠标右键触发手触记忆；方向默认沿相机正前方，随俯仰角联动，可通过 `TOUCH_YAW_OFFSET_DEG` 调整左右偏移 |
+| T1 | 鼠标左键触发手触记忆；方向默认沿相机正前方，随俯仰角联动，可通过 `TOUCH_YAW_OFFSET_DEG` 调整左右偏移 |
 | T2 | 暴露 `spawn_touch_memory(position, active_radius, active_life, afterglow_radius, afterglow_life)`，供 CaneSystem 直接生成杖触记忆 |
 | T3 | 每次触摸/杖触生成显影球和残影球；显影球靠近玩家时暂停衰减，远离时随时间缩小 |
 | T4 | 不同来源的记忆点保留自己的初始半径；达到 `MAX_SPHERES` 时淘汰最旧点 |
 | T5 | 后处理在记忆球范围内显示轮廓显影；平滑表面缺少边缘时使用弱面显影保证可见性 |
+| T6 | 鼠标右键仅切换屏幕中心射线命中的完整记忆点（显影球 + 残影球）的保留状态；未命中时无效果 |
+| T7 | 保留记忆点不衰减，最多 8 个；新增第 9 个时取消最早保留者，且保留记忆优先进入着色器球预算 |
+| T8 | 保留状态只存在于当前游戏场景生命周期，重开或回到主页后清空 |
 
 ---
 

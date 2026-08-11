@@ -10,7 +10,8 @@ const KEY_CAUTIOUS := KEY_SHIFT
 const KEY_HIGH_STEP := KEY_SPACE
 const KEY_LOOK_DIRECT := KEY_R
 const KEY_CANE_TOGGLE := KEY_T
-const KEY_TOUCH := MOUSE_BUTTON_RIGHT
+const KEY_TOUCH := MOUSE_BUTTON_LEFT
+const KEY_PIN_MEMORY := MOUSE_BUTTON_RIGHT
 const KEY_INTERACT := KEY_E
 
 # ---- 移动参数 ----
@@ -45,6 +46,7 @@ const TOUCH_YAW_OFFSET_DEG: float = 0.0      ## 手触摸射线沿相机正前�
 const TOUCH_DISTANCE: float = 1.2            ## 手触摸最大探测距离（米）
 const TOUCH_MEMORY_RADIUS: float = 0.5      ## 手触摸显影半径（米）
 const TOUCH_AFTERGLOW_RADIUS: float = 0.5   ## 手触摸残影半径（米）
+const MAX_PINNED_MEMORY_POINTS := 8
 
 # ---- 杖触内存参数 ----
 const CANE_TOUCH_MEMORY_RADIUS: float = 0.6  ## 盲杖触碰显影半径（米）

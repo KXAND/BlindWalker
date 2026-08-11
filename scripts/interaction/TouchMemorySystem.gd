@@ -51,6 +51,8 @@ var _material: ShaderMaterial = null
 # 显影球与残影球
 var _active_spheres: Array[_TouchSphere] = []
 var _afterglow_spheres: Array[_TouchSphere] = []
+var _pinned_memory_ids: Array[int] = []
+var _next_memory_id: int = 0
 
 # 调试用
 var _debug_light: DirectionalLight3D = null
@@ -134,8 +136,12 @@ func _update_sphere_uniforms() -> void:
 	if not _material:
 		return
 
-	var all_spheres: Array = _active_spheres.duplicate()
-	all_spheres.append_array(_afterglow_spheres)
+	# 保留记忆必须优先占用着色器预算，不能被大量临时显影挤出画面。
+	var all_spheres: Array[_TouchSphere] = []
+	_append_render_spheres(all_spheres, _active_spheres, true)
+	_append_render_spheres(all_spheres, _afterglow_spheres, true)
+	_append_render_spheres(all_spheres, _active_spheres, false)
+	_append_render_spheres(all_spheres, _afterglow_spheres, false)
 
 	var count: int = mini(all_spheres.size(), MAX_SPHERES)
 
@@ -168,9 +174,19 @@ func _update_sphere_uniforms() -> void:
 	_material.set_shader_parameter("sphere_count", count)
 
 
+func _append_render_spheres(
+	output: Array[_TouchSphere],
+	spheres: Array[_TouchSphere],
+	pinned: bool
+) -> void:
+	for sphere in spheres:
+		if sphere.is_pinned == pinned:
+			output.append(sphere)
+
+
 # ---- 触摸探测 ----
 
-## 执行一次手触摸（由 InputManager 右键触发）。
+## 执行一次手触摸（由 InputManager 左键触发）。
 ## 射线方向：默认沿相机正前方，可通过 TOUCH_YAW_OFFSET_DEG 调整左右偏移。
 func try_touch() -> void:
 	if not _camera or not _material:
@@ -220,6 +236,8 @@ func spawn_touch_memory(
 ) -> bool:
 	if not _material:
 		return false
+	var memory_id := _next_memory_id
+	_next_memory_id += 1
 
 	# 显影球提供短期强反馈，告诉玩家“刚摸到这里”。
 	var active_sphere := _TouchSphere.new()
@@ -228,6 +246,7 @@ func spawn_touch_memory(
 	active_sphere.initial_radius = active_radius
 	active_sphere.color = reveal_color
 	active_sphere.contact_profile_id = contact_profile_id
+	active_sphere.memory_id = memory_id
 	active_sphere.age = 0.0
 	active_sphere.max_age = active_life
 	active_sphere.strength = 1.0
@@ -240,19 +259,97 @@ func spawn_touch_memory(
 	afterglow_sphere.initial_radius = afterglow_radius
 	afterglow_sphere.color = reveal_color
 	afterglow_sphere.contact_profile_id = contact_profile_id
+	afterglow_sphere.memory_id = memory_id
 	afterglow_sphere.age = 0.0
 	afterglow_sphere.max_age = afterglow_life
 	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
 	_afterglow_spheres.append(afterglow_sphere)
 
-	# 保持上限，避免着色器 uniform 数组溢出；旧记忆自然被新探索覆盖。
-	if _active_spheres.size() > MAX_SPHERES:
-		_active_spheres.pop_front()
-	if _afterglow_spheres.size() > MAX_SPHERES:
-		_afterglow_spheres.pop_front()
+	# 临时记忆超过上限时只淘汰未保留项，保留项由独立的 8 个名额约束。
+	_trim_temporary_spheres(_active_spheres)
+	_trim_temporary_spheres(_afterglow_spheres)
 
 	_update_sphere_uniforms()
 	return true
+
+
+func toggle_pinned_memory_at_screen_center() -> bool:
+	if not _camera:
+		return false
+	var memory_id: int = _memory_id_at_screen_center()
+	if memory_id < 0:
+		return false
+	var was_pinned: bool = _pinned_memory_ids.has(memory_id)
+	_toggle_pinned_memory(memory_id)
+	AudioManager.play_2d("memory_unpin" if was_pinned else "memory_pin", -8.0, &"touch_memory")
+	_update_sphere_uniforms()
+	return true
+
+
+func _toggle_pinned_memory(memory_id: int) -> void:
+	if _pinned_memory_ids.has(memory_id):
+		_pinned_memory_ids.erase(memory_id)
+		_set_memory_pinned(memory_id, false)
+	else:
+		if _pinned_memory_ids.size() >= GameConfig.MAX_PINNED_MEMORY_POINTS:
+			var oldest_memory_id: int = int(_pinned_memory_ids.pop_front())
+			_set_memory_pinned(oldest_memory_id, false)
+		_pinned_memory_ids.append(memory_id)
+		_set_memory_pinned(memory_id, true)
+
+
+func _memory_id_at_screen_center() -> int:
+	var viewport: Viewport = _camera.get_viewport()
+	var screen_center: Vector2 = viewport.get_visible_rect().get_center()
+	var ray_origin: Vector3 = _camera.project_ray_origin(screen_center)
+	var ray_direction: Vector3 = _camera.project_ray_normal(screen_center).normalized()
+	var nearest_distance: float = INF
+	var selected_memory_id: int = -1
+	var selectable_spheres: Array[_TouchSphere] = _active_spheres.duplicate()
+	selectable_spheres.append_array(_afterglow_spheres)
+	for sphere: _TouchSphere in selectable_spheres:
+		if sphere.strength <= 0.01 or sphere.radius <= 0.01:
+			continue
+		var hit_distance: float = _ray_sphere_hit_distance(ray_origin, ray_direction, sphere.center, sphere.radius)
+		if hit_distance >= 0.0 and hit_distance < nearest_distance:
+			nearest_distance = hit_distance
+			selected_memory_id = sphere.memory_id
+	return selected_memory_id
+
+
+func _ray_sphere_hit_distance(origin: Vector3, direction: Vector3, center: Vector3, radius: float) -> float:
+	var offset := origin - center
+	var projection := offset.dot(direction)
+	var discriminant := projection * projection - (offset.length_squared() - radius * radius)
+	if discriminant < 0.0:
+		return -1.0
+	var root: float = sqrt(discriminant)
+	var near_distance: float = -projection - root
+	if near_distance >= 0.0:
+		return near_distance
+	var far_distance: float = -projection + root
+	return far_distance if far_distance >= 0.0 else -1.0
+
+
+func _set_memory_pinned(memory_id: int, pinned: bool) -> void:
+	for sphere in _active_spheres:
+		if sphere.memory_id == memory_id:
+			sphere.is_pinned = pinned
+	for sphere in _afterglow_spheres:
+		if sphere.memory_id == memory_id:
+			sphere.is_pinned = pinned
+
+
+func _trim_temporary_spheres(spheres: Array[_TouchSphere]) -> void:
+	while spheres.size() > MAX_SPHERES:
+		var oldest_temporary_index := -1
+		for i in range(spheres.size()):
+			if not spheres[i].is_pinned:
+				oldest_temporary_index = i
+				break
+		if oldest_temporary_index < 0:
+			return
+		spheres.remove_at(oldest_temporary_index)
 
 
 func is_world_position_revealed(world_position: Vector3) -> bool:
@@ -291,6 +388,8 @@ func _process(delta: float) -> void:
 	# 显影球：远离时随时间缩小，靠近时暂停
 	for i in range(_active_spheres.size() - 1, -1, -1):
 		var s: _TouchSphere = _active_spheres[i]
+		if s.is_pinned:
+			continue
 		var dist_to_player: float = _camera.global_position.distance_to(s.center)
 
 		if dist_to_player >= DIST_NEAR:
@@ -308,6 +407,8 @@ func _process(delta: float) -> void:
 	# 残影球：长期缓慢衰减
 	for i in range(_afterglow_spheres.size() - 1, -1, -1):
 		var s: _TouchSphere = _afterglow_spheres[i]
+		if s.is_pinned:
+			continue
 		s.age += delta
 		var age_factor: float = 1.0 - (s.age / s.max_age)
 		s.strength = AFTERGLOW_INIT_STRENGTH * age_factor

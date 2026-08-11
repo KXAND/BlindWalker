@@ -53,6 +53,8 @@ var _sound_paths: Dictionary = {
 	"fall": "res://assets/audio/sfx/fall.wav",
 	"spray": "res://assets/audio/sfx/spray.ogg",
 	"touch": "res://assets/audio/sfx/touch.ogg",
+	"memory_pin": "res://assets/audio/sfx/memory_pin.wav",
+	"memory_unpin": "res://assets/audio/sfx/memory_unpin.wav",
 	"npc_approach": "res://assets/audio/sfx/npc_approach.ogg",
 	"victory": "res://assets/audio/sfx/victory.ogg",
 	"failure": "res://assets/audio/sfx/failure.ogg",

@@ -66,7 +66,7 @@
 | 术语 | 定义 |
 |------|------|
 | **GameConfig** | `class_name` 全局配置类，`scripts/core/GameConfig.gd`。非 autoload，通过 `class_name` 全局引用，类似 Python import。包含所有可调常量：按键映射、步态参数、盲杖参数、摔跤参数。 |
-| **按键映射** | `KEY_FORWARD`(W)、`KEY_BACKWARD`(S)、`KEY_LEFT`(A)、`KEY_RIGHT`(D)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_CANE_TOGGLE`(T)、`KEY_TOUCH`(MOUSE_RIGHT)。运行时不可变。 |
+| **按键映射** | `KEY_FORWARD`(W)、`KEY_BACKWARD`(S)、`KEY_LEFT`(A)、`KEY_RIGHT`(D)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_CANE_TOGGLE`(T)、`KEY_TOUCH`(MOUSE_LEFT)、`KEY_PIN_MEMORY`(MOUSE_RIGHT)。运行时不可变。 |
 | **数据类 (Data Class)** | 自定义数据结构，独立 `.gd` 文件 + `class_name`，放 `scripts/core/`。如 `StepResult`、`CaneHitInfo`、`NpcDialogue`。GDScript 约定：一个 `.gd` 文件 = 一个 class。 |
 
 ## 交互 (Interaction)
@@ -94,7 +94,8 @@
 | **触觉记忆点 (Touch Memory Point)** | 一次手触或杖触在世界空间留下的局部感知标记，由显影球和残影球共同表达。 |
 | **显影球 (Active Sphere)** | 触摸后生成、玩家远离时随时间缩小、靠近时暂停的实时反馈球；手触和杖触都遵循该生命周期，只是参数不同。 |
 | **残影球 (Afterglow Sphere)** | 与显影球同位置生成、长期缓慢衰减的持久标记球，不受玩家距离影响。 |
-| **手触记忆 (Hand Touch Memory)** | 右键主动探测后留下的触觉记忆点，方向为相机局部左前方约 45 度，范围较大、寿命较长。 |
+| **持久触觉记忆点 (Pinned Memory Point)** | 玩家用屏幕中心射线选中后手动保留的显影球与残影球配对；两者均不再衰减。射线未命中记忆点时不产生效果。右键再次命中已保留点会取消保留。每个记忆点占用一个保留名额，最多同时保留 8 个；新增第 9 个时自动取消最早保留者。状态只存在于当前游戏场景生命周期。 |
+| **手触记忆 (Hand Touch Memory)** | 左键主动探测后留下的触觉记忆点，方向为相机局部左前方约 45 度，范围较大、寿命较长。 |
 | **杖触记忆 (Cane Touch Memory)** | 盲杖接触环境时自动留下的触觉记忆点，范围较小、寿命较短，并通过接触节流形成连续但稀疏的路径感。 |
 | **接触节流 (Contact Throttling)** | 杖触显影的生成规则：新接触段首次接触立即生成；同一接触段内必须同时满足空间距离和冷却时间才生成新触觉记忆点，防止同一点持续刷反馈，同时允许沿大物体留下连续但稀疏的点。 |
 | **触碰属性 (Contact Profile)** | 对象或部件被手触或杖触感知时使用的反馈属性，不等同于渲染材质、真实材质或物体身份。 |
