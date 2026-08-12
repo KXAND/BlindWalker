@@ -3,7 +3,6 @@
 [ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
-
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 text = "我叫晓明，是一名22岁的失明的大学生。"

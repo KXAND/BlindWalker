@@ -7,3 +7,5 @@
 .agents/
 .codebuddy/
 skills-lock.json
+.claude/
+.mcp.json
