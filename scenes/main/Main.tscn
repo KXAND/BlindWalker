@@ -72,7 +72,6 @@
 [ext_resource type="Script" uid="uid://xide7x5phyf7" path="res://scripts/ui/SettingsMenuUI.gd" id="settings_menu_ui"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
-[ext_resource type="Script" uid="uid://bcb71qfoqaxjw" path="res://scripts/ui/TouchReticleUI.gd" id="touch_reticle_ui"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -11749,9 +11748,6 @@ script = ExtResource("distance_hud")
 
 [node name="QtePromptUI" type="CanvasLayer" parent="." unique_id=356585125]
 script = ExtResource("qte_prompt_ui")
-
-[node name="TouchReticleUI" type="CanvasLayer" parent="." unique_id=1637134706]
-script = ExtResource("touch_reticle_ui")
 
 [node name="SettingsMenuUI" type="CanvasLayer" parent="." unique_id=1985382702]
 script = ExtResource("settings_menu_ui")
