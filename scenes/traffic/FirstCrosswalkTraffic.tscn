@@ -1,0 +1,152 @@
+[gd_scene load_steps=14 format=3]
+
+[ext_resource type="Script" path="res://scripts/traffic/TrafficSystem.gd" id="1_system"]
+[ext_resource type="Script" path="res://scripts/traffic/TrafficCrossing.gd" id="2_crossing"]
+[ext_resource type="Script" path="res://scripts/traffic/TrafficLane.gd" id="3_lane"]
+[ext_resource type="Script" path="res://scripts/traffic/TrafficVehicle.gd" id="4_vehicle"]
+[ext_resource type="Script" path="res://scripts/traffic/TrafficRespawnPoint.gd" id="5_respawn"]
+[ext_resource type="Script" path="res://scripts/traffic/StreetAmbienceZone.gd" id="6_ambience"]
+[ext_resource type="PackedScene" path="res://addons/kaykit_city_builder_bits/Assets/gltf/car_hatchback.gltf" id="7_hatchback"]
+[ext_resource type="PackedScene" path="res://addons/kaykit_city_builder_bits/Assets/gltf/car_sedan.gltf" id="8_sedan"]
+[ext_resource type="PackedScene" path="res://scenes/Street/trafficlight_A.tscn" id="9_light"]
+
+[sub_resource type="BoxShape3D" id="VehicleBodyShape"]
+size = Vector3(1.7, 1.4, 3.8)
+
+[sub_resource type="BoxShape3D" id="VehicleImpactShape"]
+size = Vector3(1.75, 1.5, 3.85)
+
+[sub_resource type="BoxShape3D" id="VehicleForwardDetectionShape"]
+size = Vector3(2.7, 1.8, 2.5)
+
+[sub_resource type="BoxShape3D" id="CrosswalkClearanceShape"]
+size = Vector3(6, 2.5, 10)
+
+[node name="FirstCrosswalkTraffic" type="Node3D"]
+script = ExtResource("1_system")
+
+[node name="Crossing" type="Node3D" parent="."]
+position = Vector3(-4.6, 0.1, -4)
+script = ExtResource("2_crossing")
+red_duration = 16.0
+green_duration = 16.0
+clearance_area_path = NodePath("../CrosswalkClearanceArea")
+
+[node name="TrafficLightModel" parent="Crossing" instance=ExtResource("9_light")]
+
+[node name="CrosswalkClearanceArea" type="Area3D" parent="."]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="CrosswalkClearanceArea"]
+position = Vector3(0, 1.1, 0)
+shape = SubResource("CrosswalkClearanceShape")
+
+[node name="NorthboundLane" type="Path3D" parent="."]
+script = ExtResource("3_lane")
+lane_points = PackedVector3Array(-1.75, 0.2, -30, -1.75, 0.2, 30)
+
+[node name="NorthboundCar" type="PathFollow3D" parent="NorthboundLane"]
+script = ExtResource("4_vehicle")
+crossing_path = NodePath("../../Crossing")
+traffic_system_path = NodePath("../..")
+impact_area_path = NodePath("ImpactArea")
+base_speed = 8.0
+clearance_speed = 6.0
+acceleration = 3.5
+stop_progress = 23.0
+clearance_end_progress = 37.0
+progress = 5.0
+
+[node name="Visual" parent="NorthboundLane/NorthboundCar" instance=ExtResource("7_hatchback")]
+scale = Vector3(4, 4, 4)
+
+[node name="PhysicalBody" type="AnimatableBody3D" parent="NorthboundLane/NorthboundCar"]
+top_level = true
+collision_layer = 4
+collision_mask = 1
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthboundLane/NorthboundCar/PhysicalBody"]
+position = Vector3(0, 0.75, 0)
+shape = SubResource("VehicleBodyShape")
+
+[node name="ForwardDetection" type="Area3D" parent="NorthboundLane/NorthboundCar"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthboundLane/NorthboundCar/ForwardDetection"]
+position = Vector3(0, 0.9, -3.15)
+shape = SubResource("VehicleForwardDetectionShape")
+
+[node name="ImpactArea" type="Area3D" parent="NorthboundLane/NorthboundCar"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="NorthboundLane/NorthboundCar/ImpactArea"]
+position = Vector3(0, 0.8, 0)
+shape = SubResource("VehicleImpactShape")
+
+[node name="SouthboundLane" type="Path3D" parent="."]
+script = ExtResource("3_lane")
+lane_points = PackedVector3Array(1.75, 0.2, 30, 1.75, 0.2, -30)
+
+[node name="SouthboundCar" type="PathFollow3D" parent="SouthboundLane"]
+script = ExtResource("4_vehicle")
+crossing_path = NodePath("../../Crossing")
+traffic_system_path = NodePath("../..")
+impact_area_path = NodePath("ImpactArea")
+base_speed = 8.0
+clearance_speed = 6.0
+acceleration = 3.5
+stop_progress = 23.0
+clearance_end_progress = 37.0
+progress = 35.0
+
+[node name="Visual" parent="SouthboundLane/SouthboundCar" instance=ExtResource("8_sedan")]
+scale = Vector3(4, 4, 4)
+
+[node name="PhysicalBody" type="AnimatableBody3D" parent="SouthboundLane/SouthboundCar"]
+top_level = true
+collision_layer = 4
+collision_mask = 1
+sync_to_physics = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthboundLane/SouthboundCar/PhysicalBody"]
+position = Vector3(0, 0.75, 0)
+shape = SubResource("VehicleBodyShape")
+
+[node name="ForwardDetection" type="Area3D" parent="SouthboundLane/SouthboundCar"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthboundLane/SouthboundCar/ForwardDetection"]
+position = Vector3(0, 0.9, -3.15)
+shape = SubResource("VehicleForwardDetectionShape")
+
+[node name="ImpactArea" type="Area3D" parent="SouthboundLane/SouthboundCar"]
+collision_layer = 0
+collision_mask = 1
+monitorable = false
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="SouthboundLane/SouthboundCar/ImpactArea"]
+position = Vector3(0, 0.8, 0)
+shape = SubResource("VehicleImpactShape")
+
+[node name="WestRoadsideRespawn" type="Marker3D" parent="."]
+position = Vector3(-5.5, 0.4, 0)
+script = ExtResource("5_respawn")
+
+[node name="EastRoadsideRespawn" type="Marker3D" parent="."]
+position = Vector3(5.5, 0.4, 0)
+script = ExtResource("5_respawn")
+
+[node name="StreetAmbienceZone" type="Node3D" parent="."]
+position = Vector3(0, 0, -25.5)
+script = ExtResource("6_ambience")
+half_extents = Vector3(7, 2, 49)
+fade_distance = 20.0
