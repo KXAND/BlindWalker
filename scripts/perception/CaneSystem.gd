@@ -8,7 +8,7 @@ extends Node3D
 
 @export var cone_angle: float = GameConfig.CANE_SWEEP_ANGLE
 @export var pitch_angle: float = 120.0
-@export_range(0.0, 90.0, 1.0) var max_raise_angle: float = 30.0
+@export_range(0.0, 90.0, 1.0) var max_raise_angle: float = 20.0
 @export var cane_length: float = GameConfig.CANE_LENGTH
 @export var touch_memory_path: NodePath = ^"../TouchMemorySystem"
 
@@ -30,7 +30,7 @@ var _cane_touch_elapsed: float = 0.0
 var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
-var _is_deployed: bool = true
+var _is_deployed: bool = false
 var _is_transitioning: bool = false
 var _deployed_rotation: Vector3 = Vector3.ZERO
 var _stow_anchor: Vector3 = Vector3.ZERO
@@ -61,6 +61,7 @@ func _ready() -> void:
 	_create_visuals()
 	_set_visible_length(cane_length)
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
+	_initialize_stowed_state()
 
 
 func apply_sweep(delta: Vector2) -> Vector2:
@@ -445,6 +446,18 @@ func _begin_stow() -> void:
 	_set_perception_enabled(false)
 	_rod.visible = true
 	_animate_rotation(rotation, _transition_target_rotation, _finish_stow)
+
+
+## 开局直接进入收杖完成态，避免先显示或播放一次多余的收杖动画。
+func _initialize_stowed_state() -> void:
+	_deployed_rotation = rotation
+	_stow_anchor = position + Basis.from_euler(rotation) * GRIP_OFFSET
+	_transition_target_rotation = Vector3(STOWED_PITCH, rotation.y, 0.0)
+	_reset_contact_state()
+	_set_perception_enabled(false)
+	_apply_rotation_about_grip(_transition_target_rotation)
+	_rod.visible = false
+	_is_transitioning = false
 
 
 func _begin_deploy() -> void:
