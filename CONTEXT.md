@@ -28,12 +28,14 @@
 
 | 术语 | 定义 |
 |------|------|
-| **扫动 (Sweep)** | 玩家鼠标 X/Y 轴控制盲杖左右/上下摆动，限制在一个锥形夹角内。每物理帧做形状重叠检测。 |
-| **锥角 (Cone)** | 盲杖扫动的角度范围。锥角内 → 只移盲杖。 |
-| **锥角溢出 (Cone Overflow)** | 盲杖到达锥角极限 + 继续推鼠标 → 旋转玩家视角。 |
+| **扫动 (Sweep)** | 玩家鼠标 X/Y 轴控制盲杖左右/上下摆动。X 使用水平锥角；Y 默认使用点杖区间 A，按住 R 时使用姿态区间 B。每物理帧做形状重叠检测。 |
+| **水平锥角 (Yaw Cone)** | 盲杖相对玩家朝向的水平扫动范围；范围内只移动盲杖。 |
+| **点杖区间 A (Fine Pitch Range)** | 未按 R 时的纵向小范围，默认总宽度 16°。用于反复点地和抬起；到达边界后的输入才转动视角。 |
+| **姿态区间 B (Posture Pitch Range)** | 按住 R 时启用的完整纵向范围，用于主动大幅抬高或放低盲杖。松开 R 后，以当前实际姿态为中心建立新的 A。 |
+| **锥角溢出 (Cone Overflow)** | 盲杖到达当前水平或纵向范围边界后继续推鼠标，超出的输入转为玩家视角旋转。 |
 | **碰撞停杖 (Collision Stop)** | 盲杖碰到障碍物时旋转被阻止，杖身全长不变，鼠标继续推则溢出转视角。杖身不缩短。 |
-| **目标姿态 (Target Pose)** | 玩家鼠标输入写入的期望角度（`_target_angle / _target_pitch`）。不直接应用，由每帧分步推进检测后才落地为当前姿态。 |
-| **当前姿态 (Current Pose)** | 物理帧确认无重叠后实际应用到 `rotation` 的角度（`_current_angle / _current_pitch`）。任何时刻均无穿模。 |
+| **目标姿态 (Target Pose)** | 玩家鼠标输入写入的盲杖期望姿态（`_target_angle / _target_pitch`）。目标不直接应用，由物理帧分步验证。 |
+| **当前姿态 (Current Pose)** | 物理帧确认无重叠后的盲杖实际姿态（`_current_angle / _current_pitch`）；视角溢出不会继续带动已经到达边界的盲杖。 |
 | **分步推进 (Stepped Advance)** | 每帧将当前姿态向目标姿态推进时，将角度差切成 ≤ 3° 的小步逐步测试，遇到重叠立即停在上一步的安全姿态。防止快速扫动跳过薄墙。 |
 | **位移穿模恢复 (Displacement Recovery)** | 玩家前进把整根杖带入障碍时，在锥角范围内以 6° 为步长网格搜索距当前姿态最近的无重叠姿态并跳转。 |
 | **可视长度应急缩短 (Emergency Retract)** | 位移穿模无法恢复（整个锥角都重叠）时的最后防线：用射线求实际碰撞距，临时缩短可视杆至该距离，保证画面不穿墙。正常游玩几乎不触发。 |
@@ -48,7 +50,7 @@
 | 术语 | 定义 |
 |------|------|
 | **身体朝向** | 玩家身体前方 = 摄像机朝向，两者永远一致。 |
-| **视角旋转** | 只有两种触发：R 键直接控制 + 盲杖锥角溢出。 |
+| **视角旋转** | 盲杖展开时由水平锥角或当前纵向区间的溢出触发；盲杖收起或过渡时由鼠标直接控制。 |
 | **镜头调度 (Camera Motion)** | 用于表达踉跄、摔倒、滚落、起身等身体状态的临时视觉反馈。它不改变玩家真实朝向，也不改变盲杖、触摸或目标检测方向。 |
 | **踉跄镜头 (Stumble Camera)** | 踉跄时的短促不稳定镜头反馈，强度弱于摔倒镜头。 |
 | **摔倒镜头 (Fall Camera)** | 摔倒时的明显下坠、倾斜和贴近地面的镜头反馈；摔倒/滚落/起身期间视角锁定，恢复后镜头回到正常状态。 |
@@ -85,7 +87,7 @@
 | 术语 | 定义 |
 |------|------|
 | **GameConfig** | `class_name` 全局配置类，`scripts/core/GameConfig.gd`。非 autoload，通过 `class_name` 全局引用，类似 Python import。包含所有可调常量：按键映射、步态参数、盲杖参数、摔跤参数。 |
-| **按键映射** | `KEY_FORWARD`(W)、`KEY_BACKWARD`(S)、`KEY_LEFT`(A)、`KEY_RIGHT`(D)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_LOOK_DIRECT`(R)、`KEY_CANE_TOGGLE`(T)、`KEY_TOUCH`(MOUSE_LEFT)、`KEY_PIN_MEMORY`(MOUSE_RIGHT)。运行时不可变。 |
+| **按键映射** | `KEY_FORWARD`(W)、`KEY_BACKWARD`(S)、`KEY_LEFT`(A)、`KEY_RIGHT`(D)、`KEY_CAUTIOUS`(SHIFT)、`KEY_HIGH_STEP`(SPACE)、`KEY_CANE_POSTURE`(R)、`KEY_CANE_TOGGLE`(T)、`KEY_TOUCH`(MOUSE_LEFT)、`KEY_PIN_MEMORY`(MOUSE_RIGHT)。运行时不可变。 |
 | **数据类 (Data Class)** | 自定义数据结构，独立 `.gd` 文件 + `class_name`，放 `scripts/core/`。如 `StepResult`、`CaneHitInfo`、`NpcDialogue`。GDScript 约定：一个 `.gd` 文件 = 一个 class。 |
 
 ## 交互 (Interaction)
