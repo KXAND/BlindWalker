@@ -15,7 +15,7 @@ const DEFAULT_PROFILE: Resource = preload("res://assets/contact_profiles/default
 static var _warned_missing: Dictionary = {}
 
 
-static func resolve_profile(collider: Object, _source: StringName = &"unknown") -> Resource:
+static func resolve_profile(collider: Object, source: StringName = &"unknown") -> Resource:
 	var node := collider as Node
 	while node:
 		var provider := _find_provider_on(node)
@@ -23,7 +23,8 @@ static func resolve_profile(collider: Object, _source: StringName = &"unknown") 
 			return provider.profile
 		node = node.get_parent()
 
-	if GameConfig.DEBUG:
+	# 脚底显影会持续自动查询地面；缺失属性仍使用默认值，但不为每块地面刷调试日志。
+	if GameConfig.DEBUG and source != &"foot":
 		var key := _object_path(collider)
 		if not _warned_missing.has(key):
 			_warned_missing[key] = true

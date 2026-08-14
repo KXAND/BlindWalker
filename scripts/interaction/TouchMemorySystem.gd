@@ -51,6 +51,7 @@ var _material: ShaderMaterial = null
 # 显影球与残影球
 var _active_spheres: Array[_TouchSphere] = []
 var _afterglow_spheres: Array[_TouchSphere] = []
+var _foot_reveal_sphere: _TouchSphere = null
 var _pinned_memory_ids: Array[int] = []
 var _next_memory_id: int = 0
 
@@ -66,6 +67,7 @@ func _ready() -> void:
 		push_error("TouchMemorySystem: 未找到 Camera3D")
 		return
 
+	_create_foot_reveal_sphere()
 	_create_fullscreen_quad()
 	_apply_debug_mode()
 
@@ -130,16 +132,70 @@ func _get_inv_view_matrix() -> Projection:
 	return Projection(_camera.global_transform)
 
 
+func _create_foot_reveal_sphere() -> void:
+	# 脚下球复用普通活动显影的全部视觉规则，只把生命周期改为常驻并持续跟随。
+	_foot_reveal_sphere = _TouchSphere.new()
+	_configure_active_reveal_visual(
+		_foot_reveal_sphere,
+		global_position,
+		GameConfig.TOUCH_MEMORY_RADIUS,
+		_ContactProfileProvider.reveal_color(null),
+		&"default_contact"
+	)
+	_update_foot_reveal_from_ground()
+
+
+func _update_foot_reveal_from_ground() -> void:
+	if not _foot_reveal_sphere:
+		return
+	var player := get_parent() as Node3D
+	if not player:
+		return
+	_foot_reveal_sphere.center = player.global_position
+	var exclude_rid: RID = player.get_rid() if player is CharacterBody3D else RID()
+	var result := _RaycastUtil.query_body(
+		get_world_3d().direct_space_state,
+		player.global_position + Vector3.UP * 1.5,
+		player.global_position + Vector3.DOWN * 1.5,
+		exclude_rid
+	)
+	if result.is_empty():
+		_foot_reveal_sphere.color = _ContactProfileProvider.reveal_color(null)
+		_foot_reveal_sphere.contact_profile_id = &"default_contact"
+		return
+	var profile := _ContactProfileProvider.resolve_profile(result["collider"], &"foot")
+	_foot_reveal_sphere.center = result["position"]
+	_foot_reveal_sphere.color = _ContactProfileProvider.reveal_color(profile)
+	_foot_reveal_sphere.contact_profile_id = _ContactProfileProvider.profile_id(profile)
+
+
+func _configure_active_reveal_visual(
+	sphere: _TouchSphere,
+	center: Vector3,
+	radius: float,
+	reveal_color: Color,
+	contact_profile_id: StringName
+) -> void:
+	sphere.center = center
+	sphere.radius = radius
+	sphere.initial_radius = radius
+	sphere.color = reveal_color
+	sphere.contact_profile_id = contact_profile_id
+	sphere.strength = 1.0
+
+
 # ---- 球数据更新 ----
 
 func _update_sphere_uniforms() -> void:
 	if not _material:
 		return
 
-	# 保留记忆必须优先占用着色器预算，不能被大量临时显影挤出画面。
+	# 脚下球与普通活动显影处于同一层级；普通临时显影在重叠时后写入并优先显示。
 	var all_spheres: Array[_TouchSphere] = []
 	_append_render_spheres(all_spheres, _active_spheres, true)
 	_append_render_spheres(all_spheres, _afterglow_spheres, true)
+	if _foot_reveal_sphere:
+		all_spheres.append(_foot_reveal_sphere)
 	_append_render_spheres(all_spheres, _active_spheres, false)
 	_append_render_spheres(all_spheres, _afterglow_spheres, false)
 
@@ -241,15 +297,16 @@ func spawn_touch_memory(
 
 	# 显影球提供短期强反馈，告诉玩家“刚摸到这里”。
 	var active_sphere := _TouchSphere.new()
-	active_sphere.center = hit_point
-	active_sphere.radius = active_radius
-	active_sphere.initial_radius = active_radius
-	active_sphere.color = reveal_color
-	active_sphere.contact_profile_id = contact_profile_id
+	_configure_active_reveal_visual(
+		active_sphere,
+		hit_point,
+		active_radius,
+		reveal_color,
+		contact_profile_id
+	)
 	active_sphere.memory_id = memory_id
 	active_sphere.age = 0.0
 	active_sphere.max_age = active_life
-	active_sphere.strength = 1.0
 	_active_spheres.append(active_sphere)
 
 	# 残影球提供长期弱反馈，让玩家可以拼出刚探索过的空间轮廓。
@@ -380,6 +437,7 @@ func _process(delta: float) -> void:
 	if not _material:
 		return
 
+	_update_foot_reveal_from_ground()
 	_material.set_shader_parameter("inv_view_matrix", _get_inv_view_matrix())
 	_material.set_shader_parameter("viewport_size", Vector2(_camera.get_viewport().size))
 
@@ -417,7 +475,7 @@ func _process(delta: float) -> void:
 			_afterglow_spheres.remove_at(i)
 			should_update = true
 
-	if should_update or _active_spheres.size() > 0 or _afterglow_spheres.size() > 0:
+	if _foot_reveal_sphere or should_update or _active_spheres.size() > 0 or _afterglow_spheres.size() > 0:
 		_update_sphere_uniforms()
 
 
