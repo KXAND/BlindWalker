@@ -64,3 +64,4 @@ const STAGGER_PUSH_BACK := 0.15
 
 # ---- 调试 ----
 const DEBUG := true
+const KEY_FPS_TOGGLE := KEY_F4  ## F4：切换 FPS 显示
