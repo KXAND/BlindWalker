@@ -38,9 +38,9 @@ const AFTERGLOW_LIFE: float = 60.0
 @export var debug_afterglow_strength: float = 0.35  # 调试模式下的全局残影强度
 
 @export_group("Feedback", "feedback_")
-@export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 轮廓发光色
+@export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 显影颜色
 @export var feedback_depth_threshold: float = 0.003
-@export var feedback_surface_alpha: float = 0.055  # 圆柱等平滑表面缺少边缘时的最低显影强度
+@export var feedback_surface_alpha: float = 0.10  # 圆柱等平滑表面缺少边缘时的最低显影强度
 
 # ---- 内部 ----
 
@@ -98,8 +98,8 @@ func _create_fullscreen_quad() -> void:
 	_material.render_priority = 127
 
 	_material.set_shader_parameter("edge_color", feedback_color)
-	_material.set_shader_parameter("depth_threshold", feedback_depth_threshold)
 	_material.set_shader_parameter("surface_alpha", feedback_surface_alpha)
+	_material.set_shader_parameter("depth_threshold", feedback_depth_threshold)
 	_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
 	_material.set_shader_parameter("debug_afterglow_strength", debug_afterglow_strength)
 	_material.set_shader_parameter("camera_near", _camera.near)
