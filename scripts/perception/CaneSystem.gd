@@ -8,7 +8,9 @@ extends Node3D
 
 @export var cone_angle: float = GameConfig.CANE_SWEEP_ANGLE
 @export var pitch_angle: float = 120.0
-@export_range(0.0, 90.0, 1.0) var max_raise_angle: float = 30.0
+@export_range(0.0, 90.0, 1.0) var max_raise_angle: float = 20.0
+@export_range(2.0, 30.0, 1.0) var fine_pitch_angle: float = GameConfig.CANE_FINE_PITCH_ANGLE
+@export_range(-90.0, 90.0, 1.0) var default_pitch_angle: float = GameConfig.CANE_DEFAULT_PITCH
 @export var cane_length: float = GameConfig.CANE_LENGTH
 @export var touch_memory_path: NodePath = ^"../TouchMemorySystem"
 
@@ -17,6 +19,9 @@ var _target_angle: float = 0.0
 var _target_pitch: float = 0.0
 var _current_angle: float = 0.0
 var _current_pitch: float = 0.0
+var _fine_pitch_center: float = 0.0
+var _wide_pitch_active: bool = false
+var _blocked_pitch_direction: float = 0.0
 var _rod: MeshInstance3D
 var _body_area: Area3D
 var _tip_area: Area3D
@@ -30,7 +35,7 @@ var _cane_touch_elapsed: float = 0.0
 var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
-var _is_deployed: bool = true
+var _is_deployed: bool = false
 var _is_transitioning: bool = false
 var _deployed_rotation: Vector3 = Vector3.ZERO
 var _stow_anchor: Vector3 = Vector3.ZERO
@@ -49,7 +54,8 @@ const MIN_VISIBLE_LENGTH := 0.2
 const SIDE_CONTACT_SCAN_RADIUS := 0.25
 const SIDE_CONTACT_SAMPLES := 12
 const GRIP_OFFSET := Vector3(0.0, ROD_Y_OFFSET, 0.0)
-const STOWED_PITCH := -PI * 0.5
+# 收纳姿态从上方展开，避免动画开始时整根杖竖直插入脚下地面。
+const STOWED_PITCH := deg_to_rad(20.0)
 
 
 func _ready() -> void:
@@ -58,12 +64,14 @@ func _ready() -> void:
 	_contact_shape = BoxShape3D.new()
 	_contact_shape.size = Vector3(ROD_THICKNESS, ROD_THICKNESS, cane_length)
 	_visible_length = cane_length
+	_initialize_pitch_state()
 	_create_visuals()
 	_set_visible_length(cane_length)
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
+	_initialize_stowed_state()
 
 
-func apply_sweep(delta: Vector2) -> Vector2:
+func apply_sweep(delta: Vector2, wide_pitch: bool = false) -> Vector2:
 	if not _is_deployed:
 		# 收杖后不再消耗鼠标输入，让 InputManager 将它全部用于视角旋转。
 		return delta
@@ -71,11 +79,12 @@ func apply_sweep(delta: Vector2) -> Vector2:
 		return Vector2.ZERO
 
 	# 输入阶段只更新目标姿态；真正的碰撞推进放到物理帧，保证接触结果稳定。
+	_update_pitch_mode(wide_pitch)
 	var half_yaw := deg_to_rad(cone_angle * 0.5)
 	var pitch_limits := _pitch_limits()
 
 	var yaw_result := _apply_axis(_target_angle, delta.x, -half_yaw, half_yaw)
-	var pitch_result := _apply_axis(_target_pitch, delta.y, pitch_limits.x, pitch_limits.y)
+	var pitch_result := _apply_pitch_axis(delta.y, pitch_limits)
 
 	_target_angle = yaw_result.x
 	_target_pitch = pitch_result.x
@@ -107,16 +116,26 @@ func _physics_process(delta: float) -> void:
 		return
 	_cane_touch_elapsed += delta
 	_pending_contact_info = {}
+	_refresh_blocked_pitch()
 
+	var previous_angle := _current_angle
+	var previous_pitch := _current_pitch
+	var requested_pitch := _target_pitch
 	var safe_pose := _advance_to_safe_pose(_current_angle, _current_pitch, _target_angle, _target_pitch)
 	_current_angle = safe_pose.x
 	_current_pitch = safe_pose.y
+	if not is_equal_approx(_current_pitch, requested_pitch) \
+			and _pitch_path_overlaps(previous_angle, previous_pitch, requested_pitch):
+		# 碰撞点就是该方向的临时边界；清除目标债务，下一次同向输入直接交给视角。
+		_blocked_pitch_direction = signf(requested_pitch - _current_pitch)
+		_target_pitch = _current_pitch
 
 	# 玩家位移可能把整根杖带进墙里。此时不能直接应用当前姿态，需要重新找安全姿态。
 	if _shape_overlaps(_current_angle, _current_pitch):
 		var recovery_pose := _find_recovery_pose()
 		_current_angle = recovery_pose.x
 		_current_pitch = recovery_pose.y
+		_target_pitch = _current_pitch
 
 	var full_length_safe := not _shape_overlaps(_current_angle, _current_pitch)
 	rotation = Vector3(_current_pitch, _current_angle, 0.0)
@@ -447,6 +466,31 @@ func _begin_stow() -> void:
 	_animate_rotation(rotation, _transition_target_rotation, _finish_stow)
 
 
+func _initialize_pitch_state() -> void:
+	var wide_limits := _wide_pitch_limits()
+	var initial_pitch := clampf(
+		deg_to_rad(default_pitch_angle),
+		wide_limits.x,
+		wide_limits.y
+	)
+	_target_pitch = initial_pitch
+	_current_pitch = initial_pitch
+	_fine_pitch_center = initial_pitch
+	rotation.x = initial_pitch
+
+
+## 开局直接进入收杖完成态，避免先显示或播放一次多余的收杖动画。
+func _initialize_stowed_state() -> void:
+	_deployed_rotation = rotation
+	_stow_anchor = position + Basis.from_euler(rotation) * GRIP_OFFSET
+	_transition_target_rotation = Vector3(STOWED_PITCH, rotation.y, 0.0)
+	_reset_contact_state()
+	_set_perception_enabled(false)
+	_apply_rotation_about_grip(_transition_target_rotation)
+	_rod.visible = false
+	_is_transitioning = false
+
+
 func _begin_deploy() -> void:
 	_is_transitioning = true
 	_rod.visible = true
@@ -498,6 +542,10 @@ func _reset_contact_state() -> void:
 	_last_cane_memory_profile_id = &""
 	_cane_touch_elapsed = 0.0
 	_contact_break_elapsed = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
+	_target_pitch = _current_pitch
+	_fine_pitch_center = _current_pitch
+	_wide_pitch_active = false
+	_blocked_pitch_direction = 0.0
 
 
 ## 检测指定角度下杖身是否与环境重叠（intersect_shape 覆盖整根杖身）
@@ -535,8 +583,63 @@ func _apply_axis(current: float, delta: float, min_value: float, max_value: floa
 	return Vector2(clamped_value, target - clamped_value)
 
 
+func _apply_pitch_axis(delta: float, limits: Vector2) -> Vector2:
+	if not is_zero_approx(_blocked_pitch_direction):
+		var input_direction := signf(delta)
+		if is_equal_approx(input_direction, _blocked_pitch_direction):
+			return Vector2(_target_pitch, delta)
+		_blocked_pitch_direction = 0.0
+	return _apply_axis(_target_pitch, delta, limits.x, limits.y)
+
+
+func _update_pitch_mode(wide_pitch: bool) -> void:
+	if _wide_pitch_active == wide_pitch:
+		return
+	_wide_pitch_active = wide_pitch
+	_target_pitch = _current_pitch
+	_blocked_pitch_direction = 0.0
+	if not wide_pitch:
+		# 松开 R 时以当前实际姿态为中心建立新的 A，绝不把盲杖夹回固定角度。
+		_fine_pitch_center = _current_pitch
+
+
+func _refresh_blocked_pitch() -> void:
+	if is_zero_approx(_blocked_pitch_direction):
+		return
+	var limits := _pitch_limits()
+	var probe_pitch := clampf(
+		_current_pitch + _blocked_pitch_direction * MAX_SWEEP_STEP,
+		limits.x,
+		limits.y
+	)
+	if is_equal_approx(probe_pitch, _current_pitch) \
+			or not _shape_overlaps(_current_angle, probe_pitch):
+		_blocked_pitch_direction = 0.0
+
+
+func _pitch_path_overlaps(angle: float, from_pitch: float, to_pitch: float) -> bool:
+	var distance := absf(to_pitch - from_pitch)
+	var steps := maxi(1, ceili(distance / MAX_SWEEP_STEP))
+	for step in range(1, steps + 1):
+		var pitch := lerpf(from_pitch, to_pitch, float(step) / float(steps))
+		if _shape_overlaps(angle, pitch):
+			return true
+	return false
+
+
 func _pitch_limits() -> Vector2:
-	# 下探范围保留原有锥角，上抬角单独收窄，避免盲杖抬离地面探索语义。
+	var wide_limits := _wide_pitch_limits()
+	if _wide_pitch_active:
+		return wide_limits
+	var half_fine_pitch := deg_to_rad(fine_pitch_angle * 0.5)
+	return Vector2(
+		maxf(wide_limits.x, _fine_pitch_center - half_fine_pitch),
+		minf(wide_limits.y, _fine_pitch_center + half_fine_pitch)
+	)
+
+
+func _wide_pitch_limits() -> Vector2:
+	# B 保留完整下探范围，上抬角仍受独立上限限制。
 	var half_pitch := deg_to_rad(pitch_angle * 0.5)
 	return Vector2(-half_pitch, minf(half_pitch, deg_to_rad(max_raise_angle)))
 

@@ -72,6 +72,7 @@
 [ext_resource type="Script" uid="uid://xide7x5phyf7" path="res://scripts/ui/SettingsMenuUI.gd" id="settings_menu_ui"]
 [ext_resource type="Script" uid="uid://4wy5sdym3gkf" path="res://scripts/gameplay/TargetArea.gd" id="target_area"]
 [ext_resource type="Script" uid="uid://cikhx2v7t7djy" path="res://scripts/interaction/TouchMemorySystem.gd" id="touch_memory"]
+[ext_resource type="PackedScene" path="res://scenes/traffic/FirstCrosswalkTraffic.tscn" id="traffic_first_crosswalk"]
 
 [sub_resource type="Environment" id="Environment_dark"]
 background_mode = 1
@@ -372,6 +373,9 @@ outro_sequence = ExtResource("outro_fullscreen")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="GameViewportContainer/GameViewport/GameRoot/TargetArea" unique_id=1187328740]
 shape = SubResource("BoxShape3D_target")
+
+[node name="FirstCrosswalkTraffic" parent="GameViewportContainer/GameViewport/GameRoot" instance=ExtResource("traffic_first_crosswalk")]
+position = Vector3(0, 0, -2)
 
 [node name="w" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1849881632]
 

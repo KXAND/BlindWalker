@@ -8,7 +8,7 @@ const KEY_LEFT := KEY_A
 const KEY_RIGHT := KEY_D
 const KEY_CAUTIOUS := KEY_SHIFT
 const KEY_HIGH_STEP := KEY_SPACE
-const KEY_LOOK_DIRECT := KEY_R
+const KEY_CANE_POSTURE := KEY_R
 const KEY_CANE_TOGGLE := KEY_T
 const KEY_TOUCH := MOUSE_BUTTON_LEFT
 const KEY_PIN_MEMORY := MOUSE_BUTTON_RIGHT
@@ -40,6 +40,8 @@ const TUMBLE_STABLE_FORWARD_DELTA := 0.08
 const CANE_SWEEP_ANGLE := 60.0
 const CANE_LENGTH := 1.5
 const CANE_STOW_DURATION := 0.25
+const CANE_FINE_PITCH_ANGLE := 16.0
+const CANE_DEFAULT_PITCH := -21.0
 
 # ---- 触摸参数 ----
 const TOUCH_YAW_OFFSET_DEG: float = 0.0      ## 手触摸射线沿相机正前方

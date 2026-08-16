@@ -16,6 +16,8 @@ const WALL_HIT_COOLDOWN := 0.3
 const FALL_Y_THRESHOLD := -10.0
 const FLOOR_SNAP_LENGTH := 0.35
 const FLOOR_HEIGHT_MISSING := -1000000.0
+const EXTERNAL_IMPACT_DURATION := 0.45
+const EXTERNAL_IMPACT_MAX_DURATION := 0.75
 const _RaycastUtil = preload("res://scripts/core/RaycastUtil.gd")
 const _ContactProfileProvider = preload("res://scripts/interaction/ContactProfileProvider.gd")
 const DEFAULT_STEP_SOUND_ID := &"step"
@@ -57,6 +59,11 @@ var _fall_damage_total: int = 0
 var _fall_damage_elapsed: float = 0.0
 var _time_since_fall_damage: float = 0.0
 var _handrail_assist: Area3D
+var _external_impact_direction: Vector3 = Vector3.ZERO
+var _external_impact_remaining_distance: float = 0.0
+var _external_impact_speed: float = 0.0
+var _external_impact_elapsed: float = 0.0
+var _fall_initial_damage_applied: bool = false
 
 @onready var _attributes: PlayerAttributes = get_node_or_null("PlayerAttributes") as PlayerAttributes
 
@@ -109,7 +116,11 @@ func _physics_process(delta: float) -> void:
 			and _balance_state != BalanceState.FALLING \
 			and _balance_state != BalanceState.GETTING_UP
 	_stair_up_handled = false
-	if _balance_state == BalanceState.FALLING:
+	if _has_external_impact_motion():
+		# 外部冲击在短时间内覆盖玩家意图，但仍由 CharacterBody3D 解算墙体碰撞。
+		velocity.x = _external_impact_direction.x * _external_impact_speed
+		velocity.z = _external_impact_direction.z * _external_impact_speed
+	elif _balance_state == BalanceState.FALLING:
 		# 主动跌倒阶段由固定前冲/下坠表达失控感，不再读取玩家移动输入。
 		velocity.x = _tumble_direction.x * GameConfig.TUMBLE_SPEED
 		velocity.z = _tumble_direction.z * GameConfig.TUMBLE_SPEED
@@ -129,6 +140,7 @@ func _physics_process(delta: float) -> void:
 
 	var pos_before := global_position
 	move_and_slide()
+	_update_external_impact_motion(pos_before, delta)
 
 	if _balance_state == BalanceState.FALLING and _has_fall_lift_target:
 		var lift_dy := _fall_lift_target_y - global_position.y
@@ -156,6 +168,7 @@ func _physics_process(delta: float) -> void:
 	# 同时在以下条件中跳过：跌落恢复期、玩家正在下落、stagger 已激活、正在平滑抬升。
 	# 避免"摔倒"瞬间被错判为撞墙而叠加 stagger，也避免抬升途中被误判成撞墙。
 	if _is_moving and can_move and not _stair_up_handled \
+			and not _has_external_impact_motion() \
 			and _fall_recover_timer <= 0.0 \
 			and is_on_floor() \
 			and velocity.y >= -0.1 \
@@ -231,6 +244,10 @@ func debug_balance_state() -> StringName:
 	return &"unknown"
 
 
+func debug_external_impact_remaining_distance() -> float:
+	return _external_impact_remaining_distance
+
+
 func has_move_intent() -> bool:
 	return _is_moving
 
@@ -259,6 +276,29 @@ func teleport_to(pos: Vector3) -> void:
 	_terrain_check_timer = 0.0
 	_wall_hit_cooldown = 0.0
 	_has_stair_up_target = false
+	_clear_external_impact_motion()
+	_fall_initial_damage_applied = false
+
+
+func apply_external_impact(damage: int, direction: Vector3, distance: float) -> void:
+	## 交通等世界危险即使在剧情输入锁期间也必须生效；这里只接收已经结算后的伤害等级。
+	var horizontal_direction := direction
+	horizontal_direction.y = 0.0
+	if horizontal_direction.length_squared() <= 0.001:
+		horizontal_direction = -global_transform.basis.z
+		horizontal_direction.y = 0.0
+	_external_impact_direction = horizontal_direction.normalized()
+	_external_impact_remaining_distance = maxf(distance, 0.0)
+	_external_impact_speed = _external_impact_remaining_distance / EXTERNAL_IMPACT_DURATION
+	_external_impact_elapsed = 0.0
+
+	if damage >= 36:
+		if _balance_state != BalanceState.FALLING and _balance_state != BalanceState.GETTING_UP:
+			_start_fall_ignoring_gameplay_lock(_external_impact_direction, 0.0, 0.0, true)
+	elif damage >= 10:
+		_enter_external_unstable_stumble(_external_impact_direction)
+	else:
+		_enter_external_light_stumble(_external_impact_direction)
 
 
 # ---- Internal logic ----
@@ -423,7 +463,12 @@ func _start_fall(direction: Vector3, fall_distance: float, lift_delta: float = 0
 	_start_fall_ignoring_gameplay_lock(direction, fall_distance, lift_delta)
 
 
-func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float, lift_delta: float = 0.0) -> void:
+func _start_fall_ignoring_gameplay_lock(
+		direction: Vector3,
+		fall_distance: float,
+		lift_delta: float = 0.0,
+		initial_damage_already_applied: bool = false
+) -> void:
 	_balance_state = BalanceState.FALLING
 	_handrail_assist = null
 	_balance_timer = 0.0
@@ -436,6 +481,7 @@ func _start_fall_ignoring_gameplay_lock(direction: Vector3, fall_distance: float
 	_fall_damage_total = 0
 	_fall_damage_elapsed = 0.0
 	_time_since_fall_damage = 0.0
+	_fall_initial_damage_applied = initial_damage_already_applied
 	_recovery_qte_pressed = false
 	_unstable_stumble_progress = 0.0
 	_tumble_direction = direction
@@ -496,8 +542,10 @@ func _update_balance_state(delta: float) -> void:
 				_fall_damage_elapsed = 0.0
 				_apply_fall_damage(GameConfig.TUMBLE_TICK_DAMAGE)
 			if _tumble_elapsed >= GameConfig.TUMBLE_MAX_TIME or _is_on_stable_surface():
-				if _fall_damage_total <= 0 \
-						or _time_since_fall_damage >= GameConfig.TUMBLE_FINAL_DAMAGE_MIN_INTERVAL:
+				var needs_minimum_damage := _fall_damage_total <= 0 and not _fall_initial_damage_applied
+				var needs_final_damage := _fall_damage_total > 0 \
+						and _time_since_fall_damage >= GameConfig.TUMBLE_FINAL_DAMAGE_MIN_INTERVAL
+				if needs_minimum_damage or needs_final_damage:
 					_apply_fall_damage(GameConfig.TUMBLE_TICK_DAMAGE)
 				_start_get_up()
 		BalanceState.GETTING_UP:
@@ -512,6 +560,7 @@ func _start_get_up() -> void:
 	_tumble_direction = Vector3.ZERO
 	_has_fall_lift_target = false
 	velocity = Vector3.ZERO
+	_clear_external_impact_motion()
 	if GameConfig.DEBUG:
 		print("[DEBUG][GaitController] get_up_started duration=%.2f damage_total=%d" % [
 			GameConfig.FALL_GET_UP_TIME,
@@ -527,9 +576,61 @@ func _recover_balance() -> void:
 	_unstable_stumble_progress = 0.0
 	_pending_stumble_lift_delta = 0.0
 	_fall_recover_timer = 0.0
+	_fall_initial_damage_applied = false
 	if GameConfig.DEBUG:
 		print("[DEBUG][GaitController] balance_recovered")
 	EventBus.player_balance_recovered.emit()
+
+
+func _enter_external_light_stumble(direction: Vector3) -> void:
+	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
+		_start_fall_ignoring_gameplay_lock(direction, 0.0, 0.0, true)
+		return
+	if _balance_state != BalanceState.STEADY:
+		return
+	_balance_state = BalanceState.LIGHT_STUMBLE
+	_balance_timer = GameConfig.LIGHT_STUMBLE_RECOVER_TIME
+	EventBus.player_light_stumbled.emit()
+
+
+func _enter_external_unstable_stumble(direction: Vector3) -> void:
+	if _balance_state == BalanceState.UNSTABLE_STUMBLE:
+		_start_fall_ignoring_gameplay_lock(direction, 0.0, 0.0, true)
+		return
+	if _balance_state == BalanceState.FALLING or _balance_state == BalanceState.GETTING_UP:
+		return
+	_balance_state = BalanceState.UNSTABLE_STUMBLE
+	_balance_timer = GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW
+	_recovery_qte_pressed = false
+	_unstable_stumble_progress = 0.0
+	EventBus.player_unstable_stumbled.emit(GameConfig.UNSTABLE_STUMBLE_QTE_WINDOW)
+
+
+func _has_external_impact_motion() -> bool:
+	return _external_impact_remaining_distance > 0.001 and _external_impact_speed > 0.001
+
+
+func _update_external_impact_motion(pos_before: Vector3, delta: float) -> void:
+	if not _has_external_impact_motion():
+		return
+	var actual_displacement := global_position - pos_before
+	actual_displacement.y = 0.0
+	var forward_distance := maxf(actual_displacement.dot(_external_impact_direction), 0.0)
+	_external_impact_remaining_distance = maxf(
+		_external_impact_remaining_distance - forward_distance,
+		0.0
+	)
+	_external_impact_elapsed += delta
+	if _external_impact_remaining_distance <= 0.001 \
+			or _external_impact_elapsed >= EXTERNAL_IMPACT_MAX_DURATION:
+		_clear_external_impact_motion()
+
+
+func _clear_external_impact_motion() -> void:
+	_external_impact_direction = Vector3.ZERO
+	_external_impact_remaining_distance = 0.0
+	_external_impact_speed = 0.0
+	_external_impact_elapsed = 0.0
 
 
 func _apply_fall_damage(amount: int) -> void:

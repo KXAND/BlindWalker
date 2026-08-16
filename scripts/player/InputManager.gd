@@ -19,6 +19,7 @@ var _cane: CaneSystem
 var _touch_memory: TouchMemorySystem
 var _interaction_system: InteractionSystem
 var _head_pitch: float = 0.0
+var _cane_posture_pressed: bool = false
 
 
 func _ready() -> void:
@@ -27,6 +28,8 @@ func _ready() -> void:
 	_cane = get_node_or_null(cane_path) as CaneSystem
 	_touch_memory = get_node_or_null(touch_memory_path) as TouchMemorySystem
 	_interaction_system = get_node_or_null(interaction_system_path) as InteractionSystem
+	if _head:
+		_head_pitch = _head.rotation.x
 	Input.set_mouse_mode(Input.MOUSE_MODE_CAPTURED)
 	# Web 平台：阻止浏览器默认右键菜单，否则记忆保留输入会被拦截。
 	if OS.has_feature("web") and Engine.has_singleton("JavaScriptBridge"):
@@ -39,6 +42,7 @@ func _process(_delta: float) -> void:
 		if _player:
 			_player.set_movement_input(Vector2.ZERO)
 			_player.set_recovery_qte_pressed(false)
+		_cane_posture_pressed = false
 		return
 
 	# WASD 是连续移动输入，放在 _process 轮询以持续转发当前移动意图。
@@ -66,8 +70,12 @@ func _unhandled_input(event: InputEvent) -> void:
 		_handle_mouse_motion(event)
 	elif event is InputEventMouseButton and event.pressed:
 		_handle_mouse_button(event)
-	elif event is InputEventKey and event.pressed and not event.echo:
-		_handle_key_pressed(event)
+	elif event is InputEventKey and not event.echo:
+		if event.keycode == GameConfig.KEY_CANE_POSTURE:
+			# R 是持续姿态修饰键，按下与松开都必须由输入聚合层记录。
+			_cane_posture_pressed = event.pressed
+		elif event.pressed:
+			_handle_key_pressed(event)
 
 
 func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
@@ -77,21 +85,11 @@ func _handle_mouse_motion(event: InputEventMouseMotion) -> void:
 		# 摔倒/起身时镜头由 CameraMotionController 表达身体状态，禁止鼠标覆盖这段反馈。
 		return
 
-	var direct_look := Input.is_key_pressed(GameConfig.KEY_LOOK_DIRECT)
-	var yaw_delta := -event.relative.x * look_sensitivity
-	var pitch_delta := -event.relative.y * look_sensitivity
-
-	if direct_look:
-		# 按住 R 时进入直接看向模式，绕过盲杖，方便调试视角或快速观察路线。
-		_rotate_player_yaw(yaw_delta)
-		_rotate_head_pitch(pitch_delta)
-		return
-
-	# 默认先用鼠标驱动盲杖扫动，只有杖到达可摆动边界后的溢出才转成视角旋转。
+	# X 始终使用普通扫杖范围；R 只把 Y 从点杖区间 A 切换到姿态区间 B。
 	var cane_delta := Vector2(-event.relative.x * mouse_sensitivity, -event.relative.y * mouse_sensitivity)
 	var overflow := cane_delta
 	if _cane:
-		overflow = _cane.apply_sweep(cane_delta)
+		overflow = _cane.apply_sweep(cane_delta, _cane_posture_pressed)
 
 	# overflow 使用盲杖灵敏度单位，转视角前换算到 look_sensitivity，保证两套手感可独立调参。
 	var ratio := look_sensitivity / mouse_sensitivity
