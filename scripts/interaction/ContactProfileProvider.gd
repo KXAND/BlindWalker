@@ -5,6 +5,13 @@ extends Node
 
 const CONTACT_PROFILE_SCRIPT := preload("res://scripts/core/ContactProfile.gd")
 const DEFAULT_PROFILE: Resource = preload("res://assets/contact_profiles/default_contact.tres")
+const ASPHALT_PROFILE: Resource = preload("res://assets/contact_profiles/asphalt.tres")
+const CONCRETE_PROFILE: Resource = preload("res://assets/contact_profiles/concrete.tres")
+const GLASS_PROFILE: Resource = preload("res://assets/contact_profiles/glass.tres")
+const METAL_PROFILE: Resource = preload("res://assets/contact_profiles/metal_pole.tres")
+const PAVEMENT_PROFILE: Resource = preload("res://assets/contact_profiles/pavement.tres")
+const PLASTIC_PROFILE: Resource = preload("res://assets/contact_profiles/plastic.tres")
+const WOOD_PROFILE: Resource = preload("res://assets/contact_profiles/wood_or_shelf.tres")
 
 @export var profile: Resource:
 	set(value):
@@ -23,6 +30,10 @@ static func resolve_profile(collider: Object, source: StringName = &"unknown") -
 			return provider.profile
 		node = node.get_parent()
 
+	var inferred_profile := _infer_profile(collider)
+	if inferred_profile:
+		return inferred_profile
+
 	# 脚底显影会持续自动查询地面；缺失属性仍使用默认值，但不为每块地面刷调试日志。
 	if GameConfig.DEBUG and source != &"foot":
 		var key := _object_path(collider)
@@ -33,6 +44,44 @@ static func resolve_profile(collider: Object, source: StringName = &"unknown") -
 				profile_id(DEFAULT_PROFILE),
 			])
 	return DEFAULT_PROFILE
+
+
+static func _infer_profile(collider: Object) -> Resource:
+	var node := collider as Node
+	if not node:
+		return null
+
+	var semantic_tokens := [str(node.name).to_lower()]
+	var ancestor := node.get_parent()
+	while ancestor:
+		semantic_tokens.append(str(ancestor.name).to_lower())
+		ancestor = ancestor.get_parent()
+	var semantic := " ".join(semantic_tokens)
+
+	if _contains_any(semantic, ["tactile", "blindway", "pavement"]):
+		return PAVEMENT_PROFILE
+	if _contains_any(semantic, ["glass", "window"]):
+		return GLASS_PROFILE
+	if _contains_any(semantic, ["car", "vehicle", "bike", "motorcycle", "fence", "trafficlight", "hydrant", "manhole", "metal"]):
+		return METAL_PROFILE
+	if _contains_any(semantic, ["road", "asphalt", "street"]):
+		return ASPHALT_PROFILE
+	if _contains_any(semantic, ["box", "dumpster", "trash", "clutter", "bush", "plastic"]):
+		return PLASTIC_PROFILE
+	if _contains_any(semantic, ["door", "wardrobe", "desk", "chair", "table", "bed", "sofa", "shelf", "wood"]):
+		return WOOD_PROFILE
+	if _contains_any(semantic, ["ground", "floor", "wall", "building", "stair", "concrete", "department", "shop"]):
+		return CONCRETE_PROFILE
+
+	# Keep unknown third-party model nodes on the existing default path.
+	return null
+
+
+static func _contains_any(value: String, tokens: Array[String]) -> bool:
+	for token in tokens:
+		if value.contains(token):
+			return true
+	return false
 
 
 static func profile_id(resolved_profile: Resource) -> StringName:
