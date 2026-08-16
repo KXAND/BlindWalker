@@ -59,8 +59,8 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 		return vec4(edge_color.rgb, debug_afterglow_strength);
 	}
 
-	float max_strength = 0.0;
-	vec3 best_color = edge_color.rgb;
+	float total_strength = 0.0;
+	vec3 blended_color = vec3(0.0);
 	vec3 world_pos = reconstruct_world_pos(d);
 
 	for (int i = 0; i < 64; i++) {
@@ -77,14 +77,17 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 		if (dist <= radius) {
 			float falloff = 1.0 - smoothstep(radius * 0.88, radius, dist);
 			float strength = sphere_strengths[i] * falloff;
-			if (strength >= max_strength) {
-				max_strength = strength;
-				best_color = sphere_colors[i].rgb;
-			}
+			// Accumulate overlapping memories instead of letting the strongest
+			// sphere erase the material color of every other object in the area.
+			blended_color += sphere_colors[i].rgb * strength;
+			total_strength += strength;
 		}
 	}
 
-	return vec4(best_color, max_strength);
+	if (total_strength <= 0.0) {
+		return vec4(edge_color.rgb, 0.0);
+	}
+	return vec4(blended_color / total_strength, clamp(total_strength, 0.0, 1.0));
 }
 
 
