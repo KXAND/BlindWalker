@@ -6,7 +6,7 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "吃完午饭了……垃圾袋满了。"
+text = "把早饭垃圾扔进去吧。嗯？垃圾袋好像满了。"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
@@ -18,7 +18,7 @@ duration = 100.0
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "前面就是家门了，找找门把手吧"
+text = "有段时间没出门了，看看门把手在哪"
 duration = 100.0
 
 [resource]

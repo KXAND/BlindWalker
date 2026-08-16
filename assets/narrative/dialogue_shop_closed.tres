@@ -6,29 +6,42 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "到了……嗯，怎么是铁门？"
+text = "应该就是这了……嗯，怎么是铁门？走错了吗？"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "卷帘门拉下来了，今天没开门。"
+text = "应该是这里没错，就是好像今天怎么关门了。"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "可我已经答应李奶奶了……我记得后面的路口处右转走过去第二个路口拐角处还有一家小卖部，那应该也有的卖，虽然远一点。"
+text = "（可我已经答应李奶奶了……总不能空手回去吧。）"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "先沿着这边盲道返回然后过马路吧"
+text = "不行，答应了李奶奶的事就要做到，我记得远处的路口处还有家惠民超市，去那里买吧。"
+duration = 100.0
+
+[sub_resource type="Resource" id="NarrativeLine_5"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "我印象里应该在前面的路口右转。"
+duration = 100.0
+
+
+[sub_resource type="Resource" id="NarrativeLine_6"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "先沿着左边的盲道向后走吧，待会要过马路。"
 duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"shop_closed"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6")]
 default_line_duration = 3.0

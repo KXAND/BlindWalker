@@ -24,13 +24,13 @@ duration = 100.0
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-text = "唉，我这腿脚最近不太方便。家里的白糖用完了，想去外面小卖部买一袋来着……"
+text = "家里的白糖用完了，想去外面小卖部买一袋来着……"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "那我帮您去买吧，我正好也没事。"
+text = "那我帮您去买吧，我正好也没事。您腿脚不方便，我来替你去吧。"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
@@ -48,11 +48,29 @@ duration = 100.0
 [sub_resource type="Resource" id="NarrativeLine_8"]
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-text = "小卖部就在小区门口右拐，你出去后往右走就能到。"
+text = "你好久没出门了，一定要小心点啊。"
+duration = 100.0
+
+[sub_resource type="Resource" id="NarrativeLine_9"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "没问题，李奶奶，小卖部也不是很远，小区门口旁边而已，几步路就到了，那我去了。"
+duration = 100.0
+
+[sub_resource type="Resource" id="NarrativeLine_10"]
+script = ExtResource("2_line")
+speaker_name = "李奶奶"
+text = "不用太急，记得慢点啊。"
+duration = 100.0
+
+[sub_resource type="Resource" id="NarrativeLine_11"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "（先出去小区门口吧）"
 duration = 100.0
 
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"ground_floor"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6"), SubResource("NarrativeLine_7"), SubResource("NarrativeLine_8")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6"), SubResource("NarrativeLine_7"), SubResource("NarrativeLine_8"), SubResource("NarrativeLine_9"), SubResource("NarrativeLine_10")，, SubResource("NarrativeLine_11")]
 default_line_duration = 3.0

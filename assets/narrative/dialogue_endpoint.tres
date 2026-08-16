@@ -40,7 +40,7 @@ duration = 100.0
 [sub_resource type="Resource" id="NarrativeLine_7"]
 script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "李奶奶腿脚不方便，托我帮她买一袋白糖。楼下的小卖部关门了，我就找到这边来了。"
+text = "李奶奶腿脚不方便，托我帮她买一袋白糖。小区楼下的小卖部关门了，我就找到这边来了。"
 duration = 100.0
 
 [sub_resource type="Resource" id="NarrativeLine_8"]
