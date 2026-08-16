@@ -23,6 +23,7 @@ var _player_parent_3d: Node
 var _warned_missing_sounds: Dictionary = {}
 var _music_volume: float = DEFAULT_MUSIC_VOLUME
 var _sfx_volume: float = DEFAULT_SFX_VOLUME
+var _step_files: Array[String] = []
 
 var _sound_paths: Dictionary = {
 	# 脚步声 —— 按地面材质分类
@@ -70,6 +71,7 @@ var _sound_paths: Dictionary = {
 func _ready() -> void:
 	_load_audio_settings()
 	_silent_stream = _create_silent_stream()
+	_scan_step_folder()
 	_player_2d = AudioStreamPlayer.new()
 	_player_2d.name = "AudioStreamPlayer2D"
 	add_child(_player_2d)
@@ -181,6 +183,11 @@ func _find_game_world_parent() -> Node:
 
 
 func _resolve_stream(sound_id: String, source: StringName = &"unknown") -> AudioStream:
+	if sound_id == "step":
+		var stream := _resolve_step_stream()
+		if stream:
+			return stream
+
 	var path: String = _sound_paths.get(sound_id, "")
 	var stream := _resolve_stream_at_path(path)
 	if stream:
@@ -194,8 +201,7 @@ func _resolve_stream(sound_id: String, source: StringName = &"unknown") -> Audio
 			return fallback_stream
 
 	if _should_fallback_to_default_step(sound_id, source):
-		var fallback_path: String = _sound_paths.get("step", "")
-		var fallback_stream := _resolve_stream_at_path(fallback_path)
+		var fallback_stream := _resolve_step_stream()
 		if fallback_stream:
 			_warn_missing_sound_once(sound_id, source, path, "step")
 			return fallback_stream
@@ -248,6 +254,33 @@ func _create_silent_stream() -> AudioStreamWAV:
 	stream.stereo = false
 	stream.data = PackedByteArray()
 	return stream
+
+
+const STEP_FOLDER := "res://assets/audio/sfx/step"
+
+
+func _scan_step_folder() -> void:
+	_step_files.clear()
+	var dir := DirAccess.open(STEP_FOLDER)
+	if dir == null:
+		push_warning("[AudioManager] step folder not found: %s" % STEP_FOLDER)
+		return
+	dir.list_dir_begin()
+	var fname := dir.get_next()
+	while fname != "":
+		if not fname.begins_with(".") and (fname.ends_with(".wav") or fname.ends_with(".ogg")):
+			_step_files.append("%s/%s" % [STEP_FOLDER, fname])
+		fname = dir.get_next()
+	dir.list_dir_end()
+	if _step_files.is_empty():
+		push_warning("[AudioManager] no step files found in %s" % STEP_FOLDER)
+
+
+func _resolve_step_stream() -> AudioStream:
+	if _step_files.is_empty():
+		return null
+	var path: String = _step_files[randi() % _step_files.size()]
+	return _resolve_stream_at_path(path)
 
 
 func _load_audio_settings() -> void:

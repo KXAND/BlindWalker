@@ -72,5 +72,5 @@ duration = 100.0
 [resource]
 script = ExtResource("1_sequence")
 sequence_id = &"ground_floor"
-lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6"), SubResource("NarrativeLine_7"), SubResource("NarrativeLine_8"), SubResource("NarrativeLine_9"), SubResource("NarrativeLine_10")，, SubResource("NarrativeLine_11")]
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3"), SubResource("NarrativeLine_4"), SubResource("NarrativeLine_5"), SubResource("NarrativeLine_6"), SubResource("NarrativeLine_7"), SubResource("NarrativeLine_8"), SubResource("NarrativeLine_9"), SubResource("NarrativeLine_10"), SubResource("NarrativeLine_11")]
 default_line_duration = 3.0
