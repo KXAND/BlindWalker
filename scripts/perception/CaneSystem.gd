@@ -32,6 +32,7 @@ var _has_last_cane_memory_point: bool = false
 var _last_cane_memory_point: Vector3 = Vector3.ZERO
 var _last_cane_memory_profile_id: StringName = &""
 var _cane_touch_elapsed: float = 0.0
+var _cane_sound_cooldown_remaining: float = 0.0
 var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
@@ -53,6 +54,7 @@ const HIT_RETRACT := 0.04
 const MIN_VISIBLE_LENGTH := 0.2
 const SIDE_CONTACT_SCAN_RADIUS := 0.25
 const SIDE_CONTACT_SAMPLES := 12
+const CANE_SOUND_COOLDOWN := 0.5
 const GRIP_OFFSET := Vector3(0.0, ROD_Y_OFFSET, 0.0)
 # 收纳姿态从上方展开，避免动画开始时整根杖竖直插入脚下地面。
 const STOWED_PITCH := deg_to_rad(20.0)
@@ -115,6 +117,7 @@ func _physics_process(delta: float) -> void:
 	if not _is_deployed:
 		return
 	_cane_touch_elapsed += delta
+	_cane_sound_cooldown_remaining = maxf(0.0, _cane_sound_cooldown_remaining - delta)
 	_pending_contact_info = {}
 	_refresh_blocked_pitch()
 
@@ -165,8 +168,9 @@ func _emit_contact_feedback(hit_collider: Object, contact_point: Vector3, contac
 		# 只有真正生成新触觉记忆时才播放反馈，避免连续物理帧重复刷提示音。
 		EventBus.cane_hit_object.emit(_object_name(hit_collider), contact_point, contact_normal)
 		var sound_id := _ContactProfileProvider.cane_sound_id(profile)
-		if sound_id != &"":
+		if sound_id != &"" and is_zero_approx(_cane_sound_cooldown_remaining):
 			EventBus.audio_requested.emit(String(sound_id), contact_point, 0.0)
+			_cane_sound_cooldown_remaining = CANE_SOUND_COOLDOWN
 		elif GameConfig.DEBUG:
 			print("[DEBUG][CaneSystem] no cane sound profile=%s reason=empty_sound_id" % _ContactProfileProvider.profile_id(profile))
 
@@ -541,6 +545,7 @@ func _reset_contact_state() -> void:
 	_has_last_cane_memory_point = false
 	_last_cane_memory_profile_id = &""
 	_cane_touch_elapsed = 0.0
+	_cane_sound_cooldown_remaining = 0.0
 	_contact_break_elapsed = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 	_target_pitch = _current_pitch
 	_fine_pitch_center = _current_pitch
