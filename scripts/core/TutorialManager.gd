@@ -36,6 +36,7 @@ var _pending_stumble: bool = false
 var _pending_fall: bool = false
 var _fall_count: int = 0
 var _pending_f3_hint: bool = false
+var _pending_reveal: bool = false
 
 var _ui: TutorialPromptUI
 
@@ -65,7 +66,9 @@ func enqueue_tutorial(tutorial_id: StringName, try_show: bool = true) -> bool:
 		if GameConfig.DEBUG:
 			print("[DEBUG][TutorialManager] unknown tutorial id=%s" % tutorial_id)
 		return false
-	if _is_showing_prompt():
+	if _current_id != &"":
+		# 无论当前教程是显示中还是被暂停，新教程入栈前一律把旧教程压栈，
+		# 保证新教程永远位于栈顶（LIFO：后出现先显示）。
 		_suspend_current_prompt_to_stack()
 	_stack.push_back(tutorial_id)
 	_queued[tutorial_id] = true
@@ -111,6 +114,11 @@ func _on_fall_started() -> void:
 
 
 func _on_balance_recovered() -> void:
+	# 入栈顺序决定显示顺序（栈顶先显示）：触摸教程最早入栈、最后显示，
+	# 摔倒/踉跄教程在后入栈、先显示，保证起身后第一时间提示失衡原因。
+	if _pending_reveal:
+		enqueue_tutorial(REVEAL, false)
+		_pending_reveal = false
 	if _pending_stumble:
 		enqueue_tutorial(STUMBLE, false)
 		_pending_stumble = false
@@ -137,6 +145,11 @@ func _on_touch_memory_spawned(source: StringName) -> void:
 	# 开场引导等系统生成的记忆球不算玩家首次感知。
 	if source != &"hand" and source != &"cane":
 		return
+	if _pending_stumble or _pending_fall:
+		# 失衡流程中延迟排队：摔倒滚落中盲杖拖地会持续生成杖触，
+		# 触摸教程不应在摔倒动画中弹出，起身后统一按栈排队显示。
+		_pending_reveal = true
+		return
 	enqueue_tutorial(REVEAL)
 
 
@@ -159,7 +172,8 @@ func _try_show_next() -> void:
 		var next_id: StringName = _stack.pop_back()
 		_queued.erase(next_id)
 		_show_prompt(next_id)
-	elif _current_id != &"":
+	elif _current_id != &"" and _stack.is_empty():
+		# 只有栈为空时才重显当前教程；栈里存在更新教程时优先弹栈顶。
 		_show_panel()
 
 
@@ -205,10 +219,6 @@ func _suspend_current_prompt_to_stack() -> void:
 	_current_id = &""
 	_current_prompt = null
 	_hide_panel()
-
-
-func _is_showing_prompt() -> bool:
-	return _ui and _ui.is_prompt_visible() and _current_id != &""
 
 
 func _show_panel() -> void:
