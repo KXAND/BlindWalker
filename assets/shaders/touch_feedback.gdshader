@@ -59,8 +59,8 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 		return vec4(edge_color.rgb, debug_afterglow_strength);
 	}
 
-	float total_strength = 0.0;
-	vec3 blended_color = vec3(0.0);
+	float max_strength = 0.0;
+	vec3 best_color = edge_color.rgb;
 	vec3 world_pos = reconstruct_world_pos(d);
 
 	for (int i = 0; i < 64; i++) {
@@ -77,17 +77,14 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 		if (dist <= radius) {
 			float falloff = 1.0 - smoothstep(radius * 0.88, radius, dist);
 			float strength = sphere_strengths[i] * falloff;
-			// Accumulate overlapping memories instead of letting the strongest
-			// sphere erase the material color of every other object in the area.
-			blended_color += sphere_colors[i].rgb * strength;
-			total_strength += strength;
+			if (strength >= max_strength) {
+				max_strength = strength;
+				best_color = sphere_colors[i].rgb;
+			}
 		}
 	}
 
-	if (total_strength <= 0.0) {
-		return vec4(edge_color.rgb, 0.0);
-	}
-	return vec4(blended_color / total_strength, clamp(total_strength, 0.0, 1.0));
+	return vec4(best_color, max_strength);
 }
 
 
@@ -104,11 +101,11 @@ float get_depth_edge_scale(vec2 uv, vec2 texel, float scale) {
 	float d2 = linearize_depth(texture(depth_tex, uv + vec2( 0.0,  offset.y)).r);
 	float d3 = linearize_depth(texture(depth_tex, uv + vec2( 0.0, -offset.y)).r);
 
-	// A planar surface can have a continuous depth gradient when viewed at an
-	// angle. Comparing against the four-neighbour average cancels that linear
-	// gradient and leaves actual depth discontinuities as contours.
-	float neighbour_average = (d0 + d1 + d2 + d3) * 0.25;
-	float raw_diff = abs(lc - neighbour_average);
+	float raw_diff = max(
+		max(abs(lc - d0), abs(lc - d1)),
+		max(abs(lc - d2), abs(lc - d3))
+	);
+
 	float threshold = depth_threshold * scale;
 	return smoothstep(threshold, threshold + depth_threshold * scale * 2.0, raw_diff);
 }
@@ -135,12 +132,9 @@ void fragment() {
 
 	float edge = get_depth_edge(uv, texel);
 	float fill_alpha = surface_alpha * center_strength * edge_color.a;
-	// Only strong depth edges receive the contour boost. The high threshold
-	// keeps ordinary floor gradients from brightening a broad surface region.
-	float contour = smoothstep(0.55, 0.82, edge);
-	float contour_alpha = contour * 0.88 * center_strength * edge_color.a;
-	float alpha = max(fill_alpha, contour_alpha);
+	float edge_alpha = edge * 0.92 * center_strength * edge_color.a;
+	float alpha = max(fill_alpha, edge_alpha);
 
-	ALBEDO = mix(center_feedback.rgb, edge_color.rgb, contour);
+	ALBEDO = center_feedback.rgb;
 	ALPHA = clamp(alpha, 0.0, 1.0);
 }

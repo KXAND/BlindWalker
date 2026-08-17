@@ -38,9 +38,9 @@ const AFTERGLOW_LIFE: float = 60.0
 @export var debug_afterglow_strength: float = 0.35  # 调试模式下的全局残影强度
 
 @export_group("Feedback", "feedback_")
-@export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 显影颜色
+@export var feedback_color: Color = Color(0.4, 0.75, 1.0, 1.0)  # 轮廓发光色
 @export var feedback_depth_threshold: float = 0.003
-@export var feedback_surface_alpha: float = 0.10  # 圆柱等平滑表面缺少边缘时的最低显影强度
+@export var feedback_surface_alpha: float = 0.055  # 圆柱等平滑表面缺少边缘时的最低显影强度
 
 # ---- 内部 ----
 
@@ -191,13 +191,15 @@ func _update_sphere_uniforms() -> void:
 		return
 
 	# 脚下球与普通活动显影处于同一层级；普通临时显影在重叠时后写入并优先显示。
+	# 固定球优先保留；普通临时球按“新→旧”写入，保证最新生成的显影球
+	# 始终落在 64 槽渲染范围内，避免旧球积压把新显影挤出槽位。
 	var all_spheres: Array[_TouchSphere] = []
 	_append_render_spheres(all_spheres, _active_spheres, true)
 	_append_render_spheres(all_spheres, _afterglow_spheres, true)
 	if _foot_reveal_sphere:
 		all_spheres.append(_foot_reveal_sphere)
-	_append_render_spheres(all_spheres, _active_spheres, false)
-	_append_render_spheres(all_spheres, _afterglow_spheres, false)
+	_append_render_spheres(all_spheres, _active_spheres, false, true)
+	_append_render_spheres(all_spheres, _afterglow_spheres, false, true)
 
 	var count: int = mini(all_spheres.size(), MAX_SPHERES)
 
@@ -233,8 +235,16 @@ func _update_sphere_uniforms() -> void:
 func _append_render_spheres(
 	output: Array[_TouchSphere],
 	spheres: Array[_TouchSphere],
-	pinned: bool
+	pinned: bool,
+	newest_first: bool = false
 ) -> void:
+	if newest_first:
+		# 从新到旧追加：最新生成的球最先占槽，旧球超限时最后被挤出。
+		for i in range(spheres.size() - 1, -1, -1):
+			var sphere: _TouchSphere = spheres[i]
+			if sphere.is_pinned == pinned:
+				output.append(sphere)
+		return
 	for sphere in spheres:
 		if sphere.is_pinned == pinned:
 			output.append(sphere)
@@ -288,7 +298,8 @@ func spawn_touch_memory(
 	afterglow_life: float,
 	reveal_color: Color = Color(0.4, 0.75, 1.0, 1.0),
 	_source: StringName = &"unknown",
-	contact_profile_id: StringName = &"default_contact"
+	contact_profile_id: StringName = &"default_contact",
+	pinned: bool = false
 ) -> bool:
 	if not _material:
 		return false
@@ -307,6 +318,7 @@ func spawn_touch_memory(
 	active_sphere.memory_id = memory_id
 	active_sphere.age = 0.0
 	active_sphere.max_age = active_life
+	active_sphere.is_pinned = pinned
 	_active_spheres.append(active_sphere)
 
 	# 残影球提供长期弱反馈，让玩家可以拼出刚探索过的空间轮廓。
@@ -320,6 +332,7 @@ func spawn_touch_memory(
 	afterglow_sphere.age = 0.0
 	afterglow_sphere.max_age = afterglow_life
 	afterglow_sphere.strength = AFTERGLOW_INIT_STRENGTH
+	afterglow_sphere.is_pinned = pinned
 	_afterglow_spheres.append(afterglow_sphere)
 
 	# 临时记忆超过上限时只淘汰未保留项，保留项由独立的 8 个名额约束。
@@ -480,17 +493,18 @@ func _process(delta: float) -> void:
 
 
 func _input(event: InputEvent) -> void:
-	if not GameConfig.DEBUG:
-		return
 	if event is InputEventKey and event.pressed:
 		match event.keycode:
 			KEY_F3:
+				# F3 是面向玩家的无障碍功能：点亮全部视野。
 				debug_mode = not debug_mode
 				_apply_debug_mode()
 				if _material:
 					_material.set_shader_parameter("debug_mode", 1.0 if debug_mode else 0.0)
 				_update_sphere_uniforms()
 			KEY_H:
+				if not GameConfig.DEBUG:
+					return
 				# H 键：切换调试残影模式（显示全部残影）
 				debug_mode = not debug_mode
 				if _material:
