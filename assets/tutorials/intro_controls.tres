@@ -1,9 +1,9 @@
-[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+[gd_resource type="Resource" script_class="TutorialPrompt" format=3 uid="uid://deuc351upgdpt"]
 
-[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+[ext_resource type="Script" uid="uid://dqkc404d8lgdp" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
 
 [resource]
 script = ExtResource("1_prompt")
 tutorial_id = &"intro_controls"
 title = "先熟悉方向"
-body = "【WASD】移动。【移动鼠标】转动视角或操控盲杖。【T】收起或展开盲杖。【单击左键】摸索近处物体。"
+body = "【WASD】移动。【移动鼠标】转动视角或操控盲杖。【T】收起或展开盲杖。【单击左键】摸索近处物体。如果游戏太难了的话，游戏过程中按【F3】可以照亮所有视野。"

@@ -33,7 +33,6 @@ speaker_name = "晓明"
 text = "我印象里应该在前面的路口右转。"
 duration = 100.0
 
-
 [sub_resource type="Resource" id="NarrativeLine_6"]
 script = ExtResource("2_line")
 speaker_name = "晓明"

@@ -14,7 +14,7 @@ var _target_names: PackedStringArray = [
 	"ShopClosed",
 	"Endpoint",
 ]
-var _labels: PackedStringArray = ["小区楼下", "小卖部", "路口小店"]
+var _labels: PackedStringArray = ["小区楼下", "小区门口小卖部", "惠民超市"]
 var _cutscene_ids: PackedStringArray = ["ground_floor", "shop_closed", "endpoint"]
 var _current_index: int = 0
 var _all_done: bool = false
