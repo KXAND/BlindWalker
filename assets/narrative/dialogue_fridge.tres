@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://ctbcs63dgnl0c"]
+
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &"xiaoming"
+speaker_name = "晓明"
+duration = 6.42
+audio_id = &"voice_fridge_01"
+text = "冰箱里整整齐齐，都是妈妈备好的食材。有她在，家里总不缺吃的。"
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"fridge"
+lines = [SubResource("NarrativeLine_1")]
+default_line_duration = 3.0

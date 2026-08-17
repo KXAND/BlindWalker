@@ -171,12 +171,12 @@
 	},
 	"voice_desk_01": {
 		"file": "voice_desk_01.ogg",
-		"text": "什么时候我也能像普通人一样去上学就好了……",
-		"text_hash": "5f0da6ebbae9",
+		"text": "桌上的盲文课本还翻到上次那一页，今晚接着读吧。",
+		"text_hash": "1fd95854430e",
 		"speaker_id": "xiaoming",
 		"voice_type": 501006,
 		"speed": -0.5,
-		"duration": 3.88,
+		"duration": 4.91,
 		"purpose": "narrative_line"
 	},
 	"voice_endpoint_01": {
@@ -491,8 +491,8 @@
 	},
 	"voice_intro_fullscreen_01": {
 		"file": "voice_intro_fullscreen_01.ogg",
-		"text": "我叫晓明，是一名22岁的失明的大学生。",
-		"text_hash": "612c9df81245",
+		"text": "我叫晓明，今年二十二岁，是一名大学生。",
+		"text_hash": "b2d7998bb6a9",
 		"speaker_id": "xiaoming",
 		"voice_type": 501006,
 		"speed": -0.5,
@@ -501,22 +501,22 @@
 	},
 	"voice_intro_fullscreen_02": {
 		"file": "voice_intro_fullscreen_02.ogg",
-		"text": "因为看不见，我平时很少出门。",
-		"text_hash": "114e4205a3e6",
+		"text": "我习惯用声音和双手来认识这个世界。",
+		"text_hash": "4db0b029498c",
 		"speaker_id": "xiaoming",
 		"voice_type": 501006,
 		"speed": -0.5,
-		"duration": 3.2,
+		"duration": 3.78,
 		"purpose": "narrative_line"
 	},
 	"voice_intro_fullscreen_03": {
 		"file": "voice_intro_fullscreen_03.ogg",
-		"text": "今天如同往常一样，我平静的从睡梦中醒来，期待着睁眼能够看见清晨的阳光。",
-		"text_hash": "8ceb14de5818",
+		"text": "今天也和往常一样，我从睡梦中醒来，循着声音开始一天的生活。",
+		"text_hash": "37f337d89b6a",
 		"speaker_id": "xiaoming",
 		"voice_type": 501006,
 		"speed": -0.5,
-		"duration": 7.61,
+		"duration": 6.37,
 		"purpose": "narrative_line"
 	},
 	"voice_opening_breakfast_01": {
@@ -591,12 +591,12 @@
 	},
 	"voice_opening_intro_01": {
 		"file": "voice_opening_intro_01.ogg",
-		"text": "还是没有奇迹吗，也是，奇迹怎么会有这么容易发生呢。",
-		"text_hash": "c4985e13d37e",
+		"text": "新的一天开始了，先去换衣服吧。",
+		"text_hash": "343d109054b3",
 		"speaker_id": "xiaoming",
 		"voice_type": 501006,
 		"speed": -0.5,
-		"duration": 4.88,
+		"duration": 3.64,
 		"purpose": "narrative_line"
 	},
 	"voice_opening_intro_02": {
@@ -647,6 +647,36 @@
 		"voice_type": 501006,
 		"speed": -0.5,
 		"duration": 4.43,
+		"purpose": "narrative_line"
+	},
+	"voice_bed_01": {
+		"file": "voice_bed_01.ogg",
+		"text": "被窝还留着温度……今天也要好好过。",
+		"text_hash": "6ef43083a333",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.08,
+		"purpose": "narrative_line"
+	},
+	"voice_fridge_01": {
+		"file": "voice_fridge_01.ogg",
+		"text": "冰箱里整整齐齐，都是妈妈备好的食材。有她在，家里总不缺吃的。",
+		"text_hash": "0481a8a198da",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 6.42,
+		"purpose": "narrative_line"
+	},
+	"voice_tv_01": {
+		"file": "voice_tv_01.ogg",
+		"text": "电视很少开。妈妈开着的时候，客厅里就有新闻播报的声音，家里会热闹一些。",
+		"text_hash": "689714087019",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 7.17,
 		"purpose": "narrative_line"
 	}
 }
