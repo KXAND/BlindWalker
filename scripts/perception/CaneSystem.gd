@@ -31,8 +31,6 @@ var _visible_length: float = 0.0
 var _has_last_cane_memory_point: bool = false
 var _last_cane_memory_point: Vector3 = Vector3.ZERO
 var _last_cane_memory_profile_id: StringName = &""
-var _cane_touch_elapsed: float = 0.0
-var _cane_sound_cooldown_remaining: float = 0.0
 var _contact_break_elapsed: float = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 var _contact_segment_active: bool = false
 var _pending_contact_info: Dictionary = {}
@@ -54,7 +52,6 @@ const HIT_RETRACT := 0.04
 const MIN_VISIBLE_LENGTH := 0.2
 const SIDE_CONTACT_SCAN_RADIUS := 0.25
 const SIDE_CONTACT_SAMPLES := 12
-const CANE_SOUND_COOLDOWN := 0.5
 const GRIP_OFFSET := Vector3(0.0, ROD_Y_OFFSET, 0.0)
 # 收纳姿态从上方展开，避免动画开始时整根杖竖直插入脚下地面。
 const STOWED_PITCH := deg_to_rad(20.0)
@@ -116,8 +113,6 @@ func toggle_deployment() -> void:
 func _physics_process(delta: float) -> void:
 	if not _is_deployed:
 		return
-	_cane_touch_elapsed += delta
-	_cane_sound_cooldown_remaining = maxf(0.0, _cane_sound_cooldown_remaining - delta)
 	_pending_contact_info = {}
 	_refresh_blocked_pitch()
 
@@ -143,10 +138,12 @@ func _physics_process(delta: float) -> void:
 	var full_length_safe := not _shape_overlaps(_current_angle, _current_pitch)
 	rotation = Vector3(_current_pitch, _current_angle, 0.0)
 
-	var contact_info := _pending_contact_info
+	# 优先使用当前静止姿态的接触信息：显影必须落在玩家看到的杖尖触碰点，
+	# 而不是预测步进里“下一步才会撞上”的位置，否则显影会比敲击点超前。
+	var contact_info := _full_length_contact_info()
 	if contact_info.is_empty():
-		# 分步推进未预测到碰撞时，再用全长姿态主动查询接触信息。
-		contact_info = _full_length_contact_info()
+		# 当前姿态无接触时，回退到步进预测的接触点（如杖已在障碍内需要恢复）。
+		contact_info = _pending_contact_info
 	if contact_info.is_empty():
 		_set_visible_length(cane_length if full_length_safe else MIN_VISIBLE_LENGTH)
 		_update_contact_segment(false, delta)
@@ -154,9 +151,11 @@ func _physics_process(delta: float) -> void:
 
 	_update_contact_segment(true, delta)
 	_set_visible_length(_blocked_visible_length(contact_info))
+	# 显影生成点始终取“当前可见杖尖”，而不是物理查询返回的预测接触点，
+	# 避免杖尖停在障碍前时显影超前于玩家看到的敲击位置。
 	_emit_contact_feedback(
 		contact_info["collider"],
-		contact_info["position"],
+		_visible_tip_position(),
 		contact_info["normal"]
 	)
 
@@ -165,12 +164,11 @@ func _emit_contact_feedback(hit_collider: Object, contact_point: Vector3, contac
 	var profile: Resource = _ContactProfileProvider.resolve_profile(hit_collider, &"cane")
 	var memory_spawned := _try_spawn_cane_touch_memory(contact_point, profile)
 	if memory_spawned:
-		# 只有真正生成新触觉记忆时才播放反馈，避免连续物理帧重复刷提示音。
+		# 只有真正生成新触觉记忆时才播放反馈。
 		EventBus.cane_hit_object.emit(_object_name(hit_collider), contact_point, contact_normal)
 		var sound_id := _ContactProfileProvider.cane_sound_id(profile)
-		if sound_id != &"" and is_zero_approx(_cane_sound_cooldown_remaining):
+		if sound_id != &"":
 			EventBus.audio_requested.emit(String(sound_id), contact_point, 0.0)
-			_cane_sound_cooldown_remaining = CANE_SOUND_COOLDOWN
 		elif GameConfig.DEBUG:
 			print("[DEBUG][CaneSystem] no cane sound profile=%s reason=empty_sound_id" % _ContactProfileProvider.profile_id(profile))
 
@@ -201,21 +199,20 @@ func _try_spawn_cane_touch_memory(contact_point: Vector3, profile: Resource) -> 
 		_has_last_cane_memory_point = true
 		_last_cane_memory_point = contact_point
 		_last_cane_memory_profile_id = profile_id
-		_cane_touch_elapsed = 0.0
 	return spawned
 
 
 func _should_spawn_cane_touch_memory(contact_point: Vector3, profile_id: StringName) -> bool:
-	# 同一段连续接触按距离和冷却节流；换物体材质或断开接触后允许立即生成新记忆。
+	# 同一段连续接触按距离节流：接触点已明显离开上一个记忆点就应立即生成新显影，
+	# 避免快速移动到新位置时显影要等时间冷却才出现。
+	# 断开接触（新接触段）或换了物体材质时直接放行。
 	if not _contact_segment_active:
 		return true
 	if not _has_last_cane_memory_point:
 		return true
 	if _last_cane_memory_profile_id != profile_id:
 		return true
-	if _last_cane_memory_point.distance_to(contact_point) < GameConfig.CANE_TOUCH_MEMORY_MIN_DISTANCE:
-		return false
-	return _cane_touch_elapsed >= GameConfig.CANE_TOUCH_MEMORY_COOLDOWN
+	return _last_cane_memory_point.distance_to(contact_point) >= GameConfig.CANE_TOUCH_MEMORY_MIN_DISTANCE
 
 
 func _update_contact_segment(has_contact: bool, delta: float) -> void:
@@ -433,6 +430,11 @@ func _blocked_visible_length(contact_info: Dictionary) -> float:
 	return clampf(length, MIN_VISIBLE_LENGTH, cane_length)
 
 
+## 当前可视杖尖的世界坐标：显影应以此为准，与画面中的杖尖完全重合。
+func _visible_tip_position() -> Vector3:
+	return global_position + global_transform.basis * Vector3(0.0, ROD_Y_OFFSET, -_visible_length)
+
+
 func _is_floor_hit(normal: Vector3) -> bool:
 	return normal.dot(Vector3.UP) > 0.85
 
@@ -544,8 +546,6 @@ func _reset_contact_state() -> void:
 	_contact_segment_active = false
 	_has_last_cane_memory_point = false
 	_last_cane_memory_profile_id = &""
-	_cane_touch_elapsed = 0.0
-	_cane_sound_cooldown_remaining = 0.0
 	_contact_break_elapsed = GameConfig.CANE_TOUCH_CONTACT_BREAK_GRACE
 	_target_pitch = _current_pitch
 	_fine_pitch_center = _current_pitch
