@@ -127,7 +127,8 @@ func _handle_key_pressed(event: InputEventKey) -> void:
 				_interaction_system.try_interact()
 		GameConfig.KEY_CANE_TOGGLE:
 			# T 在 gameplay 中切换盲杖收放；过渡期间由 CaneSystem 忽略重复切换。
-			if _cane and GameState.is_input_enabled():
+			# 领取盲杖（开场流程）之前不允许主动展开。
+			if _cane and GameState.is_input_enabled() and GameState.has_quest_item(&"opening_cane_taken"):
 				_cane.toggle_deployment()
 
 

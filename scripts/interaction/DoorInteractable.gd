@@ -129,4 +129,7 @@ func _degrees_to_radians(value: Vector3) -> Vector3:
 
 
 func _is_player_home_door() -> bool:
-	return String(get_path()).ends_with(PLAYER_HOME_DOOR_PATH_SUFFIX)
+	if not String(get_path()).ends_with(PLAYER_HOME_DOOR_PATH_SUFFIX):
+		return false
+	# The opening routine must finish before the existing route can begin.
+	return GameState.has_quest_item(&"opening_trash_done")

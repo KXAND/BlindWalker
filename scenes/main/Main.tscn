@@ -67,6 +67,7 @@
 [ext_resource type="Resource" uid="uid://cvu7ijwdo40ry" path="res://assets/narrative/intro_fullscreen.tres" id="intro_fullscreen"]
 [ext_resource type="Script" uid="uid://dse11cu8isjrb" path="res://scripts/core/MainBootstrap.gd" id="main_bootstrap"]
 [ext_resource type="Script" uid="uid://bmkk6pcgs25qi" path="res://scripts/gameplay/NarrativeTriggerArea.gd" id="narrative_trigger_area"]
+[ext_resource type="Script" uid="uid://1mlarlu28og7" path="res://scripts/gameplay/OpeningRoutine.gd" id="opening_routine"]
 [ext_resource type="Resource" uid="uid://dv0c42kwhsj2k" path="res://assets/narrative/outro_fullscreen.tres" id="outro_fullscreen"]
 [ext_resource type="Script" uid="uid://clylygul3x0t" path="res://scripts/player/PlayerAttributes.gd" id="player_attributes"]
 [ext_resource type="Script" uid="uid://43gm3enfx7q7" path="res://scripts/ui/QtePromptUI.gd" id="qte_prompt_ui"]
@@ -84,7 +85,7 @@ adjustment_brightness = 0.8
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_player"]
 radius = 0.35
-height = 1.2
+height = 1.7
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ss1ga"]
 size = Vector3(1.4, 1, 1.6)
@@ -213,6 +214,9 @@ render_target_update_mode = 4
 script = ExtResource("main_bootstrap")
 failure_sequence = ExtResource("failure_fullscreen")
 
+[node name="OpeningRoutine" type="Node" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=213456789]
+script = ExtResource("opening_routine")
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=747758012]
 environment = SubResource("Environment_dark")
 
@@ -259,7 +263,7 @@ play_initial_sequence_on_ready = true
 [node name="DialogueTriggers" type="Node3D" parent="GameViewportContainer/GameViewport/GameRoot" unique_id=1008046235]
 
 [node name="HomeSecondFloor" type="Area3D" parent="GameViewportContainer/GameViewport/GameRoot/DialogueTriggers" unique_id=899448566]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.25, 4.1, 17)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -31.25, 6.1, 17)
 script = ExtResource("narrative_trigger_area")
 sequence = ExtResource("dialogue_home_second_floor")
 

@@ -11,6 +11,7 @@ var _has_triggered: bool = false
 
 
 func _ready() -> void:
+	add_to_group("narrative_trigger")
 	body_entered.connect(_on_body_entered)
 	call_deferred("_trigger_overlapping_player")
 
