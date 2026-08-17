@@ -58,6 +58,8 @@ var _tumble_elapsed: float = 0.0
 var _fall_damage_total: int = 0
 var _fall_damage_elapsed: float = 0.0
 var _time_since_fall_damage: float = 0.0
+var _last_tumble_damage_position: Vector3 = Vector3.ZERO
+var _has_tumble_damage_checkpoint: bool = false
 var _handrail_assist: Area3D
 var _external_impact_direction: Vector3 = Vector3.ZERO
 var _external_impact_remaining_distance: float = 0.0
@@ -482,6 +484,8 @@ func _start_fall_ignoring_gameplay_lock(
 	_fall_damage_elapsed = 0.0
 	_time_since_fall_damage = 0.0
 	_fall_initial_damage_applied = initial_damage_already_applied
+	_last_tumble_damage_position = global_position
+	_has_tumble_damage_checkpoint = initial_damage_already_applied
 	_recovery_qte_pressed = false
 	_unstable_stumble_progress = 0.0
 	_tumble_direction = direction
@@ -540,7 +544,12 @@ func _update_balance_state(delta: float) -> void:
 			_time_since_fall_damage += delta
 			if _fall_damage_elapsed >= GameConfig.TUMBLE_DAMAGE_INTERVAL:
 				_fall_damage_elapsed = 0.0
+				if _is_tumble_stuck_since_last_damage_check():
+					_start_get_up()
+					return
 				_apply_fall_damage(GameConfig.TUMBLE_TICK_DAMAGE)
+				_last_tumble_damage_position = global_position
+				_has_tumble_damage_checkpoint = true
 			if _tumble_elapsed >= GameConfig.TUMBLE_MAX_TIME or _is_on_stable_surface():
 				var needs_minimum_damage := _fall_damage_total <= 0 and not _fall_initial_damage_applied
 				var needs_final_damage := _fall_damage_total > 0 \
@@ -645,6 +654,14 @@ func _apply_fall_damage(amount: int) -> void:
 	_time_since_fall_damage = 0.0
 	_attributes.take_damage_ignoring_gameplay_lock(applied)
 	EventBus.audio_requested.emit("fall", global_position, 0.0)
+
+
+func _is_tumble_stuck_since_last_damage_check() -> bool:
+	if not _has_tumble_damage_checkpoint or not is_on_floor():
+		return false
+	var displacement := global_position - _last_tumble_damage_position
+	displacement.y = 0.0
+	return displacement.length() < GameConfig.TUMBLE_STUCK_DEADZONE
 
 
 func _is_on_stable_surface() -> bool:
