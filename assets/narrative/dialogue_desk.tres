@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" format=3 uid="uid://cgjukqru7erke"]
+
+[ext_resource type="Script" uid="uid://c68wt0narrseq" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_name = "晓明"
+text = "什么时候我也能像普通人一样去上学就好了……"
+duration = 100.0
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"desk"
+lines = [SubResource("NarrativeLine_1")]
+default_line_duration = 3.0

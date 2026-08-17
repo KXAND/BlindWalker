@@ -22,6 +22,8 @@
 [ext_resource type="PackedScene" path="res://scenes/Home/IndoorTrashCan.tscn" id="14_qdxcq"]
 [ext_resource type="PackedScene" path="res://scenes/Home/ApplePlate.tscn" id="15_mfc46"]
 [ext_resource type="Script" uid="uid://cfh5f613sqg5w" path="res://scripts/interaction/DoorInteractable.gd" id="16_door_interactable"]
+[ext_resource type="PackedScene" uid="uid://decaupjsg6etp" path="res://scenes/Home/breakfast.glb" id="23_phpmo"]
+[ext_resource type="Resource" uid="uid://cgjukqru7erke" path="res://assets/narrative/dialogue_desk.tres" id="24_desk_dialogue"]
 
 [sub_resource type="StandardMaterial3D" id="mat_floor"]
 albedo_color = Color(0.45, 0.32, 0.22, 1)
@@ -49,7 +51,7 @@ albedo_color = Color(0.5, 0.35, 0.22, 1)
 albedo_color = Color(0.55, 0.55, 0.6, 1)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_ss1ga"]
-size = Vector3(0.7836151, 1.8081665, 0.6246681)
+size = Vector3(1, 1.8081665, 1.4)
 
 [sub_resource type="StandardMaterial3D" id="mat_bed_frame"]
 albedo_color = Color(0.36, 0.22, 0.11, 1)
@@ -87,6 +89,9 @@ size = Vector3(0.18426514, 0.2972412, 0.28674316)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_door_interaction"]
 size = Vector3(2, 2.2, 2)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_lhng8"]
+size = Vector3(0.2, 0.1, 0.2)
 
 [node name="PlayerHome" type="Node3D" unique_id=119255540]
 
@@ -292,8 +297,22 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -2.0
 [node name="Bed" parent="Structure" unique_id=253534105 instance=ExtResource("4_h8vgv")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 3.6158159, 0.049999855, -4.9739685)
 
-[node name="Desk2" parent="Structure" unique_id=1682468517 instance=ExtResource("2_ktood")]
+[node name="DeskInPlayerHome" parent="Structure" unique_id=1682468517 instance=ExtResource("2_ktood")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 4.0072575, 0.38500005, -3.4871843)
+
+[node name="DeskInteraction" type="Area3D" parent="Structure/DeskInPlayerHome" unique_id=714867869]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.0016386509, 0, 0.08514547)
+script = ExtResource("7_k7kuu")
+prompt_anchor_path = NodePath("../DeskTarget")
+reveal_target_path = NodePath("../DeskTarget")
+narrative_sequence = ExtResource("24_desk_dialogue")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Structure/DeskInPlayerHome/DeskInteraction" unique_id=2069110539]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.108192444, 0.74999994, 0.049999952)
+shape = SubResource("BoxShape3D_ss1ga")
+
+[node name="DeskTarget" type="Node3D" parent="Structure/DeskInPlayerHome" unique_id=29316550]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -0.101638556, 0.74999994, 0.38514566)
 
 [node name="Furniture" type="Node3D" parent="." unique_id=722846288]
 
@@ -310,7 +329,7 @@ reveal_target_path = NodePath("../Target")
 narrative_sequence = ExtResource("7_phpmo")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Furniture/Guitar/GuitarInteraction" unique_id=1591724518]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9136267, 1.0046276, -2.7584422)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.9136267, 1.0046276, -2.8207762)
 shape = SubResource("BoxShape3D_ss1ga")
 
 [node name="Target" type="Node3D" parent="Furniture/Guitar" unique_id=2049598945]
@@ -468,7 +487,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5318086, 0.50412434, 1.3153
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5719557, 0.050000094, 1.3372897)
 
 [node name="Chair" parent="Furniture" unique_id=2041899753 instance=ExtResource("3_gtexk")]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.3617504, 0.04999999, -3.4677346)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 3.5617504, 0.04999999, -3.4677346)
 
 [node name="Tv" parent="Furniture" unique_id=551586452 instance=ExtResource("8_ibdgp")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.1658685, 0.049999855, -1.8472321)
@@ -583,3 +602,18 @@ transform = Transform3D(0.82671404, 0, -0.5626224, 0, 1, 0, 0.5626224, 0, 0.8267
 use_collision = true
 size = Vector3(0.8, 2.1, 0.05)
 material = SubResource("mat_door")
+
+[node name="Task" type="Node3D" parent="." unique_id=1197996319]
+
+[node name="Breakfast" type="Node3D" parent="Task" unique_id=1487954494]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.39672667, 0.8199485, 0.6775402)
+
+[node name="BreakfastModel" parent="Task/Breakfast" unique_id=229747015 instance=ExtResource("23_phpmo")]
+transform = Transform3D(-0.10855229, 0, -0.16797738, 0, 0.2, 0, 0.16797738, 0, -0.10855229, 0, 0, 0)
+
+[node name="Area3D" type="Area3D" parent="Task/Breakfast" unique_id=1302738159]
+script = ExtResource("7_k7kuu")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Task/Breakfast/Area3D" unique_id=1001529132]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9802322e-08, 0.05000007, 0)
+shape = SubResource("BoxShape3D_lhng8")
