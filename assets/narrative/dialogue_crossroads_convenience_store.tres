@@ -4,10 +4,12 @@
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
-script = ExtResource("2_line")
+speaker_id = &"xiaoming"
+	script = ExtResource("2_line")
 speaker_name = "晓明"
-text = "又到路口了，记得小卖部就在这个路口斜对面。"
-duration = 100.0
+audio_id = &"voice_crossroads_convenience_store_01"
+	text = "又到路口了，记得小卖部就在这个路口斜对面。"
+duration = 4.70
 
 [resource]
 script = ExtResource("1_sequence")

@@ -193,6 +193,11 @@ func _resolve_stream(sound_id: String, source: StringName = &"unknown") -> Audio
 	if stream:
 		return stream
 
+	# 叙事台词语音按 audio_id 自动查找，无需在字典中逐条注册。
+	var voice_stream := _resolve_stream_at_path("res://assets/audio/voice/%s.ogg" % sound_id)
+	if voice_stream:
+		return voice_stream
+
 	if _should_fallback_to_default_cane_tap(sound_id, source):
 		var fallback_path: String = _sound_paths.get(DEFAULT_CANE_TAP_SOUND_ID, "")
 		var fallback_stream := _resolve_stream_at_path(fallback_path)

@@ -1,0 +1,26 @@
+{
+	"xiaoming": {
+		"label": "晓明（男青年主角，0.9 倍语速）",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"emotion": "neutral"
+	},
+	"li_grandma": {
+		"label": "李奶奶（老年女性，减速）",
+		"voice_type": 501002,
+		"speed": -1.0,
+		"emotion": "neutral"
+	},
+	"wang_shu": {
+		"label": "王叔（邻居男声）",
+		"voice_type": 603006,
+		"speed": 0.0,
+		"emotion": "neutral"
+	},
+	"kind_passersby": {
+		"label": "好心路人（女声）",
+		"voice_type": 603007,
+		"speed": 0.0,
+		"emotion": "neutral"
+	}
+}

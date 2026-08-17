@@ -12,11 +12,17 @@ const OPENING_ACTION_CLOTHES := &"clothes"
 const OPENING_ACTION_CANE := &"cane"
 const OPENING_ACTION_BREAKFAST := &"breakfast"
 const OPENING_ACTION_TRASH := &"trash"
-const DIALOGUE_SPEAKER := "晓明"
 
 const InteractableScript = preload("res://scripts/gameplay/OpeningInteractable.gd")
-const NarrativeLineScript = preload("res://scripts/core/NarrativeLine.gd")
-const NarrativeSequenceScript = preload("res://scripts/core/NarrativeSequence.gd")
+
+# 开场各步骤的台词序列资源：台词与配音统一由 tres 承载（TTS 脚本扫描生成）。
+const OPENING_SEQUENCES := {
+	OPENING_ACTION_DIALOGUE: preload("res://assets/narrative/opening_intro.tres"),
+	OPENING_ACTION_CLOTHES: preload("res://assets/narrative/opening_clothes.tres"),
+	OPENING_ACTION_BREAKFAST: preload("res://assets/narrative/opening_breakfast.tres"),
+	OPENING_ACTION_TRASH: preload("res://assets/narrative/opening_trash.tres"),
+	OPENING_ACTION_CANE: preload("res://assets/narrative/opening_cane.tres"),
+}
 
 var _player: Node3D
 var _cane: CaneSystem
@@ -83,40 +89,29 @@ func perform_action(action: StringName, _source: Node) -> bool:
 	if action == OPENING_ACTION_CLOTHES and GameState.has_quest_item(OPENING_ITEM_WAKE) and not GameState.has_quest_item(OPENING_ITEM_CLOTHES):
 		GameState.collect_quest_item(OPENING_ITEM_CLOTHES)
 		_pending_action = action
-		_play_sequence(action, ["我像往常一样，慢慢的换衣服", "衣服换好了，去吃早餐吧"])
+		_play_sequence(action)
 		return true
 	if action == OPENING_ACTION_BREAKFAST and GameState.has_quest_item(OPENING_ITEM_CLOTHES) and not GameState.has_quest_item(OPENING_ITEM_BREAKFAST):
 		GameState.collect_quest_item(OPENING_ITEM_BREAKFAST)
 		_pending_action = action
-		_play_sequence(action, ["母亲做的早饭还是一如既往的用心", "早餐吃完了，收拾一下垃圾","把垃圾扔到门口垃圾桶吧"])
+		_play_sequence(action)
 		return true
 	if action == OPENING_ACTION_TRASH and GameState.has_quest_item(OPENING_ITEM_BREAKFAST) and not GameState.has_quest_item(OPENING_ITEM_TRASH):
 		GameState.collect_quest_item(OPENING_ITEM_TRASH)
 		_pending_action = action
-		_play_sequence(action, ["我拎起垃圾走到门口，准备放进门口的垃圾桶。", "嗯？垃圾桶好像满了？那拿到楼下垃圾桶扔了吧", "好久没出门了，先拿上盲杖吧。"])
+		_play_sequence(action)
 		return true
 	if action == OPENING_ACTION_CANE and GameState.has_quest_item(OPENING_ITEM_TRASH) and not GameState.has_quest_item(OPENING_ITEM_CANE):
 		GameState.collect_quest_item(OPENING_ITEM_CANE)
 		_pending_action = action
-		_play_sequence(action, ["我拿起放在鞋柜旁的盲杖。", "手中传来盲杖的触感，可以出发了。"])
+		_play_sequence(action)
 		return true
 	return false
 
 
-func _play_sequence(action: StringName, texts: Array[String], speaker: String = "") -> void:
-	var sequence := NarrativeSequenceScript.new()
-	sequence.sequence_id = StringName("opening_" + String(action))
-	sequence.lock_input = true
-	sequence.lock_gameplay = true
-	sequence.default_line_duration = 3.0
-	sequence.lines = []
-	for text in texts:
-		var line := NarrativeLineScript.new()
-		line.speaker_name = speaker
-		line.text = text
-		line.duration = 3.0
-		sequence.lines.append(line)
-	_manager.play_sequence(sequence)
+func _play_sequence(action: StringName) -> void:
+	if _manager:
+		_manager.play_sequence(OPENING_SEQUENCES[action])
 
 
 func _on_cutscene_ended(sequence_id: String) -> void:
@@ -124,12 +119,12 @@ func _on_cutscene_ended(sequence_id: String) -> void:
 		if not GameState.has_quest_item(OPENING_ITEM_WAKE):
 			GameState.collect_quest_item(OPENING_ITEM_WAKE)
 		_pending_action = OPENING_ACTION_DIALOGUE
-		_play_sequence(OPENING_ACTION_DIALOGUE, [
-			"还是没有奇迹吗，也是，奇迹怎么会有这么容易发生呢。",
-			"先去换衣服吧。",
-		], DIALOGUE_SPEAKER)
+		_play_sequence(OPENING_ACTION_DIALOGUE)
 		return
-	if _pending_action == &"" or sequence_id != "opening_" + String(_pending_action):
+	if _pending_action == &"":
+		return
+	var expected_id := String(OPENING_SEQUENCES[_pending_action].sequence_id)
+	if sequence_id != expected_id:
 		return
 	var completed_action := _pending_action
 	_pending_action = &""

@@ -1,0 +1,652 @@
+{
+	"voice_crosswalk_04": {
+		"file": "voice_crosswalk_04.ogg",
+		"text": "同学您好，您是要过马路吗？要帮帮忙吗？",
+		"text_hash": "de7fb34046ac",
+		"speaker_id": "kind_passersby",
+		"voice_type": 603007,
+		"duration": 4.32,
+		"purpose": "narrative_line"
+	},
+	"voice_crosswalk_06": {
+		"file": "voice_crosswalk_06.ogg",
+		"text": "哦，好的好的，那您小心一点。",
+		"text_hash": "092e77293f41",
+		"speaker_id": "kind_passersby",
+		"voice_type": 603007,
+		"duration": 3.4,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_04": {
+		"file": "voice_endpoint_04.ogg",
+		"text": "晓明？",
+		"text_hash": "aebc78a68ff1",
+		"speaker_id": "wang_shu",
+		"voice_type": 603006,
+		"duration": 1.12,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_06": {
+		"file": "voice_endpoint_06.ogg",
+		"text": "晓明，你怎么跑这么远来了？",
+		"text_hash": "91019ff028de",
+		"speaker_id": "wang_shu",
+		"voice_type": 603006,
+		"duration": 2.48,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_08": {
+		"file": "voice_endpoint_08.ogg",
+		"text": "我刚好也顺路买东西回去，我载你回去吧。",
+		"text_hash": "c7001e7c1e9d",
+		"speaker_id": "wang_shu",
+		"voice_type": 603006,
+		"duration": 3.88,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_02": {
+		"file": "voice_ground_floor_02.ogg",
+		"text": "<speak><phoneme alphabet=\"py\" ph=\"xiao3 ming2\">晓明</phoneme>？<phoneme alphabet=\"py\" ph=\"ni3\">你</phoneme><phoneme alphabet=\"py\" ph=\"xia4 lai2\">下来</phoneme><phoneme alphabet=\"py\" ph=\"reng1 la1 ji1\">扔垃圾</phoneme><phoneme alphabet=\"py\" ph=\"a5\">啊</phoneme>？</speak>",
+		"text_hash": "cdbe04cb3214",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"speed": -1.0,
+		"duration": 3.98,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_04": {
+		"file": "voice_ground_floor_04.ogg",
+		"text": "家里的白糖用完了，想去外面小卖部买一袋来着……",
+		"text_hash": "1d37f2c4aad1",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"duration": 6.77,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_06": {
+		"file": "voice_ground_floor_06.ogg",
+		"text": "那可太好了，麻烦你了啊。一袋白糖就行，钱你先拿着。",
+		"text_hash": "2d2ee8599023",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"duration": 8.87,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_08": {
+		"file": "voice_ground_floor_08.ogg",
+		"text": "你好久没出门了，一定要小心点啊。",
+		"text_hash": "d7c15ae0cf42",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"duration": 5.41,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_10": {
+		"file": "voice_ground_floor_10.ogg",
+		"text": "不用太急，记得慢点啊。",
+		"text_hash": "e462ac6c3169",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"duration": 4.13,
+		"purpose": "narrative_line"
+	},
+	"voice_sample_neighbor_request_02": {
+		"file": "voice_sample_neighbor_request_02.ogg",
+		"text": "晓明啊，能不能顺路帮我去小区门口的小超市买一包白糖？",
+		"text_hash": "30703ecc7a05",
+		"speaker_id": "li_grandma",
+		"voice_type": 501002,
+		"duration": 8.33,
+		"purpose": "narrative_line"
+	},
+	"voice_blocked_go_left_01": {
+		"file": "voice_blocked_go_left_01.ogg",
+		"text": "这边被堵住了，往左走吧。",
+		"text_hash": "771d67e778a8",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.27,
+		"purpose": "narrative_line"
+	},
+	"voice_blocked_go_right_01": {
+		"file": "voice_blocked_go_right_01.ogg",
+		"text": "这边被堵住了，往右走吧。",
+		"text_hash": "bf5b87fd3ee1",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.25,
+		"purpose": "narrative_line"
+	},
+	"voice_crossroads_convenience_store_01": {
+		"file": "voice_crossroads_convenience_store_01.ogg",
+		"text": "又到路口了，记得小卖部就在这个路口斜对面。",
+		"text_hash": "ba82267d2e81",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.7,
+		"purpose": "narrative_line"
+	},
+	"voice_crosswalk_01": {
+		"file": "voice_crosswalk_01.ogg",
+		"text": "应该是这个路口了，过马路吧。",
+		"text_hash": "c9deeb768953",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.34,
+		"purpose": "narrative_line"
+	},
+	"voice_crosswalk_02": {
+		"file": "voice_crosswalk_02.ogg",
+		"text": "街上车流复杂，容易发生意外。",
+		"text_hash": "1de63e227d38",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.44,
+		"purpose": "narrative_line"
+	},
+	"voice_crosswalk_03": {
+		"file": "voice_crosswalk_03.ogg",
+		"text": "留意下红绿灯提示音，等到绿灯那会再过马路吧。",
+		"text_hash": "173a6f65946b",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.86,
+		"purpose": "narrative_line"
+	},
+	"voice_crosswalk_05": {
+		"file": "voice_crosswalk_05.ogg",
+		"text": "谢谢你，不过我想尝试一下自己过马路，谢谢你的好意。",
+		"text_hash": "64e3b6c4473e",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.01,
+		"purpose": "narrative_line"
+	},
+	"voice_desk_01": {
+		"file": "voice_desk_01.ogg",
+		"text": "什么时候我也能像普通人一样去上学就好了……",
+		"text_hash": "5f0da6ebbae9",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.88,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_01": {
+		"file": "voice_endpoint_01.ogg",
+		"text": "就是这家店了。",
+		"text_hash": "9893834ae3c9",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 1.79,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_05": {
+		"file": "voice_endpoint_05.ogg",
+		"text": "王叔？你怎么来了？",
+		"text_hash": "dacc14d68d36",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.13,
+		"purpose": "narrative_line"
+	},
+	"voice_endpoint_07": {
+		"file": "voice_endpoint_07.ogg",
+		"text": "李奶奶腿脚不方便，托我帮她买一袋白糖。小区楼下的小卖部关门了，我就找到这边来了。",
+		"text_hash": "1517b7d8362c",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 8.96,
+		"purpose": "narrative_line"
+	},
+	"voice_first_crossroads_turn_right_01": {
+		"file": "voice_first_crossroads_turn_right_01.ogg",
+		"text": "第一个十字路口到了，在这右转吧。",
+		"text_hash": "100ad64a404f",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.75,
+		"purpose": "narrative_line"
+	},
+	"voice_first_crossroads_turn_right_02": {
+		"file": "voice_first_crossroads_turn_right_02.ogg",
+		"text": "之后沿着盲道走，商店应该就在下一个十字路口的斜对面。",
+		"text_hash": "ebf40feffa5d",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.65,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_01": {
+		"file": "voice_ground_floor_01.ogg",
+		"text": "垃圾桶到了……好，扔进去。",
+		"text_hash": "819cfbad5267",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.37,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_03": {
+		"file": "voice_ground_floor_03.ogg",
+		"text": "李奶奶好，您也出门呢？",
+		"text_hash": "199198d82235",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.29,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_05": {
+		"file": "voice_ground_floor_05.ogg",
+		"text": "那我帮您去买吧，我正好也没事。您腿脚不方便，我来替你去吧。",
+		"text_hash": "47bf705cfa46",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 6.25,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_07": {
+		"file": "voice_ground_floor_07.ogg",
+		"text": "不用急，回来再说。您在家等着吧。",
+		"text_hash": "e20e27a47868",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.11,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_09": {
+		"file": "voice_ground_floor_09.ogg",
+		"text": "没问题，李奶奶，小卖部也不是很远，小区门口旁边而已，几步路就到了，那我去了。",
+		"text_hash": "25163cd09eed",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 7.79,
+		"purpose": "narrative_line"
+	},
+	"voice_ground_floor_11": {
+		"file": "voice_ground_floor_11.ogg",
+		"text": "先出去小区门口吧",
+		"text_hash": "0d59ee4b959e",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.07,
+		"purpose": "narrative_line"
+	},
+	"voice_guitar_01": {
+		"file": "voice_guitar_01.ogg",
+		"text": "这把吉他陪了我好多年了。",
+		"text_hash": "a6c80b1e2c7f",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.71,
+		"purpose": "narrative_line"
+	},
+	"voice_guitar_02": {
+		"file": "voice_guitar_02.ogg",
+		"text": "虽然看不见，但世界上总有些事情，是不需要用眼睛去感受的。",
+		"text_hash": "148e1f7ca5c4",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.78,
+		"purpose": "narrative_line"
+	},
+	"voice_home_second_floor_01": {
+		"file": "voice_home_second_floor_01.ogg",
+		"text": "把早饭垃圾扔进去吧。嗯？垃圾袋好像满了。",
+		"text_hash": "b21400cfe998",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.26,
+		"purpose": "narrative_line"
+	},
+	"voice_home_second_floor_02": {
+		"file": "voice_home_second_floor_02.ogg",
+		"text": "拿到楼下垃圾桶扔了吧。",
+		"text_hash": "c442380bd440",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.87,
+		"purpose": "narrative_line"
+	},
+	"voice_home_second_floor_03": {
+		"file": "voice_home_second_floor_03.ogg",
+		"text": "有段时间没出门了，看看门把手在哪",
+		"text_hash": "2c8a50d2cbc4",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.48,
+		"purpose": "narrative_line"
+	},
+	"voice_photo_frame_01": {
+		"file": "voice_photo_frame_01.ogg",
+		"text": "这是我成人礼那天，和家人一起拍的。",
+		"text_hash": "d45eb8a7872e",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.79,
+		"purpose": "narrative_line"
+	},
+	"voice_photo_frame_02": {
+		"file": "voice_photo_frame_02.ogg",
+		"text": "因为看不见，其实我不怎么拍照……这张算是为数不多的几张了。",
+		"text_hash": "4991caad85f0",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.8,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_01": {
+		"file": "voice_shop_closed_01.ogg",
+		"text": "应该就是这了……嗯，怎么是铁门？走错了吗？",
+		"text_hash": "48aeed5d7935",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.24,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_02": {
+		"file": "voice_shop_closed_02.ogg",
+		"text": "应该是这里没错，就是好像今天怎么关门了。",
+		"text_hash": "19be748b3807",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.31,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_03": {
+		"file": "voice_shop_closed_03.ogg",
+		"text": "可我已经答应李奶奶了……总不能空手回去吧。",
+		"text_hash": "e72c73f398dc",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.66,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_04": {
+		"file": "voice_shop_closed_04.ogg",
+		"text": "不行，答应了李奶奶的事就要做到，我记得远处的路口处还有家惠民超市，去那里买吧。",
+		"text_hash": "9d094b005a00",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 7.82,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_05": {
+		"file": "voice_shop_closed_05.ogg",
+		"text": "我印象里应该在前面的路口右转。",
+		"text_hash": "d84820158ceb",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.78,
+		"purpose": "narrative_line"
+	},
+	"voice_shop_closed_06": {
+		"file": "voice_shop_closed_06.ogg",
+		"text": "先沿着左边的盲道向后走吧，待会要过马路。",
+		"text_hash": "6ce76d598afe",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.77,
+		"purpose": "narrative_line"
+	},
+	"voice_stairwell_01": {
+		"file": "voice_stairwell_01.ogg",
+		"text": "有段时间没出门了，我记得扶手应该在这，扶着扶手下吧。",
+		"text_hash": "3b422316c91a",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 5.42,
+		"purpose": "narrative_line"
+	},
+	"voice_stairwell_02": {
+		"file": "voice_stairwell_02.ogg",
+		"text": "慢慢来，别又摔着了。",
+		"text_hash": "d16465d5fa7d",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.61,
+		"purpose": "narrative_line"
+	},
+	"voice_street_01": {
+		"file": "voice_street_01.ogg",
+		"text": "出到小区门口了。小卖部应该在小区门口右边……现在往右走吧。",
+		"text_hash": "4492b4e5f121",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 6.8,
+		"purpose": "narrative_line"
+	},
+	"voice_street_02": {
+		"file": "voice_street_02.ogg",
+		"text": "这块路面坏了，小心点。",
+		"text_hash": "8bcf9c183325",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.12,
+		"purpose": "narrative_line"
+	},
+	"voice_street_after_crosswalk_01": {
+		"file": "voice_street_after_crosswalk_01.ogg",
+		"text": "好不容易过了马路。接下来应该是沿着这条盲道往左走",
+		"text_hash": "7cc23c9e6990",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.91,
+		"purpose": "narrative_line"
+	},
+	"voice_street_after_crosswalk_02": {
+		"file": "voice_street_after_crosswalk_02.ogg",
+		"text": "之后前面应该是第一个路口，我记得应该是在那里先往右转",
+		"text_hash": "a4e050c5e453",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.55,
+		"purpose": "narrative_line"
+	},
+	"voice_wrong_way_01": {
+		"file": "voice_wrong_way_01.ogg",
+		"text": "好像不是这个方向，调头往回走吧。",
+		"text_hash": "d2c25e3b18bf",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.66,
+		"purpose": "narrative_line"
+	},
+	"voice_intro_fullscreen_01": {
+		"file": "voice_intro_fullscreen_01.ogg",
+		"text": "我叫晓明，是一名22岁的失明的大学生。",
+		"text_hash": "612c9df81245",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.45,
+		"purpose": "narrative_line"
+	},
+	"voice_intro_fullscreen_02": {
+		"file": "voice_intro_fullscreen_02.ogg",
+		"text": "因为看不见，我平时很少出门。",
+		"text_hash": "114e4205a3e6",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.2,
+		"purpose": "narrative_line"
+	},
+	"voice_intro_fullscreen_03": {
+		"file": "voice_intro_fullscreen_03.ogg",
+		"text": "今天如同往常一样，我平静的从睡梦中醒来，期待着睁眼能够看见清晨的阳光。",
+		"text_hash": "8ceb14de5818",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 7.61,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_breakfast_01": {
+		"file": "voice_opening_breakfast_01.ogg",
+		"text": "母亲做的早饭还是一如既往的用心",
+		"text_hash": "7f7e5d1bd021",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.97,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_breakfast_02": {
+		"file": "voice_opening_breakfast_02.ogg",
+		"text": "早餐吃完了，收拾一下垃圾",
+		"text_hash": "0b559bcb253e",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.6,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_breakfast_03": {
+		"file": "voice_opening_breakfast_03.ogg",
+		"text": "把垃圾扔到门口垃圾桶吧",
+		"text_hash": "685f295b8e9f",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.5,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_cane_01": {
+		"file": "voice_opening_cane_01.ogg",
+		"text": "我拿起放在鞋柜旁的盲杖。",
+		"text_hash": "80317b68a31f",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.07,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_cane_02": {
+		"file": "voice_opening_cane_02.ogg",
+		"text": "手中传来盲杖的触感，可以出发了。",
+		"text_hash": "fc7e98652510",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.96,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_clothes_01": {
+		"file": "voice_opening_clothes_01.ogg",
+		"text": "我像往常一样，慢慢的换衣服",
+		"text_hash": "41809818e9d1",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.58,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_clothes_02": {
+		"file": "voice_opening_clothes_02.ogg",
+		"text": "衣服换好了，去吃早餐吧",
+		"text_hash": "e88229a0a78d",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.38,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_intro_01": {
+		"file": "voice_opening_intro_01.ogg",
+		"text": "还是没有奇迹吗，也是，奇迹怎么会有这么容易发生呢。",
+		"text_hash": "c4985e13d37e",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.88,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_intro_02": {
+		"file": "voice_opening_intro_02.ogg",
+		"text": "先去换衣服吧。",
+		"text_hash": "9e1b0a42fbb8",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 2.09,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_trash_01": {
+		"file": "voice_opening_trash_01.ogg",
+		"text": "我拎起垃圾走到门口，准备放进门口的垃圾桶。",
+		"text_hash": "7d9bb055c40b",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.83,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_trash_02": {
+		"file": "voice_opening_trash_02.ogg",
+		"text": "嗯？垃圾桶好像满了？那拿到楼下垃圾桶扔了吧",
+		"text_hash": "e54be4a8adb8",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.9,
+		"purpose": "narrative_line"
+	},
+	"voice_opening_trash_03": {
+		"file": "voice_opening_trash_03.ogg",
+		"text": "好久没出门了，先拿上盲杖吧。",
+		"text_hash": "c380a4e02b20",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 3.56,
+		"purpose": "narrative_line"
+	},
+	"voice_sample_neighbor_request_01": {
+		"file": "voice_sample_neighbor_request_01.ogg",
+		"text": "李奶奶，我正好要下楼扔垃圾，您有什么要带的吗？",
+		"text_hash": "1a16232a94ae",
+		"speaker_id": "xiaoming",
+		"voice_type": 501006,
+		"speed": -0.5,
+		"duration": 4.43,
+		"purpose": "narrative_line"
+	}
+}

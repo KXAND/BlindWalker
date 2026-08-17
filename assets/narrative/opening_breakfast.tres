@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="NarrativeSequence" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/NarrativeSequence.gd" id="1_sequence"]
+[ext_resource type="Script" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
+
+[sub_resource type="Resource" id="NarrativeLine_1"]
+script = ExtResource("2_line")
+speaker_id = &"xiaoming"
+duration = 2.97
+audio_id = &"voice_opening_breakfast_01"
+text = "母亲做的早饭还是一如既往的用心"
+
+[sub_resource type="Resource" id="NarrativeLine_2"]
+script = ExtResource("2_line")
+speaker_id = &"xiaoming"
+duration = 2.60
+audio_id = &"voice_opening_breakfast_02"
+text = "早餐吃完了，收拾一下垃圾"
+
+[sub_resource type="Resource" id="NarrativeLine_3"]
+script = ExtResource("2_line")
+speaker_id = &"xiaoming"
+duration = 2.50
+audio_id = &"voice_opening_breakfast_03"
+text = "把垃圾扔到门口垃圾桶吧"
+
+[resource]
+script = ExtResource("1_sequence")
+sequence_id = &"opening_breakfast"
+lines = [SubResource("NarrativeLine_1"), SubResource("NarrativeLine_2"), SubResource("NarrativeLine_3")]
+lock_input = true
+lock_gameplay = true
+default_line_duration = 3.0
