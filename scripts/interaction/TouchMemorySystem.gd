@@ -42,6 +42,10 @@ const AFTERGLOW_LIFE: float = 60.0
 @export var feedback_depth_threshold: float = 0.003
 @export var feedback_surface_alpha: float = 0.055  # 圆柱等平滑表面缺少边缘时的最低显影强度
 
+@export_group("Pinned Ring", "ring_")
+@export var ring_color: Color = Color(1.0, 0.75, 0.25, 1.0)  # 固定环颜色（暖金色）
+@export var ring_width: float = 0.10  # 环宽占显影球半径的比例
+
 # ---- 内部 ----
 
 var _camera: Camera3D = null
@@ -106,6 +110,8 @@ func _create_fullscreen_quad() -> void:
 	_material.set_shader_parameter("camera_far", _camera.far)
 	_material.set_shader_parameter("inv_view_matrix", _get_inv_view_matrix())
 	_material.set_shader_parameter("viewport_size", Vector2(_camera.get_viewport().size))
+	_material.set_shader_parameter("ring_color", ring_color)
+	_material.set_shader_parameter("ring_width", ring_width)
 
 	_update_sphere_uniforms()
 
@@ -207,10 +213,12 @@ func _update_sphere_uniforms() -> void:
 	var rad_array := PackedFloat32Array()
 	var str_array := PackedFloat32Array()
 	var color_array := PackedColorArray()
+	var pinned_array := PackedFloat32Array()
 	pos_array.resize(MAX_SPHERES)
 	rad_array.resize(MAX_SPHERES)
 	str_array.resize(MAX_SPHERES)
 	color_array.resize(MAX_SPHERES)
+	pinned_array.resize(MAX_SPHERES)
 
 	for i in range(MAX_SPHERES):
 		if i < count:
@@ -219,17 +227,66 @@ func _update_sphere_uniforms() -> void:
 			rad_array[i] = s.radius
 			str_array[i] = s.strength
 			color_array[i] = s.color
+			pinned_array[i] = 1.0 if s.is_pinned else 0.0
 		else:
 			pos_array[i] = Vector3.ZERO
 			rad_array[i] = 0.0
 			str_array[i] = 0.0
 			color_array[i] = feedback_color
+			pinned_array[i] = 0.0
 
 	_material.set_shader_parameter("sphere_positions", pos_array)
 	_material.set_shader_parameter("sphere_radii", rad_array)
 	_material.set_shader_parameter("sphere_strengths", str_array)
 	_material.set_shader_parameter("sphere_colors", color_array)
+	_material.set_shader_parameter("sphere_pinned", pinned_array)
 	_material.set_shader_parameter("sphere_count", count)
+	_update_pinned_ring_uniforms()
+
+
+## 固定环专用数组：按 memory_id 去重（活动球优先），每个记忆点只画一个环。
+func _update_pinned_ring_uniforms() -> void:
+	if not _material:
+		return
+	var pinned_spheres := _pinned_spheres_for_ring()
+	var count: int = mini(pinned_spheres.size(), MAX_SPHERES)
+
+	var pos_array := PackedVector3Array()
+	var rad_array := PackedFloat32Array()
+	var str_array := PackedFloat32Array()
+	pos_array.resize(MAX_SPHERES)
+	rad_array.resize(MAX_SPHERES)
+	str_array.resize(MAX_SPHERES)
+
+	for i in range(MAX_SPHERES):
+		if i < count:
+			var s: _TouchSphere = pinned_spheres[i]
+			pos_array[i] = s.center
+			rad_array[i] = s.radius
+			str_array[i] = s.strength
+		else:
+			pos_array[i] = Vector3.ZERO
+			rad_array[i] = 0.0
+			str_array[i] = 0.0
+
+	_material.set_shader_parameter("pinned_sphere_count", count)
+	_material.set_shader_parameter("pinned_sphere_positions", pos_array)
+	_material.set_shader_parameter("pinned_sphere_radii", rad_array)
+	_material.set_shader_parameter("pinned_sphere_strengths", str_array)
+
+
+func _pinned_spheres_for_ring() -> Array[_TouchSphere]:
+	var result: Array[_TouchSphere] = []
+	var seen: Dictionary = {}
+	for sphere: _TouchSphere in _active_spheres:
+		if sphere.is_pinned and not seen.has(sphere.memory_id):
+			seen[sphere.memory_id] = true
+			result.append(sphere)
+	for sphere: _TouchSphere in _afterglow_spheres:
+		if sphere.is_pinned and not seen.has(sphere.memory_id):
+			seen[sphere.memory_id] = true
+			result.append(sphere)
+	return result
 
 
 func _append_render_spheres(

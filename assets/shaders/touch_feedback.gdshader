@@ -12,6 +12,17 @@ uniform float sphere_strengths[64];
 uniform vec4 sphere_colors[64];
 uniform int sphere_count;
 
+// 与主球数组同序的固定标记；固定球内部亮度按 PINNED_BRIGHTNESS_BOOST 提升。
+uniform float sphere_pinned[64];
+
+// 固定环专用数组：按 memory_id 去重（活动球优先），每个记忆点只画一个环。
+uniform int pinned_sphere_count = 0;
+uniform vec3 pinned_sphere_positions[64];
+uniform float pinned_sphere_radii[64];
+uniform float pinned_sphere_strengths[64];
+uniform vec4 ring_color : source_color = vec4(1.0, 0.75, 0.25, 1.0);
+uniform float ring_width = 0.10;
+
 uniform float debug_mode = 0.0;
 uniform float debug_afterglow_strength = 0.35;
 
@@ -23,6 +34,8 @@ uniform vec2 viewport_size = vec2(1280.0, 720.0);
 uniform float depth_threshold = 0.003;
 uniform float surface_alpha = 0.16;
 uniform vec4 edge_color : source_color = vec4(0.4, 0.75, 1.0, 1.0);
+
+const float PINNED_BRIGHTNESS_BOOST = 1.2;
 
 varying vec3 view_ray;
 
@@ -50,18 +63,9 @@ vec3 reconstruct_world_pos(float d) {
 }
 
 
-vec4 get_pixel_feedback(vec2 uv, float d) {
-	if (d >= 1.0) {
-		return vec4(edge_color.rgb, 0.0);
-	}
-
-	if (debug_mode > 0.5) {
-		return vec4(edge_color.rgb, debug_afterglow_strength);
-	}
-
+vec4 get_pixel_feedback(vec3 world_pos) {
 	float max_strength = 0.0;
 	vec3 best_color = edge_color.rgb;
-	vec3 world_pos = reconstruct_world_pos(d);
 
 	for (int i = 0; i < 64; i++) {
 		if (i >= sphere_count) {
@@ -77,6 +81,10 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 		if (dist <= radius) {
 			float falloff = 1.0 - smoothstep(radius * 0.88, radius, dist);
 			float strength = sphere_strengths[i] * falloff;
+			if (sphere_pinned[i] > 0.5) {
+				// 固定球内部提亮约 20%，但保留原材质颜色。
+				strength *= PINNED_BRIGHTNESS_BOOST;
+			}
 			if (strength >= max_strength) {
 				max_strength = strength;
 				best_color = sphere_colors[i].rgb;
@@ -85,6 +93,34 @@ vec4 get_pixel_feedback(vec2 uv, float d) {
 	}
 
 	return vec4(best_color, max_strength);
+}
+
+
+/// 固定环：只在显影球覆盖的真实表面像素上，沿外缘约 ring_width 宽度绘制暖金色环。
+/// 独立于普通显影计算，较新的临时显影不会覆盖它。
+vec4 get_pinned_ring_feedback(vec3 world_pos) {
+	float max_ring_strength = 0.0;
+
+	for (int i = 0; i < 64; i++) {
+		if (i >= pinned_sphere_count) {
+			break;
+		}
+
+		float radius = pinned_sphere_radii[i];
+		if (radius <= 0.0) {
+			continue;
+		}
+
+		float dist = distance(world_pos, pinned_sphere_positions[i]);
+		if (dist <= radius) {
+			float falloff = 1.0 - smoothstep(radius * 0.88, radius, dist);
+			float ring_mask = smoothstep(radius * (1.0 - ring_width), radius, dist);
+			float strength = pinned_sphere_strengths[i] * falloff * ring_mask;
+			max_ring_strength = max(max_ring_strength, strength);
+		}
+	}
+
+	return vec4(ring_color.rgb, max_ring_strength);
 }
 
 
@@ -124,17 +160,44 @@ void fragment() {
 	vec2 texel = 1.0 / viewport_size;
 
 	float dc = texture(depth_tex, uv).r;
-	vec4 center_feedback = get_pixel_feedback(uv, dc);
-	float center_strength = center_feedback.a;
-	if (center_strength <= 0.01) {
+	if (dc >= 1.0) {
 		discard;
 	}
 
-	float edge = get_depth_edge(uv, texel);
-	float fill_alpha = surface_alpha * center_strength * edge_color.a;
-	float edge_alpha = edge * 0.92 * center_strength * edge_color.a;
-	float alpha = max(fill_alpha, edge_alpha);
+	vec3 world_pos = reconstruct_world_pos(dc);
+	vec4 ring_feedback = get_pinned_ring_feedback(world_pos);
 
-	ALBEDO = center_feedback.rgb;
+	vec3 final_color;
+	float alpha;
+
+	if (debug_mode > 0.5) {
+		// 调试模式保留固定环，便于识别哪些记忆点已被保留。
+		final_color = edge_color.rgb;
+		alpha = debug_afterglow_strength;
+		if (ring_feedback.a > 0.01) {
+			final_color = mix(final_color, ring_feedback.rgb, clamp(ring_feedback.a, 0.0, 1.0));
+			alpha = max(alpha, ring_feedback.a);
+		}
+	} else {
+		vec4 center_feedback = get_pixel_feedback(world_pos);
+		float center_strength = center_feedback.a;
+		if (center_strength <= 0.01) {
+			discard;
+		}
+
+		float edge = get_depth_edge(uv, texel);
+		float fill_alpha = surface_alpha * center_strength * edge_color.a;
+		float edge_alpha = edge * 0.92 * center_strength * edge_color.a;
+		alpha = max(fill_alpha, edge_alpha);
+
+		final_color = center_feedback.rgb;
+		if (ring_feedback.a > 0.01) {
+			// 固定环独立合成：环色覆盖显影色，alpha 不被普通显影压低。
+			final_color = mix(final_color, ring_feedback.rgb, clamp(ring_feedback.a, 0.0, 1.0));
+			alpha = max(alpha, ring_feedback.a * edge_color.a);
+		}
+	}
+
+	ALBEDO = final_color;
 	ALPHA = clamp(alpha, 0.0, 1.0);
 }
