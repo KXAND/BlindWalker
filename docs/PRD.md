@@ -42,7 +42,7 @@ BlindWalker 是一款模拟视障体验的第一人称公益游戏。玩家扮�
 | 盲杖 | `CANE_SWEEP_ANGLE` | `60.0` | 扫动锥角 (±°) |
 | 盲杖 | `CANE_LENGTH` | `1.5` | 盲杖长度 (m) |
 | 盲杖 | `CANE_STOW_DURATION` | `0.25` | 盲杖收放动画时长 (s) |
-| 盲杖 | `CANE_FINE_PITCH_ANGLE` | `16.0` | 默认点杖区间 A 的总宽度 (°) |
+| 盲杖 | `CANE_FINE_PITCH_ANGLE` | `24.0` | 默认点杖区间 A 的总宽度 (°) |
 | 盲杖 | `CANE_DEFAULT_PITCH` | `-21.0` | 初始纵向工作姿态 (°) |
 | 触摸 | `TOUCH_YAW_OFFSET_DEG` | `0.0` | 手触射线默认沿相机正前方，可配置左右偏移 |
 | 触摸 | `TOUCH_DISTANCE` | `1.2` | 手触最大探测距离 (m) |
