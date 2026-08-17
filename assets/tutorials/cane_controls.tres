@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"cane_controls"
+title = "盲杖"
+body = "盲杖是探索世界的重要工具。【移动鼠标】扫动盲杖，可以感知前方的地面和障碍。按【T】收起或展开盲杖。按住【R】可以更大幅度地调整盲杖位置。"

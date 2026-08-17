@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"accessibility_hint"
+title = "太难了？(-_-||)"
+body = "如果游戏太难了的话，你可以随时按【F3】照亮整个场景。"

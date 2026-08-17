@@ -12,6 +12,7 @@ extends "res://scripts/interaction/Interactable.gd"
 @export var closed_block_half_extents: Vector3 = Vector3(0.55, 1.35, 0.75)
 
 const PLAYER_HOME_DOOR_PATH_SUFFIX := "/PlayerHome/Door/DoorInteraction"
+const EXIT_DOOR_QUEST_ITEM := &"exit_door_first_interaction"
 
 var _pivot: Node3D
 var _closed_rotation_degrees: Vector3
@@ -60,6 +61,9 @@ func interact(player: Node3D) -> bool:
 	var tween := create_tween()
 	tween.tween_property(_pivot, "rotation_degrees", target_rotation, animation_duration)
 	tween.finished.connect(_on_tween_finished.bind(target_open))
+	if _is_player_home_door():
+		# 首次与家门互动时记录出门意图，教程系统据此提示上下阶梯操作；quest item 去重保证只触发一次。
+		GameState.collect_quest_item(EXIT_DOOR_QUEST_ITEM)
 	if GameConfig.DEBUG:
 		print("[DEBUG][DoorInteractable] toggled path=%s open=%s" % [get_path(), str(target_open)])
 	return true

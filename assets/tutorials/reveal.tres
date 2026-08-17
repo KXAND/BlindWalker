@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="TutorialPrompt" load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://scripts/core/TutorialPrompt.gd" id="1_prompt"]
+
+[resource]
+script = ExtResource("1_prompt")
+tutorial_id = &"reveal"
+title = "触觉记忆"
+body = "触摸或盲杖碰到的地方会留下【显影】标记。显影的数量和持续时间都是有限的，想记住关键位置，就对准显影按【鼠标右键】吧，固定后不会消失。此外，你的脚下始终都是显影状态。"

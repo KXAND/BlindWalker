@@ -397,6 +397,7 @@ func spawn_touch_memory(
 	_trim_temporary_spheres(_afterglow_spheres)
 
 	_update_sphere_uniforms()
+	EventBus.touch_memory_spawned.emit(_source)
 	return true
 
 

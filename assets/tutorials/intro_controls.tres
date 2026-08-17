@@ -6,4 +6,4 @@
 script = ExtResource("1_prompt")
 tutorial_id = &"intro_controls"
 title = "先熟悉方向"
-body = "【WASD】移动。【移动鼠标】转动视角或操控盲杖。【T】收起或展开盲杖。【单击左键】摸索近处物体。如果游戏太难了的话，游戏过程中按【F3】可以照亮所有视野。"
+body = "探索一下家中吧。按【WASD】移动。【移动鼠标】转动视角。【单击左键】伸手触摸。"

@@ -2,17 +2,28 @@ extends Node
 ## 会话级上下文教程管理器。监听事件、维护教程栈和已读状态，不参与玩法判定。
 
 const INTRO_CONTROLS := &"intro_controls"
+const REVEAL := &"reveal"
+const CANE_CONTROLS := &"cane_controls"
 const STUMBLE := &"stumble"
 const FALL := &"fall"
 const HEALTH_REST := &"health_rest"
+const ACCESSIBILITY_HINT := &"accessibility_hint"
+const EXIT_DOOR := &"exit_door"
 const INTRO_DELAY_SECONDS := 0.5
 const HEALTH_REST_THRESHOLD := 50
+const CANE_QUEST_ITEM := &"opening_cane_taken"
+const EXIT_DOOR_QUEST_ITEM := &"exit_door_first_interaction"
+const FALL_COUNT_FOR_HINT := 2
 
 const _PROMPTS := {
 	INTRO_CONTROLS: preload("res://assets/tutorials/intro_controls.tres"),
+	REVEAL: preload("res://assets/tutorials/reveal.tres"),
+	CANE_CONTROLS: preload("res://assets/tutorials/cane_controls.tres"),
 	STUMBLE: preload("res://assets/tutorials/stumble.tres"),
 	FALL: preload("res://assets/tutorials/fall.tres"),
 	HEALTH_REST: preload("res://assets/tutorials/health_rest.tres"),
+	ACCESSIBILITY_HINT: preload("res://assets/tutorials/accessibility_hint.tres"),
+	EXIT_DOOR: preload("res://assets/tutorials/exit_door.tres"),
 }
 
 var _seen: Dictionary = {}
@@ -23,6 +34,8 @@ var _current_prompt: Resource
 var _cutscene_active: bool = false
 var _pending_stumble: bool = false
 var _pending_fall: bool = false
+var _fall_count: int = 0
+var _pending_f3_hint: bool = false
 
 var _ui: TutorialPromptUI
 
@@ -41,6 +54,8 @@ func _ready() -> void:
 	EventBus.player_balance_recovered.connect(_on_balance_recovered)
 	EventBus.player_damaged.connect(_on_player_damaged)
 	EventBus.player_died.connect(_on_player_died)
+	EventBus.touch_memory_spawned.connect(_on_touch_memory_spawned)
+	EventBus.quest_item_collected.connect(_on_quest_item_collected)
 
 
 func enqueue_tutorial(tutorial_id: StringName, try_show: bool = true) -> bool:
@@ -89,6 +104,10 @@ func _on_unstable_stumbled(_qte_window: float) -> void:
 
 func _on_fall_started() -> void:
 	_pending_fall = true
+	_fall_count += 1
+	if _fall_count == FALL_COUNT_FOR_HINT:
+		# 第二次摔倒后提示无障碍功能，与摔倒教程同路径延迟到起身后显示。
+		_pending_f3_hint = true
 
 
 func _on_balance_recovered() -> void:
@@ -98,6 +117,9 @@ func _on_balance_recovered() -> void:
 	if _pending_fall:
 		enqueue_tutorial(FALL, false)
 		_pending_fall = false
+	if _pending_f3_hint:
+		enqueue_tutorial(ACCESSIBILITY_HINT, false)
+		_pending_f3_hint = false
 	_try_show_next()
 
 
@@ -108,6 +130,21 @@ func _on_player_damaged(_amount: int, current_hp: int) -> void:
 
 func _on_player_died() -> void:
 	_pause_current_prompt()
+
+
+func _on_touch_memory_spawned(source: StringName) -> void:
+	# 只有玩家主动感知（手触或杖触）生成的显影球才触发教程；
+	# 开场引导等系统生成的记忆球不算玩家首次感知。
+	if source != &"hand" and source != &"cane":
+		return
+	enqueue_tutorial(REVEAL)
+
+
+func _on_quest_item_collected(item_id: StringName) -> void:
+	if item_id == CANE_QUEST_ITEM:
+		enqueue_tutorial(CANE_CONTROLS)
+	elif item_id == EXIT_DOOR_QUEST_ITEM:
+		enqueue_tutorial(EXIT_DOOR)
 
 
 func _queue_intro_after_delay() -> void:

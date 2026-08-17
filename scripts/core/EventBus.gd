@@ -33,6 +33,8 @@ signal cane_exited_npc_zone(npc_name: String)
 
 @warning_ignore("unused_signal")
 signal touch_detected(hit_point: Vector3)
+@warning_ignore("unused_signal")
+signal touch_memory_spawned(source: StringName)
 
 @warning_ignore("unused_signal")
 signal quest_item_collected(item_id: StringName)
