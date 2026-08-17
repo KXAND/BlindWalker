@@ -6,7 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://bem21867c3d6h" path="res://scenes/Home/Bed.tscn" id="4_h8vgv"]
 [ext_resource type="PackedScene" uid="uid://co0xbe1nox2g4" path="res://scenes/Home/Toilet.tscn" id="5_2diic"]
 [ext_resource type="PackedScene" uid="uid://daptw6c232wa6" path="res://scenes/Home/guitar.glb" id="5_carsl"]
-[ext_resource type="PackedScene" uid="uid://cb7cvsmqonpos" path="res://scenes/Home/photo.glb" id="6_66gs2"]
+[ext_resource type="PackedScene" uid="uid://b50718ncn08ln" path="res://scenes/Home/photo.glb" id="6_66gs2"]
 [ext_resource type="PackedScene" uid="uid://cg81yf0241x4c" path="res://scenes/Home/Door.tscn" id="6_dxlhg"]
 [ext_resource type="PackedScene" path="res://scenes/Home/ClutterPile.tscn" id="6_qdxcq"]
 [ext_resource type="Script" uid="uid://dta7x56n4c15" path="res://scripts/interaction/Interactable.gd" id="7_k7kuu"]
@@ -568,9 +568,9 @@ shape = SubResource("BoxShape3D_door_interaction")
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -2.6873238, 1.05, 2.7213097)
 
 [node name="DoorBath" type="CSGBox3D" parent="DoorPivot" unique_id=1528792947]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.41640007, 0, 0)
+transform = Transform3D(0.0076324726, 0, 0.99997085, 0, 1, 0, -0.99997085, 0, 0.0076324726, -0.02689457, 0, -0.4014194)
 use_collision = true
-size = Vector3(0.8, 2.1, 0.05)
+size = Vector3(0.8395752, 2.1, 0.05)
 material = SubResource("mat_door")
 
 [node name="DoorPivot2" type="Node3D" parent="." unique_id=1289467817]
@@ -598,7 +598,7 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -0.7
 transform = Transform3D(0.46287078, 0, 0.88642573, 0, 1, 0, -0.88642573, 0, 0.46287078, 0.4043373, 1.05, -2.6642654)
 
 [node name="DoorBath" type="CSGBox3D" parent="DoorPivot3" unique_id=1222470124]
-transform = Transform3D(0.82671404, 0, -0.5626224, 0, 1, 0, 0.5626224, 0, 0.82671404, 0.3436141, 0, 0.22854811)
+transform = Transform3D(0.82671404, 0, -0.5626224, 0, 1, 0, 0.5626224, 0, 0.82671404, 0.34361386, 0, 0.22854823)
 use_collision = true
 size = Vector3(0.8, 2.1, 0.05)
 material = SubResource("mat_door")
