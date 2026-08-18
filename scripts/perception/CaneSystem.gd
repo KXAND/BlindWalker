@@ -637,16 +637,17 @@ func _pitch_limits() -> Vector2:
 	if _wide_pitch_active:
 		return wide_limits
 	var half_fine_pitch := deg_to_rad(fine_pitch_angle * 0.5)
+	# 常规点杖同样只限制上抬角：下探下限跟随宽扫 -90°，保证能敲到地面。
 	return Vector2(
-		maxf(wide_limits.x, _fine_pitch_center - half_fine_pitch),
+		wide_limits.x,
 		minf(wide_limits.y, _fine_pitch_center + half_fine_pitch)
 	)
 
 
 func _wide_pitch_limits() -> Vector2:
-	# B 保留完整下探范围，上抬角仍受独立上限限制。
+	# 下探不设角度上限，保证杖尖总能下探到地面；上抬角仍受独立上限限制。
 	var half_pitch := deg_to_rad(pitch_angle * 0.5)
-	return Vector2(-half_pitch, minf(half_pitch, deg_to_rad(max_raise_angle)))
+	return Vector2(-PI * 0.5, minf(half_pitch, deg_to_rad(max_raise_angle)))
 
 
 func _create_visuals() -> void:
