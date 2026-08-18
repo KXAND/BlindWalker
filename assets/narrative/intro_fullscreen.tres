@@ -6,23 +6,23 @@
 [sub_resource type="Resource" id="NarrativeLine_1"]
 speaker_id = &"xiaoming"
 script = ExtResource("2_line")
+text = "我叫晓明，今年二十二岁，是一名大学生。"
 audio_id = &"voice_intro_fullscreen_01"
-text = "我叫晓明，是一名22岁的失明的大学生。"
 duration = 4.45
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
 speaker_id = &"xiaoming"
 script = ExtResource("2_line")
+text = "我习惯用声音和双手来认识这个世界。"
 audio_id = &"voice_intro_fullscreen_02"
-text = "因为看不见，我平时很少出门。"
-duration = 3.20
+duration = 3.78
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
 speaker_id = &"xiaoming"
 script = ExtResource("2_line")
+text = "今天也和往常一样，我从睡梦中醒来，循着声音开始一天的生活。"
 audio_id = &"voice_intro_fullscreen_03"
-text = "今天如同往常一样，我平静的从睡梦中醒来，期待着睁眼能够看见清晨的阳光。"
-duration = 7.61
+duration = 6.37
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
 script = ExtResource("2_line")

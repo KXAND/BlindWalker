@@ -7,9 +7,9 @@
 speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
+text = "桌上的盲文课本还翻到上次那一页，今晚接着读吧。"
 audio_id = &"voice_desk_01"
-text = "什么时候我也能像普通人一样去上学就好了……"
-duration = 3.88
+duration = 4.91
 
 [resource]
 script = ExtResource("1_sequence")

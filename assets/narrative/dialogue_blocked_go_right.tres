@@ -4,11 +4,10 @@
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
-speaker_id = &"xiaoming"
-	script = ExtResource("2_line")
+script = ExtResource("2_line")
 speaker_name = "晓明"
+text = "这边被堵住了，往右走吧。"
 audio_id = &"voice_blocked_go_right_01"
-	text = "这边被堵住了，往右走吧。"
 duration = 3.25
 
 [resource]

@@ -4,91 +4,80 @@
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_01"
 text = "垃圾桶到了……好，扔进去。"
+audio_id = &"voice_ground_floor_01"
 duration = 3.37
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
-speaker_id = &"li_grandma"
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-audio_id = &"voice_ground_floor_02"
 text = "晓明？你下来扔垃圾啊。"
+audio_id = &"voice_ground_floor_02"
 duration = 3.98
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_03"
 text = "李奶奶好，您也出门呢？"
+audio_id = &"voice_ground_floor_03"
 duration = 2.29
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
-speaker_id = &"li_grandma"
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-audio_id = &"voice_ground_floor_04"
 text = "家里的白糖用完了，想去外面小卖部买一袋来着……"
+audio_id = &"voice_ground_floor_04"
 duration = 6.77
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_05"
 text = "那我帮您去买吧，我正好也没事。您腿脚不方便，我来替你去吧。"
+audio_id = &"voice_ground_floor_05"
 duration = 6.25
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
-speaker_id = &"li_grandma"
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-audio_id = &"voice_ground_floor_06"
 text = "那可太好了，麻烦你了啊。一袋白糖就行，钱你先拿着。"
+audio_id = &"voice_ground_floor_06"
 duration = 8.87
 
 [sub_resource type="Resource" id="NarrativeLine_7"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_07"
 text = "不用急，回来再说。您在家等着吧。"
+audio_id = &"voice_ground_floor_07"
 duration = 4.11
 
 [sub_resource type="Resource" id="NarrativeLine_8"]
-speaker_id = &"li_grandma"
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-audio_id = &"voice_ground_floor_08"
 text = "你好久没出门了，一定要小心点啊。"
+audio_id = &"voice_ground_floor_08"
 duration = 5.41
 
 [sub_resource type="Resource" id="NarrativeLine_9"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_09"
 text = "没问题，李奶奶，小卖部也不是很远，小区门口旁边而已，几步路就到了，那我去了。"
+audio_id = &"voice_ground_floor_09"
 duration = 7.79
 
 [sub_resource type="Resource" id="NarrativeLine_10"]
-speaker_id = &"li_grandma"
 script = ExtResource("2_line")
 speaker_name = "李奶奶"
-audio_id = &"voice_ground_floor_10"
 text = "不用太急，记得慢点啊。"
+audio_id = &"voice_ground_floor_10"
 duration = 4.13
 
 [sub_resource type="Resource" id="NarrativeLine_11"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_ground_floor_11"
 text = "（先出去小区门口吧）"
+audio_id = &"voice_ground_floor_11"
 duration = 2.07
 
 [resource]

@@ -4,52 +4,46 @@
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_crosswalk_01"
 text = "应该是这个路口了，过马路吧。"
+audio_id = &"voice_crosswalk_01"
 duration = 3.34
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_crosswalk_02"
 text = "街上车流复杂，容易发生意外。"
+audio_id = &"voice_crosswalk_02"
 duration = 3.44
 
 [sub_resource type="Resource" id="NarrativeLine_3"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_crosswalk_03"
 text = "留意下红绿灯提示音，等到绿灯那会再过马路吧。"
+audio_id = &"voice_crosswalk_03"
 duration = 4.86
 
 [sub_resource type="Resource" id="NarrativeLine_4"]
-speaker_id = &"kind_passersby"
 script = ExtResource("2_line")
 speaker_name = "好心路人"
-audio_id = &"voice_crosswalk_04"
 text = "同学您好，您是要过马路吗？要帮帮忙吗？"
+audio_id = &"voice_crosswalk_04"
 duration = 4.32
 
 [sub_resource type="Resource" id="NarrativeLine_5"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_crosswalk_05"
 text = "谢谢你，不过我想尝试一下自己过马路，谢谢你的好意。"
+audio_id = &"voice_crosswalk_05"
 duration = 5.01
 
 [sub_resource type="Resource" id="NarrativeLine_6"]
-speaker_id = &"kind_passersby"
 script = ExtResource("2_line")
 speaker_name = "好心路人"
-audio_id = &"voice_crosswalk_06"
 text = "哦，好的好的，那您小心一点。"
-duration = 3.40
+audio_id = &"voice_crosswalk_06"
+duration = 3.4
 
 [resource]
 script = ExtResource("1_sequence")

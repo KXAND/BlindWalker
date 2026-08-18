@@ -4,19 +4,17 @@
 [ext_resource type="Script" uid="uid://cjk6emp8lxq0m" path="res://scripts/core/NarrativeLine.gd" id="2_line"]
 
 [sub_resource type="Resource" id="NarrativeLine_1"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_first_crossroads_turn_right_01"
 text = "第一个十字路口到了，在这右转吧。"
+audio_id = &"voice_first_crossroads_turn_right_01"
 duration = 3.75
 
 [sub_resource type="Resource" id="NarrativeLine_2"]
-speaker_id = &"xiaoming"
 script = ExtResource("2_line")
 speaker_name = "晓明"
-audio_id = &"voice_first_crossroads_turn_right_02"
 text = "之后沿着盲道走，商店应该就在下一个十字路口的斜对面。"
+audio_id = &"voice_first_crossroads_turn_right_02"
 duration = 5.65
 
 [resource]
